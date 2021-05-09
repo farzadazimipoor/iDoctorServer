@@ -1,0 +1,157 @@
+﻿@using AN.Core.Resources.Global;
+@using AN.Core.Resources.UI.AdminPanel;
+
+@model AN.Web.Areas.ClinicManager.Models.CMReportingViewModel
+
+@{
+    ViewBag.Title = PanelResource.ClinicTurnsReport;
+    Layout = "~/Views/Shared/_CpanelLayout.cshtml";
+}
+
+@section styles{
+    <link rel="stylesheet" href="~/lib/flatpickr/flatpickr.min.css" type="text/css" />
+    <link href="~/css/PagedList.css" rel="stylesheet" type="text/css" />
+}
+
+<partial name="_ConfirmDeleteModalPartial" />
+
+<section class="content-header">
+    <h1>
+        @PanelResource.ClinicTurnsReport
+        <small>@AN.Core.Resources.UI.AdminPanel.PanelResource.AdminPanel</small>
+    </h1>
+    <ol class="breadcrumb">
+        <li><a href="@Url.Action("Index","Home", new { area = "ClinicManager" })"><i class="fa fa-dashboard"></i> @Global.Home</a></li>
+        <li class="active">@PanelResource.ClinicTurnsReport</li>
+    </ol>
+</section>
+
+<section class="content">
+    <div class="row">
+        <div class="col-xs-12">
+            <div class="box">
+                <div class="box-header">
+                    @using (Html.BeginForm("AppointmentsReport", "Reporting", new { area = "ClinicManager" }, FormMethod.Get, true, new { @enctype = "multipart/form-data", @class = "form-horizontal", role = "form" }))
+                    {
+                        <div class="row">
+                            <div class="col-md-2">
+                                @Html.Label("",Global.Polyclinic, new { @for = "polyclinicsSelect" })
+                                @Html.DropDownListFor(m => m.polyclinicId, Model.ListPolyclinics, new { @id = "polyclinicsSelect", @cLass = "form-control" })
+                            </div>
+                            <div class="col-md-2">
+                                @Html.Label("",Global.Doctor, new { @for = "serviceSuppliesSelect" })
+                                @Html.DropDownListFor(m => m.serviceSupplyId, Model.ListServiceSupplies, new { @id = "serviceSuppliesSelect", @cLass = "form-control" })
+                                @Html.ValidationMessageFor(m => m.serviceSupplyId, "", new { @class = "text-danger" })
+                            </div>
+                            <div class="col-md-2">
+                                @Html.Label("",Global.From, new { @for = "fromDate" })
+                                <input id="fromDate" name="fromDate" type="text" class="form-control common-datepicker" value="@Model.FromDate" autocomplete = "off" />
+                            </div>
+                            <div class="col-md-2">
+                                @Html.Label("",Global.To, new { @for = "toDate" })
+                                <input id="toDate" name="toDate" type="text" class="form-control common-datepicker" value="@Model.ToDate" autocomplete = "off" />
+                            </div>
+                            <div class="col-md-2">
+                                @Html.Label("",Global.Service, new { @for = "healthServicesSelect" })
+                                @Html.DropDownList("polyclinicHealthServiceId", Model.ListHealthServices, new { @id = "healthServicesSelect", @cLass = "form-control" })
+                            </div>
+                            <div class="col-md-2">
+                                @Html.Label("",Global.Status, new { @for = "statusesSelect" })
+                                @Html.DropDownList("status", (ViewBag.StatusList as IEnumerable<SelectListItem>).ToList(), new { @id = "statusesSelect", @cLass = "form-control" })
+                            </div>
+                        </div>
+                        <div class="row">
+                            @*<div class="col-md-2">
+                                    @Html.Label("",Global.PaymentType, new { @for = "paymentStatusesSelect" })
+                                    @Html.DropDownList("paymentStatus", Model.ListPaymentStatuses, new { @id = "paymentStatusesSelect", @cLass = "form-control" })
+                                </div>*@
+                            <div class="col-md-2">
+                                @Html.Hidden("isForPrint", true)
+                                <input id="btnSearch" class="btn btn-danger" type="submit" value="@PanelResource.ViewAndPrintReport" />
+                            </div>
+                        </div>
+                    }
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+
+@section scripts{
+    <script type="text/javascript" src="~/lib/flatpickr/flatpickr.min.js"></script>
+    <script type="text/javascript">
+
+        var polyclinicsSelect = $("#polyclinicsSelect");
+        var serviceSuppliesSelect = $("#serviceSuppliesSelect");
+        var healthServicesSelect = $("#healthServicesSelect");
+        var txtFromDate = $("#fromDate");
+        var txtToDate = $("#toDate");
+        var statusesSelect = $("#statusesSelect");
+        var paymentStatusesSelect = $("#paymentStatusesSelect");
+        var btnSearch = $("#btnSearch");
+
+        $("#polyclinicsSelect").change(function () {
+            debugger;
+
+            showProgress(true);
+
+            var polyclinicId = polyclinicsSelect.val();
+            var dataRow = {
+                'polyclinicId': polyclinicId
+            }
+            $.ajax
+                ({
+                    url: '/ClinicManager/PoliClinic/GetServiceSupplies',
+                    type: 'GET',
+                    data: dataRow,
+                    success: function (result) {
+                        showProgress(false);
+                        serviceSuppliesSelect.html("");
+                        $.each($.parseJSON(result), function (i, e) {
+                            serviceSuppliesSelect.append($('<option></option>').val(e.Id).html(e.Name))
+                        })
+                    },
+                    error: function () {
+                        showProgress(false);
+                        alert('@Global.Err_ErrorOccured')
+                    },
+                });
+            showProgress(true);
+            $.ajax
+                ({
+                    url: '/ClinicManager/PoliClinic/GetHealthServices',
+                    type: 'GET',
+                    data: dataRow,
+                    success: function (result) {
+                        showProgress(false);
+                        healthServicesSelect.html("");
+                        $.each($.parseJSON(result), function (i, e) {
+                            healthServicesSelect.append($('<option></option>').val(e.Id).html(e.Name))
+                        })
+                    },
+                    error: function () {
+                        showProgress(false);
+                        alert('@Global.Err_ErrorOccured')
+                    },
+                });
+        });
+
+        function showProgress(status) {
+            if (status) {
+                $.blockUI({
+                    message: '<i class="fa fa-cog fa-spin fa-3x fa-fw" style="z-index:1000;"></i>'
+                });
+            } else {
+                $.unblockUI();
+            }
+            polyclinicsSelect.prop('disabled', status);
+            serviceSuppliesSelect.prop('disabled', status);
+            healthServicesSelect.prop('disabled', status);
+            txtFromDate.prop('disabled', status);
+            txtToDate.prop('disabled', status);
+            statusesSelect.prop('disabled', status);
+            paymentStatusesSelect.prop('disabled', status);
+            btnSearch.prop('disabled', status);
+        }
+    </script>
+}

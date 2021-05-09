@@ -1,0 +1,45 @@
+﻿@using AN.Core.Models
+@using Microsoft.AspNetCore.Http
+@inject IHttpContextAccessor HttpContextAccessor
+
+@{
+    var currentPolyClinic = Newtonsoft.Json.JsonConvert.DeserializeObject<WorkingAreaModel>(HttpContextAccessor.HttpContext.Session.GetString("CurrentPoliClinic"));
+
+    var policlinics = Newtonsoft.Json.JsonConvert.DeserializeObject<List<WorkingAreaModel>>(HttpContextAccessor.HttpContext.Session.GetString("PoliClinics"));
+
+    if (policlinics == null)
+    {
+        //TODO : exit from system
+    }
+    else if (policlinics.Count() > 1)
+    {
+        <li class="dropdown notifications-menu">
+            <a href="#" class="dropdown-toggle" data-toggle="dropdown">
+                <span class="hidden-xs">@AN.Core.Resources.UI.AdminPanel.PanelResource.ChangePolyclinic</span>
+                <i class="fa fa-refresh"></i>
+                <span class="label label-info">@policlinics.Count()</span>
+            </a>
+            <ul class="dropdown-menu">
+                <li class="header">@AN.Core.Resources.UI.AdminPanel.PanelResource.YouCanManageThisPolyClinics</li>
+                <li>
+                    <ul class="menu">
+                        @foreach (var pc in policlinics)
+                        {
+                            if (currentPolyClinic.Id == pc.Id)
+                            {
+                                <li style="background: #f4f4f4;"><a style="color:darkred;" class="disabled"><i class="fa fa-ban"></i> @pc.Name - @AN.Core.Resources.Global.Global.Selected</a></li>
+                            }
+                            else
+                            {
+                                <li><a href="@Url.Action("ChangePoliClinic","Home",new { area = "PolyClinicManager" ,  id = pc.Id  })"><i class="fa fa-hand-o-left text-aqua"></i>@pc.Name</a></li>
+                            }
+                        }
+                    </ul>
+                </li>
+                <li class="footer"><a href="#"></a></li>
+            </ul>
+        </li>
+    }
+}
+
+

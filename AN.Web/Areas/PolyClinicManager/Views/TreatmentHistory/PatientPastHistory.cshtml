@@ -1,0 +1,137 @@
+﻿@model AN.Core.ViewModels.PatientHistoryInfoModel
+
+<!-- Timelime example  -->
+<div class="row">
+    <div class="col-md-12">
+        
+        <div class="timeline">      
+            
+            <div class="time-label">
+                <span class="bg-red">Vist Date: @(ViewBag.VisitDate)</span>
+            </div>           
+
+            <div>
+                <i class="fas fa-tasks bg-info"></i>
+                <div class="timeline-item">
+                    <span class="time"></span>
+                    <h3 class="timeline-header"><b>Differential Diagnosis</b></h3>
+                    <div class="timeline-body">
+                        @Model.DifferentialDiagnosis
+                    </div>
+                </div>
+            </div>
+
+            <div>
+                <i class="fas fa-hourglass-start bg-info"></i>
+                <div class="timeline-item">
+                    <span class="time"></span>
+                    <h3 class="timeline-header"><b>Drug History</b></h3>
+                    <div class="timeline-body">
+                        @Model.DrugHistory
+                    </div>
+                </div>
+            </div>
+
+            <div>
+                <i class="fas fa-envelope bg-info"></i>
+                <div class="timeline-item">
+                    <span class="time"></span>
+                    <h3 class="timeline-header"><b>Examination History</b></h3>
+                    <div class="timeline-body">
+                        @Model.ExaminationHistory
+                    </div>
+                </div>
+            </div>
+
+            <div>
+                <i class="fas fa-baby bg-info"></i>
+                <div class="timeline-item">
+                    <span class="time"></span>
+                    <h3 class="timeline-header"><b>Family History</b></h3>
+                    <div class="timeline-body">
+                        @Model.FamilyHistory
+                    </div>
+                </div>
+            </div>
+
+            <div>
+                <i class="fas fa-envelope bg-info"></i>
+                <div class="timeline-item">
+                    <span class="time"></span>
+                    <h3 class="timeline-header"><b>Final Diagnosis</b></h3>
+                    <div class="timeline-body">
+                        @Model.FinalDiagnosis
+                    </div>
+                </div>
+            </div>
+
+            <div>
+                <i class="fas fa-envelope bg-info"></i>
+                <div class="timeline-item">
+                    <span class="time"></span>
+                    <h3 class="timeline-header"><b>Past Medical</b></h3>
+                    <div class="timeline-body">
+                        @Model.PastMedical
+                    </div>
+                </div>
+            </div>
+
+            <div>
+                <i class="fas fa-user-alt bg-info"></i>
+                <div class="timeline-item">
+                    <span class="time"></span>
+                    <h3 class="timeline-header"><b>Present Illness</b></h3>
+                    <div class="timeline-body">
+                        @Model.PresentIllness
+                    </div>
+                </div>
+            </div>
+
+            <div>
+                <i class="fas fa-envelope bg-info"></i>
+                <div class="timeline-item">
+                    <span class="time"></span>
+                    <h3 class="timeline-header"><b>Signs And Symptoms History</b></h3>
+                    <div class="timeline-body">
+                        @Model.SignsAndSymptomsHistory
+                    </div>
+                </div>
+            </div>
+
+            <div>
+                <i class="fas fa-envelope bg-info"></i>
+                <div class="timeline-item">
+                    <span class="time"></span>
+                    <h3 class="timeline-header"><b>Social History</b></h3>
+                    <div class="timeline-body">
+                        @Model.SocialHistory
+                    </div>
+                </div>
+            </div>
+
+            <div>
+                <i class="fas fa-envelope bg-info"></i>
+                <div class="timeline-item">
+                    <span class="time"></span>
+                    <h3 class="timeline-header"><b>Surgical History</b></h3>
+                    <div class="timeline-body">
+                        @Model.SurgicalHistory
+                    </div>
+                </div>
+            </div>
+
+            <div>
+                <i class="fas fa-laptop bg-info"></i>
+                <div class="timeline-item">
+                    <span class="time"></span>
+                    <h3 class="timeline-header"><b>Systemic Review</b></h3>
+                    <div class="timeline-body">
+                        @Model.SystemicReview
+                    </div>
+                </div>
+            </div>
+
+        </div>
+    </div>   
+</div>
+

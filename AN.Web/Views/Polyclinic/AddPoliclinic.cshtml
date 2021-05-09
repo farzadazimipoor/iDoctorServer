@@ -1,0 +1,209 @@
+﻿@using AN.Core.Resources.Global;
+@using AN.Core.Resources.UI.AdminPanel;
+
+@model AN.Web.Models.PoliClinicViewModel
+
+@{
+    var actionType = !Model.Id.HasValue ? ActionType.Insert : ActionType.Update;
+
+    ViewBag.Title = actionType == ActionType.Insert ? PanelResource.AddNewPolyclinic : $"{Global.Edit} {Model.Name}";
+
+    Layout = "~/Views/Shared/_CpanelLayout.cshtml";
+
+    const string tabsEffect = "fadeIn";
+}
+
+@section styles{
+    <link rel="stylesheet" href="~/lib/bootstrap-fileinput/css/fileinput.min.css" />
+    <link rel="stylesheet" href="~/lib/iCheck/skins/all.css" type="text/css" />
+}
+
+<div class="content-header">
+    <div class="container-fluid">
+        <div class="row mb-2">
+            <div class="col-sm-6">
+                <h1 class="m-0 text-dark">@ViewBag.Title</h1>
+            </div>
+            <div class="col-sm-6">
+                <ol class="breadcrumb @(ViewBag.Lang == AN.Core.Enums.Lang.EN ? "float-sm-right" : "float-sm-left") ">
+                    <li class="breadcrumb-item"><a href="@Url.Action("Index","Home", new { area = ViewBag.LoginAs })">@AN.Core.Resources.Global.Global.Home</a></li>
+                    @if (ViewBag.LoginAs == Shared.Enums.LoginAs.ADMIN.ToString() || ViewBag.LoginAs == Shared.Enums.LoginAs.HOSPITALMANAGER.ToString() || ViewBag.LoginAs == Shared.Enums.LoginAs.CLINICMANAGER.ToString())
+                    {
+                        <li class="breadcrumb-item"><a href="@Url.Action("Index","Polyclinic", new { area = "" })">@PanelResource.PolyclinicsList</a></li>
+                    }
+                    <li class="breadcrumb-item active">@ViewBag.Title</li>
+                </ol>
+            </div>
+        </div>
+    </div>
+</div>
+
+<div class="content">
+    <div class="container-fluid">
+        <form id="frmAddPoliclinic" class="form-horizontal" action="@Url.Action("AddPoliclinic", "Polyclinic", new {area = ""})" method="POST">
+            @Html.AntiForgeryToken()
+            @Html.HiddenFor(m => m.Id)
+            @Html.ValidationSummary(true, "", new { @class = "text-danger" })
+            <div class="card card-info card-outline">
+                <div class="card-body">
+                    <div class="row">
+                        <div class="col-md-12">
+                            <ul class="nav nav-tabs">
+                                <li class="nav-item">
+                                    <a class="nav-link active" href="#policlinicInfoTab" data-toggle="tab"><i class="fa fa-list-alt fa-lg fa-fw"></i> @AN.Core.Resources.Global.Global.Details</a>
+                                </li>
+                                @if (actionType == ActionType.Update)
+                                {
+                                    <li class="nav-item">
+                                        <a class="nav-link" href="#ShiftCenterGalleryTab" data-toggle="tab"><i class="fa fa-image fa-lg fa-fw"></i> @AN.Core.Resources.Global.Global.Images</a>
+                                    </li>
+                                }
+                            </ul>
+                            <div class="tab-content">
+                                <div class="tab-pane active animated @tabsEffect" id="policlinicInfoTab">
+                                    @await Html.PartialAsync("~/Views/Polyclinic/Partials/_PoliclinicInfoTab.cshtml", Model)
+                                </div>
+                                @if (actionType == ActionType.Update)
+                                {
+                                    <div class="tab-pane animated @tabsEffect p-3" id="ShiftCenterGalleryTab">
+                                        <div class="card card-info">
+                                            <div class="card-header">
+                                                <h5 class="m-0">@Global.Logo</h5>
+                                            </div>
+                                            <div class="card-body p-2">
+                                                <div class="row justify-content-center">
+                                                    <div class="col-md-4 text-center">
+                                                        <div class="kv-avatar">
+                                                            <div class="file-loading">
+                                                                <input id="LogoPhoto" name="LogoPhoto" type="file" accept="image/*">
+                                                            </div>
+                                                        </div>
+                                                        <div class="kv-avatar-hint"><small>Max File Size: 500 KB</small></div>
+                                                        <div id="kv-avatar-errors-1" class="center-block" style="display:none"></div>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </div>
+                                        <div class="card card-warning">
+                                            <div class="card-header">
+                                                <h5 class="m-0">@Global.Gallery</h5>
+                                            </div>
+                                            <div class="card-body">
+                                                <div class="file-loading">
+                                                    <input id="input-24" name="galleryPhoto" type="file" accept="image/*" multiple>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                }
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </form>
+    </div>
+</div>
+
+@section scripts{
+    <script type="text/javascript" src="~/lib/bootstrap-fileinput/js/fileinput.min.js"></script>
+    <script type="text/javascript" src="~/lib/bootstrap-fileinput/themes/fas/theme.min.js"></script>
+    <script type="text/javascript" src="~/lib/iCheck/icheck.min.js"></script>
+    <script>
+        (function () {
+            $('input[type="checkbox"].flat-red, input[type="radio"].flat-red').iCheck({
+                checkboxClass: 'icheckbox_flat-green',
+                radioClass: 'iradio_flat-green'
+            });
+            var myArray = [];
+            var myArrayConfig = [];
+            @{
+                if(actionType == ActionType.Update && Model.Images != null)
+                {
+                     foreach (var d in Model.Images)
+                     {
+                        @:myArray.push("@d.thumbnailUrl");
+                        @:myArrayConfig.push({ caption: "@d.name", downloadUrl: "@d.url", size: @d.size, width: "120px", key: @Model.Images.IndexOf(d), url:"/Upload/DeleteShiftCenterGalleryPhoto/@d.Id" })
+                     }
+                }
+            }
+             $("#input-24").fileinput({
+                 theme: "fas",
+                 uploadUrl:"/Upload/UploadShiftCenterGalleryPhoto/@Model.Id",
+                 initialPreview: myArray,
+                 initialPreviewAsData: true,
+                 initialPreviewConfig: myArrayConfig,
+                 overwriteInitial: false,
+                 initialCaption: "@Global.Gallery",
+                 browseClass: "btn btn-primary btn-block",
+                 showCaption: false,
+                 showRemove: false,
+                 showUpload: false,
+                 maxFileSize: 64307,
+                 minImageWidth: 400,
+                 minImageHeight: 400,
+                 maxImageWidth: 12000,
+                 maxImageHeight: 9000,
+                 allowedFileExtensions: ["jpg", "png", "jpeg"]
+             }).on('fileuploaded', function (event, previewId, index, fileId) {
+                Toast.fire({
+                    type: 'success',
+                    title: '@AN.Core.Resources.Global.Global.Successful',
+                    text: 'Gallery Photo Uploaded Successfully'
+                });
+            }).on('fileuploaderror', function (event, data, msg) {
+                Toast.fire({
+                    type: 'error',
+                    title: '@AN.Core.Resources.Global.Global.Error',
+                    text: 'File upload error. please try again or select another photo'
+                });
+            }).on('filebeforedelete', function () {
+                var aborted = !window.confirm('@AN.Core.Resources.Global.Global.Msg_AreYouSure');               
+                return aborted;
+            }).on('filedeleted', function () {
+                 Toast.fire({
+                    type: 'success',
+                    title: '@AN.Core.Resources.Global.Global.Delete',
+                    text: '@AN.Core.Resources.EntitiesResources.Messages.ItemDeletedSuccessFully'
+                });
+            });
+
+            $("#LogoPhoto").fileinput({
+                theme: "fas",
+                uploadUrl: "/Upload/UploadShiftCenterLogo/@Model.Id",
+                overwriteInitial: true,
+                showClose: false,
+                showCancel: false,
+                showCaption: false,
+                showUpload: false,
+                showRemove: true,
+                browseLabel: '',
+                removeLabel: '',
+                browseIcon: '<i class="fa fa-folder-open"></i>',
+                removeIcon: '<i class="fa fa-trash"></i>',
+                removeTitle: 'Cancel or reset changes',
+                elErrorContainer: '#kv-avatar-errors-1',
+                msgErrorClass: 'alert alert-block alert-danger',
+                defaultPreviewContent: '@Html.Raw(ViewBag.LogoPreview)',
+                maxFileSize: 500,
+                minImageWidth: 96,
+                minImageHeight: 96,
+                maxImageWidth: 246,
+                maxImageHeight: 246,
+                allowedFileExtensions: ["jpg", "png", "jpeg"]
+            }).on('fileuploaded', function (event, previewId, index, fileId) {
+                Toast.fire({
+                    type: 'success',
+                    title: '@AN.Core.Resources.Global.Global.Successful',
+                    text: 'Logo Uploaded Successfully'
+                });
+            }).on('fileuploaderror', function (event, data, msg) {
+                Toast.fire({
+                    type: 'error',
+                    title: '@AN.Core.Resources.Global.Global.Error',
+                    text: 'Logo file upload error. please try again or select another photo'
+                });
+            });
+        })();
+    </script>
+}

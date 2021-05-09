@@ -1,0 +1,100 @@
+﻿@using AN.Core.Resources.Global;
+
+@model AN.Core.ViewModels.CmsCategoryCreateUpdateViewModel
+
+<div id="CreateCmsCategoryArea">
+    <form id="createPharmacyForm" class="form-horizontal" action="@Url.Action("CreateUpdateCategory", "Cms", new {area = "Admin"})" method="POST">
+        @Html.AntiForgeryToken()
+        @Html.HiddenFor(m => m.Id)
+        <div class="card">
+            <div class="card-body">
+                <div class="row">
+                    <div class="col-12">
+                        <div class="form-group">
+                            @Html.LabelFor(m => m.LayoutStyle)
+                            @Html.DropDownListFor(model => model.LayoutStyle, (ViewBag.LayoutStyles as IEnumerable<SelectListItem>).ToList(), new { @class = "form-control" })
+                            @Html.ValidationMessageFor(m => m.LayoutStyle, "", new { @class = "text-danger" })
+                        </div>
+                    </div>                   
+                </div>
+            </div>
+        </div>
+        <div class="row">
+            <div class="col-md-4">
+                <div class="card">
+                    <div class="card-header">
+                        <h5 class="m-0">@Global.Kurdish</h5>
+                    </div>
+                    <div class="card-body">
+                        <div class="form-group">
+                            @Html.LabelFor(m => m.Title_Ku)
+                            @Html.TextBoxFor(m => m.Title_Ku, new { maxlength = "50", @class = "form-control" })
+                            @Html.ValidationMessageFor(m => m.Title_Ku, "", new { @class = "text-danger" })
+                        </div>                       
+                    </div>
+                </div>
+            </div>
+            <div class="col-md-4">
+                <div class="card">
+                    <div class="card-header">
+                        <h5 class="m-0">@Global.Arabic</h5>
+                    </div>
+                    <div class="card-body">
+                        <div class="form-group">
+                            @Html.LabelFor(m => m.Title_Ar)
+                            @Html.TextBoxFor(m => m.Title_Ar, new { maxlength = "50", @class = "form-control" })
+                            @Html.ValidationMessageFor(m => m.Title_Ar, "", new { @class = "text-danger" })
+                        </div>                       
+                    </div>
+                </div>
+            </div>
+            <div class="col-md-4">
+                <div class="card">
+                    <div class="card-header">
+                        <h5 class="m-0">@Global.English</h5>
+                    </div>
+                    <div class="card-body">
+                        <div class="form-group">
+                            @Html.LabelFor(m => m.Title)
+                            @Html.TextBoxFor(m => m.Title, new { maxlength = "50", @class = "form-control beLTR" })
+                            @Html.ValidationMessageFor(m => m.Title, "", new { @class = "text-danger" })
+                        </div>                       
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="row">
+            <div class="col-md-12 mt-5 text-center">
+                <button type="submit" class="btn btn-info">@(Model.Id == null ? AN.Core.Resources.UI.AdminPanel.PanelResource.AddNew : AN.Core.Resources.Global.Global.Update)</button>
+                <button id="CancelAddPatient" type="button" class="btn btn-danger" data-dismiss="modal">@AN.Core.Resources.Global.Global.Cancel </button>
+            </div>
+        </div>
+    </form>
+</div>
+
+<script type="text/javascript">
+    $(function () {
+        var form = $("#CreateCmsCategoryArea").find('form');
+        $.validator.unobtrusive.parse(form);
+        $(form).on("submit", function (e) {
+            e.preventDefault();
+            if (form.valid()) {
+                waiting('AwroNoreModal', '@AN.Core.Resources.Global.Global.PleaseWait');
+                $.ajax({
+                    method: "POST",
+                    url: $(this).attr("action"),
+                    dataType: "json",
+                    data: form.serialize(), success: function (result) {
+                        form.closest('.modal').modal('toggle');
+                        toastr.success("Success", "Message");
+                        reloadDataTable();
+                    }, error: function (jqXHR, ex) {
+                        handleAjaxError(jqXHR, ex);
+                    }
+                }).always(function () {
+                    waitingDone('AwroNoreModal');
+                });
+            }
+        });
+    });
+</script>

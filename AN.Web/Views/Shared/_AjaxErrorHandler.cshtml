@@ -1,0 +1,29 @@
+<script>
+    function handleAjaxError(jqXHR, exception) {
+        if (jqXHR.status === 0) {
+            toastr.error("@Messages.Msg_ConnectionError", '@Global.SystemMessage');
+        } else if (jqXHR.status == 404) {
+             toastr.error("@Messages.Msg_RequestedPageNotFound404", '@Global.SystemMessage');
+        } else if (jqXHR.status == 403) {
+            toastr.error("@Messages.Msg_AccessDenied403", '@Global.SystemMessage');
+        } else if (jqXHR.status == 500) {
+            toastr.error("@Messages.Msg_InternalServerError500", '@Global.SystemMessage');
+        } else if (jqXHR.status == 705 || jqXHR.status == 401) {
+            window.location.pathname = '/Account/Logout';
+        } else if (jqXHR.status >= 700) {
+            if (jqXHR.status == 719) {
+                Swal.fire({ type: 'warning', title: '@AN.Core.Resources.Global.Global.AccessDenied', text: jqXHR.responseText })
+            } else {
+                Swal.fire({ type: 'error', title: '@AN.Core.Resources.Global.Global.Error', text: jqXHR.responseText })         
+            }                
+        } else if (exception === 'parsererror') {
+             toastr.error("@Messages.Msg_RequestedJSONParseFailed", '@Global.SystemMessage');
+        } else if (exception === 'timeout') {
+             toastr.error("@Messages.Msg_TimeOutError", '@Global.SystemMessage');
+        } else if (exception === 'abort') {
+             toastr.error("@Messages.Msg_AjaxRequestAborted", '@Global.SystemMessage');
+        } else {
+             Swal.fire({ type: 'error', title: '@AN.Core.Resources.Global.Global.Error', text: jqXHR.responseText })             
+        }
+    }
+</script>

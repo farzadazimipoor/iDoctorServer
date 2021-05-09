@@ -1,0 +1,336 @@
+﻿
+/*.inline-edit td input {
+	width:inherit;
+    border: none;
+    border-radius: 3px;
+    padding: 2px;
+    outline: 0;
+}*/
+input[type=radio] {
+    margin: 0;
+    width: 1.5rem;
+}
+
+.has-waiting .form-control {
+    box-shadow: none;
+}
+
+.inline-edit td select {
+    width: inherit;
+}
+
+.inline-edit td, .inline-edit th {
+    padding: .5rem;
+}
+/*.inline-edit td input:hover, .inline-edit tr:hover input, .inline-edit tr:hover select {
+	background: #f0f1f1;
+}
+.inline-edit tr select:focus {
+	background: #fff !important;
+    border: 1px solid #9bbce0;
+}
+.inline-edit tr:hover select option {
+	background: #fff
+}
+.inline-edit td input:focus {
+	border:1px solid #9bbce0;
+	box-sizing: border-box;
+	background: #fff !important;
+}
+.inline-edit td select {
+    border: none;
+    border-radius: 3px;
+    padding: 2px;
+    outline: 0;
+    padding: 0rem .5rem;
+    font-size: 12px;
+}*/
+
+
+.custom-control-label::before {
+    background-color: #fff;
+    border: 1px solid #007bff;
+}
+
+/*.custom-control-label::before, .custom-control-label::after {
+	left: unset;
+	right:0;
+}*/
+
+/*-----------------------------------------first*/
+.first thead {
+    background: #3b627e;
+    color: #fff;
+}
+
+.first .table-hover tbody tr:hover {
+    background-color: #e1e4e4;
+}
+
+.table td, .table th {
+    padding: .399rem 0.7rem !important;
+}
+
+/*===================================third*/
+.third thead {
+    background: #58a7aa;
+    color: #fff;
+}
+
+.third .table-hover tbody tr:hover {
+    background-color: #eceeef;
+}
+/*.third .inline-edit td input:hover, .third .inline-edit tr:hover input, .third .inline-edit tr:hover select {
+    background: #eceeef;
+}*/
+.third .custom-control-label::before {
+    background-color: #fff;
+    border: 1px solid #58a7aa;
+}
+
+.third .custom-checkbox .custom-control-input:checked ~ .custom-control-label::before {
+    background-color: #58a7aa;
+}
+/*-------------------------------------fourth*/
+.fourth thead {
+    text-align: center;
+}
+
+.fourth .table-hover tbody tr:hover {
+    background-color: rgba(220, 222, 230, 0.3);
+    color: #d48f27;
+    cursor: pointer;
+}
+
+.fourth .table-hover tbody tr.jGrid2Activat {
+    background-color: rgba(220, 222, 230, 0.3);
+}
+/*.fourth .inline-edit td input:hover, .fourth .inline-edit tr:hover input, .fourth .inline-edit tr:hover select {
+    background-color: rgb(238, 238, 243);
+}*/
+.fourth .custom-control-label::before {
+    background-color: #fff;
+    border: 1px solid #7682c5;
+}
+
+.fourth .custom-checkbox .custom-control-input:checked ~ .custom-control-label::before {
+    background-color: #7682c5;
+}
+
+/*-------------------------------------five*/
+.five thead {
+    text-align: center;
+}
+
+.five .table-hover tbody tr:hover {
+    background-color: #f0f1ef;
+}
+
+.five .custom-control-label::before {
+    background-color: #fff;
+    border: 1px solid #8bbf8c;
+}
+
+.five .custom-checkbox .custom-control-input:checked ~ .custom-control-label::before {
+    background-color: #8bbf8c;
+}
+
+/*===================================*/
+
+.five .page-link:focus {
+    box-shadow: none;
+}
+
+.five .page-link:hover {
+    background: none;
+}
+
+.five li.page-item:hover:not(:first-child):not(:last-child) {
+    border-bottom: 2px solid #8bbf8c !important;
+}
+
+/*=============================six*/
+
+.six .table-border th:not(:first-child) {
+    border-right: 0;
+}
+
+
+
+.has-filter i {
+    float: left;
+    line-height: 20px;
+    color: #eaeaea;
+    cursor: pointer;
+}
+
+.form-control:focus {
+    box-shadow: none;
+}
+
+.table.inline-edit td {
+    height: auto !important;
+    padding: 0 3px !important;
+    text-align: center;
+}
+
+.has-waiting {
+    border: 1px solid #dee2e6;
+}
+
+.waiting {
+    background: rgba(0, 0, 0, 0.3);
+    width: 100%;
+    height: 100%;
+    position: absolute;
+    top: 0;
+}
+
+    .waiting span {
+        position: absolute;
+        top: 50%;
+        left: 50%;
+        transform: translate(-50%, -50%);
+        color: #fff;
+        height: 100%;
+        width: 100%;
+        background-position: center center;
+        background-repeat: no-repeat;
+        background-image: url('../../images/Wedges.svg');
+    }
+
+.custom-control {
+    position: relative;
+    display: block;
+    min-height: 1.5rem;
+}
+
+.custom-control-input {
+    position: absolute;
+    z-index: -1;
+    opacity: 0;
+}
+/*.inline-edit td input:focus {
+    border: 1px solid #9bbce0;
+    box-sizing: border-box;
+    background: #fff !important;
+}*/
+
+.custom-checkbox .custom-control-label::before {
+    border-radius: .25rem;
+}
+
+.custom-control-label::before {
+    position: absolute;
+    top: 4px;
+    right: -1px;
+    display: block;
+    width: 1.5rem;
+    height: 1.5rem;
+    pointer-events: none;
+    content: "";
+    -webkit-user-select: none;
+    -moz-user-select: none;
+    -ms-user-select: none;
+    user-select: none;
+    background-color: #dee2e6;
+}
+
+.custom-control-label::before {
+    background-color: #fff;
+    border: 1px solid #7682c5;
+}
+
+.custom-control-label::after {
+    position: absolute;
+    top: 2px;
+    right: 0.5px;
+    display: block;
+    width: 1.5rem;
+    height: 1.5rem;
+    content: "";
+    background-repeat: no-repeat;
+    background-position: center center;
+    background-size: 50% 50%;
+}
+
+.custom-checkbox .custom-control-input:checked ~ .custom-control-label::after {
+    content: "\f00c";
+    font-family: "FontAwesome";
+    color: #fff
+}
+
+.custom-control-input:focus ~ .custom-control-label::before {
+    box-shadow: 0px 0px 1px 1px #fff, 0 0 0 0.25rem rgb(68, 174, 206);
+}
+
+.inline-edit td input.readonly:focus {
+    border: none;
+    background: transparent !important;
+}
+
+
+
+/*------------------------------------------ from here */
+.pagination-help span i {
+    padding: 3px 6px 3px 5px;
+    border-radius: 3px;
+    color: #1e69b9;
+    cursor: pointer;
+    border: 1px solid #1e69b9;
+}
+
+    .pagination-help span i.fa-angle-up,
+    .pagination-help span i.fa-angle-down {
+        font-weight: 900;
+    }
+
+    .pagination-help span i.fa-angle-up {
+        padding: 3px 5px 3px 5px;
+        font-weight: Coreder;
+    }
+
+    .pagination-help span i.fa-angle-down {
+        font-weight: Coreder;
+        padding: 3px 5.5px 3px 5px;
+    }
+
+    .pagination-help span i.fa-level-down {
+        padding: 3px 6.5px 3px 6px;
+    }
+
+    .pagination-help span i.fa-long-arrow-right {
+        padding: 3px 4px 3px 3px;
+    }
+
+    .pagination-help span i.fa-long-arrow-left {
+        padding: 3px 4px 3px 3px;
+    }
+
+.pagination-help {
+    padding: 2px;
+    padding-left: 30px;
+    line-height: 40px;
+    font-size: 12px;
+}
+
+    .pagination-help span {
+        margin-left: 4px;
+    }
+
+.pagination > li:not(.disabled) > a:focus, .pagination > li:not(.disabled) > a:hover, .pagination > li:not(.disabled) > span:focus, .pagination > li:not(.disabled) > span:hover {
+    -webkit-box-shadow: none;
+    box-shadow: none;
+}
+
+.Grid2ActiveRow {
+    background-color: #e1e4e9 !important;
+}
+
+    .Grid2ActiveRow > td {
+        border-color: #fff !important;
+    }
+
+.table.inline-edit .select2-container--arrow .select2-selection--single .select2-selection__rendered, .table.inline-edit .select2-container--default .select2-selection--single .select2-selection__rendered, .table.inline-edit .select2-container--white .select2-selection--single .select2-selection__rendered {
+    min-height: 33.5px !important;
+}

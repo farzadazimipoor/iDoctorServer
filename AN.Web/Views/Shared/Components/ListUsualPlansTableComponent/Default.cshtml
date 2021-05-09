@@ -1,0 +1,150 @@
+
+@using AN.Core.Resources.Global
+
+@model AN.Web.Models.UsualPlansViewModel
+
+<div class="card card-info card-outline">
+    <div class="card-header">
+        <h5 class="panel-title"><i class="fa fa-sun"></i> &nbsp;@Global.MorningShift</h5>
+    </div>
+    <div class="card-body @(Model.MorningShiftPlans.Any() ? "p-0" : "")">
+        @if (Model.MorningShiftPlans.Any())
+        {
+            <div class="table-responsive">
+                <table id="doctorsTable" class="table table-striped">
+                    <thead>
+                        <tr>
+                            <th>@Global.Day</th>
+                            <th>@Global.FromTime</th>
+                            <th>@Global.ToTime</th>
+                            <th>@Global.Doctor</th>
+                            <th>@Global.Service</th>
+                            <th>@Global.Capacity (@Global.Man)</th>                           
+                            <th></th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        @foreach (var item in Model.MorningShiftPlans)
+                        {
+                            <tr>
+                                <td>
+                                    @Html.DisplayFor(modelItem => item.DayOfWeek)
+                                </td>
+                                <td>
+                                    @Html.DisplayFor(modelItem => item.From)
+                                </td>
+                                <td>
+                                    @Html.DisplayFor(modelItem => item.To)
+                                </td>
+                                <td>
+                                    @Html.DisplayFor(modelItem => item.DoctorName)
+                                </td>
+                                <td>
+                                    @Html.DisplayFor(modelItem => item.MedicalServiceName)
+                                </td>
+                                <td>
+                                    @Html.DisplayFor(modelItem => item.MaxCount)
+                                </td>                               
+                                <td>
+                                    @using (Html.BeginForm("DeleteUsualPlan", "Scheduling", new { area = "", id = item.UsualPlanId, shift = 0, polyclinicId = Model.PolyclinicId }, FormMethod.Post, true, new { role = "form" }))
+                                    {
+                                        @Html.AntiForgeryToken()
+                                        <button class="btn btn-sm btn-outline-danger"
+                                                type="button"
+                                                data-toggle="modal"
+                                                data-target="#confirmDelete"
+                                                data-title="@Global.Delete"
+                                                data-message="@Global.DoYouWantDeleteThisItem">
+                                            <i class="fa fa-trash"></i>
+                                        </button>
+                                    }
+                                </td>
+                            </tr>
+                        }
+                    </tbody>
+                </table>
+            </div>
+        }
+        else
+        {
+            <div class="alert alert-default-info text-center">               
+                <strong class="text-center">No Morning Usual Schedule Found</strong>
+            </div>
+        }
+    </div>
+</div>
+
+<div class="card card-warning card-outline">
+    <div class="card-header">
+        <h5 class="panel-title"><i class="fa fa-moon"></i> &nbsp;@Global.EveningShift</h5>
+    </div>
+    <div class="card-body @(Model.EveningShiftPlans.Any() ? "p-0" : "")">
+        @if (Model.EveningShiftPlans.Any())
+        {
+            <div class="table-responsive">
+                <table id="doctorsTable" class="table table-striped">
+                    <thead>
+                        <tr>
+                            <th>@Global.Day</th>
+                            <th>@Global.FromTime</th>
+                            <th>@Global.ToTime</th>
+                            <th>@Global.Doctor</th>
+                            <th>@Global.Service</th>
+                            <th>@Global.Capacity (@Global.Man)</th>
+                            <th></th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        @foreach (var item in Model.EveningShiftPlans)
+                        {
+                            <tr>
+                                <td>
+                                    @Html.DisplayFor(modelItem => item.DayOfWeek)
+                                </td>
+                                <td>
+                                    @Html.DisplayFor(modelItem => item.From)
+                                </td>
+                                <td>
+                                    @Html.DisplayFor(modelItem => item.To)
+                                </td>
+                                <td>
+                                    @Html.DisplayFor(modelItem => item.DoctorName)
+                                </td>
+                                <td>
+                                    @Html.DisplayFor(modelItem => item.MedicalServiceName)
+                                </td>
+                                <td>
+                                    @Html.DisplayFor(modelItem => item.MaxCount)
+                                </td>                              
+                                <td>
+                                    @using (Html.BeginForm("DeleteUsualPlan", "Scheduling", new { area = "", id = item.UsualPlanId, shift = 1, polyclinicId = Model.PolyclinicId }, FormMethod.Post, true, new { role = "form" }))
+                                    {
+                                        @Html.AntiForgeryToken()
+                                        <button class="btn btn-sm btn-outline-danger"
+                                                type="button"
+                                                data-toggle="modal"
+                                                data-target="#confirmDelete"
+                                                data-title="@Global.Delete"
+                                                data-message="@Global.DoYouWantDeleteThisItem?">
+                                            <i class="fa fa-trash"></i>
+                                        </button>
+                                    }
+                                </td>
+                            </tr>
+                        }
+                    </tbody>
+                </table>
+            </div>
+        }
+        else
+        {
+            <div class="alert alert-default-warning text-center">               
+                <strong class="text-center">No Evening Usual Schedule Found</strong>
+            </div>
+        }
+    </div>
+</div>
+
+<partial name="_ConfirmDeleteModalPartial" />
+
+

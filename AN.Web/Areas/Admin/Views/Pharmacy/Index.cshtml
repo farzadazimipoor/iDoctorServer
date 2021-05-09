@@ -1,0 +1,167 @@
+﻿@model AN.Core.ViewModels.PharmacyListViewModel
+
+@{
+    Layout = "~/Views/Shared/_CpanelLayout.cshtml";
+}
+
+
+@section styles{
+    <link rel="stylesheet" href="~/lib/datatables/css/dataTables.bootstrap4.min.css" />
+    <link rel="stylesheet" href="~/lib/select2/css/select2.min.css" type="text/css" />
+}
+
+<div class="content-header">
+    <div class="container-fluid">
+        <div class="row mb-2">
+            <div class="col-sm-6">
+                <h1 class="m-0 text-dark">@AN.Core.Resources.Global.Global.Pharmacies</h1>
+            </div>
+        </div>
+    </div>
+</div>
+
+<section class="content">
+    @Html.AntiForgeryToken()
+    <div class="container-fluid">
+        <div class="card card-info card-outline">
+            <div class="card-header">
+                <button class="btn btn-default @(ViewBag.Lang == AN.Core.Enums.Lang.EN ? "float-right" : "float-left")" onclick="pharmacyCreateUpdate(null)"><i class="fa fa-plus"></i></button>
+            </div>
+            <div class="card-body">
+                <div class="row">
+                    <div class="col-md-12 table-responsive">
+                        <table id="fingers10" class="table table-striped" style="width:100%">
+                            <thead>
+                                <tr>
+                                    <th>@Html.DisplayNameFor(m => m.Id)</th>
+                                    <th>@Html.DisplayNameFor(m => m.Name)</th>
+                                    <th>@Html.DisplayNameFor(m => m.City)</th>
+                                    <th>@Html.DisplayNameFor(m => m.Address)</th>
+                                    <th></th>
+                                </tr>
+                            </thead>
+                        </table>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+
+
+@section scripts{
+    <script src="~/lib/datatables/js/jquery.dataTables.min.js"></script>
+    <script src="~/lib/datatables/js/dataTables.bootstrap4.min.js"></script>
+    <script src="~/lib/select2/js/select2.min.js"></script>
+    <script src="~/js/My/DataTablesLocale/dt_@(ViewBag.Lang.ToString()).js" asp-append-version="true"></script>
+    <script type="text/javascript">
+        var table;
+        $(function () {
+            if ($('#fingers10').length !== 0) {
+                table = $('#fingers10').DataTable({
+                    language: dataTablesLocale,
+                    processing: true,
+                    serverSide: true,
+                    orderCellsTop: true,
+                    autoWidth: true,
+                    deferRender: true,
+                    lengthMenu: [5, 10, 15, 20],
+                    dom: '<"row"<"col-sm-12 col-md-12"B><"col-sm-12 col-md-12 text-right"l>><"row"<"col-sm-12"tr>><"row"<"col-sm-12 col-md-5"i><"col-sm-12 col-md-7"p>>',
+                    buttons: [
+                        {
+                            text: 'Export to Excel',
+                            className: 'btn btn-sm btn-dark',
+                            action: function (e, dt, node, config) {
+                                window.location.href = "/polyclinicmanager/offer/GetExcel";
+                            },
+                            init: function (api, node, config) {
+                                $(node).removeClass('dt-button');
+                            }
+                        }
+                    ],
+                    ajax: {
+                        type: "POST",
+                        url: '/admin/pharmacy/LoadTable/',
+                        contentType: "application/json; charset=utf-8",
+                        async: true,
+                        headers: {
+                            "XSRF-TOKEN": document.querySelector('[name="__RequestVerificationToken"]').value
+                        },
+                        data: function (data) {
+                            let additionalValues = [];
+                            additionalValues[0] = "Additional Parameters 1";
+                            additionalValues[1] = "Additional Parameters 2";
+                            data.AdditionalValues = additionalValues;
+
+                            return JSON.stringify(data);
+                        }
+                    },
+                    columns: [
+                        {
+                            data: "Id",
+                            name: "eq",
+                            visible: false,
+                            searchable: false
+                        },
+                        {
+                            data: "Name",
+                            name: "co"
+                        },
+                        {
+                            data: "City",
+                            name: "co"
+                        },
+                        {
+                            data: "Address",
+                            name: "eq"
+                        },
+                        {
+                            data: null,
+                            render: function (data, type, row, meta) {
+                                return "<button class='btn btn-sm btn-outline-secondary' onclick='pharmacyCreateUpdate(" + row.Id + ");'><i class='fa fa-edit'></i></a>";
+                            }
+                        }
+                    ]
+                });
+
+                table.columns().every(function (index) {
+                    $('#fingers10 thead tr:last th:eq(' + index + ') input')
+                        .on('keyup',
+                            function (e) {
+                                if (e.keyCode === 13) {
+                                    table.column($(this).parent().index() + ':visible').search(this.value).draw();
+                                }
+                            });
+                });
+            }
+        });
+
+        function reloadDataTable(initAgain = false) {
+            table.ajax.reload(null, initAgain);
+        }
+
+        function pharmacyCreateUpdate(id) {
+            var title = '@Html.Raw(AN.Core.Resources.UI.AdminPanel.PanelResource.AddNew)';
+            if (id != null) {
+                title = '@Html.Raw(AN.Core.Resources.Global.Global.Update)';
+            }
+            waiting('body', '@AN.Core.Resources.Global.Global.PleaseWait');
+            $.ajax({
+                type: 'Get',
+                url: "/admin/pharmacy/CreateUpdate?id=" + id,
+                success: function (response) {
+                    var commonModal = $("#AwroNoreModal");
+                    commonModal.find('#AwroNoreModalDialog').addClass("modal-lg modal-xlg");
+                    commonModal.find('.modal-title').text(title);
+                    commonModal.find('#CommonModalContent').html(response);
+                    commonModal.modal({backdrop: 'static', keyboard: false});
+                },
+                error: function (jqXHR, ex) {
+                    handleAjaxError(jqXHR, ex);
+                }
+            }).always(function () {
+                waitingDone('body');
+            });
+        }
+    </script>
+}

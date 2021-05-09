@@ -1,0 +1,442 @@
+﻿@using AN.Core.Resources.UI.AdminPanel;
+@using AN.Core.Resources.Global;
+
+@{
+    ViewBag.Title = PanelResource.ReserveTurnOutSide;
+    Layout = "~/Views/Shared/_CpanelLayout.cshtml";
+}
+
+
+@section styles{
+    <link rel="stylesheet" href="~/lib/select2/css/select2.min.css" type="text/css" />
+    <link href="~/lib/flatpickr/flatpickr.min.css" rel="stylesheet" type="text/css" />
+}
+
+<section class="content-header">
+    <h1>
+        @PanelResource.ReserveTurnOutSide
+        <small>@AN.Core.Resources.UI.AdminPanel.PanelResource.AdminPanel</small>
+    </h1>
+    <ol class="breadcrumb">
+        <li><a href="@Url.Action("Index","Home", new { area = "ClinicManager" })"><i class="fa fa-dashboard"></i>  @AN.Core.Resources.Global.Global.Home</a></li>
+        <li class="active"> @PanelResource.ReserveTurnOutSide</li>
+    </ol>
+</section>
+
+<section class="content">
+    <div class="box card">
+        <div class="box-header">
+            <input id="antiForgeryToken" type="hidden" />
+            <div class="row">
+                <div class="col-md-2">
+                    @Html.Label("",Global.Date, new { @for = "date" })
+                    <input id="date" name="date" type="text" class="form-control common-datepicker" value="@DateTime.Now.ToShortDateString()" autocomplete = "off" />
+                </div>
+                <div class="col-md-2">
+                    @Html.Label("",Global.Shift, new { @for = "shift-select" })
+                    <select id="shift-select" class="form-control">
+                        <option value="0">@Global.Morning</option>
+                        <option value="1">@Global.Evening</option>
+                    </select>
+                </div>
+                <div class="col-md-4">
+                    @Html.Label("",Global.Doctor, new { @for = "servicesupply-select" })
+                    <select id="servicesupply-select" class="form-control">
+                        <option value="">@Global.Doctor</option>
+                    </select>
+                </div>
+                <div class="col-md-2" id="healthservice-col">
+                    @Html.Label("",Global.Service, new { @for = "healthservices - select" })
+                    <select id="healthservices-select" class="form-control"></select>
+                </div>
+            </div>
+        </div>
+        <div class="box-body">
+            <div id="desicion-area"></div>
+            <div id="result"></div>
+        </div>
+    </div>
+</section>
+
+<div class="modal fade" id="patientInfoModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel">
+    <div class="modal-dialog" role="document">
+        <div class="modal-content">
+            <div class="modal-header">
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+                <h4 class="modal-title" id="myModalLabel">@Global.Details</h4>
+            </div>
+            <div class="modal-body">
+                <div id="reservationInfo"></div>
+                <div id="modalBodyContent">
+                    <form id="patientForm" class="well">
+                        <input id="antiForgeryToken" type="hidden" />
+                        <div id="workingHourSection">
+                            <div class="row">
+                                <div class="col-md-6">
+                                    <label>@Global.Mobile <strong class="required">*</strong></label>
+                                    <div class="input-group">
+                                        <input type="text" id="patientMobile" class="form-control">
+                                    </div>
+                                </div>
+                                <div class="col-md-6">
+                                    <label>@Global.Name</label>
+                                    <div class="input-group">
+                                        <input type="text" id="patientName" class="form-control">
+                                    </div>
+                                    <label>@Global.SecondName</label>
+                                    <div class="input-group">
+                                        <input type="text" id="patientFamily" class="form-control">
+                                    </div>
+                                </div>
+
+                                <div class="col-md-12">
+                                    <br />
+                                    <input type="checkbox" name="sendsmscheckbox" id="sendsmscheckbox" checked />&nbsp;<label for="sendsmscheckbox" style="color:black;font-size:small;">ارسال پیامک اطلاع رسانی؟</label>
+                                </div>
+                            </div>
+                        </div>
+                    </form>
+                </div>
+            </div>
+            <div class="modal-footer">
+                <button type="button" id="btnReserveAppointment" data-dismiss="modal" class="btn btn-success">@PanelResource.FinalBook</button>
+                <button type="button" id="btnPopupCancel" data-dismiss="modal" class="btn">@AN.Core.Resources.Global.Global.Cancel</button>
+            </div>
+        </div>
+    </div>
+</div>
+
+<div class="modal fade" id="book-success-modal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel">
+    <div class="modal-dialog" role="document">
+        <div class="modal-content">
+            <div class="modal-header">
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+                <h4 class="modal-title" id="myModalLabel">@Global.Msg_OperationSuccessful</h4>
+            </div>
+            <div class="modal-body">
+                <div id="modalBodyContent">
+                    <div class="alert alert-success text-center"><strong>@Global.Msg_TurnFinalReservedSuccessfully</strong></div>
+                    <div class="alert alert-info text-center"><p id="appointment-info"></p></div>
+                </div>
+            </div>
+            <div class="modal-footer">
+                <button type="button" id="btnPopupCancel" data-dismiss="modal" class="btn">@AN.Core.Resources.Global.Global.Close</button>
+            </div>
+        </div>
+    </div>
+</div>
+
+@section scripts{
+    <script type="text/javascript" src="~/js/BlockUI/jquery.blockUI.min.js"></script>
+    <script type="text/javascript" src="~/lib/select2/js/select2.min.js"></script>
+    <script type="text/javascript" src="~/lib/flatpickr/flatpickr.min.js"></script>
+    <script type="text/javascript">
+
+        var txtDate = $("#date");
+        var shiftSelect = $("#shift-select");
+        var serviceSuppliesSelect = $("#servicesupply-select");
+        var healthServicesSelect = $("#healthservices-select");
+
+        var decisionArea = $("#desicion-area");
+        var resultSection = $("#result");
+
+        var reserveAppointmentOutsideSchedule = false;
+        var selectedTime = "";
+
+        $(function () {
+            $("#servicesupply-select").select2({
+                width: '100%',
+                placeholder: '@Global.SelectDoctor',
+                dir: "rtl",
+                allowClear: true
+            });
+            getServiceSupplies(txtDate.val(), shiftSelect.val());
+        });
+
+        shiftSelect.change(function () {
+            selectedTime = "";
+            reserveAppointmentOutsideSchedule = false;
+            var date = $(txtDate).val();
+            if (date == "") {
+                alert('@PanelResource.Msg_PleaseSelectDate');
+            } else {
+                var shift = shiftSelect.val();
+                getServiceSupplies(date, shift);
+            }
+        })
+
+        function getServiceSupplies(date, shift) {
+            selectedTime = "";
+            reserveAppointmentOutsideSchedule = false;
+            var dataRow = {
+                'date': date,
+                'shift': shift
+            };
+            showProgress(true);
+
+            $.ajax({
+                url: '/ClinicManager/Appointment/GetServiceSuppliesForDateAndShift',
+                type: 'GET',
+                data: dataRow,
+                success: function (result) {
+                    showProgress(false);
+                    emptyServiceSupplies();
+                    $.each($.parseJSON(result), function (i, e) {
+                        serviceSuppliesSelect.append($('<option></option>').val(e.Id).html(e.Name))
+                    })
+                },
+                error: function () {
+                    showProgress(false);
+                    showError('@Global.Err_ErrorOccured');
+                },
+            });
+        }
+
+
+        serviceSuppliesSelect.change(function () {
+            getAppointmentsAndEmptyTurns();
+        });
+
+
+        function getAppointmentsAndEmptyTurns() {
+            selectedTime = "";
+            reserveAppointmentOutsideSchedule = false;
+            healthServicesSelect.html("");
+            $("#healthservice-col").css("display", "none");
+            var dataRow = {
+                'serviceSupplyId': serviceSuppliesSelect.val(),
+                'date': txtDate.val(),
+                'shift': shiftSelect.val(),
+                'polyclinicHealthServiceId': healthServicesSelect.val()
+            };
+            showProgress(true);
+
+            $.ajax({
+                url: '/ClinicManager/Appointment/GetAppointmentsForDateAndShift',
+                type: 'GET',
+                data: dataRow,
+                success: function (result) {
+                    showProgress(false);
+
+                    if (result.Error) {
+                        alert(result.Message);
+
+                    } else {
+                        var jsonResult = $.parseJSON(result);
+
+                        healthServicesSelect.html("");
+                        $.each(jsonResult.PolyclinicHealthServices, function (i, e) {
+                            healthServicesSelect.append($('<option></option>').val(e.Id).html(e.Name));
+                        });
+                        $("#healthservice-col").css("display", "block");
+
+                        var tableData = "";
+                        var counter = 0;
+                        var emptyTurns = 0;
+                        var appointments = 0;
+                        $.each(jsonResult.Periods, function (i, e) {
+                            counter += 1;
+                            var Time = e.Time[0] + e.Time[1] + ":" + e.Time[2] + e.Time[3];
+                            if (e.Type == 0) { //Empty
+                                emptyTurns += 1;
+                                tableData += '<tr id="reservables" class="reservable">' +
+                                    '<td>' + counter + '</td>' +
+                                    '<td>قابل رزرو</td>' +
+                                    '<td>' + Time + '</td>' +
+                                    '<td><input type="button" value="@PanelResource.ReserveTurn ' + Time + '" id="btnreserve-' + emptyTurns + '" class="btnReserve btn btn-xs btn-success" onclick="reserveAppointment(' + e.Time + ');" /></td>' +
+                                    '</tr>';
+                            }
+                            else if (e.Type == 2) { //Appointment
+                                appointments += 1;
+                                var apptCssClass = "reserved";
+                                var ncCssClass = "btn btn-xs btn-primary";
+                                var apptInfoText = "رزرو شده";
+                                if (e.IsOutOfSchedule == true) {
+                                    apptCssClass = "reserved-outside";
+                                    ncCssClass = "btn btn-xs btn-danger";
+                                    apptInfoText = "رزرو شده خارج از ظرفیت";
+                                }
+                                tableData += "<tr class = '" + apptCssClass + "'>" +
+                                    "<td>" + counter + "</td>" +
+                                    "<td>" + apptInfoText + "</td>" +
+                                    "<td>" + Time + "</td>" +
+                                    "<td><button class='" + ncCssClass + "'>" + e.PatientMobile + "</button></td>" +
+                                    "</tr>";
+
+                            } else if (e.Type == 3) { //Inprogress Appointment
+                                tableData += "<tr class = 'reserve-inprogress'>" +
+                                    "<td>" + counter + "</td>" +
+                                    "<td>در حال رزرو</td>" +
+                                    "<td>" + Time + "</td>" +
+                                    "<td>نوبت در حال رزرو می باشد</td>" +
+                                    "</tr>";
+                            } else { //Unknown
+                                tableData += "<tr class = 'reserve-unknown'>" +
+                                    "<td>" + counter + "</td>" +
+                                    "<td>در حال رزرو</td>" +
+                                    "<td>" + Time + "</td>" +
+                                    "<td>ناشناخته</td>" +
+                                    "</tr>";
+                            }
+
+                        });
+                        if (counter == 0) {
+                            resultSection.html("<div class='alert alert-danger'>خطایی در پردازش اطلاعات بازگشتی رخ داده است</div>");
+                        } else {
+                            resultSection.html(
+                                "<table class='table table-bordered' cellspacing = '0' width = '100%'>" +
+                                "<thead><tr><th>#</th><th>وضعیت</th><th>ساعت</th><th>شماره ملی</th></tr></thead>" +
+                                "<tbody>" + tableData + "</tbody>" +
+                                "</table>"
+                            );
+
+                            decisionArea.html("");
+                            if (emptyTurns > 0) {
+                                decisionArea.html("<div class='alert alert-success text-center'>تعداد " + emptyTurns + " نوبت خالی یافت شد </div>")
+                            }
+
+                            if (emptyTurns == 0) {
+                                decisionArea.html("<div class='text-center'><div class='alert alert-danger text-center'>نوبت خالی یافت نشد</div><button id='btn-reserve-outside' class='btn btn-warning' onclick='showPatientInfoModal(true)'>رزرو نوبت اضافه بر ظرفیت پزشک</btn></div>")
+                            }
+                        }
+                    }
+                },
+                error: function () {
+                    showProgress(false);
+                    showError("بارگذاری اطلاعات با خطا مواجه شد. لطفا دوباره تلاش نمایید");
+                },
+            });
+        }
+
+        function reserveAppointment(time) {
+            reserveAppointmentOutsideSchedule = false;
+            var dataRow = {
+                'serviceSupplyId': serviceSuppliesSelect.val(),
+                'date': txtDate.val(),
+                'time': time,
+                'polyclinicHealthServiceId': healthServicesSelect.val()
+            };
+
+            showProgress(true);
+            $.ajax
+                ({
+                    url: '/ClinicManager/Appointment/ReserveAppointment',
+                    type: 'POST',
+                    data: dataRow,
+                    headers: { 'RequestVerificationToken': $("#antiForgeryToken").data("antiforgerytoken") },
+                    success: function (result) {
+                        showProgress(false);
+
+                        if (!result.Error) {
+                            selectedTime = time;
+                            showPatientInfoModal(false);
+                        } else {
+                            showError(result.Message);
+                        }
+                    },
+                    error: function (response) {
+                        showProgress(false);
+                        selectedTime = "";
+                        showError("خطایی رخ داده است. نوبت رزرو نشد. لطفا دوباره تلاش نمایید");
+                    },
+                });
+
+        }
+
+        function emptyServiceSupplies() {
+            selectedTime = "";
+            reserveAppointmentOutsideSchedule = false;
+            decisionArea.html("");
+            healthServicesSelect.html("");
+            $("#healthservice-col").css("display", "none");
+            serviceSuppliesSelect.html("");
+            serviceSuppliesSelect.append($('<option></option>').val("").html("..."));
+            resultSection.html("");
+        }
+
+        function showPatientInfoModal(outOfCapacity) {
+            if (!outOfCapacity) {
+                $("#reservationInfo").html("<div class='reservationAlert alert alert-info'>رزرو نوبت خالی پزشک</div>");
+            } else {
+                $("#reservationInfo").html("<div class='reservationAlert alert alert-warning'>رزرو نوبت خارج از ظرفیت پزشک</div>")
+            }
+
+            reserveAppointmentOutsideSchedule = outOfCapacity;
+            $('#patientInfoModal').modal("show");
+        }
+
+
+        $("#btnReserveAppointment").click(function () {
+            finalBookAppointment();
+        });
+
+
+        function finalBookAppointment() {
+            var modelValid = true;
+
+            if (modelValid) {
+
+                var dataRow = {
+                    'serviceSupplyId': serviceSuppliesSelect.val(),
+                    'healthServiceId': healthServicesSelect.val(),
+                    'date': txtDate.val(),
+                    'time': selectedTime,
+                    'mobile': $("#patientMobile").val(),
+                    'name': $("#patientName").val(),
+                    'family': $("#patientFamily").val(),
+                    'reserveOutside': reserveAppointmentOutsideSchedule,
+                    'sendSms': $('#sendsmscheckbox').is(":checked")
+                };
+
+                showProgress(true);
+                $.ajax
+                    ({
+                        url: '/ClinicManager/Appointment/FinalBookAppointment',
+                        type: 'POST',
+                        data: dataRow,
+                        headers: { 'RequestVerificationToken': $("#antiForgeryToken").data("antiforgerytoken") },
+                        success: function (result) {
+                            showProgress(false);
+                            resultSection.html("");
+
+                            if (!result.IsSucceed) {
+                                showError(result.Message);
+
+                            } else {
+                                $("#book-success-modal #appointment-info").text("روز: " + result.Response.DayOfWeek + " مورخ: " + result.Response.Date + " ساعت: " + result.Response.Time);
+                                $('#book-success-modal').modal("show");
+
+                                getAppointmentsAndEmptyTurns();
+                            }
+
+                        },
+                        error: function (response) {
+                            showProgress(false);
+                            showError("خطایی رخ داده است. نوبت رزرو نشد. لطفا دوباره تلاش نمایید");
+                        },
+                    });
+            }
+
+            selectedTime = "";
+            reserveAppointmentOutsideSchedule = false;
+        }
+
+        function showError(_message) {
+            selectedTime = "";
+            reserveAppointmentOutsideSchedule = false;
+            resultSection.html("");
+            resultSection.html("<div class='alert alert-danger'>" + _message + "</div > ");
+        }
+
+        function showProgress(status) {
+            if (status) {
+                $.blockUI({
+                    message: '<i class="fa fa-cog fa-spin fa-3x fa-fw" style="z-index:1000;"></i>'
+                });
+            } else {
+                $.unblockUI();
+            }
+        }
+    </script>
+
+}

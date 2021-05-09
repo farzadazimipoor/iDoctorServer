@@ -1,0 +1,67 @@
+@using AN.Core.Resources.Global;
+@using AN.Core.Resources.UI.AdminPanel;
+
+@model AN.Web.Areas.ClinicManager.Models.CMBlockMobileViewModel
+
+@{
+    ViewBag.Title = PanelResource.BlackList;
+    Layout = "~/Views/Shared/_CpanelLayout.cshtml";
+}
+
+<section class="content-header">
+    <h1>
+        @PanelResource.BlackList
+        <small>@AN.Core.Resources.UI.AdminPanel.PanelResource.AdminPanel</small>
+    </h1>
+    <ol class="breadcrumb">
+        <li><a href="@Url.Action("Index","Home", new { area = "ClinicManager" })"><i class="fa fa-dashboard"></i> @Global.Home</a></li>
+        <li class="active">@PanelResource.BlackList</li>
+    </ol>
+</section>
+
+<section class="content">
+    <div class="box box-default">
+        <div class="box-body">
+            <div class="row">
+                <div class="col-md-3">
+                    <div class="panel panel-default">
+                        <div class="panel-body">
+                            @using (Html.BeginForm("BlockMobile", "Security", new { area = "ClinicManager" }, FormMethod.Post, true, new { @class = "form-horizontal", role = "form" }))
+                            {
+                                @Html.AntiForgeryToken()
+                                @Html.ValidationSummary(true, "", new { @class = "text-danger" })
+                                <div class="form-group">
+                                    @Html.LabelFor(m => m.PolyclinicId)
+                                    @Html.DropDownListFor(model => model.PolyclinicId, Model.Polyclinics, new { @class = "form-control" })
+                                </div>
+                                <div class="form-group">
+                                    @Html.LabelFor(m => m.Mobile)
+                                    @Html.TextBoxFor(m => m.Mobile, new { @class = "form-control" })
+                                    @Html.ValidationMessageFor(m => m.Mobile, "", new { @class = "text-danger" })
+                                </div>
+                                <div class="form-group">
+                                    @Html.LabelFor(m => m.Description)
+                                    @Html.TextAreaFor(m => m.Description, new { @class = "form-control" })
+                                    @Html.ValidationMessageFor(m => m.Description, "", new { @class = "text-danger" })
+                                </div>
+                                <div class="box-footer text-center">
+                                    <button type="submit" class="btn btn-danger"><i class="fa fa-ban"></i>  @PanelResource.AddNew</button>
+                                </div>
+                            }
+                        </div>
+                    </div>
+                </div>
+                <div class="col-md-9">
+                    <div class="panel panel-body">
+                        <div class="panel-heading">
+                            @PanelResource.BlackList
+                        </div>
+                        <div class="panel-body">
+                            @await Component.InvokeAsync("BlockedTableComponent")
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>

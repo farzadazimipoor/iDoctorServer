@@ -1,0 +1,55 @@
+
+/*****************************/
+/* Top Line */
+/*****************************/
+
+.tabs-style-topline {
+    max-width: 100%;
+}
+
+    .tabs-style-topline nav li {
+        /*border: 1px solid rgba(40,44,42,0.1);*/
+    }
+
+        .tabs-style-topline nav li:not(:last-child) {
+            border-right: none;
+            margin-left: 3px;
+        }
+
+        .tabs-style-topline nav li.tab-current {
+            border-top-color: #2CC185;
+            border-bottom: none;
+        }
+
+    .tabs-style-topline nav a {
+        padding: 0.40em 0 0.5em;
+        background-color: rgba(255,255,255,0.5);
+        color: black;
+        line-height: 1;
+        -webkit-transition: color 0.2s;
+        transition: color 0.2s;
+        font-size: 30px;
+        font-weight: 700;
+    }
+
+        .tabs-style-topline nav a:hover,
+        .tabs-style-topline nav a:focus {
+            color: white;          
+        }
+
+    .tabs-style-topline nav li.tab-current a {
+        background-color: rgba(51,51,51,0.5);
+        box-shadow: inset 0 5px 0 white;
+        color: white;
+    }
+
+    .tabs-style-topline .icon::before {
+        display: block;
+        margin: 0;
+    }
+
+    .tabs-style-topline nav a span {
+        text-transform: uppercase;
+        font-weight: 500;
+        font-size: 0.5em;
+    }

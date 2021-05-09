@@ -1,0 +1,238 @@
+﻿@using AN.Core.Resources.Global
+@using AN.Core.Resources.UI.AdminPanel;
+
+@model AN.Web.Models.ScheduleEventViewModel
+
+<div id="ScheduleEventCrudArea">
+    <form id="EventForm" class="well" action="@Url.Action("ScheduleEventCrud", "Scheduling", new {area = ""})" method="POST">
+        @Html.AntiForgeryToken()
+        @Html.HiddenFor(m => m.Id)
+        @Html.HiddenFor(m => m.ServiceSupplyId)
+        @Html.HiddenFor(m => m.Action)
+        @Html.HiddenFor(m => m.IsAvailable)
+        @Html.HiddenFor(m => m.Date)
+
+        @if (Model.Id != null)
+        {
+            <div class="row">                
+                <div id="eventStatusCheckBoxComponent" class="col-md-12" style="direction: ltr !important;">
+                    <label>@Global.Status</label>
+                    <div class="custom-switch custom-switch-label-io">
+                        <input class="custom-switch-input" id="ScheduleStatus" type="checkbox">
+                        <label class="custom-switch-btn" for="ScheduleStatus"></label>
+                    </div>
+                </div>
+            </div>
+        }
+        <div class="row">
+            <div class="col-md-6">
+                <div class="form-group">
+                    @Html.LabelFor(m => m.Date)
+                    <div class="form-control">@Model.Date</div>
+                </div>
+                <div class="form-group clockpicker" data-placement="left" data-align="top" data-autoclose="true">
+                    @Html.LabelFor(m => m.StartTime)
+                    @Html.TextBoxFor(m => m.StartTime, new { @class = "form-control txtclockpicker", @tabindex = "2" })
+                    @Html.ValidationMessageFor(m => m.StartTime, "", new { @class = "text-danger" })
+                </div>
+                <div class="form-group clockpicker" data-placement="left" data-align="top" data-autoclose="true">
+                    @Html.LabelFor(m => m.EndTime)
+                    @Html.TextBoxFor(m => m.EndTime, new { @class = "form-control txtclockpicker", @tabindex = "3" })
+                    @Html.ValidationMessageFor(m => m.EndTime, "", new { @class = "text-danger" })
+                </div>
+            </div>
+            <div class="col-md-6">
+                <div class="form-group">
+                    @Html.LabelFor(m => m.HealthServiceId)
+                    @Html.DropDownListFor(m => m.HealthServiceId, (ViewBag.HealthServices as IEnumerable<SelectListItem>).ToList(), new { @tabindex = "4", @class = "form-control" })
+                </div>
+                <div class="form-group">
+                    @Html.LabelFor(m => m.MaxCount)
+                    @Html.TextBoxFor(m => m.MaxCount, new { @class = "form-control", @tabindex = "5" })
+                    @Html.ValidationMessageFor(m => m.MaxCount, "", new { @class = "text-danger" })
+                </div>
+                <dic class="form-group">
+                    @Html.LabelFor(m => m.Prerequisite)
+                    @Html.DropDownListFor(m => m.Prerequisite, (ViewBag.Prerequisites as IEnumerable<SelectListItem>).ToList(), new { @tabindex = "6", @class = "form-control" })
+                </dic>
+            </div>
+            <div class="col-md-12 text-center mt-5">
+                @if (Model.Id == null)
+                {
+                    <button type="button" id="btnSaveUpdate" class="btn btn-success" data-action="1">@Global.Save</button>
+                    <button type="button" id="btnDisableEnable" class="btn btn-danger" data-action="5" data-allday="true">@PanelResource.DisableDoctorForAllDay</button>
+                }
+                else
+                {
+                    <button type="button" id="btnSaveUpdate" class="btn btn-primary" data-action="2">@Global.Update</button>
+                    <button type="button" id="btnDisableEnable" class="btn btn-danger" data-action="3">@Global.Delete</button>
+                }
+            </div>
+        </div>
+    </form>
+</div>
+
+<script>
+    var form = $("#ScheduleEventCrudArea").find('form');
+    var btnSaveUpdate = $("#btnSaveUpdate");
+    var btnDisableEnable = $("#btnDisableEnable");
+    var eventStatusCheckBox = $("#ScheduleStatus");
+
+    $(function () {   
+        if ('@Model.IsAvailable' === 'True') {
+            eventStatusCheckBox.prop('checked', true);
+        } else {
+            eventStatusCheckBox.prop('checked', false);
+        }
+        eventStatusCheckBox.change(function () {
+            var cb = $(this);
+            form.find("input[name='IsAvailable']").val(cb.prop('checked'));
+        });
+
+        $.validator.unobtrusive.parse(form);
+
+        btnSaveUpdate.on("click", function () {
+            var action = $(this).data("action");
+            form.find("input[name='Action']").val(action);
+            eventCrud(action);
+        });
+
+        btnDisableEnable.on("click", function () {
+            var action = $(this).data("action");
+            form.find("input[name='Action']").val(action);
+            if (action == actions.delete) {
+                eventCrud(action);
+            } else if (action == actions.enable || action == actions.disable) {
+                if (action == actions.enable) {
+                    eventStatusCheckBox.prop('checked', true);
+                    eventCrud(actions.update);
+                } else {
+                    eventStatusCheckBox.prop('checked', false);
+                    var allDay = $(this).data("allday");
+                    if (allDay == true) {
+                        form.find("input[name='StartTime']").val("06:00");
+                        form.find("input[name='EndTime']").val("23:59");
+                        form.find("input[name='IsAvailable']").val(false);
+                    }
+                    eventCrud(actions.update);
+                }
+            }
+        });
+    });
+
+    function eventCrud(action) {
+        if (form.valid()) {
+            waiting('ScheduleEventCrudArea', '@AN.Core.Resources.Global.Global.PleaseWait');
+            $.ajax({
+                method: "POST",
+                url: form.attr("action"),
+                dataType: "json",
+                data: form.serialize(),
+                success: function (response) {
+                    if (response.Status == 0) {
+                        $('#popupEventForm').modal('toggle');
+                        makePendingAppointsModal(response.Appointments, response.Date, response.StartTime, response.EndTime, response.Message);
+                    } else {
+                        if (response.IsSucceed == true) {
+                            toastr.success(response.Message, '@Global.SystemMessage');
+                            $("#AwroNoreModal").modal('toggle');
+                            refreshCalendar();
+                        } else {
+                            toastr.warning(response.Message, '@Global.SystemMessage');
+                        }
+                    }
+                }, error: function (jqXHR, ex) {
+                    handleAjaxError(jqXHR, ex);
+                }
+            }).always(function () {
+                waitingDone('ScheduleEventCrudArea');
+            });
+        }
+    }
+
+    function makePendingAppointsModal(appoints, date, startTime, endTime, message) {
+            $("#appointsTable #appointsTBody").text("");
+            dateToCancelAppoints = date;
+            startTimeToCancelAppoints = startTime;
+            endTimeToCancelAppoints = endTime;
+            ssIdToCancelAppoints = serviceSupplyId;
+            var txt = "";
+            jQuery.each(appoints, function (index, val) {
+                var rowNum = index + 1;
+                txt +=
+                    "<tr class='row-" + val.Id + "'> " +
+                    "<td class='row-num'>" + rowNum + "</td>" +
+                    "<td>" + val.Time + "</td>" +
+                    "<td>" + val.PatientName + "</td>" +
+                    "<td>" + val.PatientMobile + "</td>" +
+                    "<td>" + val.PatientMobile + "</td>" +
+                    "<td>" +
+                    "<a class='btn btn-danger btn-xs' href='#' onclick='cancelAppointment(" + serviceSupplyId + "," + val.Id + "," + true + ")' > @PanelResource.CancelAndNotify </a >" +
+                    "</td>" +
+                    "</tr>";
+            });
+
+            if (txt != "") {
+                $("#appointsTable #appointsTBody").append(txt);
+            }
+
+            $("#pendingappointsmodal").modal("show");
+            $("#pendingappointsmodalTitle strong").text(" - " + message);
+    }
+
+     function cancelAppointment(serviceSupplyId, appointmentId, sendSMS) {
+            var dataRow = {
+                'serviceSupplyId': serviceSupplyId,
+                'appointmentId': appointmentId,
+                'sendSMS': sendSMS
+            }
+            waiting('calendar', '@AN.Core.Resources.Global.Global.PleaseWait');
+            $.ajax({
+                type: 'POST',
+                url: "/Appointments/CancelAppointment",
+                data: dataRow,
+                headers: { 'RequestVerificationToken': $("#antiForgeryToken").data("antiforgerytoken") },
+                success: function (response) {
+                    if(response.Error){
+                        alert(response.Error);
+                    }
+                    $(".row-" + appointmentId).addClass("hidden");
+                    toastr.success("@Global.Msg_OperationSuccessful", '@Global.SystemMessage');
+                },
+                 error: function (jqXHR, ex) {
+                    handleAjaxError(jqXHR, ex);
+                }
+            }).always(function () {
+                waitingDone('calendar');
+            });
+        }
+
+        function cancelAllAppointments() {
+            var dataRow = {
+                'serviceSupplyId': ssIdToCancelAppoints,
+                'date': dateToCancelAppoints,
+                'start': startTimeToCancelAppoints,
+                'end': endTimeToCancelAppoints
+            }
+            waiting('calendar', '@AN.Core.Resources.Global.Global.PleaseWait');
+            $.ajax({
+                type: 'POST',
+                url: "/Appointments/CancelAll",
+                data: dataRow,
+                headers: { 'RequestVerificationToken': $("#antiForgeryToken").data("antiforgerytoken") },
+                success: function (response) {
+                    if (response.Error) {
+                        alert(response.Error);
+                    }
+                    $("#appointsTable #appointsTBody").empty();
+                    toastr.success("@Global.Msg_OperationSuccessful", '@Global.SystemMessage');
+                    $('#pendingappointsmodal').modal('hide');
+                },
+                error: function (jqXHR, ex) {
+                    handleAjaxError(jqXHR, ex);
+                }
+            }).always(function () {
+                waitingDone('calendar');
+            });
+        }
+</script>

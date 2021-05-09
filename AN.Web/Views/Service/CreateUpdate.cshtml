@@ -1,0 +1,93 @@
+﻿@model AN.Core.ViewModels.ServiceViewModel
+
+<div id="createServiceArea">
+    <form id="createServiceCategoryForm" class="form-horizontal" action="@Url.Action("CreateUpdate", "Service", new {area = ""})" method="POST">
+        @Html.HiddenFor(m => m.Id)
+        <div class="row">
+            <div class="col-md-12">
+                <div class="form-group">
+                    @Html.LabelFor(m => m.ServiceCategoryId)
+                    @Html.DropDownListFor(m => m.ServiceCategoryId, ViewBag.Categories as IEnumerable<SelectListItem>, new { @class = "form-control select2", placeholder = Html.DisplayNameFor(m => m.ServiceCategoryId) })
+                    @Html.ValidationMessageFor(m => m.ServiceCategoryId, "", new { @class = "text-danger" })
+                </div>
+                <div class="form-group">
+                    @Html.LabelFor(m => m.Name)
+                    @Html.TextBoxFor(m => m.Name, new { maxlength = "50", @class = "form-control", placeholder = Html.DisplayNameFor(m => m.Name) })
+                    @Html.ValidationMessageFor(m => m.Name, "", new { @class = "text-danger" })
+                </div>
+                <div class="form-group">
+                    @Html.TextBoxFor(m => m.Name_Ku, new { maxlength = "50", @class = "form-control", placeholder = Html.DisplayNameFor(m => m.Name_Ku) })
+                    @Html.ValidationMessageFor(m => m.Name_Ku, "", new { @class = "text-danger" })
+                </div>
+                <div class="form-group">
+                    @Html.TextBoxFor(m => m.Name_Ar, new { maxlength = "50", @class = "form-control", placeholder = Html.DisplayNameFor(m => m.Name_Ar) })
+                    @Html.ValidationMessageFor(m => m.Name_Ar, "", new { @class = "text-danger" })
+                </div>
+            </div>          
+            <div class="col-md-6">
+                <div class="form-group">
+                    @Html.LabelFor(m => m.Price)
+                    @Html.TextBoxFor(m => m.Price, new { maxlength = "50", @class = "form-control", placeholder = Html.DisplayNameFor(m => m.Price) })
+                    @Html.ValidationMessageFor(m => m.Price, "", new { @class = "text-danger" })
+                </div>
+            </div>
+            <div class="col-md-6">
+                <div class="form-group">
+                    @Html.LabelFor(m => m.Time)
+                    @Html.TextBoxFor(m => m.Time, new { maxlength = "50", @class = "form-control timepicker", placeholder = Html.DisplayNameFor(m => m.Time) })
+                    @Html.ValidationMessageFor(m => m.Time, "", new { @class = "text-danger" })
+                </div>
+            </div>
+        </div>
+        <div class="row">
+            <div class="col-md-12 mt-5 text-center">
+                <button type="submit" class="btn btn-info"><i class="fa fa-cloud"></i> @(Model.Id == null ? AN.Core.Resources.UI.AdminPanel.PanelResource.AddNew : AN.Core.Resources.Global.Global.Update)</button>
+                <button type="button" class="btn btn-danger" data-dismiss="modal">@AN.Core.Resources.Global.Global.Cancel </button>
+            </div>
+        </div>
+    </form>
+</div>
+
+<script type="text/javascript">
+    $(function () {
+        var form = $("#createServiceArea").find('form');
+        $.validator.unobtrusive.parse(form);
+        $(form).on("submit", function (e) {
+            e.preventDefault();
+            if (form.valid()) {               
+                var data = new FormData($(this)[0]);              
+                waiting('createServiceArea', '@AN.Core.Resources.Global.Global.PleaseWait');
+                $.ajax({
+                    method: "POST",
+                    url: $(this).attr("action"),
+                    processData: false,
+                    contentType: false, // contentType option to false is used for multipart/form-data forms that pass files
+                    data: data,
+                    success: function (result) {
+                        if (result.success) {
+                            form.closest('.modal').modal('toggle');
+                            Toast.fire({
+                                type: 'success',
+                                title: '@AN.Core.Resources.Global.Global.Successful',
+                                text: result.message
+                            });
+                            location.reload();
+                        } else {
+                            Toast.fire({
+                                type: 'error',
+                                title: '@AN.Core.Resources.Global.Global.Error',
+                                text: result.message
+                            });
+                        }
+                    },
+                    error: function (jqXHR, ex) {
+                        alert();
+                        handleAjaxError(jqXHR, ex);
+                    }
+                }).always(function () {
+                    waitingDone('createServiceArea');
+                });
+            }
+        });
+    });   
+</script>

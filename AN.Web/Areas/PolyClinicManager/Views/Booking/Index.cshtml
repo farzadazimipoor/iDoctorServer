@@ -1,0 +1,110 @@
+﻿
+@model AN.Core.ViewModels.PolyclinicBookingViewModel
+
+@{
+    ViewBag.Title = AN.Web.LocalResource.Resource.ReserveAppointment;
+    Layout = "~/Views/Shared/_CpanelLayout.cshtml";
+    var dir = AN.Web.Helper.CultureHelper.Lang == Lang.EN ? "ltr" : "rtl";
+}
+
+@section styles{
+    <link rel="stylesheet" href="~/lib/select2/css/select2.min.css" type="text/css" />
+    <link rel="stylesheet" href="~/lib/flatpickr/flatpickr.min.css" type="text/css" />
+}
+
+<div class="content-header">
+    <div class="container-fluid">
+        <div class="row mb-2">
+            <div class="col-sm-6">
+                <h1 class="m-0 text-dark">@AN.Web.LocalResource.Resource.ReserveAppointment</h1>
+            </div>
+        </div>
+    </div>
+</div>
+
+<div class="content">
+    <div class="container-fluid">
+        <div class="card">
+            <div class="card-body">
+                <form id="BookingForm" method="post" action="@Url.Action("BookingTiems", "Booking", new {area = "PolyClinicManager"})">
+                    @Html.AntiForgeryToken()
+                    <div class="row">
+                        <div class="col-md-12">
+                            <div class="form-group">
+                                @Html.LabelFor(m => m.PatientId)
+                                @Html.DropDownListFor(m => m.PatientId, ViewBag.Patients as IEnumerable<SelectListItem>, "", htmlAttributes: new { @class = "form-control select-2" })
+                                @Html.ValidationMessageFor(m => m.PatientId, "", new { @class = "text-danger" })
+                            </div>
+                        </div>
+                        <div class="col-md-4">
+                            <div class="form-group">
+                                @Html.LabelFor(m => m.ServiceSupplyId)
+                                @Html.DropDownListFor(m => m.ServiceSupplyId, ViewBag.Doctors as IEnumerable<SelectListItem>, "", htmlAttributes: new { @class = "form-control select-2" })
+                                @Html.ValidationMessageFor(m => m.ServiceSupplyId, "", new { @class = "text-danger" })
+                            </div>
+                        </div>
+                        <div class="col-md-3">
+                            <div class="form-group">
+                                @Html.LabelFor(m => m.CenterServiceId)
+                                @Html.DropDownListFor(m => m.CenterServiceId, ViewBag.HealthServices as IEnumerable<SelectListItem>, "", htmlAttributes: new { @class = "form-control select-2" })
+                                @Html.ValidationMessageFor(m => m.CenterServiceId, "", new { @class = "text-danger" })
+                            </div>
+                        </div>
+                        <div class="col-md-3">
+                            <div class="form-group">
+                                @Html.LabelFor(m => m.Date)
+                                @Html.TextBoxFor(m => m.Date, new { @class = "form-control common-datapicker" })
+                                @Html.ValidationMessageFor(m => m.Date, "", new { @class = "text-danger" })
+                            </div>
+                        </div>
+                        <div class="col-md-2">
+                            <label>&nbsp;</label>
+                            <button id="SubmitLoadBookableTimes" type="submit" class=" btn btn-outline-info form-control"><i class="fa fa-sync"></i>  @AN.Web.LocalResource.Resource.Turns</button>
+                        </div>
+                    </div>
+                </form>
+            </div>
+        </div>
+        <div id="BookingTimesListArea"></div>
+    </div>
+</div>
+
+@section scripts{
+    <script type="text/javascript" src="~/lib/select2/js/select2.min.js"></script>
+    <script type="text/javascript" src="~/lib/flatpickr/flatpickr.min.js"></script>
+    <script type="text/javascript">
+        var form = $("#BookingForm");
+        $(function () {
+            form.find(".select-2").select2({
+                width: '100%',
+                dir: "@dir",
+                placeholder:"..."
+            });
+            form.find("[name='Date']").flatpickr();
+
+            $.validator.unobtrusive.parse(form);
+            $(form).on("submit", function (e) {
+                e.preventDefault();
+                if (form.valid()) {
+                    waiting('BookingForm', '@AN.Core.Resources.Global.Global.PleaseWait');
+                    $.ajax({
+                        method: "POST",
+                        url: $(this).attr("action"),
+                        dataType: "html",
+                        data: form.serialize(), success: function (result) {
+                            $("#BookingTimesListArea").html(result);
+                    }, error: function (jqXHR, ex) {
+                        handleAjaxError(jqXHR, ex);
+                    }
+                }).always(function () {
+                    waitingDone('BookingForm');
+                });
+            }
+        });
+        });
+
+        function refreshBookableTimes() {
+            $('#SubmitLoadBookableTimes').trigger('click');
+        }
+    </script>
+}

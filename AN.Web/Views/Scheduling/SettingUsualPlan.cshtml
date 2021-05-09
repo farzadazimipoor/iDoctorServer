@@ -1,0 +1,167 @@
+﻿
+@using AN.Core.Resources.UI.AdminPanel;
+@using AN.Core.Resources.Global
+
+@model AN.Web.Models.SetUsualPlanViewModel
+
+@{
+
+    ViewBag.Title = PanelResource.PolyclinicGeneralSchedule;
+
+    Layout = "~/Views/Shared/_CpanelLayout.cshtml";
+}
+
+@section styles{
+    <link rel="stylesheet" type="text/css" href="~/lib/clockpicker/bootstrap-clockpicker.min.css" />
+}
+
+<partial name="_ConfirmDeleteModalPartial" />
+
+<div class="content-header">
+    <div class="container-fluid">
+        <div class="row mb-2">
+            <div class="col-sm-6">
+                <h1 class="m-0 text-dark">@PanelResource.PolyclinicGeneralSchedule</h1>
+            </div>
+            <div class="col-sm-6">
+                <ol class="breadcrumb @(ViewBag.Lang == AN.Core.Enums.Lang.EN ? "float-sm-right" : "float-sm-left") ">
+                    <li class="breadcrumb-item"><a href="@Url.Action("Index","Home", new { area = TempData["area"] })">@AN.Core.Resources.Global.Global.Home</a></li>
+                    @if (TempData["area"] as string == "ADMIN" || TempData["area"] as string == "HOSPITALMANAGER" || TempData["area"] as string == "CLINICMANAGER")
+                    {
+                        <li class="breadcrumb-item"><a href="@Url.Action("Index","Polyclinic", new { area = "" })">@Global.Polyclinics</a></li>
+                    }
+                    <li class="breadcrumb-item active">@PanelResource.PolyclinicGeneralSchedule</li>
+                </ol>
+            </div>
+        </div>
+    </div>
+</div>
+
+<div class="content">
+    <div class="container-fluid">
+        @using (Html.BeginForm("SetUsualPlan", "Scheduling", new { area = "" }, FormMethod.Post, true, new { @class = "form-horizontal", role = "form" }))
+        {
+            @Html.AntiForgeryToken()
+            @Html.ValidationSummary(true, "", new { @class = "text-danger" })
+            @Html.HiddenFor(m => m.PolyclinicId)
+            <div class="card">
+                <div class="card-body">
+                    <div class="row">
+                        <div class="col-12">
+                            <div class="form-group">
+                                @Html.LabelFor(m => m.ServiceSupplyId)
+                                @Html.DropDownListFor(model => model.ServiceSupplyId, Model.ListServiceSupplies, new { @class = "form-control" })
+                                @Html.ValidationMessageFor(m => m.ServiceSupplyId, "", new { @class = "text-danger" })
+                            </div>
+                        </div>
+                        <div class="col-md-2">
+                            <div class="form-group">
+                                @Html.LabelFor(m => m.DayOfWeek)
+                                @Html.DropDownListFor(model => model.DayOfWeek, Model.ListDaysOfWeek, new { @class = "form-control" })
+                            </div>
+                        </div>
+                        <div class="col-md-2">
+                            <div class="form-group">
+                                @Html.LabelFor(m => m.Shift)
+                                @Html.DropDownListFor(m => m.Shift, new List<SelectListItem> { new SelectListItem { Value = "0", Text = Global.Morning }, new SelectListItem { Value = "1", Text = Global.Evening } }, new { @class = "form-control" })
+                            </div>
+                        </div>
+                        <div class="col-md-2">
+                            <div class="form-group clockpicker" data-placement="left" data-align="top" data-autoclose="true">
+                                @Html.LabelFor(m => m.From)
+                                @Html.TextBoxFor(m => m.From, new { @class = "form-control txtHour planControl-evening", @placeholder = Global.FromTime, @autocomplete = "off" })
+                                @Html.ValidationMessageFor(m => m.From, "", new { @class = "text-danger" })
+                            </div>
+                        </div>
+                        <div class="col-md-2">
+                            <div class="form-group clockpicker" data-placement="left" data-align="top" data-autoclose="true">
+                                @Html.LabelFor(m => m.To)
+                                @Html.TextBoxFor(m => m.To, new { @class = "form-control txtHour planControl-evening", @placeholder = Global.ToTime, @autocomplete = "off" })
+                                @Html.ValidationMessageFor(m => m.To, "", new { @class = "text-danger" })
+                            </div>
+                        </div>
+                        <div class="col-md-2">
+                            <div class="form-group">
+                                @Html.LabelFor(m => m.MedicalServiceId)
+                                <select id="MedicalServiceId" class="form-control" name="MedicalServiceId">
+                                    @foreach (var item in Model.ListMedicalServices)
+                                    {
+                                        <option value="@item.Value" selected>@item.Text</option>
+                                    }
+                                </select>
+                            </div>
+                        </div>
+                        <div class="col-md-2">
+                            <div class="form-group">
+                                @Html.LabelFor(m => m.MaxCount)
+                                @Html.TextBoxFor(m => m.MaxCount, new { @class = "form-control" })
+                                <p><span id="capacity">@Model.MaxCount</span> @Global.Man</p>
+                                <p>@Html.ValidationMessageFor(m => m.MaxCount, "", new { @class = "text-danger" })</p>
+                            </div>
+                        </div>
+                        @*<div class="col-md-4">
+                                @Html.LabelFor(m => m.PrerequisiteType)
+                                @Html.DropDownListFor(m => m.PrerequisiteType, (ViewBag.Prerequisites as IEnumerable<SelectListItem>).ToList(), new { @tabindex = "6", @class = "form-control" })
+                            </div>*@
+                    </div>
+                    <div class="row">
+                        <div class="col-md-12 text-center">
+                            <button id="btnAssignDoctor" type="submit" class="btn btn-info"><i class="fa fa-arrow-down"></i>  @PanelResource.AddSchedule</button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        }
+        @await Component.InvokeAsync("ListUsualPlansTableComponent", new { polyclinicId = Model.PolyclinicId })
+    </div>
+</div>
+
+
+@section scripts{
+    <script type="text/javascript" src="~/lib/jquery.maskedinput/jquery.maskedinput.min.js"></script>
+    <script type="text/javascript" src="~/lib/clockpicker/bootstrap-clockpicker.min.js"></script>
+
+    <script type="text/javascript">
+
+        $(".txtHour").mask("99:99");
+        $('.txtHour').clockpicker({ donetext: '@Global.Ok'});
+
+        var dayOfWeek = $("#listdayofweek");
+        var shift = $("#shift");
+        var fromTime = $("#from-time");
+        var toTime = $("#to-time");
+        var serviceSupply = $("#listservicesupplies");
+        var medicalService = $("#listmedicalservices");
+
+        $("#listdayofweek, #shift, #from-time, #to-time, #listservicesupplies, #listmedicalservices").change(function () {
+            if (fromTime.val() != "" && toTime.val() != "") {
+                waiting('body', '@AN.Core.Resources.Global.Global.PleaseWait');
+                var dataRow = {
+                    'dayOfWeek': dayOfWeek.val(),
+                    'shift': shift.val(),
+                    'from': fromTime.val(),
+                    'to': toTime.val(),
+                    'serviceSupplyId': serviceSupply.val(),
+                    'medicalServiceId': medicalService.val(),
+                }
+                $.ajax({
+                    url: '/Scheduling/GetRemainedAppointsCount',
+                    type: 'GET',
+                    data: dataRow,
+                    success: function (result) {
+                        var data = $.parseJSON(result);
+                        $("#maxcount").val(data.Count);
+                        $("#capacity").html(data.Count);
+                        jQuery("#maxcount").attr({ "max": data.Count });
+                    },
+                    error: function (jqXHR, ex) {
+                        handleAjaxError(jqXHR, ex);
+                    }
+                }).always(function () {
+                    waitingDone('body');
+                });
+            }
+        });
+    </script>
+    <script type="text/javascript" src="~/Scripts/My/confirm.delete.js"></script>
+}

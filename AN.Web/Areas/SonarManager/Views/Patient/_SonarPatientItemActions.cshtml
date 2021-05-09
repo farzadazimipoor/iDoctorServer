@@ -1,0 +1,8 @@
+﻿@model (int id, int personId, int? serviceSupplyId)
+
+<div class="btn-group" role="group" aria-label="Basic example">
+    @*<button class="btn btn-outline-info btn-sm" type="button" onclick="getPatientTreatments('@Model.personId', '@Model.serviceSupplyId')" title="@Global.VisitInfo"><i class="fa fa-info-circle"></i></button>*@
+    <button class='btn btn-outline-secondary btn-sm' onclick='insertNewSonarPatient(@Model.id);' title="Edit"><i class="fa fa-edit"></i></button>
+    <button class='btn btn-outline-dark btn-sm' onclick='manageSonarPatientAttachments(@Model.id);' title="Attachments"><i class="fa fa-file"></i></button>
+    <button class='btn btn-outline-danger btn-sm' onclick='deleteSonarPatientItem(@Model.id);' title="Delete"><i class="fa fa-trash"></i></button>
+</div>

@@ -1,0 +1,217 @@
+﻿
+@model AN.Web.Areas.PolyClinicManager.Models.CreateSonarPatientViewModel
+
+<div id="createPatientArea">
+    <form id="createPatientForm" class="form-horizontal" action="@Url.Action("CreateUpdate", "Patient", new {area = "SonarManager"})" method="POST" enctype="multipart/form-data">
+        @Html.HiddenFor(m => m.AppointmentId)
+        @Html.HiddenFor(m => m.Id)
+
+        <div class="row">
+            @if (Model.Id == null)
+            {
+                <div class="col-md-12">
+                    <div class="form-group">
+                        @Html.LabelFor(m => m.ServiceSupplyId)
+                        @Html.DropDownListFor(m => m.ServiceSupplyId, (ViewBag.Doctors as IEnumerable<SelectListItem>).ToList(), new { @tabindex = "5", @class = "form-control" })
+                        @Html.ValidationMessageFor(m => m.ServiceSupplyId, "", new { @class = "text-danger" })
+                    </div>
+                </div>
+            }
+        </div>
+        <div class="row">
+            <div class="col-7">
+                <div class="row">
+                    <div class="col-md-12">
+                        <div class="form-group">
+                            @Html.LabelFor(m => m.PersonModel.FirstName)
+                            @Html.TextBoxFor(m => m.PersonModel.FirstName, new { maxlength = "50", @class = "form-control beLTR pl-3" })
+                            @Html.ValidationMessageFor(m => m.PersonModel.FirstName, "", new { @class = "text-danger" })
+                        </div>
+                    </div>
+                    <div class="col-md-12">
+                        <div class="form-group">
+                            @Html.LabelFor(m => m.PersonModel.SecondName)
+                            @Html.TextBoxFor(m => m.PersonModel.SecondName, new { maxlength = "50", @class = "form-control beLTR pl-3" })
+                            @Html.ValidationMessageFor(m => m.PersonModel.SecondName, "", new { @class = "text-danger" })
+                        </div>
+                    </div>
+                    <div class="col-md-12">
+                        <div class="form-group">
+                            @Html.LabelFor(m => m.PersonModel.ThirdName)
+                            @Html.TextBoxFor(m => m.PersonModel.ThirdName, new { maxlength = "50", @class = "form-control beLTR pl-3" })
+                            @Html.ValidationMessageFor(m => m.PersonModel.ThirdName, "", new { @class = "text-danger" })
+                        </div>
+                    </div>
+                    <div class="col-md-8">
+                        <div class="form-group">
+                            @Html.LabelFor(m => m.PersonModel.Mobile)
+                            @Html.TextBoxFor(m => m.PersonModel.Mobile, new { @class = "form-control NumericOnly" })
+                            @Html.ValidationMessageFor(m => m.PersonModel.Mobile, "", new { @class = "text-danger", maxlength = "11" })
+                        </div>
+                    </div>
+                    <div class="col-md-4">
+                        <div class="form-group">
+                            @Html.LabelFor(m => m.PersonModel.Gender)
+                            @Html.DropDownListFor(m => m.PersonModel.Gender, (ViewBag.GendersList as IEnumerable<SelectListItem>).ToList(), new { @tabindex = "5", @class = "form-control" })
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="col-md-5 text-center">
+                <div class="kv-avatar">
+                    <div class="file-loading">
+                        @Html.TextBoxFor(m => m.PersonModel.ImageUpload, new { @type = "file", @accept = "image/*" })
+                    </div>
+                </div>
+                <div class="kv-avatar-hint"><small>Max File Size: 500 KB</small></div>
+                <div id="kv-avatar-errors-1" class="center-block" style="display:none"></div>
+                @Html.ValidationMessageFor(m => m.PersonModel.ImageUpload, "", new { @class = "text-danger" })
+            </div>
+        </div>
+        <div class="row mt-2">
+            <div class="col-md-3">
+                <div class="form-group">
+                    @Html.LabelFor(m => m.PersonModel.Birthdate)
+                    @Html.TextBoxFor(m => m.PersonModel.Birthdate, new { @class = "form-control common-datapicker" })
+                    @Html.ValidationMessageFor(m => m.PersonModel.Birthdate, "", new { @class = "text-danger" })
+                </div>
+            </div>
+            <div class="col-md-3">
+                <div class="form-group">
+                    @Html.LabelFor(m => m.PersonModel.Age)
+                    @Html.TextBoxFor(m => m.PersonModel.Age, new { @class = "form-control", maxlength = "3" })
+                    @Html.ValidationMessageFor(m => m.PersonModel.Age, "", new { @class = "text-danger" })
+                </div>
+            </div>
+            <div class="col-md-3">
+                <div class="form-group">
+                    @Html.LabelFor(m => m.PersonModel.MarriageStatus)
+                    @Html.DropDownListFor(m => m.PersonModel.MarriageStatus, (ViewBag.MarriageStatusList as IEnumerable<SelectListItem>).ToList(), new { @tabindex = "5", @class = "form-control" })
+                </div>
+            </div>
+            <div class="col-md-3">
+                <div class="form-group">
+                    @Html.LabelFor(m => m.PersonModel.Weight)
+                    @Html.TextBoxFor(m => m.PersonModel.Weight, new { @class = "form-control", maxlength = "3" })
+                    @Html.ValidationMessageFor(m => m.PersonModel.Weight, "", new { @class = "text-danger" })
+                </div>
+            </div>
+            <div class="col-md-3">
+                <div class="form-group">
+                    @Html.LabelFor(m => m.PersonModel.Height)
+                    @Html.TextBoxFor(m => m.PersonModel.Height, new { @class = "form-control", maxlength = "3" })
+                    @Html.ValidationMessageFor(m => m.PersonModel.Height, "", new { @class = "text-danger" })
+                </div>
+            </div>
+            <div class="col-md-3">
+                <div class="form-group">
+                    @Html.LabelFor(m => m.PersonModel.Language)
+                    @Html.DropDownListFor(m => m.PersonModel.Language, (ViewBag.LanguagesList as IEnumerable<SelectListItem>).ToList(), new { @tabindex = "5", @class = "form-control" })
+                </div>
+            </div>
+            <div class="col-md-3">
+                <div class="form-group">
+                    @Html.LabelFor(m => m.PersonModel.IdNumber)
+                    @Html.TextBoxFor(m => m.PersonModel.IdNumber, new { @class = "form-control", maxlength = "50" })
+                    @Html.ValidationMessageFor(m => m.PersonModel.IdNumber, "", new { @class = "text-danger" })
+                </div>
+            </div>
+            <div class="col-md-3">
+                <div class="form-group">
+                    @Html.LabelFor(m => m.PersonModel.BloodType)
+                    @Html.DropDownListFor(m => m.PersonModel.BloodType, (ViewBag.BloodTypesList as IEnumerable<SelectListItem>).ToList(), new { @tabindex = "5", @class = "form-control" })
+                </div>
+            </div>
+            <div class="col-12">
+                <div class="form-group">
+                    @Html.LabelFor(m => m.PersonModel.Address)
+                    @Html.TextBoxFor(m => m.PersonModel.Address, new { @class = "form-control", maxlength = "500" })
+                    @Html.ValidationMessageFor(m => m.PersonModel.Address, "", new { @class = "text-danger" })
+                </div>
+            </div>
+        </div>
+        <div class="row">
+            <div class="col-md-12 mt-5 text-center">
+                <button type="submit" class="btn btn-info">@(Model.Id == null ? @AN.Core.Resources.UI.AdminPanel.PanelResource.AddNewPatient : @AN.Core.Resources.Global.Global.Update)</button>
+                <button id="CancelAddPatient" type="button" class="btn btn-danger" data-dismiss="modal">@AN.Core.Resources.Global.Global.Cancel </button>
+            </div>
+        </div>
+    </form>
+</div>
+
+<script type="text/javascript">
+    $(function () {
+        var form = $("#createPatientArea").find('form');
+        var birthdayElement = form.find("[name='PersonModel.Birthdate']");
+        var ageElement = form.find("[name='PersonModel.Age']");
+        $.validator.unobtrusive.parse(form);
+        $(form).on("submit", function (e) {
+            e.preventDefault();
+            if (form.valid()) {
+                var data = new FormData($(this)[0]);
+                waiting('createPatientArea', '@AN.Core.Resources.Global.Global.PleaseWait');
+                $.ajax({
+                    method: "POST",
+                    url: $(this).attr("action"),
+                    processData: false,
+                    contentType: false, // contentType option to false is used for multipart/form-data forms that pass files
+                    data: data, success: function (result) {
+                        reloadDataTable();
+                        form.closest('.modal').modal('toggle');
+                        Toast.fire({
+                            type: 'success',
+                            title: '@AN.Core.Resources.Global.Global.Successful',
+                            text: "@Html.Raw(AN.Core.Resources.EntitiesResources.Messages.ItemAddedSuccessFully)"
+                        });
+                    }, error: function (jqXHR,ex) {
+                        handleAjaxError(jqXHR, ex);
+                    }
+                }).always(function () {
+                    waitingDone('createPatientArea');
+                });
+            }
+        });
+         form.find("[name='PersonModel.ImageUpload']").fileinput({
+            theme: "fas",
+            overwriteInitial: true,
+            showClose: false,
+            showCaption: false,
+            showUpload: false,
+            browseLabel: '',
+            removeLabel: '',
+            browseIcon: '<i class="fa fa-folder-open"></i>',
+            removeIcon: '<i class="fa fa-trash"></i>',
+            removeTitle: 'Cancel or reset changes',
+            elErrorContainer: '#kv-avatar-errors-1',
+            msgErrorClass: 'alert alert-block alert-danger',
+            defaultPreviewContent: '@Html.Raw(ViewBag.AvatarPreview)',
+            maxFileSize: 500,
+            minImageWidth: 180,
+            minImageHeight: 180,
+            maxImageWidth: 512,
+            maxImageHeight: 512,
+            allowedFileExtensions: ["jpg", "png", "jpeg"]
+         });
+
+        birthdayElement.change(function () {
+            try {
+                if (this.value) {
+                    ageElement.val(getAge(this.value));
+                }
+            } catch (err) {
+                ageElement.val(0);
+            }
+        });
+    });    
+
+    function getAge(dob) {
+        var today = new Date();
+        var birthDate = new Date(dob);
+        var age = today.getFullYear() - birthDate.getFullYear();
+        var m = today.getMonth() - birthDate.getMonth();
+        if (m < 0 || (m === 0 && today.getDate() < birthDate.getDate())) {
+            age = age - 1;
+        }
+        return age;
+    }
+</script>

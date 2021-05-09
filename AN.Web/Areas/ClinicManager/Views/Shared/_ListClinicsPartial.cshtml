@@ -1,0 +1,45 @@
+﻿@using AN.Core
+@using AN.Core.Models
+@using Microsoft.AspNetCore.Http
+@inject IHttpContextAccessor HttpContextAccessor
+@{
+    var CurrentClinic = Newtonsoft.Json.JsonConvert.DeserializeObject<WorkingAreaModel>(HttpContextAccessor.HttpContext.Session.GetString("CurrentClinic"));
+
+    var clinics = Newtonsoft.Json.JsonConvert.DeserializeObject<List<WorkingAreaModel>>(HttpContextAccessor.HttpContext.Session.GetString("Clinics"));
+
+    if (clinics == null)
+    {
+        //TODO : exit from system
+    }
+    else if (clinics.ToList().Count > 1)
+    {
+        <li class="dropdown notifications-menu">
+            <a href="#" class="dropdown-toggle" data-toggle="dropdown">
+                <span class="hidden-xs">@AN.Core.Resources.UI.AdminPanel.PanelResource.ChangeClinic</span>
+                <i class="fa fa-refresh"></i>
+                <span class="label label-info">@clinics.ToList().Count</span>
+            </a>
+            <ul class="dropdown-menu">
+                <li class="header">@AN.Core.Resources.UI.AdminPanel.PanelResource.YouCanManageThisClinics</li>
+                <li>
+                    <!-- inner menu: contains the actual data -->
+                    <ul class="menu">
+                        @foreach (var c in clinics)
+                        {
+                            if (CurrentClinic.Id == c.Id)
+                            {
+                                <li style="background: #f4f4f4;"><a style="color:darkred;" class="disabled"><i class="fa fa-ban"></i> @c.Name - @AN.Core.Resources.Global.Global.Selected</a></li>
+                            }
+                            else
+                            {
+                                <li><a href="@Url.Action("ChangeClinic","Home",new { area = "ClinicManager" ,  id = c.Id  })"><i class="fa fa-hand-o-left text-aqua"></i>@c.Name</a></li>
+                            }
+                        }
+                    </ul>
+                </li>
+                <li class="footer"><a href="#"></a></li>
+            </ul>
+        </li>
+    }
+}
+

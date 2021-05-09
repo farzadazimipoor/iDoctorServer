@@ -1,0 +1,54 @@
+﻿@model IEnumerable<AN.Web.Areas.PolyClinicManager.Models.PatientAttachmentViewModel>
+
+<div class="file-loading">
+    <input id="PatientAttachmentInput" name="patientAttachment" type="file" accept="image/*" multiple>
+</div>
+
+<script>
+   (function () {
+       var myArray = [];
+       var myArrayConfig = [];
+       @{
+           if(Model.Any())
+           {
+                foreach (var d in Model)
+                {
+                   @:myArray.push("@d.thumbnailUrl");
+                   @:myArrayConfig.push({ caption: "@d.name", downloadUrl: "@d.url", size: @d.size, width: "96px", height: "96px", key: @Model.ToList().IndexOf(d) })
+                }
+           }
+       }
+        $("#PatientAttachmentInput").fileinput({
+            theme: "fas",
+            uploadUrl:"/Upload/UploadPatientAttachment/@ViewBag.PatientId",
+            initialPreview: myArray,
+            initialPreviewAsData: true,
+            initialPreviewConfig: myArrayConfig,
+            deleteUrl: "/site/file-delete",
+            overwriteInitial: false,
+            initialCaption: "@Html.Raw(Global.Attachments)",
+            browseClass: "btn btn-primary btn-block",
+            showCaption: false,
+            showRemove: false,
+            showUpload: false,
+            maxFileSize: 64307,
+            minImageWidth: 128,
+            minImageHeight: 128,
+            maxImageWidth: 12000,
+            maxImageHeight: 9000,
+            allowedFileExtensions: ["jpg", "png", "jpeg"]
+        }).on('fileuploaded', function (event, previewId, index, fileId) {
+           Toast.fire({
+               type: 'success',
+               title: '@AN.Core.Resources.Global.Global.Successful',
+               text: 'Patient Attachment Uploaded Successfully'
+           });
+       }).on('fileuploaderror', function (event, data, msg) {
+           Toast.fire({
+               type: 'error',
+               title: '@AN.Core.Resources.Global.Global.Error',
+               text: 'File upload error. please try again or select another photo'
+           });
+       });
+   })();
+</script>

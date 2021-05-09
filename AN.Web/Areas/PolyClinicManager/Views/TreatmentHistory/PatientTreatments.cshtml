@@ -1,0 +1,295 @@
+﻿@using AN.Core.ViewModels;
+
+@model IEnumerable<AN.Core.Domain.TreatmentHistory>
+
+@{
+    var personInfo = ViewBag.PersonInfo as PersonInfoViewModel;
+    Lang lng = ViewBag.Lang;
+    var dir = lng == Lang.EN ? LayoutDir.LTR : LayoutDir.RTL;
+    var pharmacyRequests = Model.Where(x => !x.Prescriptions.Any()).ToList();
+    var sonarRequests = Model.Where(x => x.Prescriptions.Any(y => y.Center.Type == ShiftCenterType.Sonography)).ToList();
+    var labRequests = Model.Where(x => x.Prescriptions.Any(y => y.Center.Type == ShiftCenterType.Laboratory)).ToList();
+}
+
+<section class="content">
+    <div class="container-fluid">
+        <div class="row">
+            <div class="col-md-12 col-lg-3">
+                <div class="card card-primary card-outline">
+                    <div class="card-body box-profile">
+                        <div class="text-center">
+                            <img class="profile-user-img img-fluid img-circle"
+                                 src="@personInfo.Avatar"
+                                 alt="">
+                        </div>
+                        <h3 class="profile-username text-center">@personInfo.FirstName @personInfo.SecondName @personInfo.ThirdName</h3>
+                        <p class="text-muted text-center">@personInfo.UniqueId</p>
+                        <ul class="list-group list-group-unbordered mb-3">
+                            <li class="list-group-item">
+                                <b class="@(dir == LayoutDir.RTL ? "float-right" : "float-left")">@Global.Mobile</b> <a class="@(dir == LayoutDir.RTL ? "float-left" : "float-right")">@personInfo.MobileNumber</a>
+                            </li>
+                            @if (!string.IsNullOrEmpty(personInfo.Birthdate))
+                            {
+                                <li class="list-group-item">
+                                    <b class="@(dir == LayoutDir.RTL ? "float-right" : "float-left")">@Global.Birthdate</b> <a class="@(dir == LayoutDir.RTL ? "float-left" : "float-right")">@personInfo.Birthdate</a>
+                                </li>
+                            }
+                            <li class="list-group-item">
+                                <b class="@(dir == LayoutDir.RTL ? "float-right" : "float-left")">@Global.Age</b> <a class="@(dir == LayoutDir.RTL ? "float-left" : "float-right")">@personInfo.Age</a>
+                            </li>
+                            <li class="list-group-item">
+                                <b class="@(dir == LayoutDir.RTL ? "float-right" : "float-left")">@Global.Gender</b> <a class="@(dir == LayoutDir.RTL ? "float-left" : "float-right")">@personInfo.Sex</a>
+                            </li>
+                        </ul>
+                        <strong><i class="fas fa-map-marker-alt mr-1"></i> @Global.Address</strong>
+                        <p class="text-muted">@personInfo.Address</p>
+                        <hr>
+                        <strong><i class="far fa-file-alt mr-1"></i> Notes</strong>
+                        <p class="text-muted">@personInfo.MarriageStatus</p>
+                    </div>
+                </div>
+            </div>
+            <div class="col-md-12 col-lg-9">
+                <div class="card">
+                    <div class="card-header p-2">
+                        <ul class="nav nav-pills">
+                            @if (!User.IsInRole("secretary"))
+                            {
+                                <li class="nav-item"><a class="nav-link active" href="#treatmentHistories" data-toggle="tab">@Global.Treatments</a></li>
+                            }
+                            <li class="nav-item"><a class="nav-link  @(User.IsInRole("secretary") ? "active" : "")" href="#timeline" data-toggle="tab">@PanelResource.SonarRequests</a></li>
+                            @if (!User.IsInRole("secretary"))
+                            {
+                                <li class="nav-item"><a class="nav-link" href="#LabRequests" data-toggle="tab">@Global.Laboratory</a></li>
+                            }
+                        </ul>
+                    </div>
+                    <div class="card-body">
+                        <div class="tab-content">
+                            @if (!User.IsInRole("secretary"))
+                            {
+                                <div class="active tab-pane" id="treatmentHistories">
+                                    <div>
+                                        <button class="btn btn-sm btn-info" onclick="addTreatmentHistory('@ViewBag.PatientId')"><i class="fa fa-plus"></i> @AN.Core.Resources.Global.Global.New</button>
+                                    </div>
+                                    <hr />
+                                    @if (pharmacyRequests.Any())
+                                    {
+                                        foreach (var treatment in pharmacyRequests.OrderByDescending(c => c.VisitDate))
+                                        {
+                                            <div class="post">
+                                                <div class="user-block">
+                                                    <img class="img-circle img-bordered-sm" src="@treatment.Patient.ServiceSupply.Person.RealAvatar" alt="Doctor">
+                                                    <span class="username">
+                                                        <a href="#">@(lng == Lang.KU ? treatment.Patient.ServiceSupply.Person.FullName_Ku : lng == Lang.AR ? treatment.Patient.ServiceSupply.Person.FullName_Ar : treatment.Patient.ServiceSupply.Person.FullName)</a>
+                                                    </span>
+                                                    <span class="description mt-1"><i class="fa fa-clock"></i> @treatment.VisitDate.ToString("yyyy-MM-dd")</span>
+                                                </div>
+                                                <strong><i class="fas fa-book-medical mr-1"></i> @Global.ChiefComplaint</strong>
+                                                <p class="text-muted">@treatment.Problems</p>
+                                                <strong><i class="far fa-file-alt mr-1"></i> @Global.Description</strong>
+                                                <p class="text-muted">@treatment.Description</p>
+                                                <p>
+                                                    <a href="#" class="link-black text-sm mr-2" onclick="printPrescription('@treatment.Id')"><i class="fas fa-print mr-1"></i> @Global.PrintPreview</a>
+                                                    <a href="#" class="link-black text-sm mr-2" onclick=" showPastHistory('@treatment.Id')"><i class="fa fa-clock mr-1"></i> @Global.PatientsHistory</a>
+                                                </p>
+                                            </div>
+                                        }
+                                    }
+                                    else
+                                    {
+                                        @await Html.PartialAsync("_ItemNotFound", "")
+                                    }
+                                </div>
+                            }
+                            <div class="tab-pane @(User.IsInRole("secretary") ? "active" : "")" id="timeline">
+                                <div>
+                                    <button class="btn btn-sm btn-info" onclick="addSonarRequest('@ViewBag.PatientId')"><i class="fa fa-plus"></i> @PanelResource.RequestSonar</button>
+                                </div>
+                                <hr />
+                                @if (sonarRequests.Any())
+                                {
+                                    foreach (var treatment in sonarRequests)
+                                    {
+                                        <div class="post">
+                                            <div class="user-block">
+                                                <img class="img-circle img-bordered-sm" src="@treatment.Patient.ServiceSupply.Person.RealAvatar" alt="user image">
+                                                <span class="username">
+                                                    <a href="#">@(lng == Lang.KU ? treatment.Patient.ServiceSupply.Person.FullName_Ku : lng == Lang.AR ? treatment.Patient.ServiceSupply.Person.FullName_Ar : treatment.Patient.ServiceSupply.Person.FullName)</a>
+                                                </span>
+                                                <span class="description mt-1"><i class="fa fa-clock"></i> @treatment.VisitDate.ToString("yyyy-MM-dd")</span>
+                                            </div>
+                                            <p>
+                                                @treatment.Description
+                                            </p>
+                                            <p>
+                                                <a href="#" class="link-black text-sm mr-2" onclick="printPrescription('@treatment.Id')"><i class="fas fa-print mr-1"></i> @Global.PrintPreview</a>
+                                            </p>
+                                        </div>
+                                    }
+                                }
+                                else
+                                {
+                                    @await Html.PartialAsync("_ItemNotFound", "")
+                                }
+                            </div>
+                            @if (!User.IsInRole("secretary"))
+                            {
+                                <div class="tab-pane" id="LabRequests">
+                                    <div>
+                                        <button class="btn btn-sm btn-info" onclick="addLabratoryRequest('@ViewBag.PatientId')"><i class="fa fa-plus"></i> @Global.Laboratory</button>
+                                    </div>
+                                    <hr />
+                                    @if (labRequests.Any())
+                                    {
+                                        foreach (var treatment in labRequests)
+                                        {
+                                            <div class="post">
+                                                <div class="user-block">
+                                                    <img class="img-circle img-bordered-sm" src="@treatment.Patient.ServiceSupply.Person.RealAvatar" alt="user image">
+                                                    <span class="username">
+                                                        <a href="#">@(lng == Lang.KU ? treatment.Patient.ServiceSupply.Person.FullName_Ku : lng == Lang.AR ? treatment.Patient.ServiceSupply.Person.FullName_Ar : treatment.Patient.ServiceSupply.Person.FullName)</a>
+                                                    </span>
+                                                    <span class="description mt-1"><i class="fa fa-clock"></i> @treatment.VisitDate.ToString("yyyy-MM-dd")</span>
+                                                </div>
+                                                <p>
+                                                    @treatment.Description
+                                                </p>
+                                                <p>
+                                                    <a href="#" class="link-black text-sm mr-2" onclick="printPrescription('@treatment.Id')"><i class="fas fa-print mr-1"></i> @Global.PrintPreview</a>
+                                                </p>
+                                            </div>
+                                        }
+                                    }
+                                    else
+                                    {
+                                        @await Html.PartialAsync("_ItemNotFound", "")
+                                    }
+                                </div>
+                            }
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+
+<div id="PatientPastHistoryModal" class="modal fade" role="dialog">
+    <div id="PatientPastHistoryModalDialog" class="modal-dialog" role="document">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h4 class="modal-title text-center"></h4>
+                <button id="PatientPastHistoryModalClose" type="button" class="close" aria-label="Close" onclick="closePatientPastHistoryModal()">
+                    <span aria-hidden="true">&times;</span>
+                </button>
+            </div>
+            <div class="modal-body">
+                <div id="PatientPastHistoryModalContent">
+
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+<script>
+    function addTreatmentHistory(patientId) {
+        var url = "/PolyClinicManager/TreatmentHistory/Create?patientId=" + patientId;
+        waiting('AwroNoreModalDialog', '@AN.Core.Resources.Global.Global.PleaseWait');
+        $.ajax({
+            method: "GET",
+            url: url,
+            dataType: "html",
+            success: function (result) {
+                $("#CommonModalContent").html(result);
+                $('.modal-title').text('@Html.Raw(Global.NewTreatment)');
+                $("#VisitDate").flatpickr();
+            }, error: function (jqXHR, ex) {
+                handleAjaxError(jqXHR, ex);
+            }
+        }).always(function () {
+            waitingDone('AwroNoreModalDialog');
+        });
+    }
+
+    function addSonarRequest(patientId) {
+        var url = "/PolyClinicManager/TreatmentHistory/CreateSonarRequest?patientId=" + patientId;
+        waiting('AwroNoreModalDialog', '@AN.Core.Resources.Global.Global.PleaseWait');
+        $.ajax({
+            method: "GET",
+            url: url,
+            dataType: "html",
+            success: function (result) {
+                $("#CommonModalContent").html(result);
+                $('.modal-title').text('@Html.Raw(PanelResource.RequestSonar)');
+                $("#VisitDate").flatpickr();
+                $(".select-2").select2({
+                    width: '100%',
+                    dir: "@dir"
+                });
+            }, error: function (jqXHR, ex) {
+                handleAjaxError(jqXHR, ex);
+            }
+        }).always(function () {
+            waitingDone('AwroNoreModalDialog');
+        });
+    }
+
+    function addLabratoryRequest(patientId) {
+        var url = "/PolyClinicManager/TreatmentHistory/CreateLabRequest?patientId=" + patientId;
+        waiting('AwroNoreModalDialog', '@AN.Core.Resources.Global.Global.PleaseWait');
+        $.ajax({
+            method: "GET",
+            url: url,
+            dataType: "html",
+            success: function (result) {
+                $("#CommonModalContent").html(result);
+                $('.modal-title').text('@Html.Raw(Global.Laboratory)');
+                $("#VisitDate").flatpickr();
+                $(".select-2").select2({
+                    width: '100%',
+                    dir: "@dir"
+                });
+            }, error: function (jqXHR, ex) {
+                handleAjaxError(jqXHR, ex);
+            }
+        }).always(function () {
+            waitingDone('AwroNoreModalDialog');
+        });
+    }
+
+    function printPrescription(treatmentHistoryId) {
+        var url = "/Print/PrintPreScription/" + treatmentHistoryId;
+        OpenReport(url);
+    }
+
+    function showPastHistory(treatmentHistoryId) {
+        var url = "/PolyClinicManager/TreatmentHistory/PatientPastHistory?treatmentHistoryId=" + treatmentHistoryId;
+        waiting('AwroNoreModalDialog', '@AN.Core.Resources.Global.Global.PleaseWait');
+        $.ajax({
+            method: "GET",
+            url: url,
+            dataType: "html",
+            success: function (result) {
+                var title = "@Html.Raw(Global.PatientsHistory)";
+                var pastHistoryModal = $("#PatientPastHistoryModal");
+                pastHistoryModal.find('#PatientPastHistoryModalDialog').addClass("modal-lg");
+                pastHistoryModal.find('.modal-title').text(title);
+                pastHistoryModal.find('#PatientPastHistoryModalContent').html(result);
+                pastHistoryModal.modal({ backdrop: 'static', keyboard: false });
+            }, error: function (jqXHR, ex) {
+                handleAjaxError(jqXHR, ex);
+            }
+        }).always(function () {
+            waitingDone('AwroNoreModalDialog');
+        });
+    }
+
+    function closePatientPastHistoryModal() {
+        $('#PatientPastHistoryModal').on('hidden.bs.modal', function () {
+             $('body').addClass('modal-open');
+        });
+        $('#PatientPastHistoryModal').modal('hide');
+    }
+</script>

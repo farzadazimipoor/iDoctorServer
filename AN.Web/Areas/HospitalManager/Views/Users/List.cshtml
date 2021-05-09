@@ -1,0 +1,186 @@
+﻿@using AN.Web.Areas.HospitalManager.Models
+@model IEnumerable<HMListUsersViewModel>
+@using Microsoft.AspNetCore.Http
+@inject IHttpContextAccessor HttpContextAccessor
+
+@{
+
+    ViewBag.Title = "لیست افراد بیمارستان";
+
+    Layout = "~/Views/Shared/_CpanelLayout.cshtml";
+
+    var RoleToView = HttpContextAccessor.HttpContext.Request.Query["R"];
+
+    var UsersCount = ViewData["UsersCount"] as HMUsersCountModel;
+}
+
+@section styles{
+    <link rel="stylesheet" type="text/css" href="~/css/DataTables/css/dataTables.bootstrap.min.css" />
+}
+
+@section scripts{
+    <script type="text/javascript" src="~/js/DataTables/jquery.dataTables.min.js"></script>
+    <script type="text/javascript" src="~/js/DataTables/dataTables.bootstrap.min.js"></script>
+    <script type="text/javascript">
+        $(function () {
+            $('#usersTable').DataTable();
+        });
+    </script>
+
+    <script type="text/javascript" src="~/css/plugins/slimScroll/jquery.slimscroll.min.js"></script>
+    <script type="text/javascript" src="~/Scripts/My/confirm.delete.js"></script>
+}
+
+<partial name="_ConfirmDeleteModalPartial" />
+
+<!-- Content Header (Page header) -->
+<section class="content-header">
+    <h1>
+        لیست افراد بیمارستان
+        <small>@AN.Core.Resources.UI.AdminPanel.PanelResource.AdminPanel</small>
+    </h1>
+    <ol class="breadcrumb">
+        <li><a href="@Url.Action("Index","Home", new { area = "HospitalManager" })"><i class="fa fa-dashboard"></i> @AN.Core.Resources.Global.Global.Home</a></li>
+        <li class="active">پیشخوان</li>
+    </ol>
+</section>
+
+<!-- Main content -->
+<section class="content">
+    @if (TempData["DeleteSuccessMsg"] != null)
+    {
+        <div class="alert alert-dismissable alert-success fade in" role="alert">
+            <button type="button" class="close" data-dismiss="alert">×</button>
+            @TempData["DeleteSuccessMsg"].ToString()
+        </div>
+    }
+    @if (TempData["DeleteFailureMsg"] != null)
+    {
+        <div class="alert alert-dismissable alert-danger">
+            <button type="button" class="close" data-dismiss="alert">×</button>
+            @TempData["DeleteFailureMsg"].ToString()
+        </div>
+    }
+    <div class="row">
+        <div class="col-xs-12">
+            <div class="box">
+                <div class="box-header">
+                    <h3 class="box-title"><a href="@Url.Action("Create", "Users", new { area = "HospitalManager" })" class="btn btn-success" role="button"><span class="glyphicon glyphicon-plus-sign"></span> افزودن فرد جدید </a></h3>
+                    <hr />
+                    <div class="btn-group" role="group" aria-label="...">
+                        @switch (RoleToView)
+                        {
+                            case "CM":
+                                <button type="button" class="btn btn-default" onclick="window.location.href = '/HospitalManager/Users/List?R=All'">همه افراد<span class="badge">@UsersCount.AllCount</span></button>
+                                <button type="button" class="btn btn-info" onclick="window.location.href = '/HospitalManager/Users/List?R=CM'">مدیران کلینیک ها <span class="badge">@UsersCount.ClinicManagersCount</span></button>
+                                <button type="button" class="btn btn-default" onclick="window.location.href = '/HospitalManager/Users/List?R=PCM'">مدیران مطب ها <span class="badge">@UsersCount.PolyClinicManagersCount</span></button>
+                                <button type="button" class="btn btn-default" onclick="window.location.href = '/HospitalManager/Users/List?R=D'">پزشکان <span class="badge">@UsersCount.DoctorsCount</span></button>
+                                <button type="button" class="btn btn-default" onclick="window.location.href = '/HospitalManager/Users/List?R=P'">بیماران <span class="badge">@UsersCount.PatientsCount</span></button>
+                                break;
+                            case "PCM":
+                                <button type="button" class="btn btn-default" onclick="window.location.href = '/HospitalManager/Users/List?R=All'">همه افراد<span class="badge">@UsersCount.AllCount</span></button>
+                                <button type="button" class="btn btn-default" onclick="window.location.href = '/HospitalManager/Users/List?R=CM'">مدیران کلینیک ها <span class="badge">@UsersCount.ClinicManagersCount</span></button>
+                                <button type="button" class="btn btn-info" onclick="window.location.href = '/HospitalManager/Users/List?R=PCM'">مدیران مطب ها <span class="badge">@UsersCount.PolyClinicManagersCount</span></button>
+                                <button type="button" class="btn btn-default" onclick="window.location.href = '/HospitalManager/Users/List?R=D'">پزشکان <span class="badge">@UsersCount.DoctorsCount</span></button>
+                                <button type="button" class="btn btn-default" onclick="window.location.href = '/HospitalManager/Users/List?R=P'">بیماران <span class="badge">@UsersCount.PatientsCount</span></button>
+                                break;
+                            case "D":
+                                <button type="button" class="btn btn-default" onclick="window.location.href = '/HospitalManager/Users/List?R=All'">همه افراد<span class="badge">@UsersCount.AllCount</span></button>
+                                <button type="button" class="btn btn-default" onclick="window.location.href = '/HospitalManager/Users/List?R=CM'">مدیران کلینیک ها <span class="badge">@UsersCount.ClinicManagersCount</span></button>
+                                <button type="button" class="btn btn-default" onclick="window.location.href = '/HospitalManager/Users/List?R=PCM'">مدیران مطب ها <span class="badge">@UsersCount.PolyClinicManagersCount</span></button>
+                                <button type="button" class="btn btn-info" onclick="window.location.href = '/HospitalManager/Users/List?R=D'">پزشکان <span class="badge">@UsersCount.DoctorsCount</span></button>
+                                <button type="button" class="btn btn-default" onclick="window.location.href = '/HospitalManager/Users/List?R=P'">بیماران <span class="badge">@UsersCount.PatientsCount</span></button>
+                                break;
+                            case "P":
+                                <button type="button" class="btn btn-default" onclick="window.location.href = '/HospitalManager/Users/List?R=All'">همه افراد<span class="badge">@UsersCount.AllCount</span></button>
+                                <button type="button" class="btn btn-default" onclick="window.location.href = '/HospitalManager/Users/List?R=CM'">مدیران کلینیک ها <span class="badge">@UsersCount.ClinicManagersCount</span></button>
+                                <button type="button" class="btn btn-default" onclick="window.location.href = '/HospitalManager/Users/List?R=PCM'">مدیران مطب ها <span class="badge">@UsersCount.PolyClinicManagersCount</span></button>
+                                <button type="button" class="btn btn-default" onclick="window.location.href = '/HospitalManager/Users/List?R=D'">پزشکان <span class="badge">@UsersCount.DoctorsCount</span></button>
+                                <button type="button" class="btn btn-info" onclick="window.location.href = '/HospitalManager/Users/List?R=P'">بیماران <span class="badge">@UsersCount.PatientsCount</span></button>
+                                break;
+                            default:
+                                <button type="button" class="btn btn-info" onclick="window.location.href = '/HospitalManager/Users/List?R=All'">همه افراد<span class="badge">@UsersCount.AllCount</span></button>
+                                <button type="button" class="btn btn-default" onclick="window.location.href = '/HospitalManager/Users/List?R=CM'">مدیران کلینیک ها <span class="badge">@UsersCount.ClinicManagersCount</span></button>
+                                <button type="button" class="btn btn-default" onclick="window.location.href = '/HospitalManager/Users/List?R=PCM'">مدیران مطب ها <span class="badge">@UsersCount.PolyClinicManagersCount</span></button>
+                                <button type="button" class="btn btn-default" onclick="window.location.href = '/HospitalManager/Users/List?R=D'">پزشکان <span class="badge">@UsersCount.DoctorsCount</span></button>
+                                <button type="button" class="btn btn-default" onclick="window.location.href = '/HospitalManager/Users/List?R=P'">بیماران <span class="badge">@UsersCount.PatientsCount</span></button>
+                                break;
+                        }
+
+
+                    </div>
+                </div><!-- /.box-header -->
+                <div class="box-body">
+                    <table id="usersTable" class="display" cellspacing="0" width="100%">
+                        <thead>
+                            <tr>
+                                <th>
+                                    @Html.DisplayNameFor(model => model.Name)
+                                </th>
+                                <th>
+                                    @Html.DisplayNameFor(model => model.Family)
+                                </th>
+                                <th>
+                                    @Html.DisplayNameFor(model => model.Mobile)
+                                </th>
+                                <th>
+
+                                </th>
+                            </tr>
+                        </thead>
+                        <tfoot>
+                            <tr>
+                                <th>
+                                    @Html.DisplayNameFor(model => model.Name)
+                                </th>
+                                <th>
+                                    @Html.DisplayNameFor(model => model.Family)
+                                </th>
+                                <th>
+                                    @Html.DisplayNameFor(model => model.Mobile)
+                                </th>
+                                <th>
+
+                                </th>
+                            </tr>
+                        </tfoot>
+                        <tbody>
+                            @foreach (var item in Model)
+                            {
+                                <tr>
+                                    <td>
+                                        @Html.DisplayFor(modelItem => item.Name)
+                                    </td>
+                                    <td>
+                                        @Html.DisplayFor(modelItem => item.Family)
+                                    </td>
+                                    <td></td>
+                                    <td>
+                                        @using (Html.BeginForm("Delete", "Users", new { area = "HospitalManager", id = item.Id }, FormMethod.Post, true, new { role = "form" }))
+                                        {
+                                            @Html.AntiForgeryToken()
+                                            //این دو دستور باید بیرون از فرم باشند اما ب خاطر قرارگیری درست دکمه ها کنار هم اینجا تعریف شده اند. چون اگر بیرون از فرم باشند دکمه حذف در زیر آنها قرار خواهد گرفت
+                                            //@Html.ActionLink("ویرایش", "Edit", "Hospital", new { id = item.HospitalId }, new { @class = "btn btn-xs btn-primary" })
+                                            //@Html.ActionLink("مشخصات", "Details", "Hospital", new { id = item.HospitalId }, new { @class = "btn btn-xs btn-info" })
+
+                                            <a href="@Url.Action("Edit","Users",new { area = "HospitalManager" ,  id = item.Id  })" class="btn btn-xs btn-warning"><i class="glyphicon glyphicon-edit"></i> @Global.Edit</a>
+                                            <a href="@Url.Action("Details","Users",new { area = "HospitalManager" ,  id = item.Id  })" class="btn btn-xs btn-info"><i class="glyphicon glyphicon-eye-open"></i>   جزئیات</a>
+                                            <button class="btn btn-xs btn-danger"
+                                                    type="button"
+                                                    data-toggle="modal"
+                                                    data-target="#confirmDelete"
+                                                    data-title="حذف @item.Name"
+                                                    data-message="آیا مطمئن هستید که می خواهید این فرد را حذف کنید؟">
+                                                <i class="glyphicon glyphicon-trash"></i>@Global.Delete
+                                            </button>
+                                        }
+                                    </td>
+                                </tr>
+                            }
+                        </tbody>
+                    </table>
+                </div><!-- /.box-body -->
+            </div><!-- /.box -->
+        </div><!-- /.col -->
+    </div><!-- /.row -->
+</section><!-- /.content -->

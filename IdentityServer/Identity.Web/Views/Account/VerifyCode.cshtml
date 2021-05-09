@@ -1,0 +1,43 @@
+﻿
+@model Identity.Web.Models.AccountViewModels.VerifyCodeViewModel
+
+@{
+    ViewData["Title"] = "Verification Code";
+    Layout = "~/Views/Shared/_NewLoginLayout.cshtml";
+}
+
+<div class="wrap-login100 p-l-50 p-r-50 p-t-77 p-b-30">
+    <form asp-controller="Account" asp-action="VerifyCode" asp-route-returnurl="@ViewData["ReturnUrl"]" method="post" class="login100-form validate-form">
+        <input asp-for="Provider" type="hidden" />
+        <input asp-for="RememberMe" type="hidden" />
+        <input asp-for="ReturnUrl" type="hidden" />
+        <span class="login100-form-title p-b-55">
+            @ViewData["Title"]
+        </span>
+
+        <div asp-validation-summary="All" class="text-danger"></div>
+        <h4>@ViewData["Status"]</h4>
+
+        <div class="wrap-input100 validate-input m-b-16" data-validate="Verification Code Is Required">
+            <input class="input100" placeholder="Code" asp-for="Code" autofocus />
+            <span class="focus-input100"></span>
+            <span class="symbol-input100">
+                <span class="fa fa-key"></span>
+            </span>
+        </div>
+        <span asp-validation-for="Code" class="text-danger"></span>
+
+        <div class="contact100-form-checkbox m-l-4">
+            <input asp-for="RememberBrowser" id="RememberBrowser" class="input-checkbox100">
+            <label class="label-checkbox100" for="RememberBrowser">
+                Remember Browser?
+            </label>
+        </div>
+
+        <div class="container-login100-form-btn p-t-25">
+            <button type="submit" class="login100-form-btn">SUBMIT</button>
+        </div>
+    </form>
+</div>
+
+@{ await Html.RenderPartialAsync("_ValidationScriptsPartial"); }

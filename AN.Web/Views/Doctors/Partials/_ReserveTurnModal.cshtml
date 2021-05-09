@@ -1,0 +1,39 @@
+﻿
+<div class="modal fade" id="makeAppointmentModal" tabindex="-1" role="dialog" aria-labelledby="Make appointment" aria-hidden="true">
+    <div class="modal-dialog modal-lg modal-dialog-centered" role="document">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h5 class="modal-title" id="exampleModalLongTitle">@AN.Core.Resources.Global.Global.BookingTurn</h5>
+                <button class="close" type="button" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">×</span></button>
+            </div>
+            <div class="modal-body">
+                <div class="container">
+                    <div class="row" ng-show="!BookedAppointment">
+                        <div class="col-xs-3 col-md-3" style="text-align:center;">
+                            <div class="doctor-picture"><img src="~/Content/images/avatars/{{SelectedDoctor.Avatar}}?ver=@(Guid.NewGuid())" alt="{{SelectedDoctor.FullName}}" /></div>
+                        </div>
+                        <div class="col-xs-9 col-md-9">
+                            <div class="doctor-details">
+                                <h6 class="doctor-name">{{SelectedDoctor.FullName}}</h6>
+                                <p class="doctor-proficiency mt-3"><strong>@AN.Core.Resources.Global.Global.Expertise: </strong><span>{{SelectedDoctor.Expertise}}</span></p>                               
+                            </div>
+                        </div>
+                        <div class="divider"></div>
+                    </div>  
+                    <div class="row">
+                        <partial name="~/Views/Turns/SelectiveReserve.cshtml" />
+
+                        <partial name="~/Views/Turns/SequentiallyReserve.cshtml" />
+
+                        <partial name="~/Views/Turns/BookingSucces.cshtml" />
+                    </div>
+                </div>
+            </div>
+            @*<div class="modal-footer" ng-show="SelectedTurn">
+                <div class="text-center w-100">
+                    <button class="btn btn--accent btn--large btn--radius" type="submit">@AN.Core.Resources.Global.Global.Cancel</button>
+                </div>                
+            </div>*@
+        </div>
+    </div>
+</div>

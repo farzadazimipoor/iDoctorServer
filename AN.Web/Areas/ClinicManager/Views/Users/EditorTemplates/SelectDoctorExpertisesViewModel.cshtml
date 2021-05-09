@@ -1,0 +1,52 @@
+﻿
+@model AN.Web.Areas.ClinicManager.Models.SelectDoctorExpertisesViewModel
+
+@if (Model.Selected == true)
+{
+    <tr style="background:#ffd800;">
+        <td style="background:#ffd800;">
+            @Html.CheckBoxFor(m => m.Selected, new { @class = "chkSelect" })
+        </td>
+        <td>
+            @Model.Name
+            @Html.HiddenFor(m => m.Name)           
+        </td>
+        <td>
+            @Model.ExpertiseCategoryName   
+            @Html.HiddenFor(m => m.ExpertiseCategoryName)             
+        </td>
+        <td>
+            @Html.DropDownListFor(m => m.ScientificCateoryId, Model.ListScientificCategories)
+        </td>       
+        <td>
+            <i class="fa fa-check fa-lg" aria-hidden="true"></i>
+        </td>
+        <td>
+            @Html.HiddenFor(m => m.Id)
+        </td>
+    </tr>
+
+}
+else
+{
+    <tr>
+        <td>
+            @Html.CheckBoxFor(m => m.Selected, new { @class = "chkSelect" })
+        </td>
+        <td>
+            @Model.Name
+            @Html.HiddenFor(m => m.Name)
+        </td>
+        <td>
+            @Model.ExpertiseCategoryName
+        </td>
+        <td>
+            @Html.DropDownListFor(m => m.ScientificCateoryId, Model.ListScientificCategories)
+        </td>       
+        <td></td>
+        <td>
+            @Html.HiddenFor(m => m.Id)
+        </td>
+    </tr>
+
+}

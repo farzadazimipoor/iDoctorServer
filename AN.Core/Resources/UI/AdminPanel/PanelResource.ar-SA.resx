@@ -1,0 +1,720 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<root>
+  <!-- 
+    Microsoft ResX Schema 
+    
+    Version 2.0
+    
+    The primary goals of this format is to allow a simple XML format 
+    that is mostly human readable. The generation and parsing of the 
+    various data types are done through the TypeConverter classes 
+    associated with the data types.
+    
+    Example:
+    
+    ... ado.net/XML headers & schema ...
+    <resheader name="resmimetype">text/microsoft-resx</resheader>
+    <resheader name="version">2.0</resheader>
+    <resheader name="reader">System.Resources.ResXResourceReader, System.Windows.Forms, ...</resheader>
+    <resheader name="writer">System.Resources.ResXResourceWriter, System.Windows.Forms, ...</resheader>
+    <data name="Name1"><value>this is my long string</value><comment>this is a comment</comment></data>
+    <data name="Color1" type="System.Drawing.Color, System.Drawing">Blue</data>
+    <data name="Bitmap1" mimetype="application/x-microsoft.net.object.binary.base64">
+        <value>[base64 mime encoded serialized .NET Framework object]</value>
+    </data>
+    <data name="Icon1" type="System.Drawing.Icon, System.Drawing" mimetype="application/x-microsoft.net.object.bytearray.base64">
+        <value>[base64 mime encoded string representing a byte array form of the .NET Framework object]</value>
+        <comment>This is a comment</comment>
+    </data>
+                
+    There are any number of "resheader" rows that contain simple 
+    name/value pairs.
+    
+    Each data row contains a name, and value. The row also contains a 
+    type or mimetype. Type corresponds to a .NET class that support 
+    text/value conversion through the TypeConverter architecture. 
+    Classes that don't support this are serialized and stored with the 
+    mimetype set.
+    
+    The mimetype is used for serialized objects, and tells the 
+    ResXResourceReader how to depersist the object. This is currently not 
+    extensible. For a given mimetype the value must be set accordingly:
+    
+    Note - application/x-microsoft.net.object.binary.base64 is the format 
+    that the ResXResourceWriter will generate, however the reader can 
+    read any of the formats listed below.
+    
+    mimetype: application/x-microsoft.net.object.binary.base64
+    value   : The object must be serialized with 
+            : System.Runtime.Serialization.Formatters.Binary.BinaryFormatter
+            : and then encoded with base64 encoding.
+    
+    mimetype: application/x-microsoft.net.object.soap.base64
+    value   : The object must be serialized with 
+            : System.Runtime.Serialization.Formatters.Soap.SoapFormatter
+            : and then encoded with base64 encoding.
+
+    mimetype: application/x-microsoft.net.object.bytearray.base64
+    value   : The object must be serialized into a byte array 
+            : using a System.ComponentModel.TypeConverter
+            : and then encoded with base64 encoding.
+    -->
+  <xsd:schema id="root" xmlns="" xmlns:xsd="http://www.w3.org/2001/XMLSchema" xmlns:msdata="urn:schemas-microsoft-com:xml-msdata">
+    <xsd:import namespace="http://www.w3.org/XML/1998/namespace" />
+    <xsd:element name="root" msdata:IsDataSet="true">
+      <xsd:complexType>
+        <xsd:choice maxOccurs="unbounded">
+          <xsd:element name="metadata">
+            <xsd:complexType>
+              <xsd:sequence>
+                <xsd:element name="value" type="xsd:string" minOccurs="0" />
+              </xsd:sequence>
+              <xsd:attribute name="name" use="required" type="xsd:string" />
+              <xsd:attribute name="type" type="xsd:string" />
+              <xsd:attribute name="mimetype" type="xsd:string" />
+              <xsd:attribute ref="xml:space" />
+            </xsd:complexType>
+          </xsd:element>
+          <xsd:element name="assembly">
+            <xsd:complexType>
+              <xsd:attribute name="alias" type="xsd:string" />
+              <xsd:attribute name="name" type="xsd:string" />
+            </xsd:complexType>
+          </xsd:element>
+          <xsd:element name="data">
+            <xsd:complexType>
+              <xsd:sequence>
+                <xsd:element name="value" type="xsd:string" minOccurs="0" msdata:Ordinal="1" />
+                <xsd:element name="comment" type="xsd:string" minOccurs="0" msdata:Ordinal="2" />
+              </xsd:sequence>
+              <xsd:attribute name="name" type="xsd:string" use="required" msdata:Ordinal="1" />
+              <xsd:attribute name="type" type="xsd:string" msdata:Ordinal="3" />
+              <xsd:attribute name="mimetype" type="xsd:string" msdata:Ordinal="4" />
+              <xsd:attribute ref="xml:space" />
+            </xsd:complexType>
+          </xsd:element>
+          <xsd:element name="resheader">
+            <xsd:complexType>
+              <xsd:sequence>
+                <xsd:element name="value" type="xsd:string" minOccurs="0" msdata:Ordinal="1" />
+              </xsd:sequence>
+              <xsd:attribute name="name" type="xsd:string" use="required" />
+            </xsd:complexType>
+          </xsd:element>
+        </xsd:choice>
+      </xsd:complexType>
+    </xsd:element>
+  </xsd:schema>
+  <resheader name="resmimetype">
+    <value>text/microsoft-resx</value>
+  </resheader>
+  <resheader name="version">
+    <value>2.0</value>
+  </resheader>
+  <resheader name="reader">
+    <value>System.Resources.ResXResourceReader, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </resheader>
+  <resheader name="writer">
+    <value>System.Resources.ResXResourceWriter, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </resheader>
+  <data name="ActiveDaysAhead" xml:space="preserve">
+    <value>أيام النشاطات المقبلة </value>
+  </data>
+  <data name="ActiveDoctor" xml:space="preserve">
+    <value>الطبيب الفعال </value>
+  </data>
+  <data name="AddAndDeleteManagers" xml:space="preserve">
+    <value>إضافة وحذف المديرين</value>
+  </data>
+  <data name="AddNew" xml:space="preserve">
+    <value>إضافة جديدة </value>
+  </data>
+  <data name="AddNewClinic" xml:space="preserve">
+    <value>إضافة عيادة </value>
+  </data>
+  <data name="AddNewDoctor" xml:space="preserve">
+    <value>تسجيل طبيب</value>
+  </data>
+  <data name="AddNewExpertise" xml:space="preserve">
+    <value>إضافة اختصاص </value>
+  </data>
+  <data name="AddNewFile" xml:space="preserve">
+    <value>إضافة ملف </value>
+  </data>
+  <data name="AddNewHospital" xml:space="preserve">
+    <value>إضافة مستشفى </value>
+  </data>
+  <data name="AddNewInsurance" xml:space="preserve">
+    <value>إضافة تأمين</value>
+  </data>
+  <data name="AddNewPatient" xml:space="preserve">
+    <value>إضافة مريض</value>
+  </data>
+  <data name="AddNewPerson" xml:space="preserve">
+    <value>إضافة شخص جديد</value>
+  </data>
+  <data name="AddNewPlace" xml:space="preserve">
+    <value>إضافة موقع</value>
+  </data>
+  <data name="AddNewPolyclinic" xml:space="preserve">
+    <value>تجسيل مركز </value>
+  </data>
+  <data name="AddNewSchedule" xml:space="preserve">
+    <value>إضافة ساعة عمل</value>
+  </data>
+  <data name="AddNewUser" xml:space="preserve">
+    <value>إضافة شخص</value>
+  </data>
+  <data name="AddSchedule" xml:space="preserve">
+    <value>إضافة جدول الساعات </value>
+  </data>
+  <data name="AdminPanel" xml:space="preserve">
+    <value>هيئة الإدارة </value>
+  </data>
+  <data name="AllList" xml:space="preserve">
+    <value>كافة القوائم </value>
+  </data>
+  <data name="AllMessages" xml:space="preserve">
+    <value>كافة الرسائل </value>
+  </data>
+  <data name="AllRoles" xml:space="preserve">
+    <value>كافة الأدوار </value>
+  </data>
+  <data name="AllSystemTurns" xml:space="preserve">
+    <value>كافة مواعيد النظام </value>
+  </data>
+  <data name="AllTurns" xml:space="preserve">
+    <value>كافة المواعيد </value>
+  </data>
+  <data name="Announcement" xml:space="preserve">
+    <value>إعلان</value>
+  </data>
+  <data name="AnnouncementsList" xml:space="preserve">
+    <value>قائمة الاعلانات </value>
+  </data>
+  <data name="AnnouncementSMSs" xml:space="preserve">
+    <value>رسائل التبليغ</value>
+  </data>
+  <data name="AppointmentsCount" xml:space="preserve">
+    <value>عدد المواعید</value>
+  </data>
+  <data name="ApproveRequest" xml:space="preserve">
+    <value>تأييد الطلب </value>
+  </data>
+  <data name="AssignNewDoctor" xml:space="preserve">
+    <value>وضع طبيب جديد</value>
+  </data>
+  <data name="AssignNewManager" xml:space="preserve">
+    <value>وضع مدير جديد </value>
+  </data>
+  <data name="AssignToClinic" xml:space="preserve">
+    <value>تعيين العيادة </value>
+  </data>
+  <data name="AssignToHospital" xml:space="preserve">
+    <value>تعيين المستشفى </value>
+  </data>
+  <data name="AssignToPolyclinic" xml:space="preserve">
+    <value>تعيين المركز </value>
+  </data>
+  <data name="AwroNoreManager" xml:space="preserve">
+    <value>مدير أورونوره</value>
+  </data>
+  <data name="BeforeStartVisit" xml:space="preserve">
+    <value>ما قبل البدء بالزيارة </value>
+  </data>
+  <data name="BlackList" xml:space="preserve">
+    <value>القائمة السوداء </value>
+  </data>
+  <data name="BlockedIPs" xml:space="preserve">
+    <value>عناوين آى بي المحظورة</value>
+  </data>
+  <data name="CancelAll" xml:space="preserve">
+    <value>إلغاء الكل  </value>
+  </data>
+  <data name="CancelAndNotify" xml:space="preserve">
+    <value>الرجوع والتبليغ </value>
+  </data>
+  <data name="CancelAndPreventReserveAgain" xml:space="preserve">
+    <value>الرجوع والحجز للمرة الثانية </value>
+  </data>
+  <data name="CancelAndReturnBackToEmptyList" xml:space="preserve">
+    <value>الرجوع وإرجاع الحجز للحجز ثانية </value>
+  </data>
+  <data name="CanceledTurns" xml:space="preserve">
+    <value>الحجوزات الملغية </value>
+  </data>
+  <data name="CancellAllAndDisableDoctor" xml:space="preserve">
+    <value>إلغاء الكل وتجميد الطبيب </value>
+  </data>
+  <data name="CancelTurnAndDontResrveAgain" xml:space="preserve">
+    <value>الرجوع عن الحجز وعدم إعادة الحجز  </value>
+  </data>
+  <data name="CancelTurnAndReturnToEmptyList" xml:space="preserve">
+    <value>الرجوع عن الحجز  والعودة إلى مواعيد موفرة</value>
+  </data>
+  <data name="ChangeClinic" xml:space="preserve">
+    <value>تغيير العيادة </value>
+  </data>
+  <data name="ChangePassword" xml:space="preserve">
+    <value>تغيير كلمة السر</value>
+  </data>
+  <data name="ChangePolyclinic" xml:space="preserve">
+    <value>تغيير العيادة </value>
+  </data>
+  <data name="ClinicDoctors" xml:space="preserve">
+    <value>أطباء العيادة </value>
+  </data>
+  <data name="ClinicName" xml:space="preserve">
+    <value>اسم العيادة </value>
+  </data>
+  <data name="ClinicPolyclinicsList" xml:space="preserve">
+    <value>قائمة اختصاصات العيادة </value>
+  </data>
+  <data name="ClinicStatus" xml:space="preserve">
+    <value>حالة العيادة </value>
+  </data>
+  <data name="ClinicTurns" xml:space="preserve">
+    <value>حجز العيادة </value>
+  </data>
+  <data name="ClinicTurnsReport" xml:space="preserve">
+    <value>تقرير مواعيد العيادة </value>
+  </data>
+  <data name="ClinicType" xml:space="preserve">
+    <value>نوع العيادة </value>
+  </data>
+  <data name="ClinicVocations" xml:space="preserve">
+    <value>أيام عطلة العيادة </value>
+  </data>
+  <data name="ConfirmNewPassword" xml:space="preserve">
+    <value>تأييد كلمة السر الجديدة </value>
+  </data>
+  <data name="ContactUs" xml:space="preserve">
+    <value>الاتصال بنا </value>
+  </data>
+  <data name="CurrentDoctorsList" xml:space="preserve">
+    <value>قائمة الأطباء المتواجدين</value>
+  </data>
+  <data name="CurrentManagersList" xml:space="preserve">
+    <value>قائمة المدراء المتواجدين</value>
+  </data>
+  <data name="Dashboard" xml:space="preserve">
+    <value>داشبورد </value>
+  </data>
+  <data name="DeletedTurns" xml:space="preserve">
+    <value>المواعيد الملغية </value>
+  </data>
+  <data name="Details" xml:space="preserve">
+    <value>الملاحظات </value>
+  </data>
+  <data name="DisableDcotor" xml:space="preserve">
+    <value>حضر الطبيب </value>
+  </data>
+  <data name="DisableDoctorForAllDay" xml:space="preserve">
+    <value>حضر الطبيب إلى آخر يوم </value>
+  </data>
+  <data name="DoctorExpertisesList" xml:space="preserve">
+    <value>قائمة اختصاصات الأطباء </value>
+  </data>
+  <data name="DoctorHavePendingTurns" xml:space="preserve">
+    <value>موعد الطبيب </value>
+  </data>
+  <data name="DoctorName" xml:space="preserve">
+    <value>اسم الطبيب </value>
+  </data>
+  <data name="DoctorsActiveTimes" xml:space="preserve">
+    <value>أوقات تواجد الأطباء </value>
+  </data>
+  <data name="DoctorsExpertises" xml:space="preserve">
+    <value>اختصاصات الأطباء </value>
+  </data>
+  <data name="DoctorsOf" xml:space="preserve">
+    <value>الأطباء المتخصصون</value>
+  </data>
+  <data name="DoctorsReport" xml:space="preserve">
+    <value>تقرير الأطباء </value>
+  </data>
+  <data name="DoneTurns" xml:space="preserve">
+    <value>المواعيدة المنتهية </value>
+  </data>
+  <data name="DoYouWantToApproveThisItem" xml:space="preserve">
+    <value>هل أنت متأكد من تأييد الموضوع؟</value>
+  </data>
+  <data name="DoYouWantToArchiveThisMessage" xml:space="preserve">
+    <value>هل أنت متأكد من أرشيف الرسالة؟</value>
+  </data>
+  <data name="DoYouWantToDeleteThisItem" xml:space="preserve">
+    <value>هل أنت متأكد من حذف الموضوع؟ </value>
+  </data>
+  <data name="DoYouWantToDoThisTurn" xml:space="preserve">
+    <value>هل أنت متأكد من إجراء الحجز؟</value>
+  </data>
+  <data name="EditClinic" xml:space="preserve">
+    <value>تعديل العيادة </value>
+  </data>
+  <data name="EditDoctorInfo" xml:space="preserve">
+    <value>تعديل معلومات الطبيب </value>
+  </data>
+  <data name="EditExpertise" xml:space="preserve">
+    <value>تعديل الاختصاص</value>
+  </data>
+  <data name="EditExpertiseCategory" xml:space="preserve">
+    <value>تعديل الهيئة التخصصية </value>
+  </data>
+  <data name="EditHospital" xml:space="preserve">
+    <value>تعديل المستشفى </value>
+  </data>
+  <data name="EditInsurance" xml:space="preserve">
+    <value>تعديل التأمينات</value>
+  </data>
+  <data name="EditPlace" xml:space="preserve">
+    <value>تعديل الموقع </value>
+  </data>
+  <data name="EditSchedule" xml:space="preserve">
+    <value>تحرير وقت العمل</value>
+  </data>
+  <data name="EditUserInfo" xml:space="preserve">
+    <value>تعديل معلومات المستخدم </value>
+  </data>
+  <data name="EditVocationDay" xml:space="preserve">
+    <value>تعديل يوم العطلة</value>
+  </data>
+  <data name="EnableDoctor" xml:space="preserve">
+    <value>تفعيل الطبيب </value>
+  </data>
+  <data name="EnableTwoFactorAuthentication" xml:space="preserve">
+    <value>تفعیل المصادقة الثنائیة</value>
+  </data>
+  <data name="EndReservation" xml:space="preserve">
+    <value>انهاء الحجز </value>
+  </data>
+  <data name="Err_NumberMustBeBiggerThanZero" xml:space="preserve">
+    <value>الرجاء إدخال رقم أكبر من 0 </value>
+  </data>
+  <data name="Err_PasswordMustBe6Digit" xml:space="preserve">
+    <value>يجب ألا يكون كلمة السر أقل من 6 أحرف  </value>
+  </data>
+  <data name="Err_PasswordsAreNotMatch" xml:space="preserve">
+    <value>كلمة السر غير متطابق</value>
+  </data>
+  <data name="Err_RangeBetween1And100" xml:space="preserve">
+    <value>لا يجوز أن يكون هذا الموضوع أقل من 1 ولا أكثر من 100</value>
+  </data>
+  <data name="Err_RangeBetween3And100" xml:space="preserve">
+    <value>لا يجوز أن يكون هذا الموضوع أقل من 3 ولا أكثر من 100</value>
+  </data>
+  <data name="ExpertiseCategories" xml:space="preserve">
+    <value>هيئة الاختصاصات </value>
+  </data>
+  <data name="ExpertiseCategoriesList" xml:space="preserve">
+    <value>قائمة هيئة المتخصصين</value>
+  </data>
+  <data name="ExpertiseCategory" xml:space="preserve">
+    <value>هيئة المتخصصين</value>
+  </data>
+  <data name="Expertises" xml:space="preserve">
+    <value>الاختصاصات </value>
+  </data>
+  <data name="FinalBook" xml:space="preserve">
+    <value>تأييد التخصصي النهائي </value>
+  </data>
+  <data name="FirstAvailableFromTimeToTime" xml:space="preserve">
+    <value>الموعد الأول من تاريخ إلى تاريخ </value>
+  </data>
+  <data name="FirstAvilableTurnInDate" xml:space="preserve">
+    <value>الموعد الأول المتوفر في التاريخ المحدد </value>
+  </data>
+  <data name="GeneralSchedule" xml:space="preserve">
+    <value>تحديد الوقت </value>
+  </data>
+  <data name="HasNewMessages" xml:space="preserve">
+    <value>لديكم رسالة جديدة</value>
+  </data>
+  <data name="HospitalName" xml:space="preserve">
+    <value>اسم المستشفى </value>
+  </data>
+  <data name="InPastWeek" xml:space="preserve">
+    <value>في الاسبوع الماضي</value>
+  </data>
+  <data name="InprogressTurns" xml:space="preserve">
+    <value>المواعيد المتوقعة للتخصيص </value>
+  </data>
+  <data name="Insurances" xml:space="preserve">
+    <value>التأمينات</value>
+  </data>
+  <data name="IsGovernant" xml:space="preserve">
+    <value>حكومية </value>
+  </data>
+  <data name="IsHosterly" xml:space="preserve">
+    <value>24 ساعة</value>
+  </data>
+  <data name="ItemIsUsedYouCannotDeleteIt" xml:space="preserve">
+    <value>لا يمكنكم حذف الموضوع. تم استخدام الموضوع مسبقا. </value>
+  </data>
+  <data name="LastWeekAppointments" xml:space="preserve">
+    <value>مواعيد الأسبوع الماضي</value>
+  </data>
+  <data name="ManageExpertisesCategories" xml:space="preserve">
+    <value>تنظيم وتصنيف الاختصاصات </value>
+  </data>
+  <data name="ManagePolyclinicServices" xml:space="preserve">
+    <value>تنظيم خدمات العيادة </value>
+  </data>
+  <data name="MedicalCouncilNumber" xml:space="preserve">
+    <value>الرقم الطبي</value>
+  </data>
+  <data name="MoveTurn" xml:space="preserve">
+    <value>تغيير الموعد</value>
+  </data>
+  <data name="Msg_DoctorNotDefined" xml:space="preserve">
+    <value>لم يتم إضافة طبيب لهذه العيادة. يمكنكم إضافة طبيب بالضغط على هذا الزر </value>
+  </data>
+  <data name="Msg_ManagerNotDefined" xml:space="preserve">
+    <value>لم يتم تعريف مدير لهذه العيادة. يمكنكم تعريف مدير بالضغط على هذا الزر </value>
+  </data>
+  <data name="Msg_NoExpertiseDefined" xml:space="preserve">
+    <value>لم يتم تعريف أي اختصاص لهذا الطبيب. يمكنكم تعريف اختصاص بالضغط على هذا الزر </value>
+  </data>
+  <data name="Msg_PleaseSelectDate" xml:space="preserve">
+    <value>الرجاء تحديد اليوم </value>
+  </data>
+  <data name="NewExpertise" xml:space="preserve">
+    <value>اختصاص جديد </value>
+  </data>
+  <data name="NewPassword" xml:space="preserve">
+    <value>كلمة السر الجديدة</value>
+  </data>
+  <data name="NewTurns" xml:space="preserve">
+    <value>المواعيد المقبلة </value>
+  </data>
+  <data name="NoDataToShow" xml:space="preserve">
+    <value>لا توجد معلومات </value>
+  </data>
+  <data name="OnlineReservationPercentage" xml:space="preserve">
+    <value>نسبة التخصيص على الشبكة مباشرة (أونلاين)</value>
+  </data>
+  <data name="OnlyDisableDoctor" xml:space="preserve">
+    <value>حضر الطبيب فقط</value>
+  </data>
+  <data name="OutOfSchedule" xml:space="preserve">
+    <value>ليس لديه/لديها موعد</value>
+  </data>
+  <data name="PatientInfo" xml:space="preserve">
+    <value>معلومات المريض</value>
+  </data>
+  <data name="PatientName" xml:space="preserve">
+    <value>اسم المريض</value>
+  </data>
+  <data name="PendingTurns" xml:space="preserve">
+    <value>المواعيد المقبلة </value>
+  </data>
+  <data name="PersonalInfo" xml:space="preserve">
+    <value>المعلومات الشخصية </value>
+  </data>
+  <data name="PleaseSelectRole" xml:space="preserve">
+    <value>الرجاء اختيار دور</value>
+  </data>
+  <data name="PolyclinicDoctors" xml:space="preserve">
+    <value>أطباء العيادة </value>
+  </data>
+  <data name="PolyclinicDoctorsList" xml:space="preserve">
+    <value>قائمة أطباء العيادة </value>
+  </data>
+  <data name="PolyclinicGeneralSchedule" xml:space="preserve">
+    <value>الجدول العام </value>
+  </data>
+  <data name="PolyclinicManagers" xml:space="preserve">
+    <value>مدراء العيادة </value>
+  </data>
+  <data name="PolyclinicName" xml:space="preserve">
+    <value>اسم العيادة </value>
+  </data>
+  <data name="PolyclinicPhone" xml:space="preserve">
+    <value>رقم العيادة </value>
+  </data>
+  <data name="PolyclinicPrefix" xml:space="preserve">
+    <value />
+  </data>
+  <data name="PolyclinicsCount" xml:space="preserve">
+    <value>أرقام العيادات </value>
+  </data>
+  <data name="PolyclinicsList" xml:space="preserve">
+    <value>قائمة العيادات </value>
+  </data>
+  <data name="PolyclinicsWithNewTurns" xml:space="preserve">
+    <value>العيادات ذات المواعيد المقبلة </value>
+  </data>
+  <data name="PolyclinicTurns" xml:space="preserve">
+    <value>مواعيد العيادة </value>
+  </data>
+  <data name="PrepaymentPercentage" xml:space="preserve">
+    <value>نسبة الدفع مقدما </value>
+  </data>
+  <data name="RegisterPolyclinicRequests" xml:space="preserve">
+    <value>طلبات تسجيل العيادة </value>
+  </data>
+  <data name="RegisterRequests" xml:space="preserve">
+    <value>طلبات التسجيل </value>
+  </data>
+  <data name="Reporting" xml:space="preserve">
+    <value>استلام التقرير</value>
+  </data>
+  <data name="Reports" xml:space="preserve">
+    <value>التقارير</value>
+  </data>
+  <data name="RequestSonar" xml:space="preserve">
+    <value>طلب السونار</value>
+  </data>
+  <data name="ReservationAnnouncementMessage" xml:space="preserve">
+    <value>رسالة التبليغ لتخصيص الموعد </value>
+  </data>
+  <data name="ReservationAnnouncementSMS" xml:space="preserve">
+    <value>رسالة SMS التبيلغ لتخصيص الموعد </value>
+  </data>
+  <data name="ReservationLimitationBeforeVisit" xml:space="preserve">
+    <value>مدة التخصيص إلى ساعات قبل البدء بالزيارة </value>
+  </data>
+  <data name="ReservationLimitationForDays" xml:space="preserve">
+    <value>تعيين وقت الموعد يوميا وفق وقت البدء بزيارة الطبيب </value>
+  </data>
+  <data name="ReserveTurn" xml:space="preserve">
+    <value>حجز الموعد </value>
+  </data>
+  <data name="ReserveTurnOutSide" xml:space="preserve">
+    <value>حجز الموعد خارج برنامج تحديد الوقت</value>
+  </data>
+  <data name="ReserveTurnsChannelsStatistics" xml:space="preserve">
+    <value>إحصائيات طرق (قنوات) تعيين الموعد </value>
+  </data>
+  <data name="Resources" xml:space="preserve">
+    <value>المصادر </value>
+  </data>
+  <data name="Scheduling" xml:space="preserve">
+    <value>تحديد الوقت </value>
+  </data>
+  <data name="ScientificGrade" xml:space="preserve">
+    <value>الدرجة العلمية </value>
+  </data>
+  <data name="SelectClinicManager" xml:space="preserve">
+    <value>اختيار مدير العيادة </value>
+  </data>
+  <data name="SelectPolyClinicManager" xml:space="preserve">
+    <value>ختيار مدير المركز الصحي </value>
+  </data>
+  <data name="SendToAnotherDoctor" xml:space="preserve">
+    <value>أرسل إلى طبيب آخر</value>
+  </data>
+  <data name="SetDoctorAvailability" xml:space="preserve">
+    <value>تفعيل و تجميد الطبيب </value>
+  </data>
+  <data name="SetManualSchedule" xml:space="preserve">
+    <value>تنظيم ساعات العمل يدويا </value>
+  </data>
+  <data name="SetSpecialScheduleForDoctor" xml:space="preserve">
+    <value>تنظيم ساعات العمل الخاصة بالطبيب </value>
+  </data>
+  <data name="ShowAllMessages" xml:space="preserve">
+    <value>عرض جميع الرسائل </value>
+  </data>
+  <data name="ShowThisDateTurns" xml:space="preserve">
+    <value>عرض مواعيد هذا التاريخ </value>
+  </data>
+  <data name="SimultaneousWithStartVisit" xml:space="preserve">
+    <value>متزامنا مع البدء بالزيارة </value>
+  </data>
+  <data name="StartReservation" xml:space="preserve">
+    <value>البدء بالزيارة </value>
+  </data>
+  <data name="StartReservationDate" xml:space="preserve">
+    <value>البدء بتعيين الموعد بتاريخ </value>
+  </data>
+  <data name="StartVisit" xml:space="preserve">
+    <value>البدء بالزيارة </value>
+  </data>
+  <data name="ToCurrentClinicDoctors" xml:space="preserve">
+    <value>للأطباء المتواجدين في المركز الصحي</value>
+  </data>
+  <data name="TodayTurns" xml:space="preserve">
+    <value>مواعيد اليوم </value>
+  </data>
+  <data name="ToFirstAvailableTurn" xml:space="preserve">
+    <value>الموعد الأول المتوفر</value>
+  </data>
+  <data name="ToOtherClinicDoctors" xml:space="preserve">
+    <value>لأطباء عيادات أخرى </value>
+  </data>
+  <data name="TotalVisits" xml:space="preserve">
+    <value>كافة الزيارات </value>
+  </data>
+  <data name="Totaly" xml:space="preserve">
+    <value>الكل </value>
+  </data>
+  <data name="TurnsCount" xml:space="preserve">
+    <value>عدد المواعيد </value>
+  </data>
+  <data name="TurnsList" xml:space="preserve">
+    <value>قائمة المواعيد </value>
+  </data>
+  <data name="TurnsReport" xml:space="preserve">
+    <value>تقرير المواعيد </value>
+  </data>
+  <data name="TurnsSpecialReport" xml:space="preserve">
+    <value>التقرير الخاص للمواعيد </value>
+  </data>
+  <data name="TurnsStatistics" xml:space="preserve">
+    <value>إحصاء المواعيد </value>
+  </data>
+  <data name="UploadNewVersion" xml:space="preserve">
+    <value>تحميل الاصدار الجديد </value>
+  </data>
+  <data name="User" xml:space="preserve">
+    <value>المستخدم </value>
+  </data>
+  <data name="UserInfoDetails" xml:space="preserve">
+    <value>معلومات المستخدم </value>
+  </data>
+  <data name="Users" xml:space="preserve">
+    <value>المستخدمون </value>
+  </data>
+  <data name="UsersList" xml:space="preserve">
+    <value>قائمة المستخدمين </value>
+  </data>
+  <data name="ViewAndPrintReport" xml:space="preserve">
+    <value>مراجعة وطبع التقرير </value>
+  </data>
+  <data name="VisitInfo" xml:space="preserve">
+    <value>معلومات الزیارة</value>
+  </data>
+  <data name="VisitPrice" xml:space="preserve">
+    <value>مبلغ الزيارة </value>
+  </data>
+  <data name="VisitStatistics" xml:space="preserve">
+    <value>إحصائيات الزيارات </value>
+  </data>
+  <data name="WithoutLimitation" xml:space="preserve">
+    <value>دون فاصل </value>
+  </data>
+  <data name="WorkingHours" xml:space="preserve">
+    <value>أوقات العمل </value>
+  </data>
+  <data name="YouCanManageThisClinics" xml:space="preserve">
+    <value>يمكنم تنظيم المركز الصحي (العيادة)</value>
+  </data>
+  <data name="YouCanManageThisPolyClinics" xml:space="preserve">
+    <value>يمكنم تنظيم المركز الصحي (العيادة الشاملة)</value>
+  </data>
+  <data name="CurrentDoctors" xml:space="preserve">
+    <value>الأطباء الحاليين</value>
+  </data>
+  <data name="SonarRequests" xml:space="preserve">
+    <value>طلبات سونار</value>
+  </data>
+  <data name="AddNewGroup" xml:space="preserve">
+    <value>أضف مجموعة</value>
+  </data>
+  <data name="SelectCenterType" xml:space="preserve">
+    <value>حدد نوع المركز</value>
+  </data>
+  <data name="AddNewService" xml:space="preserve">
+    <value>أضف خدمة جديدة</value>
+  </data>
+</root>

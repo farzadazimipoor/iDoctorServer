@@ -1,0 +1,195 @@
+﻿@using AN.Core.Resources.UI.AdminPanel;
+@using AN.Core.Resources.Global
+
+@model AN.Web.Models.SchedulingViewModel
+
+@{
+    ViewBag.Title = PanelResource.SetSpecialScheduleForDoctor;
+    Layout = "~/Views/Shared/_CpanelLayout.cshtml";
+}
+
+@section styles{
+    <link href='~/lib/fullcalendar/core/main.min.css' rel='stylesheet' />
+    <link href='~/lib/fullcalendar/daygrid/main.min.css' rel='stylesheet' />
+    <link href='~/lib/fullcalendar/timegrid/main.min.css' rel='stylesheet' />
+    <link href='~/lib/clockpicker/bootstrap-clockpicker.min.css' rel='stylesheet' />
+    <link href='~/lib/bootstrap4c-custom-switch/dist/css/component-custom-switch.min.css' rel='stylesheet' />
+}
+
+<div class="content-header">
+    <div class="container-fluid">
+        <div class="row mb-2">
+            <div class="col-sm-6">
+                <h1 class="m-0 text-dark">@PanelResource.SetSpecialScheduleForDoctor</h1>
+            </div>
+            <div class="col-sm-6">
+                <ol class="breadcrumb @(ViewBag.Lang == AN.Core.Enums.Lang.EN ? "float-sm-right" : "float-sm-left") ">
+                    <li class="breadcrumb-item"><a href="@Url.Action("Index","Home", new { area = ViewBag.Area })">@AN.Core.Resources.Global.Global.Home</a></li>
+                    <li class="breadcrumb-item"><a href="@Url.Action("SettingDoctor","Polyclinic", new { area = "", polyclinicId = Model.PolyclinicId })">@Global.Doctors</a></li>
+                    <li class="breadcrumb-item active">@PanelResource.SetSpecialScheduleForDoctor</li>
+                </ol>
+            </div>
+        </div>
+    </div>
+</div>
+
+<section class="content">
+    <div class="container-fluid">
+        <div class="card">
+            <div class="card-body">
+                <div id="MyCalendar"></div>
+            </div>
+        </div>
+    </div>
+</section>
+
+
+@section scripts{
+    <script src='~/lib/fullcalendar/core/main.min.js' type="text/javascript"></script>
+    <script src='~/lib/fullcalendar/daygrid/main.min.js' type="text/javascript"></script>
+    <script src='~/lib/fullcalendar/timegrid/main.min.js' type="text/javascript"></script>
+    <script src='~/lib/fullcalendar/interaction/main.min.js' type="text/javascript"></script>
+    <script src='~/lib/moment.js/moment.min.js' type="text/javascript"></script>
+    <script src='~/lib/clockpicker/bootstrap-clockpicker.min.js' type="text/javascript"></script>
+    <script src='~/lib/jquery.maskedinput/jquery.maskedinput.min.js' type="text/javascript"></script>
+
+    <script type="text/javascript">
+
+        var serviceSupplyId = @Model.ServiceSupplyId;
+
+        var actions = Object.freeze({ "insert": 1, "update": 2, "delete": 3, "enable": 4, "disable": 5 });
+
+        var dateToCancelAppoints = "";
+        var startTimeToCancelAppoints = "";
+        var endTimeToCancelAppoints = "";
+        var ssIdToCancelAppoints = 0;
+
+        var calendarEl = document.getElementById('MyCalendar');
+        var eventStatusCheckBoxComponent = document.getElementById('eventStatusCheckBoxComponent');
+        var eventStatusCheckBox = document.getElementById('eventStatusCheckBox');
+
+        var calendar;
+
+        $(function () {
+            $('.txtclockpicker').mask("99:99");
+            $('.clockpicker').clockpicker();
+        });
+
+        document.addEventListener('DOMContentLoaded', function () {
+            initializeFullCalendar();
+        });
+
+        function initializeFullCalendar() {
+              calendar = new FullCalendar.Calendar(calendarEl, {
+                 plugins: ['interaction','dayGrid','timeGrid'],
+                 defaultView: 'timeGridWeek',
+                 selectable: true,
+                 allDaySlot: false,
+                 editable: true,
+                 eventLimit: true,
+                 slotEventOverlap : false,
+                 slotMinutes: 15,
+                 slotDuration: "00:30:00",
+                 minTime: "06:00:00",
+
+                 events: function(info, successCallback, failureCallback) {
+                     waiting('body', '@AN.Core.Resources.Global.Global.PleaseWait');
+                     $.ajax({
+                         type: 'POST',
+                         url: "/Scheduling/GetDoctorScheduleEvents",
+                         data: {
+                             serviceSupplyId: serviceSupplyId,
+                         },
+                         success: function (response) {
+                             if (response.ErrorMessage != null) {
+                                 toastr.error(response.ErrorMessage, '@Global.SystemMessage');
+                             } else {
+                                 successCallback(response);
+                             }
+                         }, error: function (jqXHR, ex) {
+                             handleAjaxError(jqXHR, ex);
+                         }
+                     }).always(function () {
+                         waitingDone('body');
+                     });
+                 },
+
+                 loading : function( isLoading, view ) {
+                     if (isLoading) {
+                         waiting('body', '@AN.Core.Resources.Global.Global.PleaseWait');
+                     } else {
+                         waitingDone('body');
+                     }
+                 },
+
+                 eventAfterAllRender : function(view){
+                     waitingDone('body');
+                 },
+
+                 select: function (start, end, jsEvent, view) {
+                     var eventData = start;
+                     var selectedDate = moment(eventData.startStr).format('YYYY/MM/DD');
+                     var startTime = moment(eventData.startStr).format('HH:mm');
+                     var endTime = moment(eventData.endStr).format('HH:mm');
+                     showEventCrudForm(actions.insert, null, selectedDate, startTime, endTime, null, null, null, null);
+                 },
+
+                 eventClick: function (calEvent, jsEvent, view) {
+                      var calledEvent = calEvent.event;
+                      var selectedDate = moment(calledEvent.start).format("YYYY-MM-DD");
+                      var startTime = moment(calledEvent.start).format("HH:mm");
+                      var endTime = moment(calledEvent.end).format("HH:mm");
+                      showEventCrudForm(actions.update, calledEvent.id, selectedDate, startTime, endTime, calledEvent.isAvailable, calledEvent.healthServiceId, calledEvent.maxCount, calledEvent.prerequisiteId);
+                 },
+
+                 eventDrop: function (event, delta, revertFunc, jsEvent, ui, view) {
+                      var calledEvent = event.event;
+                      var date = moment(calledEvent.start).format("YYYY-MM-DD");
+                      var startTime = moment(calledEvent.start).format("HH:mm");
+                      var endTime = moment(calledEvent.end).format("HH:mm");
+                      showEventCrudForm(actions.update, calledEvent.id, date, startTime, endTime, calledEvent.isAvailable, calledEvent.healthServiceId, calledEvent.maxCount, calledEvent.prerequisiteId);
+                 },
+
+                 eventResize: function (event, delta, revertFunc, jsEvent, ui, view) {
+                      var calledEvent = event.event;
+                      var date = moment(calledEvent.start).format("YYYY-MM-DD");
+                      var startTime = moment(calledEvent.start).format("HH:mm");
+                      var endTime = moment(calledEvent.end).format("HH:mm");
+                     showEventCrudForm(actions.update, calledEvent.id, date, startTime, endTime, calledEvent.isAvailable, calledEvent.healthServiceId, calledEvent.maxCount, calledEvent.prerequisiteId);
+                 }
+             });
+
+             calendar.render();
+        }
+
+        function refreshCalendar() {
+            calendar.refetchEvents();
+        }
+
+        function showEventCrudForm(action, id, date, start, end, isAvailable, healthServiceId, maxCount, prerequisite) {
+            waiting('MyCalendar', '@AN.Core.Resources.Global.Global.PleaseWait');
+            $.ajax({
+                method: "GET",
+                url: "/Scheduling/EventCrud?serviceSupplyId=" + serviceSupplyId + "&date=" + date + "&startTime=" + start + "&endTime=" + end + "&scheduleId=" + id,
+                dataType: "html",
+                success: function (result) {
+                    var commonModal = $("#AwroNoreModal");
+                    var modalTitle = "@Html.Raw(PanelResource.AddNewSchedule)";
+                     if (action == actions.update) {
+                         modalTitle = "@Html.Raw(PanelResource.EditSchedule)";
+                    }
+                    commonModal.find('.modal-title').text(modalTitle);
+                    commonModal.find('#CommonModalContent').html(result);
+                    commonModal.modal({backdrop: 'static', keyboard: false});
+                    $('.txtclockpicker').mask("99:99");
+                    $('.clockpicker').clockpicker();
+                },
+                error: function (jqXHR, ex) {
+                    handleAjaxError(jqXHR, ex);
+                }
+            }).always(function () {
+                waitingDone('MyCalendar');
+            });
+        }
+    </script>
+}

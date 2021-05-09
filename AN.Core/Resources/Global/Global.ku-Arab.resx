@@ -1,0 +1,1308 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<root>
+  <!-- 
+    Microsoft ResX Schema 
+    
+    Version 2.0
+    
+    The primary goals of this format is to allow a simple XML format 
+    that is mostly human readable. The generation and parsing of the 
+    various data types are done through the TypeConverter classes 
+    associated with the data types.
+    
+    Example:
+    
+    ... ado.net/XML headers & schema ...
+    <resheader name="resmimetype">text/microsoft-resx</resheader>
+    <resheader name="version">2.0</resheader>
+    <resheader name="reader">System.Resources.ResXResourceReader, System.Windows.Forms, ...</resheader>
+    <resheader name="writer">System.Resources.ResXResourceWriter, System.Windows.Forms, ...</resheader>
+    <data name="Name1"><value>this is my long string</value><comment>this is a comment</comment></data>
+    <data name="Color1" type="System.Drawing.Color, System.Drawing">Blue</data>
+    <data name="Bitmap1" mimetype="application/x-microsoft.net.object.binary.base64">
+        <value>[base64 mime encoded serialized .NET Framework object]</value>
+    </data>
+    <data name="Icon1" type="System.Drawing.Icon, System.Drawing" mimetype="application/x-microsoft.net.object.bytearray.base64">
+        <value>[base64 mime encoded string representing a byte array form of the .NET Framework object]</value>
+        <comment>This is a comment</comment>
+    </data>
+                
+    There are any number of "resheader" rows that contain simple 
+    name/value pairs.
+    
+    Each data row contains a name, and value. The row also contains a 
+    type or mimetype. Type corresponds to a .NET class that support 
+    text/value conversion through the TypeConverter architecture. 
+    Classes that don't support this are serialized and stored with the 
+    mimetype set.
+    
+    The mimetype is used for serialized objects, and tells the 
+    ResXResourceReader how to depersist the object. This is currently not 
+    extensible. For a given mimetype the value must be set accordingly:
+    
+    Note - application/x-microsoft.net.object.binary.base64 is the format 
+    that the ResXResourceWriter will generate, however the reader can 
+    read any of the formats listed below.
+    
+    mimetype: application/x-microsoft.net.object.binary.base64
+    value   : The object must be serialized with 
+            : System.Runtime.Serialization.Formatters.Binary.BinaryFormatter
+            : and then encoded with base64 encoding.
+    
+    mimetype: application/x-microsoft.net.object.soap.base64
+    value   : The object must be serialized with 
+            : System.Runtime.Serialization.Formatters.Soap.SoapFormatter
+            : and then encoded with base64 encoding.
+
+    mimetype: application/x-microsoft.net.object.bytearray.base64
+    value   : The object must be serialized into a byte array 
+            : using a System.ComponentModel.TypeConverter
+            : and then encoded with base64 encoding.
+    -->
+  <xsd:schema id="root" xmlns="" xmlns:xsd="http://www.w3.org/2001/XMLSchema" xmlns:msdata="urn:schemas-microsoft-com:xml-msdata">
+    <xsd:import namespace="http://www.w3.org/XML/1998/namespace" />
+    <xsd:element name="root" msdata:IsDataSet="true">
+      <xsd:complexType>
+        <xsd:choice maxOccurs="unbounded">
+          <xsd:element name="metadata">
+            <xsd:complexType>
+              <xsd:sequence>
+                <xsd:element name="value" type="xsd:string" minOccurs="0" />
+              </xsd:sequence>
+              <xsd:attribute name="name" use="required" type="xsd:string" />
+              <xsd:attribute name="type" type="xsd:string" />
+              <xsd:attribute name="mimetype" type="xsd:string" />
+              <xsd:attribute ref="xml:space" />
+            </xsd:complexType>
+          </xsd:element>
+          <xsd:element name="assembly">
+            <xsd:complexType>
+              <xsd:attribute name="alias" type="xsd:string" />
+              <xsd:attribute name="name" type="xsd:string" />
+            </xsd:complexType>
+          </xsd:element>
+          <xsd:element name="data">
+            <xsd:complexType>
+              <xsd:sequence>
+                <xsd:element name="value" type="xsd:string" minOccurs="0" msdata:Ordinal="1" />
+                <xsd:element name="comment" type="xsd:string" minOccurs="0" msdata:Ordinal="2" />
+              </xsd:sequence>
+              <xsd:attribute name="name" type="xsd:string" use="required" msdata:Ordinal="1" />
+              <xsd:attribute name="type" type="xsd:string" msdata:Ordinal="3" />
+              <xsd:attribute name="mimetype" type="xsd:string" msdata:Ordinal="4" />
+              <xsd:attribute ref="xml:space" />
+            </xsd:complexType>
+          </xsd:element>
+          <xsd:element name="resheader">
+            <xsd:complexType>
+              <xsd:sequence>
+                <xsd:element name="value" type="xsd:string" minOccurs="0" msdata:Ordinal="1" />
+              </xsd:sequence>
+              <xsd:attribute name="name" type="xsd:string" use="required" />
+            </xsd:complexType>
+          </xsd:element>
+        </xsd:choice>
+      </xsd:complexType>
+    </xsd:element>
+  </xsd:schema>
+  <resheader name="resmimetype">
+    <value>text/microsoft-resx</value>
+  </resheader>
+  <resheader name="version">
+    <value>2.0</value>
+  </resheader>
+  <resheader name="reader">
+    <value>System.Resources.ResXResourceReader, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </resheader>
+  <resheader name="writer">
+    <value>System.Resources.ResXResourceWriter, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </resheader>
+  <data name="About" xml:space="preserve">
+    <value>ده‌رباره</value>
+  </data>
+  <data name="Accomplish" xml:space="preserve">
+    <value>جێ بە جێ کردن</value>
+  </data>
+  <data name="Active" xml:space="preserve">
+    <value>کارا</value>
+  </data>
+  <data name="AddNewOffer" xml:space="preserve">
+    <value>زیاد کردنی ئۆفەری نوێ</value>
+  </data>
+  <data name="Address" xml:space="preserve">
+    <value>ناونیشان</value>
+  </data>
+  <data name="After" xml:space="preserve">
+    <value>دوای</value>
+  </data>
+  <data name="Age" xml:space="preserve">
+    <value>تەمەن</value>
+  </data>
+  <data name="All" xml:space="preserve">
+    <value>هەموو</value>
+  </data>
+  <data name="Android" xml:space="preserve">
+    <value>ئه‌ندرۆید</value>
+  </data>
+  <data name="Approve" xml:space="preserve">
+    <value>دووپاتکردنەوە</value>
+  </data>
+  <data name="Arabic" xml:space="preserve">
+    <value>عەرەبی</value>
+  </data>
+  <data name="Archive" xml:space="preserve">
+    <value>ئەرشیف</value>
+  </data>
+  <data name="AwroNore" xml:space="preserve">
+    <value>ئەوڕۆ نۆرە</value>
+  </data>
+  <data name="AwroNoreQoute" xml:space="preserve">
+    <value>وه‌رگرتنی نۆره‌ی پزیشکە بەناوبانگەکان و بینینی تۆماری پزیشكی</value>
+  </data>
+  <data name="Back" xml:space="preserve">
+    <value>گەڕانەوە</value>
+  </data>
+  <data name="BaseInformation" xml:space="preserve">
+    <value>زانیاری بنەڕەتی</value>
+  </data>
+  <data name="Before" xml:space="preserve">
+    <value>بەر لە</value>
+  </data>
+  <data name="Birthdate" xml:space="preserve">
+    <value>ڕۆژی لە دایک بوون</value>
+  </data>
+  <data name="BookingNewTurn" xml:space="preserve">
+    <value>ته‌رخانكردنی نۆره‌ی نوێ</value>
+  </data>
+  <data name="BookingTurn" xml:space="preserve">
+    <value>تەرخانکردنی نۆرە</value>
+  </data>
+  <data name="BookingTurns" xml:space="preserve">
+    <value>نۆره‌ گرتن</value>
+  </data>
+  <data name="BookingTurnsQoute" xml:space="preserve">
+    <value>هاوڵاتی بەڕێز دەتوانيت نۆرەی باشترین پزیشک بگریت لە نەخۆشخانەکانی هەر شارێکی کوردستان </value>
+  </data>
+  <data name="BookThisTurn" xml:space="preserve">
+    <value>تەرخانی ئەم نۆرە</value>
+  </data>
+  <data name="BookTurnsFast" xml:space="preserve">
+    <value>خێرا نۆرە بگرە</value>
+  </data>
+  <data name="Browser" xml:space="preserve">
+    <value>وێبگەڕ</value>
+  </data>
+  <data name="Browsers" xml:space="preserve">
+    <value>وێبگەڕەکان</value>
+  </data>
+  <data name="CallNumbers" xml:space="preserve">
+    <value>ژمارەکانی پەیوەندی</value>
+  </data>
+  <data name="Cancel" xml:space="preserve">
+    <value>پاشگەزبوونەوە</value>
+  </data>
+  <data name="Canceled" xml:space="preserve">
+    <value>پاشگەزبووەوە</value>
+  </data>
+  <data name="Cancelled" xml:space="preserve">
+    <value>پاشگەزبووەوە</value>
+  </data>
+  <data name="CancelTurn" xml:space="preserve">
+    <value>پاشگەزبوونەوە لە نۆرە</value>
+  </data>
+  <data name="Capacity" xml:space="preserve">
+    <value>توانست</value>
+  </data>
+  <data name="Captcha" xml:space="preserve">
+    <value>كاپتچا</value>
+  </data>
+  <data name="Category" xml:space="preserve">
+    <value>هاوپۆلەکان</value>
+  </data>
+  <data name="City" xml:space="preserve">
+    <value>شار</value>
+  </data>
+  <data name="Clinic" xml:space="preserve">
+    <value>نۆرینگە</value>
+  </data>
+  <data name="ClinicPrefix" xml:space="preserve">
+    <value>نۆرینگەی</value>
+  </data>
+  <data name="Clinics" xml:space="preserve">
+    <value>نۆرینگەکان</value>
+  </data>
+  <data name="ClinicType" xml:space="preserve">
+    <value>جۆری نۆرینگە</value>
+  </data>
+  <data name="Close" xml:space="preserve">
+    <value>داخستن</value>
+  </data>
+  <data name="ContactNumber" xml:space="preserve">
+    <value>ژمارەی پەیوەندی</value>
+  </data>
+  <data name="Continue" xml:space="preserve">
+    <value>بەردەوام بە</value>
+  </data>
+  <data name="CreateAccount" xml:space="preserve">
+    <value>هەژمارێک درووست بکە</value>
+  </data>
+  <data name="CreateDate" xml:space="preserve">
+    <value>بەرواری دامەزراندن</value>
+  </data>
+  <data name="CurrentVersion" xml:space="preserve">
+    <value>وەشانی ئێستا</value>
+  </data>
+  <data name="Custom" xml:space="preserve">
+    <value>بەپێی خواست</value>
+  </data>
+  <data name="Date" xml:space="preserve">
+    <value>بەروار</value>
+  </data>
+  <data name="Day" xml:space="preserve">
+    <value>ڕۆژ</value>
+  </data>
+  <data name="DayOFWeek" xml:space="preserve">
+    <value>ڕۆژی هەفتە</value>
+  </data>
+  <data name="DeActive" xml:space="preserve">
+    <value>لە کار کەوتوو</value>
+  </data>
+  <data name="Delete" xml:space="preserve">
+    <value>سڕینەوە</value>
+  </data>
+  <data name="Deleted" xml:space="preserve">
+    <value>سڕایەوە</value>
+  </data>
+  <data name="Description" xml:space="preserve">
+    <value>ناوەڕۆک</value>
+  </data>
+  <data name="Description_Ar" xml:space="preserve">
+    <value>ناوەڕۆک (عەرەبی)</value>
+  </data>
+  <data name="Description_Ku" xml:space="preserve">
+    <value>ناوەڕۆک (کوردی)</value>
+  </data>
+  <data name="Details" xml:space="preserve">
+    <value>ناوەڕۆک</value>
+  </data>
+  <data name="Disabling" xml:space="preserve">
+    <value>لە کار خستن</value>
+  </data>
+  <data name="Doctor" xml:space="preserve">
+    <value>پزیشک</value>
+  </data>
+  <data name="DoctorNotActive" xml:space="preserve">
+    <value>پزیشک بەردەست نییە</value>
+  </data>
+  <data name="DoctorNotHaveAvailableTurn" xml:space="preserve">
+    <value>پزیشک نۆرەی بەتاڵی نییە، بۆیە ناتوانی نۆرە بگری.</value>
+  </data>
+  <data name="DoctorOrClinicOrHospitalName" xml:space="preserve">
+    <value>ناوی پزیشك، نه‌خۆشخانه‌ یان نۆرینگە</value>
+  </data>
+  <data name="Doctors" xml:space="preserve">
+    <value>پزیشکەکان</value>
+  </data>
+  <data name="Done" xml:space="preserve">
+    <value>ئەنجام درا</value>
+  </data>
+  <data name="DownloadAwroNoreApp" xml:space="preserve">
+    <value>دابه‌زاندنی ئه‌وڕۆنوڕه</value>
+  </data>
+  <data name="DownloadDirectly" xml:space="preserve">
+    <value>دابه‌زاندنی ڕاسته‌وخۆ</value>
+  </data>
+  <data name="Downloads" xml:space="preserve">
+    <value>داگیراوەکان</value>
+  </data>
+  <data name="DoYouWantDeleteThisItem" xml:space="preserve">
+    <value>ئایا دڵنیایت لە سڕینەوەی ئەم بابەتە؟</value>
+  </data>
+  <data name="Edit" xml:space="preserve">
+    <value>دەستکاری</value>
+  </data>
+  <data name="Email" xml:space="preserve">
+    <value>ئیمەیل</value>
+  </data>
+  <data name="Enabling" xml:space="preserve">
+    <value>کارا کردن</value>
+  </data>
+  <data name="English" xml:space="preserve">
+    <value>ئینگلیزی</value>
+  </data>
+  <data name="Error" xml:space="preserve">
+    <value>هەڵە</value>
+  </data>
+  <data name="ErrorConnectingToServer" xml:space="preserve">
+    <value>هەڵە لە پەیوەندی بە سێرڤر</value>
+  </data>
+  <data name="Err_403Forbidden" xml:space="preserve">
+    <value>رێگەپێنەدراۆ</value>
+  </data>
+  <data name="Err_DoctorNotActiveAndNotAvailave" xml:space="preserve">
+    <value>پزیشک بەردەست نییە بۆیە ناتوانی نۆرەی بگری</value>
+  </data>
+  <data name="Err_DoctorNotFound" xml:space="preserve">
+    <value>پزیشکی مەبەست نەدۆزرایەوە</value>
+  </data>
+  <data name="Err_EmailNotValid" xml:space="preserve">
+    <value>ئیمەیلی درووست داخڵ نەکراوە</value>
+  </data>
+  <data name="Err_EnterAllFields" xml:space="preserve">
+    <value>تکایە هەموو خانەکان داخڵ بکە</value>
+  </data>
+  <data name="Err_ErrorOccured" xml:space="preserve">
+    <value>هەڵەیەک ڕوویداوە</value>
+  </data>
+  <data name="Err_ErrorWhileSaveTurn" xml:space="preserve">
+    <value>لە کاتی تۆمار کردنی نۆرە هەڵەیەک ڕوویداوە</value>
+  </data>
+  <data name="Err_FirstAvailableTurnForDateNotFound" xml:space="preserve">
+    <value>یەکەمین نۆرەی بەردەست بۆ ئەم بەروارە نەدۆزرایەوە</value>
+  </data>
+  <data name="Err_HealthServiceNotFound" xml:space="preserve">
+    <value>خزمەتگوزاری نەدۆزرایەوە</value>
+  </data>
+  <data name="Err_MobileBe10Char" xml:space="preserve">
+    <value>ژمارەی تەلەفۆن نابێت کەمتر لە ١١ ژمارە بێت</value>
+  </data>
+  <data name="Err_MobileBlocked" xml:space="preserve">
+    <value>ئەم ژمارە تەلەفۆنە بە هۆی سەرپێچی ڕاگیراوە، بۆیە ناتوانی نۆرەی بۆ بگری</value>
+  </data>
+  <data name="Err_MobileMax10Char" xml:space="preserve">
+    <value>ژمارەی تەلەفۆن نابێت زۆرتر لە ١١ ژمارە بێت</value>
+  </data>
+  <data name="Err_MobileMin10Char" xml:space="preserve">
+    <value>ژمارەی تەلەفۆن نابێت کەمتر لە ١١ ژمارە بێت</value>
+  </data>
+  <data name="Err_MobileNotValid" xml:space="preserve">
+    <value>ژمارە تەلەفۆن درووست نیە</value>
+  </data>
+  <data name="Err_NoUserFoundForMobile" xml:space="preserve">
+    <value>هیچ بەکارهێنەرێک بۆ ئەم ژمارە تەلەفۆنە نەدۆزرایەوە</value>
+  </data>
+  <data name="Err_PasswordsNotMatch" xml:space="preserve">
+    <value>ووشەی نهێنی و ووشەی نهێنی دووبارەکراو یەکسان نین</value>
+  </data>
+  <data name="Err_PleaseEnterNumbersOnly" xml:space="preserve">
+    <value>تکایە تەنها ژمارە تۆمار بکە</value>
+  </data>
+  <data name="Err_PleaseEnterTextOnly" xml:space="preserve">
+    <value>تکایە تەنها نووسین تۆمار بکە</value>
+  </data>
+  <data name="Err_RequestWrong" xml:space="preserve">
+    <value>داواکارییەکەت بۆ سێرڤر هەڵەیە</value>
+  </data>
+  <data name="Err_ScheduleNotDefinedForDate" xml:space="preserve">
+    <value>بۆ بەرواری مەبەست خشتەی کاتی دانەنراوە، بۆیە ناتوانی نۆرە تەرخان بکەی</value>
+  </data>
+  <data name="Err_SecurityCodeNotValid" xml:space="preserve">
+    <value>کۆدی پاراستن درووست نیە</value>
+  </data>
+  <data name="Err_ThisFieldIsRequired" xml:space="preserve">
+    <value>ئەم خانەیە ناکرێت بەتاڵ بێت</value>
+  </data>
+  <data name="Err_TurnInProgress" xml:space="preserve">
+    <value>ئەم نۆرەیه لە باری تەرخانکردن دایە</value>
+  </data>
+  <data name="Err_TurnTimePassed" xml:space="preserve">
+    <value>کاتی ئەم نۆرەیە تێپەڕ بووە، بۆیە ناتوانی تەرخانی بکەی</value>
+  </data>
+  <data name="Err_UserHaveTurnForDate" xml:space="preserve">
+    <value>ئەم کەسە بۆ ئەم بەروارە نۆرەی هەیە بۆیە ناتوانی دووبارە نۆرەی بۆ بگری</value>
+  </data>
+  <data name="Err_ValidTimePeriodNotFound" xml:space="preserve">
+    <value>هیچ کاتێکی بەردەست بۆ ئەم مەودا زەمەنییە نەدۆزرایەوە</value>
+  </data>
+  <data name="Err_YouReservedTurnForDateBefore" xml:space="preserve">
+    <value>تۆ پێشتر بۆ ئەم بەروارە نۆرەت تەرخان کردووە.</value>
+  </data>
+  <data name="Evening" xml:space="preserve">
+    <value>ئێوارە</value>
+  </data>
+  <data name="EveningShift" xml:space="preserve">
+    <value>شفتی ئیوارە</value>
+  </data>
+  <data name="Exit" xml:space="preserve">
+    <value>دەرچوون</value>
+  </data>
+  <data name="Expertise" xml:space="preserve">
+    <value>پسپۆڕی</value>
+  </data>
+  <data name="FeMale" xml:space="preserve">
+    <value> مێ</value>
+  </data>
+  <data name="Filter" xml:space="preserve">
+    <value>پاڵاوتن</value>
+  </data>
+  <data name="Free" xml:space="preserve">
+    <value>بەردەست</value>
+  </data>
+  <data name="Friday" xml:space="preserve">
+    <value>هەینی</value>
+  </data>
+  <data name="From" xml:space="preserve">
+    <value>لە</value>
+  </data>
+  <data name="FromTime" xml:space="preserve">
+    <value>لە کاژێر</value>
+  </data>
+  <data name="Gender" xml:space="preserve">
+    <value>ڕەگەز</value>
+  </data>
+  <data name="Height" xml:space="preserve">
+    <value>باڵا</value>
+  </data>
+  <data name="Home" xml:space="preserve">
+    <value>ڵاپەڕەی سەرەکی</value>
+  </data>
+  <data name="Hospital" xml:space="preserve">
+    <value>نەخۆشخانە</value>
+  </data>
+  <data name="HospitalPrefix" xml:space="preserve">
+    <value>نەخۆشخانەی</value>
+  </data>
+  <data name="Hospitals" xml:space="preserve">
+    <value>نەخۆشخانەکان</value>
+  </data>
+  <data name="Hour" xml:space="preserve">
+    <value>كاژێر</value>
+  </data>
+  <data name="IdNumber" xml:space="preserve">
+    <value>ژمارەی ناسنامە</value>
+  </data>
+  <data name="Image" xml:space="preserve">
+    <value>وێنە</value>
+  </data>
+  <data name="Images" xml:space="preserve">
+    <value>وێنەکان</value>
+  </data>
+  <data name="InActive" xml:space="preserve">
+    <value>ناچاڵاک</value>
+  </data>
+  <data name="Insurance" xml:space="preserve">
+    <value>دەستەبەری</value>
+  </data>
+  <data name="IP" xml:space="preserve">
+    <value>ئای پی</value>
+  </data>
+  <data name="IsEmployee" xml:space="preserve">
+    <value>فەرمانبەرە ؟</value>
+  </data>
+  <data name="Key" xml:space="preserve">
+    <value>کلیل</value>
+  </data>
+  <data name="Kurdish" xml:space="preserve">
+    <value>کوردی</value>
+  </data>
+  <data name="Language" xml:space="preserve">
+    <value>زمان</value>
+  </data>
+  <data name="Latitude" xml:space="preserve">
+    <value>پانتایی جوگرافیایی</value>
+  </data>
+  <data name="Longtitude" xml:space="preserve">
+    <value>درێژیی جوگرافیای</value>
+  </data>
+  <data name="MainPage" xml:space="preserve">
+    <value>پەڕەی سەرەکی</value>
+  </data>
+  <data name="Male" xml:space="preserve">
+    <value>نێر</value>
+  </data>
+  <data name="Man" xml:space="preserve">
+    <value>کەس</value>
+  </data>
+  <data name="Manager" xml:space="preserve">
+    <value>بەڕێوەبەر</value>
+  </data>
+  <data name="ManagerName" xml:space="preserve">
+    <value>ناوی بەڕێوەبەر</value>
+  </data>
+  <data name="Managers" xml:space="preserve">
+    <value>بەڕێوەبەرەکان</value>
+  </data>
+  <data name="MarriageStatus" xml:space="preserve">
+    <value>باری خێزانداری</value>
+  </data>
+  <data name="Married" xml:space="preserve">
+    <value>خێزاندار</value>
+  </data>
+  <data name="MaxCapacity" xml:space="preserve">
+    <value>توانای وەرگرتن</value>
+  </data>
+  <data name="MaxLength100" xml:space="preserve">
+    <value>ئەم بابەتە نابێت زۆرتر لە ١٠٠ پیت بێت</value>
+  </data>
+  <data name="MaxLength1000" xml:space="preserve">
+    <value>ئەم بابەتە نابێت زۆرتر لە ١٠٠٠ پیت بێت</value>
+  </data>
+  <data name="MaxLength110" xml:space="preserve">
+    <value>ئەم بابەتە نابێت زۆرتر لە ١١٠ پیت بێت</value>
+  </data>
+  <data name="MaxLength15" xml:space="preserve">
+    <value>ئەم بابەتە نابێت زۆرتر لە ١٥ پیت بێت</value>
+  </data>
+  <data name="MaxLength20" xml:space="preserve">
+    <value>ئەم بابەتە نابێت زۆرتر لە ٢٠ پیت بێت</value>
+  </data>
+  <data name="MaxLength255" xml:space="preserve">
+    <value>ئەم بابەتە نابێت زۆرتر لە ٢٥٥ پیت بێت</value>
+  </data>
+  <data name="MaxLength256" xml:space="preserve">
+    <value>ئەم بابەتە نابێت زۆرتر لە ٢٥٦ پیت بێت</value>
+  </data>
+  <data name="MaxLength30" xml:space="preserve">
+    <value>ئەم بابەتە نابێت زۆرتر لە ٣٠ پیت بێت</value>
+  </data>
+  <data name="MaxLength50" xml:space="preserve">
+    <value>ئەم بابەتە نابێت زۆرتر لە ٥٠ پیت بێت</value>
+  </data>
+  <data name="MaxLength500" xml:space="preserve">
+    <value>ئەم بابەتە نابێت زۆرتر لە ٥٠٠ پیت بێت</value>
+  </data>
+  <data name="MaxLength9" xml:space="preserve">
+    <value>ئەم بابەتە نابێت زۆرتر لە ٩ پیت بێت</value>
+  </data>
+  <data name="MedicalCouncilNumber" xml:space="preserve">
+    <value>ژمارەی فەرمی سەندیکای پزیشک</value>
+  </data>
+  <data name="MedicalRecord" xml:space="preserve">
+    <value>تۆماری پزیشكی</value>
+  </data>
+  <data name="MedicalRecordQoute" xml:space="preserve">
+    <value>بۆ زانینی پشکنینی پزیشک وپاراستنی تۆمارەکەت بێ کوتا</value>
+  </data>
+  <data name="MinLength30" xml:space="preserve">
+    <value>ئەم بابەتە نابێت کەمتر لە ٣٠ پیت بێت</value>
+  </data>
+  <data name="MinLength9" xml:space="preserve">
+    <value>ئەم بابەتە نابێت کەمتر لە ٩ پیت بێت</value>
+  </data>
+  <data name="Minute" xml:space="preserve">
+    <value>خولەک</value>
+  </data>
+  <data name="Mobile" xml:space="preserve">
+    <value>مۆبایل</value>
+  </data>
+  <data name="MobileNumber" xml:space="preserve">
+    <value>ژمارە تەلەفۆن  </value>
+  </data>
+  <data name="Monday" xml:space="preserve">
+    <value>دووشەممە</value>
+  </data>
+  <data name="Morning" xml:space="preserve">
+    <value>بەیانی</value>
+  </data>
+  <data name="MorningShift" xml:space="preserve">
+    <value>شفتی بەیانی</value>
+  </data>
+  <data name="Move" xml:space="preserve">
+    <value>گواستنەوە</value>
+  </data>
+  <data name="Msg_AreYouSure" xml:space="preserve">
+    <value>ئایا دڵنیای؟</value>
+  </data>
+  <data name="Msg_DoYouWantToDoThis" xml:space="preserve">
+    <value>ئایا دڵنیای لە ئەنجامی ئەم کردارە</value>
+  </data>
+  <data name="Msg_EnterNewPassword" xml:space="preserve">
+    <value>تکایە ووشەی نهێنی داخڵ بکە</value>
+  </data>
+  <data name="Msg_EnterSecurityCode" xml:space="preserve">
+    <value>تکایە کۆدی پاراستن داخڵ بکە</value>
+  </data>
+  <data name="Msg_EnterValidMobileNumber" xml:space="preserve">
+    <value>تکایە ژمارە تەلەفۆنی درووست داخڵ بکە</value>
+  </data>
+  <data name="Msg_FieldRequired" xml:space="preserve">
+    <value>ئەم خانە ناکرێت بەتاڵ بێت</value>
+  </data>
+  <data name="Msg_HaveNewMessages" xml:space="preserve">
+    <value>پەیامی نوێتان هەیە</value>
+  </data>
+  <data name="Msg_HavePolyclinicRegisterRequests" xml:space="preserve">
+    <value>داواکاری نوێتان هەیە بۆ تۆمار کردنی کۆمەڵگەی پزیشکی</value>
+  </data>
+  <data name="Msg_OperationSuccessful" xml:space="preserve">
+    <value>بابەتەکەتان بە سەرکەوتوویی تۆمار کرا</value>
+  </data>
+  <data name="Msg_PleaseClickHere" xml:space="preserve">
+    <value>تکایە لێرە کلیک بکە</value>
+  </data>
+  <data name="Msg_PleaseEnterMobile" xml:space="preserve">
+    <value>تکایە ژمارە تەلەفۆنەکەت داخڵ بکە</value>
+  </data>
+  <data name="Msg_PleaseEnterYourInformation" xml:space="preserve">
+    <value>تکایە زانیاریەکانت درووست داخڵ بکە</value>
+  </data>
+  <data name="Msg_TurnCanceledSuccessfully" xml:space="preserve">
+    <value>نۆرەی مەبەست بە سەرکەوتوویی هەڵوەشایەوە</value>
+  </data>
+  <data name="Msg_TurnFinalReservedSuccessfully" xml:space="preserve">
+    <value>نۆرەی مەبەست بە سەرکەوتوویی تەرخان کرا</value>
+  </data>
+  <data name="Msg_TurnReservedTemporary" xml:space="preserve">
+    <value>نۆرەی مەبەست بە شێوەی کاتی بەسەرکەوتوویی تەرخان کرا</value>
+  </data>
+  <data name="MyTurns" xml:space="preserve">
+    <value>نۆره‌كانم</value>
+  </data>
+  <data name="Name" xml:space="preserve">
+    <value>ناو</value>
+  </data>
+  <data name="Name_Ar" xml:space="preserve">
+    <value>ناو (عەرەبی)</value>
+  </data>
+  <data name="Name_Ku" xml:space="preserve">
+    <value>ناو (کوردی)</value>
+  </data>
+  <data name="New" xml:space="preserve">
+    <value>نوێ</value>
+  </data>
+  <data name="NewMessage" xml:space="preserve">
+    <value>پەیامی تازە</value>
+  </data>
+  <data name="NewMessages" xml:space="preserve">
+    <value>نووسراوی تازه</value>
+  </data>
+  <data name="NewRequests" xml:space="preserve">
+    <value>داواکاری تازه</value>
+  </data>
+  <data name="NewTreatment" xml:space="preserve">
+    <value>چارەسەری نوێ</value>
+  </data>
+  <data name="NewTurn" xml:space="preserve">
+    <value>نۆرەی نوێ</value>
+  </data>
+  <data name="NewUser" xml:space="preserve">
+    <value>بەکارهێنەری نوێ</value>
+  </data>
+  <data name="NewVersion" xml:space="preserve">
+    <value>وەشانی نوێ</value>
+  </data>
+  <data name="Next" xml:space="preserve">
+    <value>داهاتوو</value>
+  </data>
+  <data name="No" xml:space="preserve">
+    <value>نا</value>
+  </data>
+  <data name="NoAvailableTurnFound" xml:space="preserve">
+    <value>هیچ نۆرەیەک بەردەست نییە</value>
+  </data>
+  <data name="NoItemFound" xml:space="preserve">
+    <value>هیچ نەدۆزرایەوە</value>
+  </data>
+  <data name="Notification" xml:space="preserve">
+    <value>ئاگاداری</value>
+  </data>
+  <data name="Notifying" xml:space="preserve">
+    <value>ئاگاداركردنه‌وه</value>
+  </data>
+  <data name="NotifyingQoute" xml:space="preserve">
+    <value>بەشداربوو ئاگادار دەکرێتەوە لە کاتی نۆرە گرتن و پاشگەزبوونەوەی نۆرە و بیرخستنەوەی نۆرە</value>
+  </data>
+  <data name="Offer" xml:space="preserve">
+    <value>ئۆفەر</value>
+  </data>
+  <data name="Offers" xml:space="preserve">
+    <value>ئۆفەرەکان</value>
+  </data>
+  <data name="OldVersion" xml:space="preserve">
+    <value>وەشانی کۆن</value>
+  </data>
+  <data name="Online" xml:space="preserve">
+    <value>ئۆنلاین</value>
+  </data>
+  <data name="OnlyFirstAvailableTurn" xml:space="preserve">
+    <value>تەنها یەکەم نۆرەی بەتاڵ</value>
+  </data>
+  <data name="OperatingSystems" xml:space="preserve">
+    <value>سیستەمی کارکردن</value>
+  </data>
+  <data name="OTPHasBeenSendedToThisNumber" xml:space="preserve">
+    <value>کۆدی پەسەند بۆ ئەم ژمارە نێردراوە</value>
+  </data>
+  <data name="Page" xml:space="preserve">
+    <value>پەڕە</value>
+  </data>
+  <data name="Password" xml:space="preserve">
+    <value>ووشەی تێپەڕ/ووشەی نهێنی</value>
+  </data>
+  <data name="Patient" xml:space="preserve">
+    <value>نەخۆش</value>
+  </data>
+  <data name="PatientInfo" xml:space="preserve">
+    <value>زانیاری نەخۆش</value>
+  </data>
+  <data name="Patients" xml:space="preserve">
+    <value>نەخۆشەکان</value>
+  </data>
+  <data name="PaymentType" xml:space="preserve">
+    <value>جۆری پارەدان</value>
+  </data>
+  <data name="Pending" xml:space="preserve">
+    <value>ئەنجامنەدراو</value>
+  </data>
+  <data name="Percent" xml:space="preserve">
+    <value>لەسەدا</value>
+  </data>
+  <data name="Persian" xml:space="preserve">
+    <value>فارسی</value>
+  </data>
+  <data name="Persons" xml:space="preserve">
+    <value>کەسەکان</value>
+  </data>
+  <data name="Pharmacies" xml:space="preserve">
+    <value>دەرمانخانەکان</value>
+  </data>
+  <data name="Phone" xml:space="preserve">
+    <value>ژ.تەلەفۆن</value>
+  </data>
+  <data name="Place" xml:space="preserve">
+    <value>شوێن</value>
+  </data>
+  <data name="Places" xml:space="preserve">
+    <value>شوێنەکان</value>
+  </data>
+  <data name="PleaseSelectYourTurnDate" xml:space="preserve">
+    <value>تکایە بەرواری نۆرەکەت دیاری بکە</value>
+  </data>
+  <data name="PleaseSelectYourTurnTime" xml:space="preserve">
+    <value>تکایە کاتی نۆرەکەت دیاری بکە</value>
+  </data>
+  <data name="PleaseWait" xml:space="preserve">
+    <value>تکایە چاوەڕوان بە</value>
+  </data>
+  <data name="Polyclinic" xml:space="preserve">
+    <value>کۆمەڵگای پزیشکی</value>
+  </data>
+  <data name="PolyclinicPrefix" xml:space="preserve">
+    <value>کۆمەڵگای پزیشکیی</value>
+  </data>
+  <data name="PolyclinicQueue" xml:space="preserve">
+    <value>نۆرەی کۆمەڵگای پزیشکی</value>
+  </data>
+  <data name="Polyclinics" xml:space="preserve">
+    <value>کۆمەڵگا پزیشکییەکان</value>
+  </data>
+  <data name="PrePayment" xml:space="preserve">
+    <value>پارەدانی پێشەکی</value>
+  </data>
+  <data name="Prerequisite" xml:space="preserve">
+    <value>بنچینەیی</value>
+  </data>
+  <data name="Previews" xml:space="preserve">
+    <value>پێشوو</value>
+  </data>
+  <data name="PrintPrescription" xml:space="preserve">
+    <value>چاپی پسوولە</value>
+  </data>
+  <data name="Problems" xml:space="preserve">
+    <value>گرفتەکان</value>
+  </data>
+  <data name="Province" xml:space="preserve">
+    <value>پارێزگا</value>
+  </data>
+  <data name="Qoute_Cities" xml:space="preserve">
+    <value>شاری</value>
+  </data>
+  <data name="Qoute_Clinics" xml:space="preserve">
+    <value>نۆرینگەی</value>
+  </data>
+  <data name="Qoute_Doctors" xml:space="preserve">
+    <value>پزیشکی</value>
+  </data>
+  <data name="Qoute_Expertises" xml:space="preserve">
+    <value>پسپۆڕی</value>
+  </data>
+  <data name="Qoute_Hospitals" xml:space="preserve">
+    <value>نەخۆشخانەی</value>
+  </data>
+  <data name="Qoute_NowIn" xml:space="preserve">
+    <value>هه‌ر ئێستا له</value>
+  </data>
+  <data name="Qoute_YourWishSearch" xml:space="preserve">
+    <value>بە دوای مه‌به‌ستەکەتدا بگه‌ڕێ</value>
+  </data>
+  <data name="Range0And24" xml:space="preserve">
+    <value>ئەم بابەتە دەبیت لە نێوان ٠ تاکوو ٢٤ بێت</value>
+  </data>
+  <data name="Range1And1000" xml:space="preserve">
+    <value>ئەم بابەتە دەبێت لە نێوان ١ تاکوو ١٠٠٠ بێت</value>
+  </data>
+  <data name="Range1And150" xml:space="preserve">
+    <value>ئەم بابەتە دەبێت لە نێوان 1 تاکوو 150بێت</value>
+  </data>
+  <data name="Range1And180" xml:space="preserve">
+    <value>ئەم بابەتە دەبێت لە نێوان ١ تاکوو ١٨٠ بێت</value>
+  </data>
+  <data name="Range1And300" xml:space="preserve">
+    <value>ئەم بابەتە دەبێت لە نێوان 1 تاکوو  300بێت</value>
+  </data>
+  <data name="Range1And500" xml:space="preserve">
+    <value>ئەم بابەتە دەبێت لە نێوان ١ تاکوو ٥٠٠ بێت</value>
+  </data>
+  <data name="Rate" xml:space="preserve">
+    <value>پلە</value>
+  </data>
+  <data name="Recipient" xml:space="preserve">
+    <value>وەرگر</value>
+  </data>
+  <data name="Recovery" xml:space="preserve">
+    <value>گەڕاندنەوە</value>
+  </data>
+  <data name="Refresh" xml:space="preserve">
+    <value>تازەکردنەوە</value>
+  </data>
+  <data name="RegisterFree" xml:space="preserve">
+    <value>ببه‌ بە ئه‌ندام</value>
+  </data>
+  <data name="RegisterFreeInAwroNore" xml:space="preserve">
+    <value>به‌ خوڕایی ببه‌ بە ئه‌ندام له‌ ئه‌وڕۆ نۆره‌</value>
+  </data>
+  <data name="RegisterFreeInAwroNoreQoute" xml:space="preserve">
+    <value>بە ئەندام بوون لە ئەوڕۆ نۆرە، لە ماڵەکەی خۆتدا نۆرە بگرە بە بێ تێپەڕ بوون بە جەنجاڵی هاتووچۆ وبە فیڕۆدانی کاتەکەت لە چاوەڕوانی نۆرە</value>
+  </data>
+  <data name="RegisterPatient" xml:space="preserve">
+    <value>به‌ئه‌ندام بوونی نه‌خۆش</value>
+  </data>
+  <data name="RegisterPolyclinic" xml:space="preserve">
+    <value>تۆمارکردنی کۆمەڵگای پزیشکی</value>
+  </data>
+  <data name="Report" xml:space="preserve">
+    <value>ڕاپۆرت</value>
+  </data>
+  <data name="Requester" xml:space="preserve">
+    <value>داواکار</value>
+  </data>
+  <data name="Requests" xml:space="preserve">
+    <value>داواکارییەکان</value>
+  </data>
+  <data name="ReservationType" xml:space="preserve">
+    <value>جوری تەرخانکردن</value>
+  </data>
+  <data name="Roles" xml:space="preserve">
+    <value>ڕۆڵەکان</value>
+  </data>
+  <data name="Saturday" xml:space="preserve">
+    <value>شەممە</value>
+  </data>
+  <data name="Save" xml:space="preserve">
+    <value>تۆمار کردن</value>
+  </data>
+  <data name="Search" xml:space="preserve">
+    <value>گەڕان</value>
+  </data>
+  <data name="SearchString" xml:space="preserve">
+    <value>دەقی گەڕان</value>
+  </data>
+  <data name="Second" xml:space="preserve">
+    <value>چرکە</value>
+  </data>
+  <data name="SecondName" xml:space="preserve">
+    <value>ناوی باوک</value>
+  </data>
+  <data name="SecurityCode" xml:space="preserve">
+    <value>کۆدی پاراستن</value>
+  </data>
+  <data name="SelectDoctor" xml:space="preserve">
+    <value>هەڵبژاردنی پزیشک</value>
+  </data>
+  <data name="Selected" xml:space="preserve">
+    <value>هەڵبژێردراوە</value>
+  </data>
+  <data name="SelectExpertise" xml:space="preserve">
+    <value>هه‌ڵبژاردنی پسپۆڕى</value>
+  </data>
+  <data name="SelectImage" xml:space="preserve">
+    <value>هەڵبژاردنی وێنەکان</value>
+  </data>
+  <data name="Selective" xml:space="preserve">
+    <value>هەڵبژێر</value>
+  </data>
+  <data name="Send" xml:space="preserve">
+    <value>ناردن</value>
+  </data>
+  <data name="Sender" xml:space="preserve">
+    <value>نێردەر</value>
+  </data>
+  <data name="Sequentially" xml:space="preserve">
+    <value>بە نۆرە</value>
+  </data>
+  <data name="Service" xml:space="preserve">
+    <value>خزمەتگوزاری</value>
+  </data>
+  <data name="Services" xml:space="preserve">
+    <value>خزمەتگوزارییەکان</value>
+  </data>
+  <data name="Settings" xml:space="preserve">
+    <value>ئامادەکاری</value>
+  </data>
+  <data name="Shift" xml:space="preserve">
+    <value>شفت</value>
+  </data>
+  <data name="ShiftCenters" xml:space="preserve">
+    <value>سەنتەرەکان</value>
+  </data>
+  <data name="Single" xml:space="preserve">
+    <value>سەڵت</value>
+  </data>
+  <data name="Start" xml:space="preserve">
+    <value>دەستپێکردن</value>
+  </data>
+  <data name="StartUpload" xml:space="preserve">
+    <value>دەستپێکی ئاپلۆد</value>
+  </data>
+  <data name="Status" xml:space="preserve">
+    <value>بارودۆخ</value>
+  </data>
+  <data name="Successful" xml:space="preserve">
+    <value>سەرکەوتوو</value>
+  </data>
+  <data name="Sunday" xml:space="preserve">
+    <value>یەکشەممە</value>
+  </data>
+  <data name="SystemMessage" xml:space="preserve">
+    <value>پەیامی سیستەم</value>
+  </data>
+  <data name="Text" xml:space="preserve">
+    <value>نووسین</value>
+  </data>
+  <data name="ThisMonth" xml:space="preserve">
+    <value>ئەم مانگە</value>
+  </data>
+  <data name="ThisWeek" xml:space="preserve">
+    <value>ئەم هەفتەیە</value>
+  </data>
+  <data name="Thursday" xml:space="preserve">
+    <value>پێنجشەممە</value>
+  </data>
+  <data name="Time" xml:space="preserve">
+    <value>کات</value>
+  </data>
+  <data name="TimePeriod" xml:space="preserve">
+    <value>مەودای کات</value>
+  </data>
+  <data name="To" xml:space="preserve">
+    <value>تاکو</value>
+  </data>
+  <data name="Today" xml:space="preserve">
+    <value>ئەمڕۆ</value>
+  </data>
+  <data name="Topic" xml:space="preserve">
+    <value>بابەت</value>
+  </data>
+  <data name="ToReserve" xml:space="preserve">
+    <value>بۆ تەرخانکردن</value>
+  </data>
+  <data name="ToTime" xml:space="preserve">
+    <value>تاکو کاژێر</value>
+  </data>
+  <data name="TrackingCode" xml:space="preserve">
+    <value>کۆدی تایبەتی</value>
+  </data>
+  <data name="Treatments" xml:space="preserve">
+    <value>چارەسەرییەکان</value>
+  </data>
+  <data name="Tuesday" xml:space="preserve">
+    <value>سێ شەممە</value>
+  </data>
+  <data name="Turn" xml:space="preserve">
+    <value>نۆرە</value>
+  </data>
+  <data name="TurnIsInProgressNow" xml:space="preserve">
+    <value>ئەم نۆرەیە پێشتر تۆمار کراوە</value>
+  </data>
+  <data name="TurnReservationTimePassed" xml:space="preserve">
+    <value>کاتی ئەم نۆرە بە سەر چووە، بۆیە ناتوانی تەرخانی بکەی</value>
+  </data>
+  <data name="TurnReservedSuccessfully" xml:space="preserve">
+    <value>نۆرەکەتان بە سەرکەوتوویی تۆمار کرا</value>
+  </data>
+  <data name="Turns" xml:space="preserve">
+    <value>نۆرەکان</value>
+  </data>
+  <data name="Type" xml:space="preserve">
+    <value>جۆر</value>
+  </data>
+  <data name="UnderProccessing" xml:space="preserve">
+    <value>لە باری جێ بە جێ بوون</value>
+  </data>
+  <data name="Unique" xml:space="preserve">
+    <value>جیاواز</value>
+  </data>
+  <data name="Unknown" xml:space="preserve">
+    <value>نەناسراو</value>
+  </data>
+  <data name="Update" xml:space="preserve">
+    <value>بەڕۆژکردن/نۆێکردنەوە</value>
+  </data>
+  <data name="UpdateUser" xml:space="preserve">
+    <value>ئەپدەیت کردنی بەکارهێنەر</value>
+  </data>
+  <data name="UserName" xml:space="preserve">
+    <value>ناوی بەکارهێنەر</value>
+  </data>
+  <data name="UserRole" xml:space="preserve">
+    <value>ڕۆڵی بەکارهێنەر</value>
+  </data>
+  <data name="Version" xml:space="preserve">
+    <value>وەشان</value>
+  </data>
+  <data name="VisitDate" xml:space="preserve">
+    <value>رێکەوتی سەردان</value>
+  </data>
+  <data name="VisitInfo" xml:space="preserve">
+    <value>زانیاری سەردان</value>
+  </data>
+  <data name="VocationDays" xml:space="preserve">
+    <value>ڕۆژەکانی پشوو</value>
+  </data>
+  <data name="Wednesday" xml:space="preserve">
+    <value>چوارشەممە</value>
+  </data>
+  <data name="Weight" xml:space="preserve">
+    <value>کێش</value>
+  </data>
+  <data name="With" xml:space="preserve">
+    <value>لەگەڵ</value>
+  </data>
+  <data name="WithIntroductionLetter" xml:space="preserve">
+    <value> نووسراوی پێناساندن</value>
+  </data>
+  <data name="WithoutPrerequisite" xml:space="preserve">
+    <value>داواکاریی پێشوەختی نییە</value>
+  </data>
+  <data name="Yes" xml:space="preserve">
+    <value>بەڵێ</value>
+  </data>
+  <data name="YouHaveNewMessages" xml:space="preserve">
+    <value>پەیامی تازەت هەیە</value>
+  </data>
+  <data name="YourTurn" xml:space="preserve">
+    <value>نۆرەی ئێوە</value>
+  </data>
+  <data name="ZipCode" xml:space="preserve">
+    <value>ژمارەی ناوچە</value>
+  </data>
+  <data name="Dose" xml:space="preserve">
+    <value>دوز</value>
+  </data>
+  <data name="Drug" xml:space="preserve">
+    <value>دەرمان</value>
+  </data>
+  <data name="DrugName" xml:space="preserve">
+    <value>ناوی دەرمان</value>
+  </data>
+  <data name="Frequency" xml:space="preserve">
+    <value>دووپاتی</value>
+  </data>
+  <data name="Quantity" xml:space="preserve">
+    <value>چەندێتی</value>
+  </data>
+  <data name="Reject" xml:space="preserve">
+    <value>رەت کردن</value>
+  </data>
+  <data name="Ok" xml:space="preserve">
+    <value>باشە</value>
+  </data>
+  <data name="Center" xml:space="preserve">
+    <value>سەنتەر</value>
+  </data>
+  <data name="Permission" xml:space="preserve">
+    <value>دەسەلات</value>
+  </data>
+  <data name="Person" xml:space="preserve">
+    <value>کەس</value>
+  </data>
+  <data name="Role" xml:space="preserve">
+    <value>دەسەلات</value>
+  </data>
+  <data name="SentToPharmacy" xml:space="preserve">
+    <value>ناردن بۆ دەرمانخانە</value>
+  </data>
+  <data name="Pharmacy" xml:space="preserve">
+    <value>دەرمانخانە</value>
+  </data>
+  <data name="Prescription" xml:space="preserve">
+    <value>ڕاچیته</value>
+  </data>
+  <data name="Prescriptions" xml:space="preserve">
+    <value>ڕاچیتەکان</value>
+  </data>
+  <data name="ProcessPrescription" xml:space="preserve">
+    <value>جێ بە جێ کردنی ڕاچیتە</value>
+  </data>
+  <data name="SendBack" xml:space="preserve">
+    <value>گەڕانەوە</value>
+  </data>
+  <data name="MaxLength10" xml:space="preserve">
+    <value>ئەم بابەتە نابێت زۆرتر لە ١٠ پیت بێت</value>
+  </data>
+  <data name="AccessDenied" xml:space="preserve">
+    <value>ڕێگەپێنەدراو</value>
+  </data>
+  <data name="Gallery" xml:space="preserve">
+    <value>گالێری</value>
+  </data>
+  <data name="Logo" xml:space="preserve">
+    <value>لۆگۆ</value>
+  </data>
+  <data name="AddPatientFromPersons" xml:space="preserve">
+    <value>بینین و زیاد کردنی کەسێک وەکوو نەخۆش</value>
+  </data>
+  <data name="MobileOrUniqueId" xml:space="preserve">
+    <value>مۆبایل یان کۆدی تایبەتی</value>
+  </data>
+  <data name="SearchAndAdd" xml:space="preserve">
+    <value>گەڕان و زیاد کردن</value>
+  </data>
+  <data name="End" xml:space="preserve">
+    <value>پایان</value>
+  </data>
+  <data name="BloodType" xml:space="preserve">
+    <value>جۆری خوێن</value>
+  </data>
+  <data name="PrintPreview" xml:space="preserve">
+    <value>بینین بۆ چاپ</value>
+  </data>
+  <data name="Attachments" xml:space="preserve">
+    <value>هاوپێچەکان</value>
+  </data>
+  <data name="Range1And365" xml:space="preserve">
+    <value>ئەم بابەتە دەبێت لە نێوان ١ تاکوو ٣٦٥ بێت</value>
+  </data>
+  <data name="Err_MobileMax11Char" xml:space="preserve">
+    <value>ژمارەی تەلەفۆن نابێت زۆرتر لە ١١ ژمارە بێت</value>
+  </data>
+  <data name="Laboratory" xml:space="preserve">
+    <value>تاقیگه</value>
+  </data>
+  <data name="RegistrationRequests" xml:space="preserve">
+    <value>داواکاریەکانی تۆمار کردن</value>
+  </data>
+  <data name="AppointmentRequests" xml:space="preserve">
+    <value>نۆرەکانی داواکراو</value>
+  </data>
+  <data name="ChiefComplaint" xml:space="preserve">
+    <value>Chief Complaint</value>
+  </data>
+  <data name="PatientsHistory" xml:space="preserve">
+    <value>Patient's History</value>
+  </data>
+  <data name="Price" xml:space="preserve">
+    <value>نرخ</value>
+  </data>
+  <data name="ServiceName" xml:space="preserve">
+    <value>ناوی خزمەتگوزاری</value>
+  </data>
+  <data name="Invoice" xml:space="preserve">
+    <value>هێمان</value>
+  </data>
+  <data name="TotalInDollars" xml:space="preserve">
+    <value>کۆئەنجام</value>
+  </data>
+  <data name="Invoices" xml:space="preserve">
+    <value>فاکتورەکان</value>
+  </data>
+  <data name="SendNotification" xml:space="preserve">
+    <value>ئاگادارکردنەوە</value>
+  </data>
+  <data name="BeautyCenterNotActive" xml:space="preserve">
+    <value>سالۆنی جوانکاری بەردەست نییە</value>
+  </data>
+  <data name="BeautyCenterNotHaveAvailableTurn" xml:space="preserve">
+    <value>سالۆنی جوانکاری نۆرەی بەتاڵی نییە، بۆیە ناتوانی نۆرە بگری</value>
+  </data>
+  <data name="Summary" xml:space="preserve">
+    <value>کورتە</value>
+  </data>
+  <data name="Title" xml:space="preserve">
+    <value>سەردێڕ</value>
+  </data>
+  <data name="ValidUntil" xml:space="preserve">
+    <value>یاسایی هەتا</value>
+  </data>
+  <data name="LayoutStyle" xml:space="preserve">
+    <value>Layout Style</value>
+  </data>
+  <data name="IsPublished" xml:space="preserve">
+    <value>پابلیش کراوە</value>
+  </data>
+  <data name="Cms" xml:space="preserve">
+    <value>ناوەرۆک</value>
+  </data>
+  <data name="Articles" xml:space="preserve">
+    <value>بابەتەکان</value>
+  </data>
+  <data name="Categories" xml:space="preserve">
+    <value>هاوپۆلەکان</value>
+  </data>
+  <data name="Customers" xml:space="preserve">
+    <value>مشتەریەکان</value>
+  </data>
+  <data name="AddCustomerFromPersons" xml:space="preserve">
+    <value>بینین و زیاد کردنی کەسێک وەکوو مشتەری</value>
+  </data>
+  <data name="AddNewCustomer" xml:space="preserve">
+    <value>زیاد کردنی مشتەری نوێ</value>
+  </data>
+  <data name="CurrentManagers" xml:space="preserve">
+    <value>بەڕێوەبەرانی ئێستا</value>
+  </data>
+  <data name="CustomerAlreadyExist" xml:space="preserve">
+    <value>ئەم مشتەریە پێشتر زیاد کراوە</value>
+  </data>
+  <data name="Employee" xml:space="preserve">
+    <value>فەرمانبەر</value>
+  </data>
+  <data name="Employees" xml:space="preserve">
+    <value>فەرمانبەر</value>
+  </data>
+  <data name="Customer" xml:space="preserve">
+    <value>مشتەری</value>
+  </data>
+  <data name="Photo" xml:space="preserve">
+    <value>وێنە</value>
+  </data>
+  <data name="Voice" xml:space="preserve">
+    <value>دەنگ</value>
+  </data>
+  <data name="Guide" xml:space="preserve">
+    <value>چۆنیەتی بەکارهێنان</value>
+  </data>
+  <data name="Advanced" xml:space="preserve">
+    <value>پێشکەوتوو</value>
+  </data>
+  <data name="Basic" xml:space="preserve">
+    <value>سادە</value>
+  </data>
+  <data name="MenuInsuranceService" xml:space="preserve">
+    <value>Insurance Services</value>
+  </data>
+  <data name="Appointments" xml:space="preserve">
+    <value>نۆرەی وەرگیراو</value>
+  </data>
+  <data name="CurrencyType" xml:space="preserve">
+    <value>جۆری پارە</value>
+  </data>
+  <data name="CurrentPrice" xml:space="preserve">
+    <value>نرخی ئێستا</value>
+  </data>
+  <data name="DiscountPercentange" xml:space="preserve">
+    <value>داشکاندن (٪)</value>
+  </data>
+  <data name="OldPrice" xml:space="preserve">
+    <value>نرخی کۆن</value>
+  </data>
+  <data name="ShowDiscountBanner" xml:space="preserve">
+    <value>پیشان دانی داشکاندن </value>
+  </data>
+  <data name="Visits" xml:space="preserve">
+    <value>ڕێژەی بینین</value>
+  </data>
+  <data name="CenterType" xml:space="preserve">
+    <value>جۆری سەنتەر</value>
+  </data>
+</root>

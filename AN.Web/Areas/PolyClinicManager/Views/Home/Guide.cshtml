@@ -1,0 +1,1075 @@
+﻿<!DOCTYPE html>
+<!--[if lt IE 7 ]><html class="ie ie6" lang="en"> <![endif]-->
+<!--[if IE 7 ]><html class="ie ie7" lang="en"> <![endif]-->
+<!--[if IE 8 ]><html class="ie ie8" lang="en"> <![endif]-->
+<!--[if (gte IE 9)|!(IE)]><!-->
+<html lang="en">
+<!--<![endif]-->
+
+<head>
+
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+    <meta name="description" content="">
+    <meta name="author" content="">
+    <meta name="keywords" content="">
+
+    <title>Item Name | Documentation by Author Name</title>
+
+    <link rel="shortcut icon" href="~/images/guide/favicon.ico" type="image/x-icon">
+
+    <link rel="stylesheet" type="text/css" href="~/lib/font-awesome/css/fontawesome.min.css">
+    <link rel="stylesheet" type="text/css" href="~/css/guide/stroke.css">
+    <link rel="stylesheet" type="text/css" href="~/css/guide/bootstrap.css">
+    <link rel="stylesheet" type="text/css" href="~/css/guide/animate.css">
+    <link rel="stylesheet" type="text/css" href="~/css/guide/prettyPhoto.css">
+    <link rel="stylesheet" type="text/css" href="~/css/guide/style.css">
+
+    <link rel="stylesheet" type="text/css" href="~/js/guide/syntax-highlighter/styles/shCore.css" media="all">
+    <link rel="stylesheet" type="text/css" href="~/js/guide/syntax-highlighter/styles/shThemeRDark.css" media="all">
+
+    <!-- CUSTOM -->
+    <link rel="stylesheet" type="text/css" href="~/css/guide/custom.css">
+
+    <!-- HTML5 shim and Respond.js for IE8 support of HTML5 elements and media queries -->
+    <!--[if lt IE 9]>
+      <script src="https://oss.maxcdn.com/html5shiv/3.7.2/html5shiv.min.js"></script>
+      <script src="https://oss.maxcdn.com/respond/1.4.2/respond.min.js"></script>
+    <![endif]-->
+
+</head>
+
+<body>
+
+    <div id="wrapper">
+
+        <div class="container">
+
+            <section id="top" class="section docs-heading">
+
+                <div class="row">
+                    <div class="col-md-12">
+                        <div class="big-title text-center">
+                            <h1>How to use AwroNore's Cpanel</h1>
+                            <p class="lead">Step by step guide - version 1.0</p>
+                        </div>
+                        <!-- end title -->
+                    </div>
+                    <!-- end 12 -->
+                </div>
+                <!-- end row -->
+
+                <hr>
+
+            </section>
+            <!-- end section -->
+
+            <div class="row">
+
+                <div class="col-md-4">
+                    <nav class="docs-sidebar" data-spy="affix" data-offset-top="300" data-offset-bottom="200" role="navigation">
+                        <ul class="nav">
+                            <li>
+                                <a href="#line1">How to filter the appointments?</a>
+                                <ul class="nav">
+                                    <li><a href="#line1_1">Today</a></li>
+                                    <li><a href="#line1_2">New</a></li>
+                                    <li><a href="#line1_3">Done</a></li>
+                                    <li><a href="#line1_4">All list</a></li>
+                                </ul>
+                            </li>
+
+                            <li>
+                                <a href="#line2">How to create patient profile?</a>
+                                <ul class="nav">
+                                    <li><a href="#line2_1">Search and add</a></li>
+                                    <li><a href="#line2_2">Add new</a></li>
+                                </ul>
+                            </li>
+
+                            <li>
+                                <a href="#line3">How to define a schedule?</a>
+                                <ul class="nav">
+                                    <li><a href="#line3_1">General Schedule</a></li>
+                                    <li><a href="#line3_2">Manual scheduling</a></li>
+                                </ul>
+                            </li>
+                            <li>
+                                <a href="#line4">How to reserve an appointment?</a>
+                                <ul class="nav">
+                                    <li><a href="#line4_1">Reserve appointment</a></li>
+                                </ul>
+                            </li>
+                            <li>
+                                <a href="#line5">How to delete a schedule?</a>
+                                <ul class="nav">
+                                    <li><a href="#line5_1">Delete a general schedule</a></li>
+                                    <li><a href="#line5_2">Delete a manual schedule</a></li>
+                                </ul>
+                            </li>
+                            <li>
+                                <a href="#line6">How to edit a schedule?</a>
+                                <ul class="nav">
+                                    <li><a href="#line6_1">Edit a general schedule</a></li>
+                                    <li><a href="#line6_2">Edit a manual schedule</a></li>
+                                </ul>
+                            </li>
+                            <li>
+                                <a href="#line7">How to edit your polyclinic information?</a>
+                                <ul class="nav">
+                                </ul>
+                            </li>
+                            <li>
+                                <a href="#line8">How to add/remove doctors from your polyclinic?</a>
+                                <ul class="nav">
+                                    <li><a href="#line8_1">Add / Remove doctors</a></li>
+                                    <li><a href="#line8_2">Edit / Assign doctor's specialities / grades</a></li>
+                                    <li><a href="#line8_3">Activate / Disable doctors</a></li>
+                                </ul>
+                            </li>
+                            <li>
+                                <a href="#line9">How to choose the services your polyclinic provides?</a>
+                                <ul class="nav">
+                                </ul>
+                            </li>
+                            <li>
+                                <a href="#line11">How to put attachments for patients?</a>
+                                <ul class="nav">
+                                </ul>
+                            </li>
+                            <li>
+                                <a href="#line12">How to upload images to polyclinic's gallery?</a>
+                                <ul class="nav">
+                                </ul>
+                            </li>
+                            <li>
+                                <a href="#line13">How to put offer for doctors?</a>
+                                <ul class="nav">
+                                </ul>
+                            </li>
+                            <li>
+                                <a href="#line14">Patients' visits</a>
+                                <ul class="nav">
+                                    <li><a href="#line14_1">How to write down patients' history</a></li>
+                                    <li><a href="#line14_2">How to prescribe treatments for patient</a></li>
+                                    <li><a href="#line14_3">How to request a sonar</a></li>
+                                    <li><a href="#line14_4">How to request lab test</a></li>
+                                </ul>
+                            </li>
+                            <li>
+                                <a href="#line15">How to edit patients' prescription</a>
+                                <ul class="nav">
+                                </ul>
+                            </li>
+                        </ul>
+                    </nav>
+                </div>
+
+
+
+                <div class="col-md-8">
+
+
+                    <section id="line1" class="section">
+
+                        <div class="row">
+                            <div class="col-md-12 left-align">
+                                <h2 class="dark-text">How to filter the appointments? <a href="#top">back to top</a><hr></h2>
+                                <p><b>Cpanel -> Appointments</b></p>
+
+                            </div>
+                            <!-- end col -->
+                        </div>
+                        <!-- end row -->
+
+
+
+                        <div class="row">
+                            <div class="col-md-4">
+                                <img src="~/images/guide/upload/TodayButton.jpg" alt="" class="img-responsive img-thumbnail">
+                            </div>
+
+                            <div class="col-md-8">
+                                <h4 id="line1_1">Today</h4>
+                                <p>In this tab, you can find all of the appointments requested today. You can filter out the appointments based by "Status" of the appoinment and then hit "Filter" to show the final result.</p>
+                            </div>
+
+                            <!-- end col -->
+                        </div>
+                        <!-- end row -->
+                        <div class="row">
+                            <div class="col-md-12" style="margin-top: 16px; ">
+
+                                <img src="~/images/guide/upload/2.jpg" alt="" class="img-responsive img-thumbnail">
+                            </div>
+                        </div>
+
+
+                        <hr>
+
+                        <div class="row">
+                            <div class="col-md-4">
+                                <img src="~/images/guide/upload/NewButton.jpg" alt="" class="img-responsive img-thumbnail">
+                            </div>
+
+                            <div class="col-md-8">
+                                <h4 id="line1_2">New</h4>
+                                <p>In this tab, you can find all of the new appointments requests. You can filter out the new appointments by date "from - to" and then hit "Filter" to show the final result. And as seen the status of the appointments will be set to "Pending" by default.</p>
+                            </div>
+
+                            <!-- end col -->
+                        </div>
+                        <!-- end row -->
+                        <div class="row">
+                            <div class="col-md-12" style="margin-top: 16px; ">
+
+                                <img src="~/images/guide/upload/new_subimage.jpg" alt="" class="img-responsive img-thumbnail">
+                            </div>
+                        </div>
+
+                        <hr>
+
+                        <div class="row">
+                            <div class="col-md-4">
+                                <img src="~/images/guide/upload/DoneButton.jpg" alt="" class="img-responsive img-thumbnail">
+                            </div>
+
+                            <div class="col-md-8">
+                                <h4 id="line1_3">Done</h4>
+                                <p>Is the list of all appointments that are done.</p>
+                            </div>
+
+                        </div>
+                        <!-- end row -->
+                        <div class="row">
+                            <div class="col-md-12" style="margin-top: 16px; ">
+
+                                <img src="~/images/guide/upload/Done_subimage.jpg" alt="" class="img-responsive img-thumbnail">
+
+                            </div>
+                        </div>
+
+
+                        <hr>
+
+                        <div class="row">
+                            <div class="col-md-4">
+                                <img src="~/images/guide/upload/AllButton.jpg" alt="" class="img-responsive img-thumbnail">
+                            </div>
+
+                            <div class="col-md-8">
+                                <h4 id="line1_4">All</h4>
+                                <p>In this tab, you can filter out all of the appointment based on their status and their date as needed.</p>
+                            </div>
+
+                            <!-- end col -->
+                        </div>
+                        <!-- end row -->
+                        <div class="row">
+                            <div class="col-md-12" style="margin-top: 16px; ">
+
+                                <img src="~/images/guide/upload/All_subimage.jpg" alt="" class="img-responsive img-thumbnail">
+
+                            </div>
+                        </div>
+                        <hr>
+                        <p>Some general notes:</p>
+                        <p>1. <img src="~/images/guide/upload/Phone.jpg" style="width: 20px; vertical-align: baseline;"> symbol means that the patient has taken appointment through the AwroNore application, if patient does not have any symbol, it means they have taken an appointment in the clinic.</p>
+                        <p>2. <img src="~/images/guide/upload/PendingAppointment.jpg" style="width: 20px; vertical-align: baseline;"> symbol means that the patient is in pending case.</p>
+                        <p>3. <img src="~/images/guide/upload/DoneAppointment.jpg" style="width: 20px; vertical-align: baseline;"> symbol means that the patient is in done.</p>
+                    </section>
+                    <!-- end section 1 -->
+
+
+                    <section id="line2" class="section">
+
+                        <div class="row">
+                            <div class="col-md-12 left-align">
+                                <h2 class="dark-text">How to create a patient profile<a href="#top">back to top</a><hr></h2>
+                                <p><b>Cpanel -> Patients</b></p>
+                                <h4>There are two ways to cearte a patient profile:</h4>
+                                <p>A patient profile creation can be done in two ways, in which we have explained in the next sections. To create a profile for a patient first tap on <img src="~/images/guide/upload/AddNewPatient_Button.jpg" style="width: 120px; vertical-align: baseline;">.</p>
+
+                            </div>
+                            <!-- end col -->
+                        </div>
+                        <!-- end row -->
+
+
+
+                        <div class="row">
+                            <div class="col-md-0">
+                                <!-- <a href="upload/TodayButton.jpg" data-rel="prettyPhoto"><img src="~/images/guide/upload/TodayButton.jpg" alt="" class="img-responsive img-thumbnail"></a> -->
+                            </div>
+
+                            <div class="col-md-12">
+                                <h4 id="line2_1">1. Search and add</h4>
+                                <p>The 'Search & Add' is for the patients who have already used AwroNore either through the system that was used in another clinic or through the application itself.</p>
+                                <p>To search for a patient to add, first enter their number and then hit "Search & Add" as shown in the image below.</p>
+
+                            </div>
+
+                            <div class="clearfix"></div>
+                            <div class="col-md-12" style="margin-top: 16px; ">
+
+                                <img src="~/images/guide/upload/searchandadd_subimage.jpg" alt="" class="img-responsive img-thumbnail">
+                                <p>When you hit "Search and Add" the below window will pop open. Choose the doctor you want to add the patient for, then hit the <img src="~/images/guide/upload/AddNew.jpg" style="width: 60px; vertical-align: baseline;"> button to add the patient to your patients list.</p>
+                                <img src="~/images/guide/upload/PatientCreation.jpg" alt="" class="img-responsive img-thumbnail">
+
+                            </div>
+                            <!-- end col -->
+                        </div>
+                        <!-- end row -->
+
+
+                        <hr>
+
+                        <div class="row">
+                            <div class="col-md-4">
+                            </div>
+
+                            <div class="col-md-12">
+                                <h4 id="line2_2">2. Add new</h4>
+                                <p>The 'Add new' is for patients who haven't used AwroNore at all and need a profile from scratch.</p>
+                            </div>
+
+
+                            <div class="clearfix"></div>
+                            <div class="col-12" style="margin-top: 16px; padding-left: 16px;">
+
+                                <img src="~/images/guide/upload/AddNew_subimage.jpg" alt="" class="img-responsive img-thumbnail">
+                                <p>When you tab "Add new" button a new window will pop up where you can create a new patient as shown below. Fill in the basic information for the patient and then hit "Add new patient" button.</p>
+                                <img src="~/images/guide/upload/PatientCreation2.jpg" alt="" class="img-responsive img-thumbnail">
+
+
+                            </div>
+                            <!-- end col -->
+                        </div>
+                        <!-- end row -->
+                    </section>
+                    <!-- end section 2 -->
+
+                    <section id="line3" class="section">
+
+                        <div class="row">
+                            <div class="col-md-12 left-align">
+                                <h2 class="dark-text">How to define a schedule? <a href="#top">back to top</a></h2><hr>
+                            </div>
+                            <!-- end col -->
+                        </div>
+                        <!-- end row -->
+
+
+
+                        <div class="row">
+                            <h4>There are two ways to define a schedule:</h4>
+                            <div class="col-md-12">
+                                <img src="~/images/guide/upload/GeneralSchedule.jpg" alt="" class="img-responsive img-thumbnail" style="float: left; margin-right: 16px;">
+
+                                <h4 id="line3_1">1. General schedule</h4>
+                                <p><b>Settings -> General schedule</b></p>
+                                <p>Here the schedule is set and is general which means if you set the schedule for Saturday it applies to the next weeks Saturday and the one after that and so on.</p>
+                                <p>As shown in the figure below, to add your clinic schedule, you have to choose in the Day, Shift, From time, To time, Service and maximum capacity.</p>
+                                <p>The "Day" drop down list is to select the days you want to define schedule for.</p>
+                                <p>In general, there are two types of shifts in which you can define in the system, Morning shift which starts from 06:00 - 14:00, and Evening shift which starts from 14:00 - 23:00 </p>
+                                <p>"Service" is the services you offer for the patients to take appointments from, you can drop down the "Services" list and choose a preffered timing for the services.</p>
+                                <p>"Maximum capacity" field is to define how many patients can reserve an appointment during the shifts you defined.</p>
+                            </div>
+                            <!-- end col -->
+
+                        </div>
+                        <!-- end row -->
+
+                        <div class="row">
+                            <div class="col-md-12" style="margin-top: 16px; ">
+
+                                <img src="~/images/guide/upload/AddShift.jpg" alt="" class="img-responsive img-thumbnail">
+                            </div>
+                        </div>
+
+                        <hr>
+
+
+                        <div class="row">
+                            <div class="col-md-12">
+                                <img src="~/images/guide/upload/Doctor_Button.jpg" alt="" class="img-responsive img-thumbnail" style="float: left; margin-right: 16px;">
+
+                                <h4 id="line3_2">2. Manual Scheduling</h4>
+                                <p><b>Doctors -> Scheduling</b></p>
+                                <p>Here is the day by day scheduling. You can put a separate schedule here for example for Saturday and it will apply to this Saturday only not every week.</p>
+                                <p>To add a specific schedule for the for a day in the week use this type of scheduling.</p>
+                            </div>
+                            <!-- end col -->
+
+                        </div>
+                        <!-- end row -->
+
+                        <div class="row">
+                            <div class="col-md-12" style="margin-top: 16px; ">
+                                <p>First hit "Scheduling" button the the scheduling table will open.</p>
+                                <img src="~/images/guide/upload/scheduling.jpg" alt="" class="img-responsive img-thumbnail">
+                                <p>In the below scheduling table, choose the preffered day to put a specific schedule for by using <img src="~/images/guide/upload/NextBack_button.jpg" style="width: 80px; vertical-align: baseline;"> or select <img src="~/images/guide/upload/TodayCOA.jpg" style="width: 55px; vertical-align: baseline;"> if you want to schedule a specific schedule for it.  </p>
+                                <img src="~/images/guide/upload/manual_scheduling.jpg" alt="" class="img-responsive img-thumbnail">
+                                <p>Drag and drop the timing you want to set for the day you have selected and a new window will pop up as shown below, fill in the required fields then hit on "Save"</p>
+                                <img src="~/images/guide/upload/ManualSchedulingConfiguration.jpg" alt="" class="img-responsive img-thumbnail">
+                                <p>Finally as seen in the below image, the schedule for that specific day will be set.</p>
+                                <img src="~/images/guide/upload/manual_scheduling2.jpg" alt="" class="img-responsive img-thumbnail">
+                                <hr>
+                                <p>To disable the doctor for a period due to non-availability do as follows: <b>first </b>click on the timing you want as shown below</p>
+                                <img src="~/images/guide/upload/DisableSchedule.jpg" alt="" class="img-responsive img-thumbnail">
+                                <p><b>Second</b> when the below window pops open change the status from <img src="~/images/guide/upload/StatusON.jpg" style="width: 30px; vertical-align: baseline;"> to <img src="~/images/guide/upload/StatusOff.jpg" style="width: 30px; vertical-align: baseline;"> the hit the <img src="~/images/guide/upload/Update_Button.jpg" style="width: 50px; vertical-align: baseline;"> button</p>
+                                <img src="~/images/guide/upload/EditScheduleWindow1.jpg" alt="" class="img-responsive img-thumbnail">
+                                <hr>
+                                <p>To disable the doctor for a a whole day: <b>first </b>click on the timing you want as shown below</p>
+                                <img src="~/images/guide/upload/DisableDoctorForAllDay.jpg" alt="" class="img-responsive img-thumbnail">
+                                <p><b>Second</b> when the below window pops open, you have all of the information of the doctor disabling, then hit "disable doctor for all day"</p>
+                                <img src="~/images/guide/upload/DisableDoctorWindow.jpg" alt="" class="img-responsive img-thumbnail">
+                                <p>Then when disabled the below window will be shown.</p>
+                                <img src="~/images/guide/upload/DoctorDisableForAllDay.jpg" alt="" class="img-responsive img-thumbnail">
+
+
+
+
+
+
+                            </div>
+                        </div>
+                    </section>
+                    <!-- end section 3 -->
+
+                    <hr>
+
+                    <section id="line4" class="section">
+
+                        <div class="row">
+                            <div class="col-md-12 left-align">
+                                <h2 class="dark-text">How to reserve an appointment for the patient?<a href="#top">back to top</a><hr></h2>
+                                <p><b>Cpanel -> Reserve appointment</b></p>
+                                <p>When a patient comes into the clinic or calls for an appointment, you create a profile for them as explained in <a href="#line2">patient profile creation</a>, and when you already have created a schedule as explained in <a href="#line3">"How to define a schedule?"</a>, hit the <img src="~/images/guide/upload/ReserveAppointment_Button.jpg" style="width: 190px; vertical-align: baseline;"> button, and then do as below:</p>
+
+                            </div>
+                            <!-- end col -->
+                        </div>
+                        <!-- end row -->
+
+
+
+                        <div class="row">
+                            <div class="col-md-0">
+                            </div>
+
+                            <div class="col-md-12">
+                                <p id="line4_1">1. Search for needed Patient, Date, Service, and Doctor, to reserve an appointment for as shown below then hit the <img src="~/images/guide/upload/Appointments_button.jpg" style="width: 160px; vertical-align: baseline;"> button.</p>
+                                <img src="~/images/guide/upload/PatientAppointment.jpg" alt="" class="img-responsive img-thumbnail">
+                                <p>2. The below window will pop open, then from the list of available appointments, choose the best suited with the patient and hit <img src="~/images/guide/upload/ReserveThisAppointment_Button2.jpg" style="width: 160px; vertical-align: baseline;">.</p>
+                                <img src="~/images/guide/upload/ReserveThisAppointment_Button.jpg" alt="" class="img-responsive img-thumbnail">
+                                <p>3. Revise and final book the appointment for the patient.</p>
+                                <img src="~/images/guide/upload/FinalBook_Button.jpg" alt="" class="img-responsive img-thumbnail">
+
+                            </div>
+
+                            <div class="clearfix"></div>
+                            <div class="col-md-12" style="margin-top: 16px; ">
+
+                            </div>
+                            <!-- end col -->
+                        </div>
+                        <!-- end row -->
+
+                    </section>
+                    <!-- end section 4 -->
+
+
+
+
+                    <section id="line5" class="section">
+
+                        <div class="row">
+                            <div class="col-md-12 left-align">
+                                <h2 class="dark-text">How to delete a schedule?<a href="#top">back to top</a><hr></h2>
+
+                            </div>
+                            <!-- end col -->
+                        </div>
+                        <!-- end row -->
+
+
+
+                        <div class="row">
+                            <div class="col-md-0">
+                            </div>
+
+                            <div class="col-md-12">
+                                <h4 id="line5_1">1. How to delete a general schedule?</h4>
+                                <p><b>Cpanel -> Settings -> General Schedule</b></p>
+                                <p>Deleting is through the delete button in 'general schedule' as shown in the image below.</p>
+                                <img src="~/images/guide/upload/DeleteGeneralSchedule.jpg" alt="" class="img-responsive img-thumbnail">
+                                <p>Then this below window will pop, hit "Delete" button.</p>
+                                <img src="~/images/guide/upload/DeleteScheduleAction_Button.jpg" alt="" class="img-responsive img-thumbnail">
+
+
+
+                            </div>
+
+                            <div class="clearfix"></div>
+                            <div class="col-md-12" style="margin-top: 16px; ">
+
+                            </div>
+                            <!-- end col -->
+                        </div>
+                        <!-- end row -->
+
+                        <div class="row">
+                            <div class="col-md-0">
+                            </div>
+
+                            <div class="col-md-12">
+                                <h4 id="line5_2">2. How to delete a manual schedule?</h4>
+                                <p><b>Cpanel -> Settings -> Doctors -> Scheduling</b></p>
+                                <p>Deleting is through double click in "manual schedule" as shown in the image below.</p>
+                                <img src="~/images/guide/upload/DeleteManualSchedule.jpg" alt="" class="img-responsive img-thumbnail">
+                                <p>Then this below window will pop, hit "Delete" button.</p>
+                                <img src="~/images/guide/upload/DeleteScheduleAction_Button2.jpg" alt="" class="img-responsive img-thumbnail">
+
+
+
+                            </div>
+
+                            <div class="clearfix"></div>
+                            <div class="col-md-12" style="margin-top: 16px; ">
+
+                            </div>
+                            <!-- end col -->
+                        </div>
+                        <!-- end row -->
+
+
+                    </section>
+                    <!-- end section 5 -->
+
+                    <section id="line6" class="section">
+
+                        <div class="row">
+                            <div class="col-md-12 left-align">
+                                <h2 class="dark-text">How to edit a schedule?<a href="#top">back to top</a><hr></h2>
+
+                            </div>
+                            <!-- end col -->
+                        </div>
+                        <!-- end row -->
+
+
+
+                        <div class="row">
+                            <div class="col-md-0">
+                            </div>
+
+                            <div class="col-md-12">
+                                <h4 id="line6_1">1. How to edit a general schedule?</h4>
+                                <p>Editing cannot be done in general schedule. You should delete the schedule as shown in <a href="#line5_1">delete a general schedule</a>, and then add the new desired schedule.</p>
+
+                            </div>
+
+                            <div class="clearfix"></div>
+                            <div class="col-md-12" style="margin-top: 16px; ">
+
+                            </div>
+                            <!-- end col -->
+                        </div>
+                        <!-- end row -->
+
+                        <div class="row">
+                            <div class="col-md-0">
+                            </div>
+
+                            <div class="col-md-12">
+                                <h4 id="line6_2">2. How to edit a manual schedule?</h4>
+                                <p><b>Cpanel -> Settings -> Doctors -> Scheduling</b></p>
+                                <p>Editing is through first double clicking in manual schedule.</p>
+                                <img src="~/images/guide/upload/DeleteManualSchedule.jpg" alt="" class="img-responsive img-thumbnail">
+                                <p>Then this below window will pop, edit the fields you want, then hit "Update" button.</p>
+                                <img src="~/images/guide/upload/EditScheduleAction_Button.jpg" alt="" class="img-responsive img-thumbnail">
+
+
+
+                            </div>
+
+                            <div class="clearfix"></div>
+                            <div class="col-md-12" style="margin-top: 16px; ">
+
+                            </div>
+                            <!-- end col -->
+                        </div>
+                        <!-- end row -->
+
+
+                    </section>
+                    <!-- end section 6 -->
+
+                    <section id="line7" class="section">
+
+                        <div class="row">
+                            <div class="col-md-12 left-align">
+                                <h2 class="dark-text">How to edit your polyclinic information?<a href="#top">back to top</a><hr></h2>
+                                <p><b>Cpanel -> Settings -> Edit</b></p>
+
+                            </div>
+                            <!-- end col -->
+                        </div>
+                        <!-- end row -->
+
+
+
+                        <div class="row">
+                            <div class="col-md-0">
+                            </div>
+
+                            <div class="col-md-12">
+                                <p>First select the type of the clinic, city of clinic and location. Then enter all of the necessary data for your clinic in the Three available languages. Enter the phone number for clinic and if you want it to be available in the application check the box next to it. </p>
+                                <p>The "active days ahead" is very important, it goes back to the general schedule and allows the patients to find the schedule for how many days in the future. For example, if you put active days ahead for 30 days, the general schedule will not be available in the app for next two months for patients to take appointment. </p>
+                                <img src="~/images/guide/upload/EditInformation.jpg" alt="" class="img-responsive img-thumbnail">
+
+
+                            </div>
+
+                            <div class="clearfix"></div>
+                            <div class="col-md-12" style="margin-top: 16px; ">
+
+                            </div>
+                            <!-- end col -->
+                        </div>
+                        <!-- end row -->
+
+                    </section>
+                    <!-- end section 7 -->
+
+                    <section id="line8" class="section">
+
+                        <div class="row">
+                            <div class="col-md-12 left-align">
+                                <h2 class="dark-text">How to Add / Remove doctors from polyclinic?<a href="#top">back to top</a><hr></h2>
+
+                            </div>
+                            <!-- end col -->
+                        </div>
+                        <!-- end row -->
+
+
+
+                        <div class="row">
+                            <div class="col-md-0">
+                            </div>
+
+                            <div class="col-md-12">
+                                <h4 id="line8_1">Add / Remove doctors</h4>
+                                <p><b>Cpanel -> Settings -> Doctors</b></p>
+                                <p>Fist select the doctor from the "UserDoctorID" dropdown list, then enter the doctors "Medical council number", select "Reservation type" as Selective, and for the "Reservation limitation for days: From" select "With starting visit time" and the "Reservation limitation for days: To" select "With starting visit time". </p>
+                                <p>In the description area, input the description of the doctor in all available languages for so it would be shown to the users.</p>
+                                <img src="~/images/guide/upload/AddDoctors.jpg" alt="" class="img-responsive img-thumbnail">
+
+                            </div>
+
+                            <div class="clearfix"></div>
+                            <div class="col-md-12" style="margin-top: 16px; ">
+
+                            </div>
+                            <!-- end col -->
+                        </div>
+                        <!-- end row -->
+
+                        <div class="row">
+                            <div class="col-md-0">
+                            </div>
+
+                            <div class="col-md-12">
+                                <h4 id="line8_2">Assign / Remove doctor's specialities / grade</h4>
+                                <p><b>1. Assign / Remove doctor's specialities</b></p>
+                                <p><b>Cpanel -> Settings -> Doctors -> Specialities</b></p>
+                                <p>To assign a speciality to a doctor tap the specialities button <img src="~/images/guide/upload/Specialities_Button.jpg" style="width: 50px; vertical-align: baseline;"> then choose the speciality "Category" and the sub-speciality "Expertise" of the doctor as shown below and then hit <img src="~/images/guide/upload/AddNew.jpg" style="width: 70px; vertical-align: baseline;"> button.</p>
+                                <img src="~/images/guide/upload/ChooseSpeciality.jpg" alt="" class="img-responsive img-thumbnail">
+                                <p>To remove a speciality to a doctor tap the specialities button <img src="~/images/guide/upload/Specialities_Button.jpg" style="width: 50px; vertical-align: baseline;"> then in the "Doctor expertises list" hit the <img src="~/images/guide/upload/Remove_Button.jpg" style="width: 30px; vertical-align: baseline;"> button.</p>
+                                <hr>
+                                <p><b>2. Assign / Remove doctor's grades</b></p>
+                                <p><b>Cpanel -> Settings -> Doctors -> Grades</b></p>
+                                <p>To assign a grade to a doctor tap the grades button <img src="~/images/guide/upload/Grades_Button.jpg" style="width: 30px; vertical-align: baseline;"> then choose the "Grades" and then hit <img src="~/images/guide/upload/Update_Button.jpg" style="width: 50px; vertical-align: baseline;"> button.</p>
+                                <p>For removing go to Cpanel -> Settings -> Doctors -> Grades then hit the cross to remove the assigned speciality.</p>
+                            </div>
+
+                            <div class="clearfix"></div>
+                            <div class="col-md-12" style="margin-top: 16px; ">
+
+                            </div>
+                            <!-- end col -->
+                        </div>
+                        <!-- end row -->
+
+                        <div class="row">
+                            <div class="col-md-0">
+                            </div>
+
+                            <div class="col-md-12">
+                                <h4 id="line8_3">Activate / Disable doctor</h4>
+                                <p><b>Cpanel -> Settings -> Doctors -> Activate</b></p>
+                                <p>To disable a currently activates doctor, first hit on the <img src="~/images/guide/upload/Activate_Button.jpg" style="width: 60px; vertical-align: baseline;"> button then if it shows this message "This doctor have X pending turns" hit <img src="~/images/guide/upload/CancelAll_Button.jpg" style="width: 150px; vertical-align: baseline;"> button.</p>
+                                <p>To enable a disabled doctor, first hit on the <img src="~/images/guide/upload/InactiveButton.jpg" style="width: 60px; vertical-align: baseline;"> button then hit <img src="~/images/guide/upload/Enabling_Button.jpg" style="width: 60px; vertical-align: baseline;"> button.</p>
+
+                            </div>
+
+                            <div class="clearfix"></div>
+                            <div class="col-md-12" style="margin-top: 16px; ">
+
+                            </div>
+                            <!-- end col -->
+                        </div>
+                        <!-- end row -->
+
+                    </section>
+                    <!-- end section 8 -->
+
+
+                    <section id="line9" class="section">
+
+                        <div class="row">
+                            <div class="col-md-12 left-align">
+                                <h2 class="dark-text">How to choose the services your polyclinic provides?<a href="#top">back to top</a><hr></h2>
+                                <p><b>Cpanel -> Settings -> Services</b></p>
+
+                            </div>
+                            <!-- end col -->
+                        </div>
+                        <!-- end row -->
+
+
+
+                        <div class="row">
+                            <div class="col-md-0">
+                            </div>
+
+                            <div class="col-md-12">
+                                <p>Check the services your polyclinic provides as shown below then tap the <img src="~/images/guide/upload/Save_Button.jpg" style="width: 80px; vertical-align: sub;"> button.</p>
+                                <img src="~/images/guide/upload/Services.jpg" alt="" class="img-responsive img-thumbnail">
+
+                            </div>
+
+                            <div class="clearfix"></div>
+                            <div class="col-md-12" style="margin-top: 16px; ">
+
+                            </div>
+                            <!-- end col -->
+                        </div>
+                        <!-- end row -->
+
+                    </section>
+                    <!-- end section 9 -->
+
+
+                    <section id="line11" class="section">
+
+                        <div class="row">
+                            <div class="col-md-12 left-align">
+                                <h2 class="dark-text">How to put attachments for patients?<a href="#top">back to top</a><hr></h2>
+                                <p><b>Cpanel -> Patients</b></p>
+
+                            </div>
+                            <!-- end col -->
+                        </div>
+                        <!-- end row -->
+
+
+
+                        <div class="row">
+                            <div class="col-md-0">
+                            </div>
+
+                            <div class="col-md-12">
+                                <p>1. You can choose the latest patient in the list, or search for the patient in the search bar by phone number, tracking code or period of time, as shown bellow and hit <img src="~/images/guide/upload/Filter_Button.jpg" style="width: 60px; vertical-align: sub;"> </p>
+                                <img src="~/images/guide/upload/PatientSearchBar.jpg" alt="" class="img-responsive img-thumbnail">
+                                <p>2. The patient found, then hit the attachment button <img src="~/images/guide/upload/Attachment_Button.jpg" style="width: 30px; vertical-align: sub;">.</p>
+                                <img src="~/images/guide/upload/FoundPatient.jpg" alt="" class="img-responsive img-thumbnail">
+                                <p>3. Hit <img src="~/images/guide/upload/Browse.jpg" style="width: 120px; vertical-align: baseline;"> as shown below.</p>
+                                <img src="~/images/guide/upload/AttachmentUpload.jpg" alt="" class="img-responsive img-thumbnail">
+                                <p>4. When uploaded hit <img src="~/images/guide/upload/Upload_Button.jpg" style="width: 30px; vertical-align: baseline;"> for final uploading as shown below.</p>
+                                <img src="~/images/guide/upload/UploadWindow.jpg" alt="" class="img-responsive img-thumbnail">
+
+                            </div>
+
+                            <div class="clearfix"></div>
+                            <div class="col-md-12" style="margin-top: 16px; ">
+
+                            </div>
+                            <!-- end col -->
+                        </div>
+                        <!-- end row -->
+
+                    </section>
+                    <!-- end section 11 -->
+
+                    <section id="line12" class="section">
+
+                        <div class="row">
+                            <div class="col-md-12 left-align">
+                                <h2 class="dark-text">How to upload images to polyclinic's gallery?<a href="#top">back to top</a><hr></h2>
+                                <p><b>Cpanel -> Settings -> Edit -> Images</b></p>
+
+                            </div>
+                            <!-- end col -->
+                        </div>
+                        <!-- end row -->
+
+
+
+                        <div class="row">
+                            <div class="col-md-0">
+                            </div>
+
+                            <div class="col-md-12">
+                                <p>1. Tap the images button <img src="~/images/guide/upload/Images_Button.jpg" style="width: 80px; vertical-align: sub;"> in the upper section.</p>
+                                <p>2. In the gallery section <img src="~/images/guide/upload/GallerySection.jpg" style="width: 60px; vertical-align: sub;"> tap the browse button <img src="~/images/guide/upload/Browse.jpg" style="width: 90px; vertical-align: sub;"> beneath.</p>
+                                <p>3. When uploaded hit <img src="~/images/guide/upload/Upload_Button.jpg" style="width: 30px; vertical-align: baseline;"> for final uploading.</p>
+                                <img src="~/images/guide/upload/GalleryWindow.jpg" alt="" class="img-responsive img-thumbnail">
+
+                            </div>
+
+                            <div class="clearfix"></div>
+                            <div class="col-md-12" style="margin-top: 16px; ">
+
+                            </div>
+                            <!-- end col -->
+                        </div>
+                        <!-- end row -->
+
+                    </section>
+                    <!-- end section 12 -->
+
+                    <section id="line13" class="section">
+
+                        <div class="row">
+                            <div class="col-md-12 left-align">
+                                <h2 class="dark-text">How to put offer for doctors?<a href="#top">back to top</a><hr></h2>
+                                <p><b>Cpanel -> Offers</b></p>
+
+                            </div>
+                            <!-- end col -->
+                        </div>
+                        <!-- end row -->
+
+
+
+                        <div class="row">
+                            <div class="col-md-0">
+                            </div>
+
+                            <div class="col-md-12">
+                                <p>1. The doctor you choose to put offer for must have schedule.</p>
+                                <p>2. In the offer section tap <img src="~/images/guide/upload/PlusSignButton.jpg" style="width: 30px; vertical-align: sub;"> then the below window will pop.</p>
+                                <img src="~/images/guide/upload/AddNewOffer.jpg" alt="" class="img-responsive img-thumbnail">
+                                <p>3. Choose a date and period for the offer, a doctor that owns the offer, the service of the offer and the maximum allowed people that can take the offer then hit <img src="~/images/guide/upload/AddNew.jpg" style="width: 60px; vertical-align: sub;"> .</p>
+
+
+                            </div>
+
+                            <div class="clearfix"></div>
+                            <div class="col-md-12" style="margin-top: 16px; ">
+
+                            </div>
+                            <!-- end col -->
+                        </div>
+                        <!-- end row -->
+
+                    </section>
+                    <!-- end section 13 -->
+
+                    <section id="line14" class="section">
+
+                        <div class="row">
+                            <div class="col-md-12 left-align">
+                                <h2 id="line14" class="dark-text">Patients' visits<a href="#top">back to top</a><hr></h2>
+
+                            </div>
+                            <!-- end col -->
+                        </div>
+                        <!-- end row -->
+
+
+
+                        <div class="row">
+                            <div class="col-md-0">
+                            </div>
+
+                            <div class="col-md-12">
+                                <h4 id="line14_1">How to write down patients' history</h4>
+                                <p><b>Cpanel -> Patients -> Visit info -> Treatments</b></p>
+                                <p>1. You can choose the latest patient in the list, or search for the patient in the search bar by phone number, tracking code or period of time, as shown bellow and hit <img src="~/images/guide/upload/Filter_Button.jpg" style="width: 60px; vertical-align: sub;">.</p>
+                                <img src="~/images/guide/upload/SearchBar.jpg" alt="" class="img-responsive img-thumbnail">
+                                <p>2. Hit the visit info button <img src="~/images/guide/upload/VisitInfo.jpg" style="width: 30px; vertical-align: sub;"> and the below window will pop open, where you have the patient basic info in the left side and there is the "chief complaint" of the patient. And the doctor can see the previous visits' information of the patient.</p>
+                                <img src="~/images/guide/upload/VisitInfoWindow.jpg" alt="" class="img-responsive img-thumbnail">
+                                <p>3. In the treatment section <img src="~/images/guide/upload/Treatements_Button.jpg" style="width: 80px; vertical-align: sub;"> tap <img src="~/images/guide/upload/NewPlusButton.jpg" style="width: 60px; vertical-align: sub;"> .</p>
+                                <p>In the patient information field you could add variables to the patient</p>
+                                <img src="~/images/guide/upload/PatientInformation.jpg" alt="" class="img-responsive img-thumbnail">
+                                <p>4. For entering patients history hit <img src="~/images/guide/upload/PatientsHistory_Button.jpg" style="width: 100px; vertical-align: sub;"> button and the below window will open.</p>
+                                <img src="~/images/guide/upload/PatientHistory_Button.jpg" alt="" class="img-responsive img-thumbnail">
+                            </div>
+
+                            <div class="clearfix"></div>
+                            <div class="col-md-12" style="margin-top: 16px; ">
+
+                            </div>
+                            <!-- end col -->
+                        </div>
+                        <!-- end row -->
+                        <hr>
+                        <div class="row">
+                            <div class="col-md-0">
+                            </div>
+
+                            <div class="col-md-12">
+                                <h4 id="line14_2">How to prescribe treatments for patient</h4>
+                                <p><b>Cpanel -> Patients -> Visit info -> Treatments</b></p>
+                                <p>In the treatments section as shown below, you have the list of treatments for the patient in the "Drug" drop down. If the drug you searched is not available in the "Drug" drop down, write it in the "Drug Name" field.</p>
+                                <img src="~/images/guide/upload/Treatements_Section.jpg" alt="" class="img-responsive img-thumbnail">
+                                <p>To send the treatment directly to a pharmacy choose it the pharmacy in "send to pharmacy" section.</p>
+                                <img src="~/images/guide/upload/SendToPharmacy.jpg" alt="" class="img-responsive img-thumbnail">
+                                <p>Or simply you can print the priscripion and hand it to the patient by tapping <img src="~/images/guide/upload/Printing_Button.jpg" style="width: 30px; vertical-align: sub;"> where then the below window will open.</p>
+                                <img src="~/images/guide/upload/PrintPreview.jpg" alt="" class="img-responsive img-thumbnail">
+                                <p>Then from the upper left corner choose the print tab, and then tap on "Print without preview".</p>
+                                <img src="~/images/guide/upload/PrintDropDown.jpg" alt="" class="img-responsive img-thumbnail">
+
+
+                            </div>
+
+                            <div class="clearfix"></div>
+                            <div class="col-md-12" style="margin-top: 16px; ">
+
+                            </div>
+                            <!-- end col -->
+                        </div>
+                        <!-- end row -->
+
+                        <div class="row">
+                            <div class="col-md-0">
+                            </div>
+                            <hr>
+                            <div class="col-md-12">
+                                <h4 id="line14_3">How to request a sonar</h4>
+                                <p><b>Cpanel -> Patients -> Visit info -> Sonar requests</b></p>
+                                <p>1. You can choose the latest patient in the list, or search for the patient in the search bar by phone number, tracking code or period of time, as shown bellow and hit <img src="~/images/guide/upload/Filter_Button.jpg" style="width: 60px; vertical-align: sub;">.</p>
+                                <img src="~/images/guide/upload/SearchBar.jpg" alt="" class="img-responsive img-thumbnail">
+                                <p>2. Hit the visit info button <img src="~/images/guide/upload/VisitInfo.jpg" style="width: 30px; vertical-align: sub;"> and the below window will pop open, where you have the patient basic info in the left side.</p>
+                                <img src="~/images/guide/upload/SonarWindow.jpg" alt="" class="img-responsive img-thumbnail">
+                                <p>3. In the sonar requests section <img src="~/images/guide/upload/SonarRequests_Button.jpg" style="width: 80px; vertical-align: sub;"> tap <img src="~/images/guide/upload/RequestSonars_Button.jpg" style="width: 80px; vertical-align: sub;"> .</p>
+                                <p>4. In the patient information field you could add variables to the patient.</p>
+                                <img src="~/images/guide/upload/PatientInformation.jpg" alt="" class="img-responsive img-thumbnail">
+                                <p>5. To send the treatment directly to a sonograohy, choose a sonography from the "sonography" drop down list. And the "requests" field has sonograohy requests that you can choose from. Finally hit Send.</p>
+                                <img src="~/images/guide/upload/RequestSonars_Window.jpg" alt="" class="img-responsive img-thumbnail">
+                            </div>
+
+                            <div class="clearfix"></div>
+                            <div class="col-md-12" style="margin-top: 16px; ">
+
+                            </div>
+                            <!-- end col -->
+                        </div>
+                        <!-- end row -->
+                        <hr>
+                        <div class="row">
+                            <div class="col-md-0">
+                            </div>
+
+                            <div class="col-md-12">
+                                <h4 id="line14_4">How to request a lab test</h4>
+                                <p><b>Cpanel -> Patients -> Visit info -> Laboratory</b></p>
+                                <p>1. You can choose the latest patient in the list, or search for the patient in the search bar by phone number, tracking code or period of time, as shown bellow and hit <img src="~/images/guide/upload/Filter_Button.jpg" style="width: 60px; vertical-align: sub;">.</p>
+                                <img src="~/images/guide/upload/SearchBar.jpg" alt="" class="img-responsive img-thumbnail">
+                                <p>2. Hit the visit info button <img src="~/images/guide/upload/VisitInfo.jpg" style="width: 30px; vertical-align: sub;"> and the below window will pop open, where you have the patient basic info in the left side.</p>
+                                <img src="~/images/guide/upload/labortaryWindow.jpg" alt="" class="img-responsive img-thumbnail">
+                                <p>3. In the sonar requests section <img src="~/images/guide/upload/labortary_Button.jpg" style="width: 80px; vertical-align: sub;"> tap <img src="~/images/guide/upload/AddLabortaoty.jpg" style="width: 80px; vertical-align: sub;"> .</p>
+                                <p>4. In the patient information field you could add variables to the patient.</p>
+                                <img src="~/images/guide/upload/PatientInformation.jpg" alt="" class="img-responsive img-thumbnail">
+                                <p>5. To send the treatment directly to a laboratory, choose a laboratory from the "Laboratory" drop down list. And the "requests" field has laboratory requests that you can choose from. Finally hit Send.</p>
+                                <img src="~/images/guide/upload/laboratorySubWindow.jpg" alt="" class="img-responsive img-thumbnail">
+                                <hr>
+                                <p>You can do all the things explained in 'patients' visits' part immediately from the appointments section. In fact, when you press the 'accomplish' that's when the appointment can be found in 'done' section and the patient will receive a notification saying that the appointment has been done.</p>
+
+
+                            </div>
+
+                            <div class="clearfix"></div>
+                            <div class="col-md-12" style="margin-top: 16px; ">
+
+                            </div>
+                            <!-- end col -->
+                        </div>
+                        <!-- end row -->
+
+                    </section>
+                    <!-- end section 14 -->
+
+                    <section id="line15" class="section">
+
+                        <div class="row">
+                            <div class="col-md-12 left-align">
+                                <h2 id="line15" class="dark-text">Patients' prescription<a href="#top">back to top</a><hr></h2>
+
+                            </div>
+                            <!-- end col -->
+                        </div>
+                        <!-- end row -->
+
+
+
+                        <div class="row">
+                            <div class="col-md-0">
+                            </div>
+
+                            <div class="col-md-12">
+                                <p><b>Cpanel -> Prescriptions</b></p>
+                                <p>1. You can choose the latest patient in the list, or search for the patient in the search bar by phone number, tracking code or period of time, as shown bellow and hit <img src="~/images/guide/upload/Filter_Button.jpg" style="width: 60px; vertical-align: sub;">.</p>
+                                <img src="~/images/guide/upload/SearchBar.jpg" alt="" class="img-responsive img-thumbnail">
+                                <p>2. When the needed patient is found, hit the edit button <img src="~/images/guide/upload/Edit_Button.jpg" style="width: 30px; vertical-align: sub;"> and the below window will pop open, where you have the patients' previous prescription.</p>
+                                <img src="~/images/guide/upload/UpdatePatientPrescription.jpg" alt="" class="img-responsive img-thumbnail">
+                                <p>3. Hit print button to print as explained before, or hit done to save.</p>
+
+                            </div>
+
+                            <div class="clearfix"></div>
+                            <div class="col-md-12" style="margin-top: 16px; ">
+
+                            </div>
+                            <!-- end col -->
+                        </div>
+                        <!-- end row --
+
+                        </section>
+                        <!-- end section 14 -->
+                </div>
+                <!-- // end .col -->
+
+            </div>
+            <!-- // end .row -->
+
+        </div>
+        <!-- // end container -->
+
+    </div>
+    <!-- end wrapper -->
+
+    <script src="~/js/guide/jquery.min.js"></script>
+    <script src="~/js/guide/bootstrap.min.js"></script>
+    <script src="~/js/guide/retina.js"></script>
+    <script src="~/js/guide/jquery.fitvids.js"></script>
+    <script src="~/js/guide/wow.js"></script>
+    <script src="~/js/guide/jquery.prettyPhoto.js"></script>
+
+    <!-- CUSTOM PLUGINS -->
+    <script src="~/js/guide/custom.js"></script>
+    <script src="~/js/guide/main.js"></script>
+
+    <script src="~/js/guide/syntax-highlighter/scripts/shCore.js"></script>
+    <script src="~/js/guide/syntax-highlighter/scripts/shBrushXml.js"></script>
+    <script src="~/js/guide/syntax-highlighter/scripts/shBrushCss.js"></script>
+    <script src="~/js/guide/syntax-highlighter/scripts/shBrushJScript.js"></script>
+
+</body>
+
+</html>

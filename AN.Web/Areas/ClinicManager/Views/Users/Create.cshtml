@@ -1,0 +1,225 @@
+﻿@using AN.Web.Areas.ClinicManager.Models
+@using AN.Core.Resources.EntitiesResources.Role;
+@using AN.Core.Resources.Global
+@using AN.Core.Resources.UI.AdminPanel
+
+@model CreateCMUsersViewModel
+
+@{
+    ViewBag.Title = PanelResource.AddNewUser;
+    Layout = "~/Views/Shared/_CpanelLayout.cshtml";
+}
+
+@section styles{
+    <link rel="stylesheet" href="~/lib/select2/css/select2.min.css" type="text/css" />
+    <link rel="stylesheet" href="~/css/jQuery.FileInput/fileinput.min.css" />
+    <style>
+        .kv-avatar .krajee-default.file-preview-frame, .kv-avatar .krajee-default.file-preview-frame:hover {
+            margin: 0;
+            padding: 0;
+            border: none;
+            box-shadow: none;
+            text-align: center;
+        }
+
+        .kv-avatar {
+            display: inline-block;
+        }
+
+            .kv-avatar .file-input {
+                display: table-cell;
+                width: 213px;
+            }
+
+        .kv-reqd {
+            color: red;
+            font-family: monospace;
+            font-weight: normal;
+        }
+    </style>
+}
+
+<section class="content-header">
+    <h1>
+        @PanelResource.AddNewUser
+        <small>@AN.Core.Resources.UI.AdminPanel.PanelResource.AdminPanel</small>
+    </h1>
+    <ol class="breadcrumb">
+        <li><a href="@Url.Action("Index","Home", new { area = "ClinicManager" })"><i class="fa fa-dashboard"></i> @Global.Home</a></li>
+        <li><a href="@Url.Action("Index","Users",new { area = "ClinicManager" })"><i class="fa fa-list"></i> @PanelResource.AllList</a></li>
+        <li class="active">@PanelResource.AddNewUser</li>
+    </ol>
+</section>
+
+<section class="content">
+    @using (Html.BeginForm("Create", "Users", new { area = "ClinicManager" }, FormMethod.Post, true, new { @enctype = "multipart/form-data", @class = "form-horizontal", role = "form" }))
+    {
+        @Html.AntiForgeryToken()
+        @Html.ValidationSummary(true, "", new { @class = "text-danger" })
+        <div class="box box-default card">
+            <div class="box-body">
+                <div class="row">
+                    <div class="col-md-12" id="info-section">
+                        <div class="panel panel-default">
+                            <div class="panel-body">
+                                <div class="col-md-4">
+                                    <div class="form-group">
+                                        @Html.LabelFor(m => m.FirstName)
+                                        @Html.TextBoxFor(m => m.FirstName, new { @class = "form-control" })
+                                        @Html.ValidationMessageFor(m => m.FirstName, "", new { @class = "text-danger" })
+                                    </div>
+                                    <div class="form-group">
+                                        @Html.LabelFor(m => m.SecondName)
+                                        @Html.TextBoxFor(m => m.SecondName, new { @class = "form-control", @tabindex = "2" })
+                                        @Html.ValidationMessageFor(m => m.SecondName, "", new { @class = "text-danger" })
+                                    </div>
+                                    <div class="form-group">
+                                        @Html.LabelFor(m => m.ThirdName)
+                                        @Html.TextBoxFor(m => m.ThirdName, new { @class = "form-control", @tabindex = "2" })
+                                        @Html.ValidationMessageFor(m => m.ThirdName, "", new { @class = "text-danger" })
+                                    </div>
+                                    <div class="form-group">
+                                        @Html.LabelFor(m => m.Gender)
+                                        @Html.DropDownListFor(m => m.Gender, (ViewBag.Genders as IEnumerable<SelectListItem>).ToList(), new { @tabindex = "5", @class = "form-control" })
+                                    </div>
+                                </div>
+                                <div class="col-md-4">
+                                    <div class="form-group">
+                                        @Html.LabelFor(m => m.Mobile)
+                                        @Html.TextBoxFor(m => m.Mobile, new { @class = "form-control NumericOnly", @tabindex = "4" })
+                                        @Html.ValidationMessageFor(m => m.Mobile, "", new { @class = "text-danger" })
+                                    </div>
+                                    <div class="form-group">
+                                        @Html.LabelFor(m => m.Roles)
+                                        @Html.DropDownListFor(m => m.Roles, Enumerable.Empty<SelectListItem>(), new { @class = "form-control", @id = "Roles", @tabindex = "7", @multiple = "multiple" })
+                                        @Html.ValidationMessageFor(m => m.Roles, "", new { @class = "text-danger" })
+                                    </div>
+                                    <div id="doctorInfoSection">
+                                        <div class="form-group">
+                                            @Html.LabelFor(m => m.DocotrMedicalCouncilNumber)
+                                            @Html.TextBoxFor(m => m.DocotrMedicalCouncilNumber, new { @class = "form-control NumericOnly", @id = "UMedicalCouncilNumber", @tabindex = "8" })
+                                            @Html.ValidationMessageFor(m => m.DocotrMedicalCouncilNumber, "", new { @class = "text-danger" })
+                                        </div>
+                                    </div>
+                                    <div class="form-group">
+                                        @Html.LabelFor(m => m.Description)
+                                        @Html.TextAreaFor(m => m.Description, new { @class = "form-control", @tabindex = "6" })
+                                        @Html.ValidationMessageFor(m => m.Description, "", new { @class = "text-danger" })
+                                    </div>
+                                </div>
+                                <div class="col-md-4">
+                                    <div class="panel panel-default text-center">
+                                        <div class="panel-body">
+                                            <div class="kv-avatar">
+                                                <div class="file-loading">
+                                                    <input id="ImageUpload" name="ImageUpload" type="file" required>
+                                                </div>
+                                            </div>
+                                            <div class="kv-avatar-hint"><small>Select file smaller than 1500 KB</small></div>
+                                        </div>
+                                        <div class="panel-footer">
+                                            <div id="kv-avatar-errors-1" class="center-block" style="display:none"></div>
+                                            @Html.ValidationMessageFor(m => m.ImageUpload, "", new { @class = "text-danger" })
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-md-12 text-center" id="username-section">
+                        <button type="submit" class="btn btn-primary" tabindex="13"><i class="fa fa-floppy-o"></i>@Global.Save</button>
+                        <a href="@Url.Action("Index", "Users", new { area = "ClinicManager" })" class="btn btn-danger" tabindex="14"><i class="fa fa-ban"></i>@Global.Cancel</a>
+                    </div>
+                </div>
+            </div>
+        </div>
+    }
+</section>
+
+@section scripts{
+    <script type="text/javascript" src="~/lib/select2/js/select2.min.js"></script>
+    <script type="text/javascript" src="~/Scripts/jQuery.FileInput/fileinput.min.js"></script>
+    <script type="text/javascript">
+        var btnCust = '<button type="button" class="btn btn-secondary" title="Add picture tags" ' +
+            'onclick="alert(\'Call your custom code here.\')">' +
+            '<i class="glyphicon glyphicon-tag"></i>' +
+            '</button>';
+        $("#ImageUpload").fileinput({
+            overwriteInitial: true,
+            maxFileSize: 1500,
+            showClose: false,
+            showCaption: false,
+            browseLabel: '',
+            removeLabel: '',
+            browseIcon: '<i class="glyphicon glyphicon-folder-open"></i>',
+            removeIcon: '<i class="glyphicon glyphicon-remove"></i>',
+            removeTitle: 'Cancel or reset changes',
+            elErrorContainer: '#kv-avatar-errors-1',
+            msgErrorClass: 'alert alert-block alert-danger',
+            defaultPreviewContent: '<img src="/Content/images/avatars/NoAvatar.jpg" alt="Your Avatar">',
+            layoutTemplates: { main2: '{preview} ' + btnCust + ' {remove} {browse}' },
+            allowedFileExtensions: ["jpg", "png", "gif"]
+        });
+    </script>
+    <script type="text/javascript">
+        var doctorInfo = $("#doctorInfoSection");
+        var doctorMedicalCouncilNumber = $("#UMedicalCouncilNumber");
+
+        var _Roles = [
+            { id: 2, text: '@RolesResource.clinicmanager' },
+            { id: 3, text: '@RolesResource.polyclinicmanager' },
+            { id: 4, text: '@RolesResource.doctor' }
+        ];
+
+        $("#Roles").select2({
+            width: '100%',
+            placeholder: "@PanelResource.PleaseSelectRole",
+            minimumSelectionLength: 2,
+            dir: "rtl",
+            data: _Roles
+        })
+
+        //Set default value to doctor role
+        $("#Roles").select2("val", "4", "", "");
+        $(doctorInfo).show(1000);
+        if (doctorMedicalCouncilNumber.val() == "00000") {
+            doctorMedicalCouncilNumber.val("");
+        }
+
+        $("#Roles").on("select2:select", function (e) { doAction("select2:select", e); });
+        $("#Roles").on("select2:unselect", function (e) { doAction("select2:unselect", e); });
+
+        function doAction(name, evt) {
+            if (!evt) {
+                var args = "{}";
+            } else {
+                var args = JSON.stringify(evt.params, function (key, value) {
+                    if (value && value.nodeName) return "[DOM node]";
+                    if (value instanceof $.Event) return "[$.Event]";
+                    return value;
+                });
+            }
+
+            var objs = JSON.parse(args);
+
+            var isSelected = objs.data.selected; //true || false
+            var isDisabled = objs.data.disabled; //true || false
+            var selectedId = objs.data.id; // the ID of selected option
+            var selectedText = objs.data.text; // the text for selected option
+            var actionType = objs._type; // select || unselect
+
+            // if select doctor role
+            if (isSelected == true && selectedId == 4) {
+                $(doctorInfo).show(1000);
+                if (doctorMedicalCouncilNumber.val() == "00000") {
+                    doctorMedicalCouncilNumber.val("");
+                }
+            }
+
+            if (isSelected == false && selectedId == 4) {
+                $(doctorInfo).hide(1000);
+                doctorMedicalCouncilNumber.val("00000");
+            }
+        }       
+    </script>
+}

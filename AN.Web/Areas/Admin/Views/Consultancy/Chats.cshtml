@@ -1,0 +1,225 @@
+﻿@model AN.Core.ViewModels.ConsultancyChatsListViewModel
+
+@{
+    Layout = "~/Views/Shared/_CpanelLayout.cshtml";
+    var dir = AN.Web.Helper.CultureHelper.Lang == AN.Core.Enums.Lang.EN ? AN.Core.Enums.LayoutDir.LTR : AN.Core.Enums.LayoutDir.RTL;
+}
+
+@section styles{
+    <link rel="stylesheet" href="~/lib/datatables/css/dataTables.bootstrap4.min.css" />
+    <link rel="stylesheet" href="~/lib/flatpickr/flatpickr.min.css" />
+    <link rel="stylesheet" href="~/lib/bootstrap4c-custom-switch/dist/css/component-custom-switch.min.css" />
+    <link rel="stylesheet" href="~/lib/select2/css/select2.min.css" type="text/css" />
+}
+
+<div class="content-header">
+    <div class="container-fluid">
+        <div class="row mb-2">
+            <div class="col-sm-6">
+                <h1 class="m-0 text-dark">Chats</h1>
+            </div>
+        </div>
+    </div>
+</div>
+
+<section class="content">
+    <div class="container-fluid">
+        <div class="card">
+            <div class="card-body">
+                <form method="post" action="#" id="ConsultancyChatsFilterForm">
+                    @Html.AntiForgeryToken()
+                    <div class="row">
+                        <div class="col-md-2">
+                            <div class="form-group">
+                                <label>@AN.Core.Resources.Global.Global.SearchString</label>
+                                <input type="text" id="FilterString" name="FilterString" class="form-control" />
+                            </div>
+                        </div>
+                        <div class="col-md-3">
+                            <div class="form-group">
+                                <label>@AN.Core.Resources.Global.Global.Doctor</label>
+                                @Html.DropDownList("ServiceSupplyId", ViewBag.Doctors as IEnumerable<SelectListItem>, "", htmlAttributes: new { @class = "form-control select-2" })
+                            </div>
+                        </div>
+                        <div class="col-md-3">
+                            <div class="form-group">
+                                <label>@AN.Core.Resources.Global.Global.Patient</label>
+                                @Html.DropDownList("PersonId", ViewBag.PersonsList as IEnumerable<SelectListItem>, "", htmlAttributes: new { @class = "form-control select-2" })
+                            </div>
+                        </div>
+                        <div class="col-md-2">
+                            <div class="form-group">
+                                <label>@Global.From</label>
+                                <input type="text" id="FromDate" name="FromDate" class="form-control common-datepicker" autocomplete="off" />
+                            </div>
+                        </div>
+                        <div class="col-md-2">
+                            <div class="form-group">
+                                <label>@Global.To</label>
+                                <input type="text" id="ToDate" name="ToDate" class="form-control common-datepicker" autocomplete="off" />
+                            </div>
+                        </div>
+                        <div class="form-group text-center">
+                            <label>&nbsp;</label>
+                            <button type="button" class=" btn btn-outline-info form-control" onclick="filterConsultancyChats()"><i class="fa fa-filter"></i>  @AN.Core.Resources.Global.Global.Filter</button>
+                        </div>
+                    </div>
+                </form>
+            </div>
+        </div>
+        <div class="card card-info card-outline">
+            <div class="card-body">
+                <div class="row">
+                    <div class="col-md-12 table-responsive">
+                        <table id="fingers10" class="table table-striped" style="width:100%">
+                            <thead>
+                                <tr>
+                                    <th>@Html.DisplayNameFor(m => m.Id)</th>
+                                    <th>@Html.DisplayNameFor(m => m.Doctor)</th>
+                                    <th>@Html.DisplayNameFor(m => m.Patient)</th>
+                                    <th>@Html.DisplayNameFor(m => m.Status)</th>
+                                    <th>@Html.DisplayNameFor(m => m.CreateDate)</th>
+                                    <th>@Html.DisplayNameFor(m => m.StartDate)</th>
+                                    <th>@Html.DisplayNameFor(m => m.FinishDate)</th>
+                                    <th>@Html.DisplayNameFor(m => m.MessagesCount)</th>
+                                    <th></th>
+                                </tr>
+                            </thead>
+                        </table>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+
+
+@section scripts{
+    <script src="~/lib/datatables/js/jquery.dataTables.min.js"></script>
+    <script src="~/lib/datatables/js/dataTables.bootstrap4.min.js"></script>
+    <script src="~/lib/flatpickr/flatpickr.min.js"></script>
+    <script src="~/lib/select2/js/select2.min.js"></script>
+    <script src="~/js/My/DataTablesLocale/dt_@(ViewBag.Lang.ToString()).js" asp-append-version="true"></script>
+    <script type="text/javascript">
+        var table;
+        var filterForm = $("#ConsultancyChatsFilterForm");
+         filterForm.find(".select-2").select2({
+                width: '100%',
+                dir: '@(dir.ToString().ToLower())',
+                placeholder: "..."
+         });
+        filterForm.find(".common-datepicker").flatpickr();
+        $(function () {
+            if ($('#fingers10').length !== 0) {
+                table = $('#fingers10').DataTable({
+                    language: dataTablesLocale,
+                    processing: true,
+                    serverSide: true,
+                    orderCellsTop: true,
+                    autoWidth: true,
+                    deferRender: true,
+                    order: [[4, "desc"]],
+                    lengthMenu: [5, 10, 15, 20],
+                    dom: '<"row"<"col-sm-12 col-md-12"B><"col-sm-12 col-md-12 text-right"l>><"row"<"col-sm-12"tr>><"row"<"col-sm-12 col-md-5"i><"col-sm-12 col-md-7"p>>',
+                    ajax: {
+                        type: "POST",
+                        url: '/admin/consultancy/LoadChatsTable/',
+                        contentType: "application/json; charset=utf-8",
+                        async: true,
+                        headers: {
+                            "XSRF-TOKEN": document.querySelector('[name="__RequestVerificationToken"]').value
+                        },
+                        data: function (data) {
+                            data.FiltersObject = JSON.stringify(objectifyForm(filterForm.serializeArray()));
+                            return JSON.stringify(data);
+                        }
+                    },
+                    columns: [
+                        {
+                            data: "Id",
+                            name: "eq",
+                            visible: false,
+                            searchable: false,
+                            orderable: false
+                        },
+                        {
+                            data: "Doctor",
+                            name: "co",
+                            width: "15%"
+                        },
+                        {
+                            data: "Patient",
+                            name: "co",
+                            width: "25%"
+                        },
+                        {
+                            data: "Status",
+                            name: "co",
+                            width: "30%"
+                        },
+                        {
+                            data: "CreateDate",
+                            name: "co",
+                            width: "15%"
+                        },
+                        {
+                            data: "StartDate",
+                            name: "co",
+                            width: "15%"
+                        },
+                        {
+                            data: "FinishDate",
+                            name: "co",
+                            width: "15%"
+                        },
+                        {
+                            data: "MessagesCount",
+                            name: "co",
+                            width: "15%"
+                        },
+                        {
+                            data: null,
+                            orderable: false,
+                            searchable: false,
+                            render: function (data, type, row, meta) {
+                                return row.ActionsHtml;
+                            }
+                        }
+                    ]
+                });
+            }
+        });
+
+        function reloadDataTable(initAgain = false) {
+            table.ajax.reload(null, initAgain);
+        }
+
+         function filterConsultancyChats() {
+            reloadDataTable(true);
+         }
+
+     function getChatMessages(id) {
+            waiting('body', '@AN.Core.Resources.Global.Global.PleaseWait');
+            $.ajax({
+                type: 'Get',
+                url: "/admin/Consultancy/ChatMessages/" + id,
+                success: function (response) {
+                    var commonModal = $("#AwroNoreModal");
+                    commonModal.find('#AwroNoreModalDialog').addClass("modal-lg");
+                    commonModal.find('.modal-title').text("Messages");
+                    commonModal.find('#CommonModalContent').html(response);
+                    commonModal.modal({backdrop: 'static', keyboard: false});
+                    $(".select2").select2({
+                       width: '100%',
+                       dir: '@(dir.ToString().ToLower())'
+                    });
+                },
+                error: function (jqXHR, ex) {
+                    handleAjaxError(jqXHR, ex);
+                }
+            }).always(function () {
+                waitingDone('body');
+            });
+        }
+    </script>
+}

@@ -1,0 +1,45 @@
+@using AN.Core.Resources.Global;
+
+@model IEnumerable<AN.Web.Areas.ClinicManager.Models.CMVocationViewModel>
+
+<div class="table-responsive">
+    <table class="table table-hover table-bordered">
+        <thead>
+            <tr>
+                <th>@Html.DisplayNameFor(model => model.FromDate)</th>
+                <th>@Html.DisplayNameFor(model => model.ToDate)</th>
+                <th></th>
+            </tr>
+        </thead>
+        <tbody>
+            @foreach (var item in Model)
+            {
+                <tr>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.FromDate)
+                    </td>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.ToDate)
+                    </td>
+                    <td>
+                        @using (Html.BeginForm("DeleteClinicVocation", "Schedule", new { area = "ClinicManager", from = item.FromDate, to = item.ToDate }, FormMethod.Post, true, new { role = "form" }))
+                        {
+                            @Html.AntiForgeryToken()
+                            <button class="btn btn-xs btn-danger"
+                                    type="button"
+                                    data-toggle="modal"
+                                    data-target="#confirmDelete"
+                                    data-title="@Global.Delete" data-message="@Global.DoYouWantDeleteThisItem ?">
+                                <i class="glyphicon glyphicon-trash"></i>@Global.Delete
+                            </button>
+                        }
+                    </td>
+                </tr>
+            }
+        </tbody>
+    </table>
+</div>
+
+<partial name="_ConfirmDeleteModalPartial" />
+
+

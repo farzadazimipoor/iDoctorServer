@@ -1,0 +1,46 @@
+﻿@model AN.Web.Areas.PolyClinicManager.Models.CreateTreatmentHistoryResultModel
+
+<div class="row">
+    <div class="col-md-12 text-center">
+        <span class="fa-stack fa-4x">
+            <i class="fa fa-circle fa-stack-2x text-olive"></i>
+            <i class="fa fa-check fa-stack-1x fa-inverse"></i>
+        </span>
+    </div>
+    <div class="col-md-12 text-center">
+        @*<button type="button" class="btn btn-success" data-dismiss="modal">@AN.Core.Resources.Global.Global.Done</button>*@
+        <button type="button" class="btn btn-danger" onclick="printPrescription('@Model.TreatmentHistoryId')" data-dismiss="modal"><i class="fa fa-external-link"></i> چاپ کردنی رەچەتەی ئەلێکترۆنی</button>
+    </div>
+</div>
+
+<script>
+    function printPrescription(treatmentHistoryId) {
+        var url = "/Print/PrintPreScription/" + treatmentHistoryId;
+        waiting('AwroNoreModalDialog', '@AN.Core.Resources.Global.Global.PleaseWait');
+        $.ajax({
+            method: "GET",
+            url: url,
+            dataType: "html",
+            success: function (result) {
+                printHtml(result);
+            }, error: function (jqXHR, ex) {
+                handleAjaxError(jqXHR, ex);
+            }
+        }).always(function () {
+            waitingDone('AwroNoreModalDialog');
+        });
+    }
+
+    function printHtml(html) {
+        var params = [
+            'height=' + screen.height,
+            'width=' + screen.width,
+            'fullscreen=yes',
+            'scrollbars=yes'
+        ].join(',');       
+        var popupWin = window.open('', '_blank', params);
+        popupWin.document.open();
+        popupWin.document.write(html);
+        popupWin.document.close();
+    }
+</script>

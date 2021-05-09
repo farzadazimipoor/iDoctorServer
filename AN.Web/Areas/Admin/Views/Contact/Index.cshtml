@@ -1,0 +1,135 @@
+﻿@using AN.Core.Resources.UI.AdminPanel;
+@using AN.Core.Resources.Global;
+
+@model IEnumerable<AN.Web.Areas.Admin.Models.ContactViewModel>
+
+@{
+    ViewBag.Title = PanelResource.AllMessages;
+    Layout = "~/Views/Shared/_CpanelLayout.cshtml";
+}
+
+<partial name="_ConfirmDeleteModalPartial" />
+
+<div class="content-header">
+    <div class="container-fluid">
+        <div class="row mb-2">
+            <div class="col-sm-6">
+                <h1 class="m-0 text-dark">@PanelResource.AllMessages</h1>
+            </div>
+        </div>
+    </div>
+</div>
+
+<section class="content">
+    <div class="container-fluid">
+        <div class="card card-info card-outline">
+            <div class="card-body p-0">
+                @if (Model.Any())
+                {
+                    <table id="messagesTable" class="table table-striped table-bordered banobatDataTable" cellspacing="0">
+                        <thead>
+                            <tr>
+                                <th></th>
+                                <th>
+                                    @Html.DisplayNameFor(model => model.Topic)
+                                </th>
+                                <th>
+                                    @Html.DisplayNameFor(model => model.Name)
+                                </th>
+                                <th></th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            @foreach (var item in Model)
+                            {
+                                <tr>
+                                    <td class="col-md-1">
+                                        @{
+                                            if (item.IsUnread)
+                                            {
+                                                <i class="fa fa-envelope" style="color: orange;"></i>
+                                            }
+                                            else
+                                            {
+                                                <i class="fa fa-eye"></i>
+                                            }
+                                        }
+                                    </td>
+                                    <td class="col-md-4">
+                                        <button type="button"
+                                                class="btn btn-default btn-sm"
+                                                onclick="readMessage('@item.Id','@item.Topic')">
+                                            @item.Topic
+                                        </button>
+                                    </td>
+                                    <td class="col-md-3">
+                                        @Html.DisplayFor(modelItem => item.Name)
+                                    </td>
+                                    <td class="col-md-3">
+                                        <div class="btn-group" role="group" aria-label="Basic example">
+                                            @using (Html.BeginForm("Archive", "Contact", new { area = "Admin", id = item.Id }, FormMethod.Post, true, new { role = "form", @class = "actionForm" }))
+                                            {
+                                                @Html.AntiForgeryToken()
+
+                                                <button class="btn btn-sm btn-default"
+                                                        type="button"
+                                                        data-toggle="modal"
+                                                        data-target="#confirmDelete"
+                                                        data-title="@Global.Archive"
+                                                        data-action="@Global.Approve"
+                                                        data-message="@PanelResource.DoYouWantToArchiveThisMessage">
+                                                    <i class="fa fa-archive"></i>&nbsp;&nbsp;@Global.Archive
+                                                </button>
+                                            }
+                                            @using (Html.BeginForm("Delete", "Contact", new { area = "Admin", id = item.Id }, FormMethod.Post, true, new { role = "form", @class = "actionForm" }))
+                                            {
+                                                @Html.AntiForgeryToken()
+
+                                                <button class="btn btn-sm btn-danger"
+                                                        type="button"
+                                                        data-toggle="modal"
+                                                        data-target="#confirmDelete"
+                                                        data-title="@Global.Delete"
+                                                        data-action="@Global.Delete"
+                                                        data-message="@PanelResource.DoYouWantToDeleteThisItem">
+                                                    <i class="fa fa-trash"></i> @Global.Delete
+                                                </button>
+                                            }
+                                        </div>
+                                    </td>
+                                </tr>
+                            }
+                        </tbody>
+                    </table>
+                }
+                else
+                {
+                    @await Html.PartialAsync("_ItemNotFound", "")
+                }
+            </div>
+        </div>
+    </div>
+</section>
+
+@section scripts{
+    <script type="text/javascript">
+        function readMessage(id,title) {
+            waiting('body', '@AN.Core.Resources.Global.Global.PleaseWait');
+            $.ajax({
+                type: 'Get',
+                url: "/Admin/Contact/Read/" + id,
+                success: function (response) {
+                    var commonModal = $("#AwroNoreModal");
+                    commonModal.find('.modal-title').text(title);
+                    commonModal.find('.modal-body').html(response);
+                    commonModal.modal({backdrop: 'static', keyboard: false});
+                },
+                error: function (err) {
+                    toastr.error(err, '@Html.Raw(Global.SystemMessage)');
+                }
+            }).always(function () {
+                waitingDone('body');
+            });
+        }
+    </script>
+}

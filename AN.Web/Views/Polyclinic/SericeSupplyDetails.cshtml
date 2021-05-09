@@ -1,0 +1,108 @@
+﻿
+@model AN.Web.Models.ServiceSupplyDetailsModel
+
+<div class="content">
+    <div class="panel panel-default">
+        <div class="panel-body">
+            <div class="row">
+                <div class="col-md-12" id="userAvatarCol"><img id="userAvatar" /></div>
+            </div>
+            <div class="row">
+                <div class="col-md-4 col-sm-4 col-xs-4">
+                    <div class="detailTitle">
+                        <span>@Html.DisplayNameFor(m => m.Name)</span>
+                    </div>
+                </div>
+                <div class="col-md-8">
+                    <div class="detailContent">
+                        <span>@Model.Name</span>
+                    </div>
+                </div>
+            </div>
+            <div class="row">
+                <div class="col-md-4 col-sm-4 col-xs-4">
+                    <div class="detailTitle">
+                        <span>@Html.DisplayNameFor(m => m.Mobile)</span>
+                    </div>
+                </div>
+                <div class="col-md-8">
+                    <div class="detailContent">
+                        <span>@Model.Mobile</span>
+                    </div>
+                </div>
+            </div>
+            <div class="row">
+                <div class="col-md-4 col-sm-4 col-xs-4">
+                    <div class="detailTitle">
+                        <span>@Html.DisplayNameFor(m => m.Email)</span>
+                    </div>
+                </div>
+                <div class="col-md-8">
+                    <div class="detailContent">
+                        <span>@Model.Email</span>
+                    </div>
+                </div>
+            </div>
+            <div class="row">
+                <div class="col-md-4 col-sm-4 col-xs-4">
+                    <div class="detailTitle">
+                        <span>@Html.DisplayNameFor(m => m.Description)</span>
+                    </div>
+                </div>
+                <div class="col-md-8">
+                    <div class="detailContent">
+                        <span>@Model.Description</span>
+                    </div>
+                </div>
+            </div>
+            <div class="row">
+                <div class="col-md-4 col-sm-4 col-xs-4">
+                    <div class="detailTitle">
+                        <span>@Html.DisplayNameFor(m => m.StartReservationDate)</span>
+                    </div>
+                </div>
+                <div class="col-md-8">
+                    <div class="detailContent">
+                        <span>@Model.StartReservationDate</span>
+                    </div>
+                </div>
+            </div>
+            <div class="row">
+                <div class="col-md-4 col-sm-4 col-xs-4">
+                    <div class="detailTitle">
+                        <span>@Html.DisplayNameFor(m => m.VisitPrice)</span>
+                    </div>
+                </div>
+                <div class="col-md-8">
+                    <div class="detailContent">
+                        <span>@Model.VisitPrice</span>
+                    </div>
+                </div>
+            </div>
+            <div class="row">
+                <div class="col-md-4 col-sm-4 col-xs-4">
+                    <div class="detailTitle">
+                        <span>@Html.DisplayNameFor(m => m.PrePaymentPercent)</span>
+                    </div>
+                </div>
+                <div class="col-md-8">
+                    <div class="detailContent">
+                        <span>@Model.PrePaymentPercent</span>
+                    </div>
+                </div>
+            </div>
+            <div class="row">
+                <div class="col-md-4 col-sm-4 col-xs-4">
+                    <div class="detailTitle">
+                        <span>@Html.DisplayNameFor(m => m.PaymentType)</span>
+                    </div>
+                </div>
+                <div class="col-md-8">
+                    <div class="detailContent">
+                        <span>@Model.PaymentType</span>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>

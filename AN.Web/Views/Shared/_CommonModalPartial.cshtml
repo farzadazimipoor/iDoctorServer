@@ -1,0 +1,27 @@
+@model AN.Core.Enums.LayoutDir
+
+<div id="AwroNoreModal" class="modal fade" role="dialog">
+    <div id="AwroNoreModalDialog" class="modal-dialog" role="document">
+        <div class="modal-content">
+            <div class="modal-header">
+                @if (Model == LayoutDir.LTR)
+                {
+                    <h6 class="modal-title text-center"></h6>
+                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                        <i class="fa fa-times"></i>
+                    </button>
+                }
+                else
+                {
+                    <button type="button" class="close" data-dismiss="modal" aria-label="Close"><i class="fa fa-times"></i></button>
+                    <h6 class="modal-title text-center"></h6>
+                }
+            </div>
+            <div class="modal-body">
+                <div id="CommonModalContent">
+
+                </div>
+            </div>          
+        </div>
+    </div>
+</div>

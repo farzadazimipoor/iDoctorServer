@@ -1,0 +1,83 @@
+﻿
+@model AN.Web.Models.SetScientificGradeViewModel
+
+<div id="setScientificGradeArea">
+    <form id="setScientificGradeForm" class="form-horizontal" action="@Url.Action("SetScientificGrade", "Speciality", new {area = ""})" method="POST">
+        @Html.AntiForgeryToken()
+        @Html.HiddenFor(m => m.CenterId)
+        @Html.HiddenFor(m => m.ServiceSupplyId)
+        <div class="row justify-content-center">
+            <div class="col-12">
+                <div class="info-box bg-light">
+                    <div class="info-box-content">
+                        <span class="info-box-text text-center text-muted">@Global.Doctor</span>
+                        <span class="info-box-number text-center text-muted mb-0 mt-2 text-bold">@ViewBag.DoctorName</span>
+                    </div>
+                </div>
+            </div>
+            <div class="col-12">
+                <div class="form-group">
+                    <label asp-for="Grades" class="form-label semibold"></label>
+                    @Html.DropDownListFor(m => m.Grades, (ViewBag.Grades as IEnumerable<SelectListItem>).ToList(), htmlAttributes: new { @class = "form-control select2", multiple = true })
+                    <span asp-validation-for="Grades" class="text-danger"></span>
+                </div>
+            </div>
+        </div>
+        <div class="row">
+            <div class="col-md-12 mt-5 text-center">
+                <button type="submit" class="btn btn-info">@AN.Core.Resources.Global.Global.Update</button>
+                <button type="button" class="btn btn-danger" data-dismiss="modal">@AN.Core.Resources.Global.Global.Cancel </button>
+            </div>
+        </div>
+    </form>
+</div>
+
+<script type="text/javascript">
+    var form = $("#setScientificGradeArea").find('form');
+    var doctorsElement = form.find("[name='Grades']");
+    $(function () {
+        var _selectedServiceSupplies = [
+          @if (Model.Grades != null && Model.Grades.Any())
+            {
+                foreach (var p in Model.Grades)
+                {
+                    @:'@p',
+                }
+            }
+        ];
+        doctorsElement.val(_selectedServiceSupplies).trigger('change');
+        $.validator.unobtrusive.parse(form);
+        $(form).on("submit", function (e) {
+            e.preventDefault();
+            if (form.valid()) {
+                waiting('AwroNoreModalDialog', '@AN.Core.Resources.Global.Global.PleaseWait');
+                $.ajax({
+                    method: "POST",
+                    url: $(this).attr("action"),
+                    dataType: "json",
+                    data: form.serialize(), success: function (result) {
+                        if (result.success) {
+                            form.closest('.modal').modal('toggle');
+                            Toast.fire({
+                                type: 'success',
+                                title: '@AN.Core.Resources.Global.Global.Successful',
+                                text: result.message
+                            });                           
+                        } else {
+                            Toast.fire({
+                                type: 'error',
+                                title: '@AN.Core.Resources.Global.Global.Error',
+                                text: result.message
+                            });
+                        }
+                    }, error: function (jqXHR, ex) {
+                        handleAjaxError(jqXHR, ex);
+                    }
+                }).always(function () {
+                    waitingDone('AwroNoreModalDialog');
+                });
+            }
+        });
+    });
+</script>
+

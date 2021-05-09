@@ -1,0 +1,87 @@
+﻿@model AN.Web.Areas.Admin.Models.ExpertiseCategoryViewModel
+
+<div id="createExpertiseCategoryArea">
+    <form id="createExpertiseCategoryForm" class="form-horizontal" action="@Url.Action("CreateUpdateExpertiseCategory", "Expertise", new {area = "Admin"})" method="POST">
+        @Html.HiddenFor(m => m.Id)
+        <div class="row">
+            <div class="col-md-12">
+                <div class="form-group">
+                    @Html.LabelFor(m => m.Name)
+                    @Html.TextBoxFor(m => m.Name, new { maxlength = "50", @class = "form-control", placeholder = Html.DisplayNameFor(m => m.Name) })
+                    @Html.ValidationMessageFor(m => m.Name, "", new { @class = "text-danger" })
+                </div>
+                <div class="form-group">
+                    @Html.TextBoxFor(m => m.Name_Ku, new { maxlength = "50", @class = "form-control", placeholder = Html.DisplayNameFor(m => m.Name_Ku) })
+                    @Html.ValidationMessageFor(m => m.Name_Ku, "", new { @class = "text-danger" })
+                </div>
+                <div class="form-group">
+                    @Html.TextBoxFor(m => m.Name_Ar, new { maxlength = "50", @class = "form-control", placeholder = Html.DisplayNameFor(m => m.Name_Ar) })
+                    @Html.ValidationMessageFor(m => m.Name_Ar, "", new { @class = "text-danger" })
+                </div>
+                <div class="form-group">
+                    @Html.LabelFor(m => m.Description)
+                    @Html.TextAreaFor(m => m.Description, new { @class = "form-control", @rows = 1, maxlength = "500", placeholder = Html.DisplayNameFor(m => m.Description) })
+                    @Html.ValidationMessageFor(m => m.Description, "", new { @class = "text-danger" })
+                </div>
+                <div class="form-group">
+                    @Html.TextAreaFor(m => m.Description_Ku, new { @class = "form-control", @rows = 1, maxlength = "500", placeholder = Html.DisplayNameFor(m => m.Description_Ku) })
+                    @Html.ValidationMessageFor(m => m.Description_Ku, "", new { @class = "text-danger" })
+                </div>
+                <div class="form-group">
+                    @Html.TextAreaFor(m => m.Description_Ar, new { @class = "form-control", @rows = 1, maxlength = "500", placeholder = Html.DisplayNameFor(m => m.Description_Ar) })
+                    @Html.ValidationMessageFor(m => m.Description_Ar, "", new { @class = "text-danger" })
+                </div>
+            </div>
+        </div>
+        <div class="row">
+            <div class="col-md-12 mt-5 text-center">
+                <button type="submit" class="btn btn-info"><i class="fa fa-cloud"></i> @(Model.Id == null ? AN.Core.Resources.UI.AdminPanel.PanelResource.AddNew : AN.Core.Resources.Global.Global.Update)</button>
+                <button type="button" class="btn btn-danger" data-dismiss="modal">@AN.Core.Resources.Global.Global.Cancel </button>
+            </div>
+        </div>
+    </form>
+</div>
+
+<script type="text/javascript">
+    $(function () {
+        var form = $("#createExpertiseCategoryArea").find('form');
+        $.validator.unobtrusive.parse(form);
+        $(form).on("submit", function (e) {
+            e.preventDefault();
+            if (form.valid()) {
+                var data = new FormData($(this)[0]);
+                waiting('createExpertiseCategoryArea', '@AN.Core.Resources.Global.Global.PleaseWait');
+                $.ajax({
+                    method: "POST",
+                    url: $(this).attr("action"),
+                    processData: false,
+                    contentType: false, // contentType option to false is used for multipart/form-data forms that pass files
+                    data: data,
+                    success: function (result) {
+                        if (result.success) {
+                            form.closest('.modal').modal('toggle');
+                            Toast.fire({
+                                type: 'success',
+                                title: '@AN.Core.Resources.Global.Global.Successful',
+                                text: result.message
+                            });
+                            location.reload();
+                        } else {
+                            Toast.fire({
+                                type: 'error',
+                                title: '@AN.Core.Resources.Global.Global.Error',
+                                text: result.message
+                            });
+                        }
+                    },
+                    error: function (jqXHR, ex) {
+                        alert();
+                        handleAjaxError(jqXHR, ex);
+                    }
+                }).always(function () {
+                    waitingDone('createExpertiseCategoryArea');
+                });
+            }
+        });
+    });
+</script>

@@ -1,0 +1,225 @@
+﻿@using AWRO.Helper.UIHelper
+@using AN.Web.Areas.BeautyCenterManager.Models
+
+@model InvoiceViewModel
+
+@{
+    var personInfo = ViewBag.PersonInfo as AN.Core.ViewModels.PersonInfoViewModel;
+}
+
+<link href="~/css/jGrid2/jGrid2.css" rel="stylesheet" />
+
+<div class="content">
+    <form id="CreateInvoiceForm" class="form-horizontal" action="@Url.Action("Create", "Invoice", new {area = "BeautyCenterManager"})" method="POST">
+        @Html.HiddenFor(m => m.Id)
+        @Html.HiddenFor(m => m.AppointmentId)
+        @Html.HiddenFor(m => m.PatientId)
+        <div class="row">
+            <div class="col-md-3">
+                <div class="form-group">
+                    @Html.LabelFor(m => m.VisitDate)
+                    @Html.TextBoxFor(m => m.VisitDate, new { @class = "form-control common-datapicker", @autocomplete = "off" })
+                    @Html.ValidationMessageFor(m => m.VisitDate, "", new { @class = "text-danger" })
+                </div>
+            </div>
+            <div class="col-md-12">
+                <div class="form-group">
+                    <label>@Global.Services</label>
+                </div>
+                @(Html.AWRO().JGrid2<AN.Web.Areas.BeautyCenterManager.Models.InvoiceItemsGridViewModel>("invoiceItemsGrid", showPaging: false))
+                <div class="text-center">
+                    <button type="button" class="btn btn-outline-secondary" onclick="addNewInvoiceItem()"><i class="fa fa-plus"></i></button>
+                </div>
+            </div>
+            <div class="col-md-12">
+                <div class="form-group">
+                    @Html.LabelFor(m => m.Description)
+                    @Html.TextAreaFor(m => m.Description, new { @class = "form-control", rows = 2, maxlength = "1000" })
+                    @Html.ValidationMessageFor(m => m.Description, "", new { @class = "text-danger" })
+                </div>
+            </div>
+            <div class="col-md-12 text-center mt-5">
+                <button class="btn btn-outline-primary" type="button" onclick="printInvoiceDirect()"><i class="fa fa-print"></i></button>
+                <button class="btn btn-info" type="submit">@Global.Done</button>
+                <button class="btn btn-danger" data-dismiss="modal" type="button">@Global.Cancel</button>
+            </div>
+        </div>
+    </form>
+</div>
+
+<template id="servicesTableFooterTemplate">
+    <tfoot>
+        <tr>
+            <th class="text-center" scope="col" colspan="3">
+                @Global.TotalInDollars
+            </th>
+            <th scope="col" class="text-center" colspan="1" data-footer="services_total_price">
+                0
+            </th>
+            <th scope="col" class="text-center" colspan="1"></th>
+            <th scope="col" class="text-center" colspan="1"></th>
+        </tr>
+    </tfoot>
+</template>
+
+<script type="text/javascript" src="~/js/JGrid2/app.js"></script>
+<script type="text/javascript" src="~/js/JGrid2/Common.js" asp-append-version="true"></script>
+<script type="text/javascript" src="~/js/JGrid2/InitiateJGrid2.js"></script>
+<script>
+    var servicesList;
+     var servicesGridSelector = $("#CreateInvoiceForm .table.inline-edit");
+    var form = $("#CreateInvoiceForm");
+    $(function () {
+        servicesGridSelector.append($("#servicesTableFooterTemplate").html());
+        $.validator.unobtrusive.parse(form);
+        $(form).on("submit", function (e) {
+            e.preventDefault();
+            var submitButton = $(this).find("button[type='submit']");
+            if (form.valid()) {
+                waiting('AwroNoreModalDialog', '@Global.PleaseWait');
+                $.ajax({
+                    method: "POST",
+                    url: $(this).attr("action"),
+                    data: { model: form.serializeFormJSON(), items: invoiceItemsGrid._dataSource }, success: function (result) {
+                        if (result.success) {
+                            try {
+                                reloadDataTable();
+                            } catch(err) { }
+                            form.closest('.modal').modal('toggle');
+                            Toast.fire({
+                                type: 'success',
+                                title: '@AN.Core.Resources.Global.Global.Successful',
+                                text: result.message
+                            });
+                        } else {
+                            Toast.fire({
+                                type: 'error',
+                                title: '@AN.Core.Resources.Global.Global.Error',
+                                text: result.message
+                            });
+                        }
+                    }, error: function (jqXHR, ex) {
+                        handleAjaxError(jqXHR, ex);
+                    }
+                }).always(function () {
+                    waitingDone('AwroNoreModalDialog');
+                });
+            }
+        });
+
+        getShiftCenterServicesList();
+    });
+
+    function printInvoiceDirect() {
+        var model = JSON.stringify(objectifyForm(form.serializeArray()))
+        var treatments = invoiceItemsGrid._dataSource;
+        var url = "/BeautyCenterManager/TreatmentHistory/DirectPrint?data=" + model + "&items=" + JSON.stringify(treatments);
+        OpenReport(url);
+    }
+
+    function initInvoiceItemsGridView(id) {
+        var url = "/BeautyCenterManager/Invoice/ListInvoiceGridItemRows/" + id;
+        invoiceItemsGrid = new jGrid2("invoiceItemsGrid", url);
+        invoiceItemsGrid.afterRefreshGrid = "afterRefreshGridView";
+        invoiceItemsGrid.afterEditCell = "afterEditCellGridView";
+        invoiceItemsGrid.intiateJGrid2();
+    }
+
+    function afterRefreshGridView() {
+        updateTotalPrice();
+    }
+
+    function afterEditCellGridView(element, index, columnName) {
+        if (columnName == "shiftCenterServiceId") {
+            var customDrugNameElement = $("#CreateInvoiceForm #" + index + "_customServiceName");
+            var selectedDrug = invoiceItemsGrid._dataSource[index].drugId;
+            if (selectedDrug == "") {
+                customDrugNameElement.removeAttr("disabled");
+            } else {
+                customDrugNameElement.attr("disabled", "disabled");
+            }
+        }
+        if (columnName == "price") {
+            updateTotalPrice();
+        }        
+    }
+
+     function renderPriceForServicesGridView(index) {
+        var price = invoiceItemsGrid._dataSource[index].price;              
+        var html = renderTextBoxForGridView(index, "price", price, false);
+        return html;
+    }
+
+     function renderTextBoxForGridView(index, fieldName, value, isDisable) {
+        var id = index + "_" + fieldName;
+        var disabled = isDisable ? "disabled='disabled'" : "";
+        var html = "<input autocomplete='off' class='form-control' " + disabled + " data-column='price' data-index='0' onkeyup='invoiceItemsGrid_Keyup(" + index + ",\"" + fieldName + "\")'  onchange='invoiceItemsGrid.onChangeRow(this," + index + ",\"" + fieldName + "\")' type='text' id='" + id + "' name='" + id + "' value='" + value + "'>";
+        return html;
+    }
+
+    function invoiceItemsGrid_Keyup(index, fieldName) {
+        var priceElement = $("#CreateInvoiceForm #" + index + "_price");       
+        var price = priceElement.val() ? parseFloat(priceElement.val()) : 0;       
+        if (fieldName == "price") {
+            invoiceItemsGrid._dataSource[index].price = price;
+            updateTotalPrice();
+        }       
+    }
+
+     function updateTotalPrice() {
+        var total = calculatePriceTotalAmount();
+        $("th[data-footer='services_total_price']").html(total.toFixed(2));
+    }
+    
+    function calculatePriceTotalAmount() {
+        var priceTotalAmount = 0;
+        var validData = invoiceItemsGrid._dataSource.filter(x => !x.isDeleted && x.price != "" && x.price != null && x.price > 0)
+        $.each(validData, function (index, row) {
+            priceTotalAmount += parseFloat(row.price);
+        });
+        return priceTotalAmount;
+    }
+
+    function addNewInvoiceItem() {
+        var newRow = invoiceItemsGrid.getNewRow();
+        newRow.id = invoiceItemsGrid.LastRowIndex + 1;
+        //newRow.expenseLedgerLineAccountId = accountsList_Expense[0].value;
+        invoiceItemsGrid.addByNewRow(newRow);
+    }
+
+    function getServicesList() {
+        if (servicesList) return servicesList;
+    }
+
+    function getShiftCenterServicesList() {
+        waiting('AwroNoreModalDialog', '@Global.PleaseWait');
+        $.ajax({
+            method: "GET",
+            url: "/BeautyCenterManager/Invoice/GetCenterServicesSelectList",
+            dataType: 'json',
+            success: function (result) {
+                servicesList = result;
+                console.log(servicesList);
+                initInvoiceItemsGridView('@Model.Id');
+            },
+            error: function (jqXHR, ex) {
+                handleAjaxError(jqXHR, ex);
+            }
+        }).always(function () {
+            waitingDone('AwroNoreModalDialog');
+        });
+    }
+
+    function renderInvoiceItemCustomDelete(index) {
+        var fieldName = "customDelete";
+        var id = index + "_" + fieldName;
+        var html = "<button type='button' class='btn btn-outline-danger btn-sm' id='" + id + "' onclick='invoiceItemsGridCustomDelete(" + index + ")'><i class='fa fa-trash'></i></button>";
+        return html;
+    }
+
+    function invoiceItemsGridCustomDelete(index) {
+        invoiceItemsGrid._dataSource[index].IsDeleted = true;
+        invoiceItemsGrid.refreshGrid();
+        updateTotalPrice();
+    }
+</script>

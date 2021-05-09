@@ -1,0 +1,10 @@
+﻿@model (int id, bool isDone)
+
+@if (!Model.isDone)
+{
+    <div class="btn-group" role="group" aria-label="Basic example">
+        <button class='btn btn-outline-secondary btn-sm' onclick='editUpdateTreatmentHistory(@Model.id);'><i class="fa fa-edit"></i></button>
+        <button class='btn btn-outline-danger btn-sm' onclick='deleteTreatmentHistory(@Model.id);'><i class="fa fa-trash"></i></button>
+    </div>
+}
+

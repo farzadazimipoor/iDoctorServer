@@ -1,0 +1,10 @@
+﻿@using AN.Core.Resources.Global;
+
+@model int
+
+<li class="nav-item">
+    <a class="nav-link" href="@Url.Action("Index","Prescription",new { area = "LabManager", currentStatus = "" })">
+        <i class="nav-icon fa fa-book"></i>
+        <p>@Global.Prescriptions</p>
+    </a>
+</li>

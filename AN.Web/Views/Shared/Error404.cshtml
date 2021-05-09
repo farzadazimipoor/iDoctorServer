@@ -1,0 +1,32 @@
+﻿@{
+    ViewBag.Title = "Error View";
+    Layout = "~/Views/Shared/_CpanelLayout.cshtml";
+}
+
+<section class="content-header">
+    <div class="container-fluid">
+        <div class="row mb-2">
+            <div class="col-sm-6">
+                <h1>@Global.Error</h1>
+            </div>           
+        </div>
+    </div>
+</section>
+
+<section class="content">
+    <div class="container-fluid">
+        <div class="card card-warning card-outline">
+            <div class="card-body">
+                <div class="error-page">
+                    <h2 class="headline text-warning"> 404</h2>
+                    <div class="error-content">
+                        <h3><i class="fas fa-exclamation-triangle text-warning"></i> @Messages.PageNotFound</h3>
+                        <p>
+                            @Messages.WeCouldNotFindPage
+                        </p>                        
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>    
+</section>

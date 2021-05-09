@@ -1,0 +1,537 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<root>
+  <!-- 
+    Microsoft ResX Schema 
+    
+    Version 2.0
+    
+    The primary goals of this format is to allow a simple XML format 
+    that is mostly human readable. The generation and parsing of the 
+    various data types are done through the TypeConverter classes 
+    associated with the data types.
+    
+    Example:
+    
+    ... ado.net/XML headers & schema ...
+    <resheader name="resmimetype">text/microsoft-resx</resheader>
+    <resheader name="version">2.0</resheader>
+    <resheader name="reader">System.Resources.ResXResourceReader, System.Windows.Forms, ...</resheader>
+    <resheader name="writer">System.Resources.ResXResourceWriter, System.Windows.Forms, ...</resheader>
+    <data name="Name1"><value>this is my long string</value><comment>this is a comment</comment></data>
+    <data name="Color1" type="System.Drawing.Color, System.Drawing">Blue</data>
+    <data name="Bitmap1" mimetype="application/x-microsoft.net.object.binary.base64">
+        <value>[base64 mime encoded serialized .NET Framework object]</value>
+    </data>
+    <data name="Icon1" type="System.Drawing.Icon, System.Drawing" mimetype="application/x-microsoft.net.object.bytearray.base64">
+        <value>[base64 mime encoded string representing a byte array form of the .NET Framework object]</value>
+        <comment>This is a comment</comment>
+    </data>
+                
+    There are any number of "resheader" rows that contain simple 
+    name/value pairs.
+    
+    Each data row contains a name, and value. The row also contains a 
+    type or mimetype. Type corresponds to a .NET class that support 
+    text/value conversion through the TypeConverter architecture. 
+    Classes that don't support this are serialized and stored with the 
+    mimetype set.
+    
+    The mimetype is used for serialized objects, and tells the 
+    ResXResourceReader how to depersist the object. This is currently not 
+    extensible. For a given mimetype the value must be set accordingly:
+    
+    Note - application/x-microsoft.net.object.binary.base64 is the format 
+    that the ResXResourceWriter will generate, however the reader can 
+    read any of the formats listed below.
+    
+    mimetype: application/x-microsoft.net.object.binary.base64
+    value   : The object must be serialized with 
+            : System.Runtime.Serialization.Formatters.Binary.BinaryFormatter
+            : and then encoded with base64 encoding.
+    
+    mimetype: application/x-microsoft.net.object.soap.base64
+    value   : The object must be serialized with 
+            : System.Runtime.Serialization.Formatters.Soap.SoapFormatter
+            : and then encoded with base64 encoding.
+
+    mimetype: application/x-microsoft.net.object.bytearray.base64
+    value   : The object must be serialized into a byte array 
+            : using a System.ComponentModel.TypeConverter
+            : and then encoded with base64 encoding.
+    -->
+  <xsd:schema id="root" xmlns="" xmlns:xsd="http://www.w3.org/2001/XMLSchema" xmlns:msdata="urn:schemas-microsoft-com:xml-msdata">
+    <xsd:import namespace="http://www.w3.org/XML/1998/namespace" />
+    <xsd:element name="root" msdata:IsDataSet="true">
+      <xsd:complexType>
+        <xsd:choice maxOccurs="unbounded">
+          <xsd:element name="metadata">
+            <xsd:complexType>
+              <xsd:sequence>
+                <xsd:element name="value" type="xsd:string" minOccurs="0" />
+              </xsd:sequence>
+              <xsd:attribute name="name" use="required" type="xsd:string" />
+              <xsd:attribute name="type" type="xsd:string" />
+              <xsd:attribute name="mimetype" type="xsd:string" />
+              <xsd:attribute ref="xml:space" />
+            </xsd:complexType>
+          </xsd:element>
+          <xsd:element name="assembly">
+            <xsd:complexType>
+              <xsd:attribute name="alias" type="xsd:string" />
+              <xsd:attribute name="name" type="xsd:string" />
+            </xsd:complexType>
+          </xsd:element>
+          <xsd:element name="data">
+            <xsd:complexType>
+              <xsd:sequence>
+                <xsd:element name="value" type="xsd:string" minOccurs="0" msdata:Ordinal="1" />
+                <xsd:element name="comment" type="xsd:string" minOccurs="0" msdata:Ordinal="2" />
+              </xsd:sequence>
+              <xsd:attribute name="name" type="xsd:string" use="required" msdata:Ordinal="1" />
+              <xsd:attribute name="type" type="xsd:string" msdata:Ordinal="3" />
+              <xsd:attribute name="mimetype" type="xsd:string" msdata:Ordinal="4" />
+              <xsd:attribute ref="xml:space" />
+            </xsd:complexType>
+          </xsd:element>
+          <xsd:element name="resheader">
+            <xsd:complexType>
+              <xsd:sequence>
+                <xsd:element name="value" type="xsd:string" minOccurs="0" msdata:Ordinal="1" />
+              </xsd:sequence>
+              <xsd:attribute name="name" type="xsd:string" use="required" />
+            </xsd:complexType>
+          </xsd:element>
+        </xsd:choice>
+      </xsd:complexType>
+    </xsd:element>
+  </xsd:schema>
+  <resheader name="resmimetype">
+    <value>text/microsoft-resx</value>
+  </resheader>
+  <resheader name="version">
+    <value>2.0</value>
+  </resheader>
+  <resheader name="reader">
+    <value>System.Resources.ResXResourceReader, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </resheader>
+  <resheader name="writer">
+    <value>System.Resources.ResXResourceWriter, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </resheader>
+  <data name="AboutUs" xml:space="preserve">
+    <value>About us</value>
+  </data>
+  <data name="Address" xml:space="preserve">
+    <value>Address</value>
+  </data>
+  <data name="AllRightsReservedFor" xml:space="preserve">
+    <value>All rights reserved for</value>
+  </data>
+  <data name="Android" xml:space="preserve">
+    <value>Android</value>
+  </data>
+  <data name="Attention" xml:space="preserve">
+    <value>Attention</value>
+  </data>
+  <data name="AwroNore" xml:space="preserve">
+    <value>AwroNore</value>
+  </data>
+  <data name="AwrosoftAddress" xml:space="preserve">
+    <value>Awrosoft address</value>
+  </data>
+  <data name="AwrosoftCompany" xml:space="preserve">
+    <value>Awrosoft ICT solutions company</value>
+  </data>
+  <data name="Back" xml:space="preserve">
+    <value>Back</value>
+  </data>
+  <data name="BestDoctors" xml:space="preserve">
+    <value>Best doctors</value>
+  </data>
+  <data name="BookingAppointmentSystem" xml:space="preserve">
+    <value>Booking Appointment System</value>
+  </data>
+  <data name="Cancel" xml:space="preserve">
+    <value>Cancel</value>
+  </data>
+  <data name="CancelThisAppointAndBack" xml:space="preserve">
+    <value>Cancel This appointment and back</value>
+  </data>
+  <data name="Clinic" xml:space="preserve">
+    <value>Clinic</value>
+  </data>
+  <data name="ClinicRegister" xml:space="preserve">
+    <value>Clinic register</value>
+  </data>
+  <data name="ClinicSelection" xml:space="preserve">
+    <value>Clinic selection</value>
+  </data>
+  <data name="ClinicShifts" xml:space="preserve">
+    <value>Clinic shifts</value>
+  </data>
+  <data name="ClinicShow" xml:space="preserve">
+    <value>Clinic show</value>
+  </data>
+  <data name="ClinicTypeSelection" xml:space="preserve">
+    <value>Clinic type selection</value>
+  </data>
+  <data name="Close" xml:space="preserve">
+    <value>Close</value>
+  </data>
+  <data name="CommonQuestionsAnsweres" xml:space="preserve">
+    <value>Common questions and answeres</value>
+  </data>
+  <data name="Contact" xml:space="preserve">
+    <value>Contact</value>
+  </data>
+  <data name="ContactNumbers" xml:space="preserve">
+    <value>Contact numbers</value>
+  </data>
+  <data name="ContactUs" xml:space="preserve">
+    <value>Contact us</value>
+  </data>
+  <data name="CopyRight" xml:space="preserve">
+    <value>Copyright</value>
+  </data>
+  <data name="Date" xml:space="preserve">
+    <value>Date</value>
+  </data>
+  <data name="DateSelection" xml:space="preserve">
+    <value>Date selection</value>
+  </data>
+  <data name="Day" xml:space="preserve">
+    <value>Day</value>
+  </data>
+  <data name="Doctor" xml:space="preserve">
+    <value>Doctor</value>
+  </data>
+  <data name="DownloadPatientApp" xml:space="preserve">
+    <value>Download patient application</value>
+  </data>
+  <data name="Education" xml:space="preserve">
+    <value>Education</value>
+  </data>
+  <data name="Email" xml:space="preserve">
+    <value>Email address</value>
+  </data>
+  <data name="EmailNotValid" xml:space="preserve">
+    <value>Email address is not valid</value>
+  </data>
+  <data name="EnertingDataAlert" xml:space="preserve">
+    <value>Enerting data alert</value>
+  </data>
+  <data name="EnteringData" xml:space="preserve">
+    <value>Entering data</value>
+  </data>
+  <data name="EveningShift" xml:space="preserve">
+    <value>Evening shift</value>
+  </data>
+  <data name="Expertises" xml:space="preserve">
+    <value>Expertises</value>
+  </data>
+  <data name="Female" xml:space="preserve">
+    <value>Female</value>
+  </data>
+  <data name="FinalConfirmation" xml:space="preserve">
+    <value>Final confirmation</value>
+  </data>
+  <data name="FirstAvailableTurn" xml:space="preserve">
+    <value>First available turn</value>
+  </data>
+  <data name="FirstName" xml:space="preserve">
+    <value>First name</value>
+  </data>
+  <data name="ForgotPassword" xml:space="preserve">
+    <value>Forgot password</value>
+  </data>
+  <data name="ForReserveAppointment" xml:space="preserve">
+    <value>For reserve  appointment</value>
+  </data>
+  <data name="FromHour" xml:space="preserve">
+    <value>From hour</value>
+  </data>
+  <data name="Full" xml:space="preserve">
+    <value>Full</value>
+  </data>
+  <data name="Gender" xml:space="preserve">
+    <value>Gender</value>
+  </data>
+  <data name="HomePage" xml:space="preserve">
+    <value>Home page</value>
+  </data>
+  <data name="Hospital" xml:space="preserve">
+    <value>Hospital</value>
+  </data>
+  <data name="HospitalRegister" xml:space="preserve">
+    <value>Hospital register</value>
+  </data>
+  <data name="Hospitals" xml:space="preserve">
+    <value>Hospitals</value>
+  </data>
+  <data name="Hour" xml:space="preserve">
+    <value>Hour</value>
+  </data>
+  <data name="IndividualPatientInfo" xml:space="preserve">
+    <value>Patient information</value>
+  </data>
+  <data name="InstructionTitle" xml:space="preserve">
+    <value>Instruction title</value>
+  </data>
+  <data name="InsuranceCode" xml:space="preserve">
+    <value>Insurance code</value>
+  </data>
+  <data name="InsuranceType" xml:space="preserve">
+    <value>Insurance type</value>
+  </data>
+  <data name="IsCircadian" xml:space="preserve">
+    <value />
+  </data>
+  <data name="IsGovernmental" xml:space="preserve">
+    <value>Is governmental</value>
+  </data>
+  <data name="LastName" xml:space="preserve">
+    <value>Last name</value>
+  </data>
+  <data name="LawRegulations" xml:space="preserve">
+    <value>Law regulations</value>
+  </data>
+  <data name="LogOut" xml:space="preserve">
+    <value>Log out</value>
+  </data>
+  <data name="Male" xml:space="preserve">
+    <value>Male</value>
+  </data>
+  <data name="MedicalCouncilNumber" xml:space="preserve">
+    <value>Medical council number</value>
+  </data>
+  <data name="Mobile" xml:space="preserve">
+    <value>Mobile</value>
+  </data>
+  <data name="MobileAlert" xml:space="preserve">
+    <value>Mobile notifications</value>
+  </data>
+  <data name="MobileApps" xml:space="preserve">
+    <value>Mobile applications</value>
+  </data>
+  <data name="More" xml:space="preserve">
+    <value>More</value>
+  </data>
+  <data name="MorningShift" xml:space="preserve">
+    <value>Morning shift</value>
+  </data>
+  <data name="NewsArchive" xml:space="preserve">
+    <value>News archive</value>
+  </data>
+  <data name="NextStep" xml:space="preserve">
+    <value>Next step</value>
+  </data>
+  <data name="NonGovClinics" xml:space="preserve">
+    <value>Nongovernmenal clinics</value>
+  </data>
+  <data name="NotItemFound" xml:space="preserve">
+    <value>No item found</value>
+  </data>
+  <data name="OnlinePayment" xml:space="preserve">
+    <value>Online payment</value>
+  </data>
+  <data name="OnlineTurnReservation" xml:space="preserve">
+    <value>Online turn reservation</value>
+  </data>
+  <data name="OnlyHaveTurn" xml:space="preserve">
+    <value>Only have appointment</value>
+  </data>
+  <data name="OnlyShowDoctorsWithHaveTurn" xml:space="preserve">
+    <value>Only show doctors which have appointment</value>
+  </data>
+  <data name="Password" xml:space="preserve">
+    <value>Password</value>
+  </data>
+  <data name="PatientInfo" xml:space="preserve">
+    <value>Patient info</value>
+  </data>
+  <data name="PatientRegister" xml:space="preserve">
+    <value>Patient register</value>
+  </data>
+  <data name="Person" xml:space="preserve">
+    <value>Person</value>
+  </data>
+  <data name="PhoneNumber" xml:space="preserve">
+    <value>Phone number</value>
+  </data>
+  <data name="PleaseEnterDate" xml:space="preserve">
+    <value>Enter date</value>
+  </data>
+  <data name="PleaseOnlyEnterText" xml:space="preserve">
+    <value>Enter text only</value>
+  </data>
+  <data name="PleaseSelectCity" xml:space="preserve">
+    <value>Select your city</value>
+  </data>
+  <data name="PleaseSelectDate" xml:space="preserve">
+    <value>Select a date</value>
+  </data>
+  <data name="PleaseSelectExpertise" xml:space="preserve">
+    <value>Select an expertise</value>
+  </data>
+  <data name="PleaseSelectOneOfThisTurns" xml:space="preserve">
+    <value>Select an appointment</value>
+  </data>
+  <data name="PleaseSelectProvince" xml:space="preserve">
+    <value>Select province</value>
+  </data>
+  <data name="Polyclinic" xml:space="preserve">
+    <value>Polyclinic</value>
+  </data>
+  <data name="PolyclinicRegister" xml:space="preserve">
+    <value>Polyclinic registeration</value>
+  </data>
+  <data name="Polyclinics" xml:space="preserve">
+    <value>Polyclinics</value>
+  </data>
+  <data name="PromptEmailRequired" xml:space="preserve">
+    <value>Email address is required</value>
+  </data>
+  <data name="PromptEnterValidEmail" xml:space="preserve">
+    <value>Enter valid email address</value>
+  </data>
+  <data name="QuickSearchByClinicName" xml:space="preserve">
+    <value>Quick search by clinic name</value>
+  </data>
+  <data name="QuickSearchByDoctorName" xml:space="preserve">
+    <value>Quick search by doctor name</value>
+  </data>
+  <data name="RegulationSectionLink" xml:space="preserve">
+    <value>Regulation section link</value>
+  </data>
+  <data name="RemainedTime" xml:space="preserve">
+    <value>Remained time</value>
+  </data>
+  <data name="Reservation" xml:space="preserve">
+    <value>Reservation</value>
+  </data>
+  <data name="ReserveAppointment" xml:space="preserve">
+    <value>Reserve appointment</value>
+  </data>
+  <data name="ReserveAppointmentForClinicsAndHealthCenters" xml:space="preserve">
+    <value>Reserve appointment for clinics and health centers</value>
+  </data>
+  <data name="ReserveAppointmentForDoctor" xml:space="preserve">
+    <value>Reserve appointment for doctor</value>
+  </data>
+  <data name="ReserveThisTurn" xml:space="preserve">
+    <value>Reserve this appointment</value>
+  </data>
+  <data name="ReserveTurn" xml:space="preserve">
+    <value>Reserve appointment</value>
+  </data>
+  <data name="Resume" xml:space="preserve">
+    <value>Resume</value>
+  </data>
+  <data name="SafetySecurity" xml:space="preserve">
+    <value>Safety security</value>
+  </data>
+  <data name="SafetySecurityAlert" xml:space="preserve">
+    <value>Safety security notification</value>
+  </data>
+  <data name="SearchDoctors" xml:space="preserve">
+    <value>Search doctors</value>
+  </data>
+  <data name="SecondName" xml:space="preserve">
+    <value>Second name</value>
+  </data>
+  <data name="SelectCity" xml:space="preserve">
+    <value>Select city</value>
+  </data>
+  <data name="SelectedExpertises" xml:space="preserve">
+    <value>Selected expertises</value>
+  </data>
+  <data name="SelectProvince" xml:space="preserve">
+    <value>Select province</value>
+  </data>
+  <data name="Send" xml:space="preserve">
+    <value>Send</value>
+  </data>
+  <data name="Service" xml:space="preserve">
+    <value>Service</value>
+  </data>
+  <data name="SignIn" xml:space="preserve">
+    <value>Sign in</value>
+  </data>
+  <data name="SignUp" xml:space="preserve">
+    <value>Sign up</value>
+  </data>
+  <data name="StartTime" xml:space="preserve">
+    <value>Start time</value>
+  </data>
+  <data name="Sum" xml:space="preserve">
+    <value>Sum</value>
+  </data>
+  <data name="Support" xml:space="preserve">
+    <value>Support</value>
+  </data>
+  <data name="TimeTable" xml:space="preserve">
+    <value>Schedule</value>
+  </data>
+  <data name="TimeTableDesc" xml:space="preserve">
+    <value />
+  </data>
+  <data name="ToHour" xml:space="preserve">
+    <value>To hour</value>
+  </data>
+  <data name="Training" xml:space="preserve">
+    <value>Training</value>
+  </data>
+  <data name="Turn" xml:space="preserve">
+    <value>Appointment </value>
+  </data>
+  <data name="TurnCancellation" xml:space="preserve">
+    <value>Appointment cancellation</value>
+  </data>
+  <data name="TurnProceedingAlert" xml:space="preserve">
+    <value>Appointment proceeding notification</value>
+  </data>
+  <data name="TurnProceedingCancellation" xml:space="preserve">
+    <value>Appointment proceeding cancellation</value>
+  </data>
+  <data name="Turns" xml:space="preserve">
+    <value>Appointments</value>
+  </data>
+  <data name="TurnSelection" xml:space="preserve">
+    <value>Appoitment selection</value>
+  </data>
+  <data name="UsefulArticle" xml:space="preserve">
+    <value>Useful article</value>
+  </data>
+  <data name="UsefulLinks" xml:space="preserve">
+    <value>Useful links</value>
+  </data>
+  <data name="User" xml:space="preserve">
+    <value>User</value>
+  </data>
+  <data name="Username" xml:space="preserve">
+    <value>Username</value>
+  </data>
+  <data name="ViewAndReserveAppointment" xml:space="preserve">
+    <value>View and reserve appointment</value>
+  </data>
+  <data name="ViewAndTrackingAppoints" xml:space="preserve">
+    <value>View and track appointments</value>
+  </data>
+  <data name="ViewScheduling" xml:space="preserve">
+    <value>View scheduling</value>
+  </data>
+  <data name="VisitDateSelection" xml:space="preserve">
+    <value>Visit date selection</value>
+  </data>
+  <data name="VisitTime" xml:space="preserve">
+    <value>Visit time</value>
+  </data>
+  <data name="VisitTimeAlert" xml:space="preserve">
+    <value>Visit time notification</value>
+  </data>
+  <data name="Warning" xml:space="preserve">
+    <value>Warning</value>
+  </data>
+  <data name="YourAppointment" xml:space="preserve">
+    <value>Your appointment</value>
+  </data>
+</root>

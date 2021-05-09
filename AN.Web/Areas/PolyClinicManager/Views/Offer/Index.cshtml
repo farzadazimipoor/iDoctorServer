@@ -1,0 +1,182 @@
+﻿@model AN.Core.ViewModels.OfferListViewModel
+
+@{
+    Layout = "~/Views/Shared/_CpanelLayout.cshtml";
+}
+
+@section styles{
+    <link rel="stylesheet" href="~/lib/datatables/css/dataTables.bootstrap4.min.css" />
+    <link rel="stylesheet" href="~/lib/datatables/css/buttons.dataTables.min.css" />
+    <link rel="stylesheet" href="~/lib/select2/css/select2.min.css" />
+    <link rel="stylesheet" href="~/lib/flatpickr/flatpickr.min.css" />
+    <link rel="stylesheet" href="~/lib/clockpicker/bootstrap-clockpicker.min.css" />
+    <link rel="stylesheet" href="~/lib/bootstrap-fileinput/css/fileinput.min.css" />
+    <link rel="stylesheet" href="~/lib/bootstrap4c-custom-switch/dist/css/component-custom-switch.min.css" />
+}
+
+<div class="content-header">
+    <div class="container-fluid">
+        <div class="row mb-2">
+            <div class="col-sm-6">
+                <h1 class="m-0 text-dark">@Global.Offers</h1>
+            </div>
+        </div>
+    </div>
+</div>
+
+<div class="content">
+    @Html.AntiForgeryToken()
+    <div class="container-fluid">
+        <div class="card card-info card-outline">
+            <div class="card-body">
+                <div class="row">
+                    <div class="col-md-12 table-responsive">
+                        <table id="fingers10" class="table table-striped table-bordered" style="width:100%">
+                            <thead>
+                                <tr>
+                                    <th>@Html.DisplayNameFor(m => m.Id)</th>
+                                    <th>@Html.DisplayNameFor(m => m.Date)</th>
+                                    <th>@Html.DisplayNameFor(m => m.StartTime)</th>
+                                    <th>@Html.DisplayNameFor(m => m.EndTime)</th>
+                                    <th>@Html.DisplayNameFor(m => m.Status)</th>
+                                    <th></th>
+                                </tr>
+                            </thead>
+                        </table>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+
+@section scripts{
+    <script src="~/lib/datatables/js/jquery.dataTables.min.js"></script>
+    <script src="~/lib/datatables/js/dataTables.bootstrap4.min.js"></script>
+    <script src="~/lib/datatables/js/dataTables.buttons.min.js"></script>
+    <script src="~/lib/select2/js/select2.min.js"></script>
+    <script src="~/lib/flatpickr/flatpickr.min.js"></script>
+    <script src="~/lib/clockpicker/bootstrap-clockpicker.min.js"></script>
+    <script src="~/lib/jquery.maskedinput/jquery.maskedinput.min.js"></script>
+    <script src="~/js/My/DataTablesLocale/dt_@(ViewBag.Lang.ToString()).js" asp-append-version="true"></script>
+    <script type="text/javascript" src="~/lib/bootstrap-fileinput/js/fileinput.min.js"></script>
+    <script type="text/javascript" src="~/lib/bootstrap-fileinput/themes/fas/theme.min.js"></script>
+    <script type="text/javascript">
+        var table;
+        $(function () {
+            if ($('#fingers10').length !== 0) {
+                table = $('#fingers10').DataTable({
+                    language: dataTablesLocale,
+                    processing: true,
+                    serverSide: true,
+                    orderCellsTop: true,
+                    autoWidth: true,
+                    deferRender: true,
+                    order: [[ 1, "desc" ]],
+                    lengthMenu: [5, 10, 15, 20],
+                    dom: '<"row"<"col-sm-6 col-md-6 text-right"l><"col-sm-6 col-md-6"B>><"row"<"col-sm-12"tr>><"row"<"col-sm-12 col-md-5"i><"col-sm-12 col-md-7"p>>',
+                    buttons: [
+                        {
+                            text: '<i class="fa fa-plus"></i>',
+                            className: 'btn btn-xs btn-primary',
+                            action: function (e, dt, node, config) {
+                                offerCreateUpdate(null);
+                            }
+                        }
+                    ],
+                    ajax: {
+                        type: "POST",
+                        url: '/polyclinicmanager/offer/LoadTable/',
+                        contentType: "application/json; charset=utf-8",
+                        async: true,
+                        headers: {
+                            "XSRF-TOKEN": document.querySelector('[name="__RequestVerificationToken"]').value
+                        },
+                        data: function (data) {
+                            let additionalValues = [];
+                            additionalValues[0] = "Additional Parameters 1";
+                            additionalValues[1] = "Additional Parameters 2";
+                            data.AdditionalValues = additionalValues;
+
+                            return JSON.stringify(data);
+                        }
+                    },
+                    columns: [
+                        {
+                            data: "Id",
+                            name: "eq",
+                            visible: false,
+                            searchable: false
+                        },
+                        {
+                            data: "Date",
+                            name: "co"
+                        },
+                        {
+                            data: "StartTime",
+                            name: "co"
+                        },
+                        {
+                            data: "EndTime",
+                            name: "eq"
+                        },
+                        {
+                            data: "Status",
+                            name: "eq"
+                        },
+                        {
+                            data: null,
+                            searchable: false,
+                            orderable: false,
+                            render: function (data, type, row, meta) {
+                                return row.ActionsHtml;
+                            }
+                        }
+                    ]
+                });
+
+                table.columns().every(function (index) {
+                    $('#fingers10 thead tr:last th:eq(' + index + ') input')
+                        .on('keyup',
+                            function (e) {
+                                if (e.keyCode === 13) {
+                                    table.column($(this).parent().index() + ':visible').search(this.value).draw();
+                                }
+                            });
+                });
+            }
+        });
+
+        function reloadDataTable(initAgain = false) {
+            table.ajax.reload(null, initAgain);
+        }
+
+        function offerCreateUpdate(id) {
+            var title = '@Html.Raw(AN.Core.Resources.UI.AdminPanel.PanelResource.AddNew)';
+            if (id != null) {
+                title = '@Html.Raw(AN.Core.Resources.Global.Global.Update)';
+            }
+            waiting('body', '@AN.Core.Resources.Global.Global.PleaseWait');
+            $.ajax({
+                type: 'Get',
+                url: "/polyclinicmanager/Offer/CreateUpdate?id=" + id,
+                success: function (response) {
+                    var commonModal = $("#AwroNoreModal");
+                    commonModal.find('#AwroNoreModalDialog').addClass("modal-lg");
+                    commonModal.find('.modal-title').text(title);
+                    commonModal.find('#CommonModalContent').html(response);
+                    commonModal.modal({backdrop: 'static', keyboard: false});
+                    $("#Date").flatpickr();
+                    $('.clockpicker').mask("99:99");
+                    $('.clockpicker').clockpicker();
+                },
+                error: function (jqXHR, ex) {
+                    handleAjaxError(jqXHR, ex);
+                }
+            }).always(function () {
+                waitingDone('body');
+            });
+        }
+    </script>
+}

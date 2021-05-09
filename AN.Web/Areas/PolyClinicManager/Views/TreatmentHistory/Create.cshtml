@@ -1,0 +1,470 @@
+﻿@using AWRO.Helper.UIHelper
+@using AN.Web.Areas.PolyClinicManager.Models
+
+@model CreateTreatmentHistoryViewModel
+
+@{
+    var personInfo = ViewBag.PersonInfo as AN.Core.ViewModels.PersonInfoViewModel;
+}
+
+<link href="~/css/jGrid2/jGrid2.css" rel="stylesheet" />
+
+<div class="content">
+    <form id="createTreatmentForm" class="form-horizontal" action="@Url.Action("Create", "TreatmentHistory", new {area = "PolyClinicManager"})" method="POST">
+        @Html.HiddenFor(m => m.Id)
+        @Html.HiddenFor(m => m.AppointmentId)
+        @Html.HiddenFor(m => m.PatientId)
+        @Html.HiddenFor(m => m.PersonId)
+        <div class="row">
+            <div class="col-12">
+                <div class="card" id="accordion">
+                    <div class="card-header" id="headingOne">
+                        <a href="#" data-toggle="collapse" data-target="#collapseOne" aria-expanded="true" aria-controls="collapseOne">@Global.PatientInfo</a>
+                    </div>
+                    <div id="collapseOne" class="collapse" aria-labelledby="headingOne" data-parent="#accordion">
+                        <div class="card-body">
+                            <div class="row">
+                                <div class="col-md-4">
+                                    <div class="form-group">
+                                        @Html.LabelFor(m => m.PatientVisitAge)
+                                        @Html.TextBoxFor(m => m.PatientVisitAge, new { @class = "form-control", maxlength = "3" })
+                                        @Html.ValidationMessageFor(m => m.PatientVisitAge, "", new { @class = "text-danger" })
+                                    </div>
+                                </div>
+                                <div class="col-md-4">
+                                    <div class="form-group">
+                                        @Html.LabelFor(m => m.PatientVisitWeight)
+                                        @Html.TextBoxFor(m => m.PatientVisitWeight, new { @class = "form-control", maxlength = "3" })
+                                        @Html.ValidationMessageFor(m => m.PatientVisitWeight, "", new { @class = "text-danger" })
+                                    </div>
+                                </div>
+                                <div class="col-md-4">
+                                    <div class="form-group">
+                                        @Html.LabelFor(m => m.PatientVisitHeight)
+                                        @Html.TextBoxFor(m => m.PatientVisitHeight, new { @class = "form-control", maxlength = "3" })
+                                        @Html.ValidationMessageFor(m => m.PatientVisitHeight, "", new { @class = "text-danger" })
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="col-md-3">
+                <div class="form-group">
+                    @Html.LabelFor(m => m.VisitDate)
+                    @Html.TextBoxFor(m => m.VisitDate, new { @class = "form-control common-datapicker", @autocomplete = "off" })
+                    @Html.ValidationMessageFor(m => m.VisitDate, "", new { @class = "text-danger" })
+                </div>
+            </div>
+            <div class="col-md-5">
+                <div class="form-group">
+                    @Html.LabelFor(m => m.DoctorId)
+                    @Html.DropDownListFor(model => model.DoctorId, (ViewBag.Doctors as IEnumerable<SelectListItem>), new { @class = "form-control", @disabled = "disabled" })
+                    @Html.ValidationMessageFor(m => m.DoctorId, "", new { @class = "text-danger" })
+                </div>
+            </div>
+            <div class="col-md-4">
+                <div class="form-group">
+                    @Html.LabelFor(m => m.PharmacyId)
+                    @Html.DropDownListFor(model => model.PharmacyId, (ViewBag.Pharmacies as IEnumerable<SelectListItem>), new { @class = "form-control" })
+                    @Html.ValidationMessageFor(m => m.PharmacyId, "", new { @class = "text-danger" })
+                </div>
+            </div>
+            <div class="col-md-12">
+                <div class="form-group">
+                    @Html.LabelFor(m => m.Problems_Ku)
+                    @Html.TextBoxFor(m => m.Problems_Ku, new { @class = "form-control", maxlength = "1000" })
+                    @Html.ValidationMessageFor(m => m.Problems_Ku, "", new { @class = "text-danger" })
+                </div>
+            </div>
+            <div class="col-md-12">
+                <div class="form-group text-center">
+                    <!-- Button trigger modal -->
+                    <button type="button" class="btn btn-outline-primary btn-xs" data-toggle="modal" data-target="#patientMedicalHistoryModal" data-backdrop="static" data-keyboard="false">
+                        @Global.PatientsHistory
+                    </button>
+                </div>
+            </div>
+            <div class="col-md-12">
+                <div class="form-group">
+                    <label>@Global.Treatments</label>
+                </div>
+                @(Html.AWRO().JGrid2<AN.Web.Areas.PolyClinicManager.Models.TreatmentsItemsGridViewModel>("testGrid", showPaging: false))
+                <div class="text-center">
+                    <button type="button" class="btn btn-default" onclick="addNewExpenseItem()"><i class="fa fa-plus"></i></button>
+                </div>
+            </div>
+            <div class="col-md-12">
+                <div class="form-group">
+                    @Html.LabelFor(m => m.Description_Ku)
+                    @Html.TextAreaFor(m => m.Description_Ku, new { @class = "form-control", rows = 2, maxlength = "1000" })
+                    @Html.ValidationMessageFor(m => m.Description_Ku, "", new { @class = "text-danger" })
+                </div>
+            </div>
+            <div class="col-md-12 text-center mt-5">
+                <button class="btn btn-outline-primary" type="button" onclick="printPrescriptionDirect()"><i class="fa fa-print"></i></button>
+                <button class="btn btn-info" type="submit">@Global.Done</button>
+                <button class="btn btn-danger" data-dismiss="modal" type="button">@Global.Cancel</button>
+            </div>
+        </div>
+    </form>
+</div>
+
+<!-- Modal -->
+<div class="modal fade" id="patientMedicalHistoryModal" tabindex="-1" role="dialog" aria-labelledby="patientMedicalHistoryModalLabel" aria-hidden="true">
+    <div class="modal-dialog modal-lg" role="document">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h5 id="patientMedicalHistoryModalLabel">@Global.PatientsHistory</h5>
+            </div>
+            <div class="modal-body">
+                <form id="patientHistoryForm">
+                    <div class="row">
+                        <div class="col-md-6">
+                            <div id="historyAccordionLeft">
+                                <div class="card">
+                                    <div class="card-header" id="historyOfPresentIllness">
+                                        <h5 class="mb-0">
+                                            <button type="button" class="btn btn-link" data-toggle="collapse" data-target="#historyOfPresentIllnessCollapse" aria-expanded="true" aria-controls="historyOfPresentIllnessCollapse">
+                                                History of present illness
+                                            </button>
+                                        </h5>
+                                    </div>
+                                    <div id="historyOfPresentIllnessCollapse" class="collapse" aria-labelledby="historyOfPresentIllness" data-parent="#historyAccordionLeft">
+                                        <div class="card-body">
+                                            <textarea class="form-control patient-history-textarea" rows="4" id="PresentIllness" name="PresentIllness" placeholder="History of present illness">@Model.PatientHistory.PresentIllness</textarea>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="card">
+                                    <div class="card-header" id="historyOfPastMedical ">
+                                        <h5 class="mb-0">
+                                            <button type="button" class="btn btn-link" data-toggle="collapse" data-target="#historyOfPastMedicalCollapse" aria-expanded="true" aria-controls="historyOfPastMedicalCollapse">
+                                                Past medical history
+                                            </button>
+                                        </h5>
+                                    </div>
+                                    <div id="historyOfPastMedicalCollapse" class="collapse" aria-labelledby="historyOfPastMedical" data-parent="#historyAccordionLeft">
+                                        <div class="card-body">
+                                            <textarea class="form-control patient-history-textarea" rows="4" id="PastMedical" name="PastMedical" placeholder="Past medical history">@Model.PatientHistory.PastMedical</textarea>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="card">
+                                    <div class="card-header" id="historyOfDrug">
+                                        <h5 class="mb-0">
+                                            <button type="button" class="btn btn-link" data-toggle="collapse" data-target="#historyOfDrugCollapse" aria-expanded="true" aria-controls="historyOfDrugCollapse">
+                                                Drug history
+                                            </button>
+                                        </h5>
+                                    </div>
+                                    <div id="historyOfDrugCollapse" class="collapse" aria-labelledby="historyOfDrug" data-parent="#historyAccordionLeft">
+                                        <div class="card-body">
+                                            <textarea class="form-control patient-history-textarea" rows="4" id="DrugHistory" name="DrugHistory" placeholder="Drug history">@Model.PatientHistory.DrugHistory</textarea>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="card">
+                                    <div class="card-header" id="historyOfSocial">
+                                        <h5 class="mb-0">
+                                            <button type="button" class="btn btn-link" data-toggle="collapse" data-target="#historyOfSocialCollapse" aria-expanded="true" aria-controls="historyOfSocialCollapse">
+                                                Social history
+                                            </button>
+                                        </h5>
+                                    </div>
+                                    <div id="historyOfSocialCollapse" class="collapse" aria-labelledby="historyOfSocial" data-parent="#historyAccordionLeft">
+                                        <div class="card-body">
+                                            <textarea class="form-control patient-history-textarea" rows="4" id="SocialHistory" name="SocialHistory" placeholder="Social history">@Model.PatientHistory.SocialHistory</textarea>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="card">
+                                    <div class="card-header" id="historyOfExamination">
+                                        <h5 class="mb-0">
+                                            <button type="button" class="btn btn-link" data-toggle="collapse" data-target="#historyOfExaminationCollapse" aria-expanded="true" aria-controls="historyOfExaminationCollapse">
+                                                Examination
+                                            </button>
+                                        </h5>
+                                    </div>
+                                    <div id="historyOfExaminationCollapse" class="collapse" aria-labelledby="historyOfExamination" data-parent="#historyAccordionLeft">
+                                        <div class="card-body">
+                                            <textarea class="form-control patient-history-textarea" rows="4" id="ExaminationHistory" name="ExaminationHistory" placeholder="Examination">@Model.PatientHistory.ExaminationHistory</textarea>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="col-md-6">
+                            <div id="historyAccordionRight">
+                                <div class="card">
+                                    <div class="card-header" id="historyOfSignsAndSymptoms">
+                                        <h5 class="mb-0">
+                                            <button type="button" class="btn btn-link" data-toggle="collapse" data-target="#historyOfSignsAndSymptomsCollapse" aria-expanded="true" aria-controls="historyOfSignsAndSymptomsCollapse">
+                                                Signs and symptoms
+                                            </button>
+                                        </h5>
+                                    </div>
+                                    <div id="historyOfSignsAndSymptomsCollapse" class="collapse" aria-labelledby="historyOfSignsAndSymptoms" data-parent="#historyAccordionRight">
+                                        <div class="card-body">
+                                            <textarea class="form-control patient-history-textarea" rows="4" id="SignsAndSymptomsHistory" name="SignsAndSymptomsHistory" placeholder="Signs and symptoms">@Model.PatientHistory.SignsAndSymptomsHistory</textarea>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="card">
+                                    <div class="card-header" id="historyOfSurgical">
+                                        <h5 class="mb-0">
+                                            <button type="button" class="btn btn-link" data-toggle="collapse" data-target="#historyOfSurgicalCollapse" aria-expanded="true" aria-controls="historyOfSurgicalCollapse">
+                                                Surgical history
+                                            </button>
+                                        </h5>
+                                    </div>
+                                    <div id="historyOfSurgicalCollapse" class="collapse" aria-labelledby="historyOfSurgical" data-parent="#historyAccordionRight">
+                                        <div class="card-body">
+                                            <textarea class="form-control patient-history-textarea" rows="4" id="SurgicalHistory" name="SurgicalHistory" placeholder="Surgical history">@Model.PatientHistory.SurgicalHistory</textarea>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="card">
+                                    <div class="card-header" id="historyOfFamily">
+                                        <h5 class="mb-0">
+                                            <button type="button" class="btn btn-link" data-toggle="collapse" data-target="#historyOfFamilyCollapse" aria-expanded="true" aria-controls="historyOfFamilyCollapse">
+                                                Family history
+                                            </button>
+                                        </h5>
+                                    </div>
+                                    <div id="historyOfFamilyCollapse" class="collapse" aria-labelledby="historyOfFamily" data-parent="#historyAccordionRight">
+                                        <div class="card-body">
+                                            <textarea class="form-control patient-history-textarea" rows="4" id="FamilyHistory" name="FamilyHistory" placeholder="Family history">@Model.PatientHistory.FamilyHistory</textarea>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="card">
+                                    <div class="card-header" id="historyOfSystemicReview">
+                                        <h5 class="mb-0">
+                                            <button type="button" class="btn btn-link" data-toggle="collapse" data-target="#historyOfSystemicReviewCollapse" aria-expanded="true" aria-controls="historyOfSystemicReviewCollapse">
+                                                Systemic review
+                                            </button>
+                                        </h5>
+                                    </div>
+                                    <div id="historyOfSystemicReviewCollapse" class="collapse" aria-labelledby="historyOfSystemicReview" data-parent="#historyAccordionRight">
+                                        <div class="card-body">
+                                            <textarea class="form-control patient-history-textarea" rows="4" id="SystemicReview" name="SystemicReview" placeholder="Systemic review">@Model.PatientHistory.SystemicReview</textarea>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="card">
+                                    <div class="card-header" id="historyOfDifferentialDiagnosis">
+                                        <h5 class="mb-0">
+                                            <button type="button" class="btn btn-link" data-toggle="collapse" data-target="#historyOfDifferentialDiagnosisCollapse" aria-expanded="true" aria-controls="historyOfDifferentialDiagnosisCollapse">
+                                                Differential diagnosis
+                                            </button>
+                                        </h5>
+                                    </div>
+                                    <div id="historyOfDifferentialDiagnosisCollapse" class="collapse" aria-labelledby="historyOfDifferentialDiagnosis" data-parent="#historyAccordionRight">
+                                        <div class="card-body">
+                                            <textarea class="form-control patient-history-textarea" rows="4" id="DifferentialDiagnosis" name="DifferentialDiagnosis" placeholder="Differential diagnosis">@Model.PatientHistory.DifferentialDiagnosis</textarea>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="col-12">
+                            <div id="historyAccordionFinal">
+                                <div class="card">
+                                    <div class="card-header" id="historyOfFinalDiagnosis">
+                                        <h5 class="mb-0">
+                                            <button type="button" class="btn btn-link" data-toggle="collapse" data-target="#historyOfFinalDiagnosisCollapse" aria-expanded="true" aria-controls="historyOfFinalDiagnosisCollapse">
+                                                Final diagnosis
+                                            </button>
+                                        </h5>
+                                    </div>
+                                    <div id="historyOfFinalDiagnosisCollapse" class="collapse" aria-labelledby="historyOfFinalDiagnosis" data-parent="#historyAccordionFinal">
+                                        <div class="card-body">
+                                            <textarea class="form-control patient-history-textarea" rows="4" id="FinalDiagnosis" name="FinalDiagnosis" placeholder="Final diagnosis">@Model.PatientHistory.FinalDiagnosis</textarea>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </form>
+            </div>
+            <div class="modal-footer" style="display:block;">
+                <div class="row">
+                    <div class="col-md-12 text-center">
+                        <button id="btnCloseMedicalHistoryModal" type="button" class="btn btn-outline-primary">@Global.Ok</button>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+<script type="text/javascript" src="~/js/JGrid2/app.js"></script>
+<script type="text/javascript" src="~/js/JGrid2/Common.js" asp-append-version="true"></script>
+<script type="text/javascript" src="~/js/JGrid2/InitiateJGrid2.js"></script>
+<script>
+    var drugsList;
+    var form = $("#createTreatmentForm");
+    var patientHistoryForm = $("#patientHistoryForm");
+    $(function () {
+        $.validator.unobtrusive.parse(form);
+        $(form).on("submit", function (e) {
+            e.preventDefault();
+            var submitButton = $(this).find("button[type='submit']");
+            if (form.valid()) {
+                waiting('AwroNoreModalDialog', '@Global.PleaseWait');
+                $.ajax({
+                    method: "POST",
+                    url: $(this).attr("action"),
+                    data: { model: form.serializeFormJSON(), treatments: testGrid._dataSource, patientHistory: patientHistoryForm.serializeFormJSON() }, success: function (result) {
+                        if (result.success) {
+                            try {
+                                reloadDataTable();
+                            } catch(err) { }
+                            form.closest('.modal').modal('toggle');
+                            Toast.fire({
+                                type: 'success',
+                                title: '@AN.Core.Resources.Global.Global.Successful',
+                                text: result.message
+                            });
+                        } else {
+                            Toast.fire({
+                                type: 'error',
+                                title: '@AN.Core.Resources.Global.Global.Error',
+                                text: result.message
+                            });
+                        }
+                    }, error: function (jqXHR, ex) {
+                        handleAjaxError(jqXHR, ex);
+                    }
+                }).always(function () {
+                    waitingDone('AwroNoreModalDialog');
+                });
+            }
+        });
+
+        fetchExpenseAccountsList();
+
+        $("#btnCloseMedicalHistoryModal").click(function () {
+            $('#patientMedicalHistoryModal').on('hidden.bs.modal', function () {
+                $('body').addClass('modal-open');
+            });
+            $('#patientMedicalHistoryModal').modal('hide');
+        });
+    });
+
+    function printPrescriptionDirect() {
+        var model = JSON.stringify(objectifyForm(form.serializeArray()))
+        var treatments = testGrid._dataSource;
+        var url = "/PolyClinicManager/TreatmentHistory/DirectPrint?data=" + model + "&items=" + JSON.stringify(treatments);
+        OpenReport(url);
+    }
+
+    function initExpenseGridView(id) {
+        var url = "/PolyClinicManager/TreatmentHistory/ListTreatmentsGridItemRows/" + id;
+        testGrid = new jGrid2("testGrid", url);
+        testGrid.afterRefreshGrid = "afterRefreshGrid_PurchaseOrder";
+        testGrid.afterEditCell = "afterEditCellGrid_PurchaseOrder";
+        testGrid.intiateJGrid2();
+    }
+
+    function afterRefreshGrid_PurchaseOrder() {
+
+    }
+
+    function afterEditCellGrid_PurchaseOrder(element, index, columnName) {
+        if (columnName == "drugId") {
+            var customDrugNameElement = $("#createTreatmentForm #" + index + "_customDrugName");
+            var selectedDrug = testGrid._dataSource[index].drugId;
+            if (selectedDrug == "") {
+                customDrugNameElement.removeAttr("disabled");
+            } else {
+                customDrugNameElement.attr("disabled", "disabled");
+            }
+            setDrugDosage(index);
+        }
+    }
+
+    function addNewExpenseItem() {
+        var newRow = testGrid.getNewRow();
+        newRow.id = testGrid.LastRowIndex + 1;
+        //newRow.expenseLedgerLineAccountId = accountsList_Expense[0].value;
+        testGrid.addByNewRow(newRow);
+    }
+
+    function getDrugsList() {
+        if (drugsList) return drugsList;
+    }
+
+    function fetchExpenseAccountsList() {
+        waiting('AwroNoreModalDialog', '@Global.PleaseWait');
+        $.ajax({
+            method: "GET",
+            url: "/PolyClinicManager/TreatmentHistory/GetDrugsSelectList",
+            dataType: "json",
+            success: function (result) {
+                drugsList = result;
+                console.log(drugsList);
+                initExpenseGridView('@Model.Id');
+            },
+            error: function (jqXHR, ex) {
+                handleAjaxError(jqXHR, ex);
+            }
+        }).always(function () {
+            waitingDone('AwroNoreModalDialog');
+        });
+    }
+
+    function renderCustomDelete_ExpenseLedger(index) {
+        var fieldName = "customDelete";
+        var id = index + "_" + fieldName;
+        var html = "<button type='button' class='btn btn-outline-danger btn-sm' id='" + id + "' onclick='expenseLedgerGrid_CustomDelete(" + index + ")'><i class='fa fa-trash'></i></button>";
+        return html;
+    }
+
+    function expenseLedgerGrid_CustomDelete(index) {
+        testGrid._dataSource[index].IsDeleted = true;
+        testGrid.refreshGrid();
+    }
+
+    function updatePatient(appointmentId, patientId) {
+        waiting('AwroNoreModalDialog', '@Global.PleaseWait');
+        $.ajax({
+            method: "GET",
+            url: "/PolyClinicManager/Patient/CreateUpdate?appointmentId=" + appointmentId + "&patientId=" + patientId,
+            dataType: "html",
+            success: function (result) {
+                $("#CommonModalContent").html(result);
+                $("#CommonModalContent").find('.common-datapicker').flatpickr();
+            },
+            error: function (jqXHR, ex) {
+                handleAjaxError(jqXHR, ex);
+            }
+        }).always(function () {
+            waitingDone('AwroNoreModalDialog');
+        });
+    }
+
+    function setDrugDosage(index = -1) {
+        if (index >= 0) {
+            var rowDrugId = testGrid._dataSource[index].drugId;          
+            waiting('AwroNoreModalDialog', '@Global.PleaseWait');
+            $.ajax({
+                method: "GET",
+                url: "/PolyClinicManager/TreatmentHistory/GetDrugData/" + rowDrugId,
+                dataType: "json",
+                success: function (result) {                   
+                    testGrid._dataSource[index].dose = result.Volume;
+                    form.find('[id = ' + index + '_dose]').val(result.Volume);
+                },
+                error: function (jqXHR, ex) {
+                    handleAjaxError(jqXHR, ex);
+                }
+            }).always(function () {
+                waitingDone('AwroNoreModalDialog');
+            });
+        }
+    }
+</script>

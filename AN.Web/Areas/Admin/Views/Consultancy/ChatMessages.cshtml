@@ -1,0 +1,77 @@
+@using AN.Core.ViewModels;
+
+@model (ChatDetailsViewModel chatDetails, List<MessageItemViewModel> messages)
+
+<div class="row">
+    <div class="col-md-6">
+        <ul class="users-list clearfix">
+            <li>
+                <img src="@Model.chatDetails.DoctorAvatar" alt="">
+                <a class="users-list-name" href="#">@Model.chatDetails.Doctor</a>
+                <span class="users-list-date">@Model.chatDetails.Date</span>
+            </li>
+            <li>
+                <img src="@Model.chatDetails.PersonAvatar" alt="">
+                <a class="users-list-name" href="#">@Model.chatDetails.Person</a>
+                <span class="users-list-date">@Model.chatDetails.Date</span>
+            </li>
+        </ul>
+    </div>
+    <div class="col-md-6" style="background-color: #f8f9fa; border-radius:15px;">
+        <div class="direct-chat-messages">
+            @foreach (var message in Model.messages)
+            {
+                if (message.Sender == ConsultancyMessageSender.CONSULTANT)
+                {
+                    <!-- Message. Default to the left -->
+                    <div class="direct-chat-msg">
+                        <div class="direct-chat-infos clearfix">
+                            <span class="direct-chat-name float-left">@message.Doctor</span>
+                            <span class="direct-chat-timestamp float-right">@message.Time</span>
+                        </div>
+                        <!-- /.direct-chat-infos -->
+                        <img class="direct-chat-img" src="@message.DoctorAvatar" alt="">
+                        <!-- /.direct-chat-img -->
+                        <div class="direct-chat-text">
+                            @if (message.Type == ConsultancyMessageType.TEXT)
+                            {
+                                @message.Content
+                            }
+                            else if (message.Type == ConsultancyMessageType.PHOTO)
+                            {
+                                <span>Photo</span>
+                            }
+                        </div>
+                        <!-- /.direct-chat-text -->
+                    </div>
+                    <!-- /.direct-chat-msg -->
+                }
+                else
+                {
+                    <!-- Message to the right -->
+                    <div class="direct-chat-msg right">
+                        <div class="direct-chat-infos clearfix">
+                            <span class="direct-chat-name float-right">@message.Person</span>
+                            <span class="direct-chat-timestamp float-left">@message.Time</span>
+                        </div>
+                        <!-- /.direct-chat-infos -->
+                        <img class="direct-chat-img" src="@message.PersonAvatar" alt="">
+                        <!-- /.direct-chat-img -->
+                        <div class="direct-chat-text">
+                            @if (message.Type == ConsultancyMessageType.TEXT)
+                            {
+                                @message.Content
+                            }
+                            else if (message.Type == ConsultancyMessageType.PHOTO)
+                            {
+                                <span>Photo</span>
+                            }
+                        </div>
+                        <!-- /.direct-chat-text -->
+                    </div>
+                    <!-- /.direct-chat-msg -->
+                }
+            }
+        </div>
+    </div>
+</div>

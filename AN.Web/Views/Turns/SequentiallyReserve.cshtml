@@ -1,0 +1,14 @@
+﻿<div class="col-xs-12 col-md-12 text-center" ng-show="ReserveData.ReservationType == 0 || SelectedTurn && !BookedAppointment">
+    <div class="card w-100 text-center p-3" ng-show="ReserveData.ReservationType == 0 || SelectedTurn && !BookedAppointment">
+
+        <strong>@AN.Core.Resources.Global.Global.YourTurn</strong>
+
+        <p class="mt-3 w-100">{{SelectedTurn.DayOfWeek}} - {{SelectedTurn.Date}}</p>
+
+        <p class="text-center w-100">
+            <span class="empty-turn-time">{{SelectedTurn.StartTime}}</span>
+        </p>
+
+        <button class="btn btn--primary btn--large btn--radius" ng-click="FinalBookAppointment('@ViewBag.Lng')">@AN.Core.Resources.Global.Global.BookThisTurn</button>
+    </div>
+</div>

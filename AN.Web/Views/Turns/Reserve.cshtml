@@ -1,0 +1,38 @@
+﻿@model AN.Web.Models.ReserveTurnViewModel
+<div class="container">
+    <div class="row">
+        <div class="col-xs-3 col-md-3" style="text-align:center;">
+            <div class="doctor-picture"><img src="~/Content/images/avatars/@Model.DoctorDetails.Avatar?ver=@(Guid.NewGuid())" alt="@Model.DoctorDetails.FullName" /></div>
+        </div>
+        <div class="col-xs-8 col-md-8">
+            <div class="doctor-details">
+                <h6 class="doctor-name">@Model.DoctorDetails.FullName</h6>
+                <p class="doctor-proficiency mt-3"><strong>@AN.Core.Resources.Global.Global.Expertise: </strong> <span>@Model.DoctorDetails.Expertises.FirstOrDefault()</span></p>
+                <p class="doctor-address"><span>@Model.DoctorDetails.Address</span></p>
+            </div>
+        </div>
+        <div class="divider"></div>       
+    </div>
+    <div class="row">
+        <div class="col-xs-12 col-md-12" id="ReserveTurnArea">
+            @{
+                if (Model.ReservationType == ReservationType.Sequentially)
+                {
+                    //Html.RenderAction("SequentiallyReserve", "Turns", new { doctorId = Model.DoctorId, polyclinicHealthServiceId = Model.HealthServiceId });
+                }
+                else
+                {
+                    //Html.RenderAction("SelectiveReserve", "Turns", new { doctorId = Model.DoctorId, polyclinicHealthServiceId = Model.HealthServiceId });
+                }
+            }
+        </div>
+    </div>
+</div>
+
+
+<script type="text/javascript">
+    $(function () {
+        
+    });
+</script>
+

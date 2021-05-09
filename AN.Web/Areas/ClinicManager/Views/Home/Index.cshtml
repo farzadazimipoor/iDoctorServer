@@ -1,0 +1,368 @@
+﻿@using AN.Web.Models
+@using AN.Core.Resources.UI.AdminPanel;
+@using AN.Core.Resources.Global;
+
+@model AN.Web.Areas.ClinicManager.Models.CMIndexViewModel
+
+@{
+    ViewBag.Title = AN.Core.Resources.EntitiesResources.Role.RolesResource.clinicmanager;
+    Layout = "~/Views/Shared/_CpanelLayout.cshtml";
+}
+
+@section styles{
+    <style type="text/css">
+        #channel-chart {
+            width: 100%;
+        }
+
+        .nav-tabs-custom {
+            min-height: 470px;
+        }
+
+        .channel-count {
+            padding: 5px;
+        }
+
+        #outside-count {
+            background-color: #ff006e;
+        }
+
+        #sms-count {
+            background-color: gold;
+        }
+
+        #kiosk-count {
+            background-color: rgb(75, 192, 192);
+        }
+
+        #app-count {
+            background-color: orangered;
+        }
+
+        #web-count {
+            background-color: #6fe46f;
+        }
+
+        .navigation-row {
+            padding-top: 10px;
+            padding-bottom: 10px;
+        }
+
+        .service-heading {
+            font-size: x-small;
+            color: black;
+        }
+
+        .box.box-solid[class*='bg'] > .box-header {
+            color: black;
+        }
+    </style>
+}
+
+<section class="content">
+    <div class="row">
+        <div class="col-lg-3 col-xs-6">
+            <div class="small-box bg-green">
+                <div class="inner">
+                    <h3>@Model.PoliClinicsCount<sup style="font-size: 20px"></sup></h3>
+                    <p>@Global.Polyclinic</p>
+                </div>
+                <div class="icon">
+                    <i class="fa fa-stethoscope"></i>
+                </div>
+                <a href="@Url.Action("Index","Polyclinic", new { area = "" })" class="small-box-footer">@Global.Polyclinics <i class="fa fa-arrow-circle-left"></i></a>
+            </div>
+        </div>
+        <div class="col-lg-3 col-xs-6">
+            <div class="small-box bg-purple">
+                <div class="inner">
+                    <h3>@Model.DoctorsCount</h3>
+                    <p>@PanelResource.ActiveDoctor</p>
+                </div>
+                <div class="icon">
+                    <i class="fa fa-user-md"></i>
+                </div>
+                <a href="@Url.Action("Index","Doctors", new { area = "ClinicManager" })" class="small-box-footer"> @Global.Doctors <i class="fa fa-arrow-circle-left"></i></a>
+            </div>
+        </div>
+        <div class="col-lg-3 col-xs-6">
+            <div class="small-box bg-orange">
+                <div class="inner">
+                    <h3>@Model.TodayAppointsCount</h3>
+                    <p>@Global.Turn</p>
+                </div>
+                <div class="icon">
+                    <i class="fa fa-calendar-plus-o" aria-hidden="true"></i>
+                </div>
+                <a href="@Url.Action("Today","Appointment", new { area = "ClinicManager" })" class="small-box-footer"> @PanelResource.TodayTurns  <i class="fa fa-arrow-circle-left"></i></a>
+            </div>
+        </div>
+        <div class="col-lg-3 col-xs-6">
+            <div class="small-box bg-red">
+                <div class="inner">
+                    <h3>@Model.AppointmentsCount</h3>
+                    <p>@Global.Turn</p>
+                </div>
+                <div class="icon">
+                    <i class="fa fa-calendar"></i>
+                </div>
+                <a href="@Url.Action("Index","Appointment", new { area = "ClinicManager" })" class="small-box-footer"> @PanelResource.AllTurns  <i class="fa fa-arrow-circle-left"></i></a>
+            </div>
+        </div>
+    </div>
+    <div class="row">
+        <section class="col-md-12">
+            <div class="box box-solid bg-info navigation-row">
+                <div class="row text-center">
+                    @*<div class="col-md-2">
+                        <a href="@Url.Action("Reservation","Appointment", new { area = "ClinicManager" })">
+                            <span class="fa-stack fa-2x">
+                                <i class="fa fa-circle fa-stack-2x text-orange"></i>
+                                <i class="fa fa-calendar-plus-o fa-stack-1x fa-inverse"></i>
+                            </span>
+                            <p class="service-heading">@PanelResource.ReserveTurn</p>
+                        </a>
+                    </div>*@
+                    <div class="col-md-2">
+                        <a href="@Url.Action("ReportAll","Reporting", new { area = "ClinicManager" })">
+                            <span class="fa-stack fa-2x">
+                                <i class="fa fa-circle fa-stack-2x text-teal"></i>
+                                <i class="fa fa-bar-chart-o fa-stack-1x fa-inverse"></i>
+                            </span>
+                            <p class="service-heading">@PanelResource.TurnsReport</p>
+                        </a>
+                    </div>
+                    <div class="col-md-2">
+                        <a href="@Url.Action("Blocked","Security", new { area = "ClinicManager" })">
+                            <span class="fa-stack fa-2x">
+                                <i class="fa fa-circle fa-stack-2x text-red"></i>
+                                <i class="fa fa-ban fa-stack-1x fa-inverse"></i>
+                            </span>
+                            <p class="service-heading">@PanelResource.BlackList</p>
+                        </a>
+                    </div>
+                    <div class="col-md-2">
+                        <a href="@Url.Action("Index","Message", new { area = "ClinicManager" })">
+                            <span class="fa-stack fa-2x">
+                                <i class="fa fa-circle fa-stack-2x text-yellow"></i>
+                                <i class="fa fa-envelope fa-stack-1x fa-inverse"></i>
+                            </span>
+                            <p class="service-heading">@PanelResource.AnnouncementsList</p>
+                        </a>
+                    </div>
+                    <div class="col-md-2">
+                        <a href="@Url.Action("Create","Users", new { area = "ClinicManager" })">
+                            <span class="fa-stack fa-2x">
+                                <i class="fa fa-circle fa-stack-2x text-purple"></i>
+                                <i class="fa fa-user-plus fa-stack-1x fa-inverse"></i>
+                            </span>
+                            <p class="service-heading">@PanelResource.AddNewDoctor</p>
+                        </a>
+                    </div>
+                    <div class="col-md-2">
+                        <a href="@Url.Action("AddPoliClinic","Polyclinic", new { area = "" })">
+                            <span class="fa-stack fa-2x">
+                                <i class="fa fa-circle fa-stack-2x text-green"></i>
+                                <i class="fa fa-plus fa-stack-1x fa-inverse"></i>
+                            </span>
+                            <p class="service-heading">@PanelResource.AddNewPolyclinic</p>
+                        </a>
+                    </div>
+                </div>
+            </div>
+        </section>
+    </div>
+
+    <div class="row">
+        <section class="col-lg-7 connectedSortable">
+            <div class="nav-tabs-custom">
+                <ul class="nav nav-tabs pull-right">                    
+                    <li><a href="#week-chart" data-toggle="tab">@PanelResource.InPastWeek</a></li>
+                    <li class="active"><a href="#reserve-channel-chart" data-toggle="tab">@PanelResource.ReserveTurnsChannelsStatistics</a></li>
+                </ul>
+                <div class="tab-content no-padding">
+                    <div class="tab-pane" id="week-chart">
+                        <canvas class="tab-pane active" id="myChart" height="160"></canvas>
+                    </div>
+                    <div class="tab-pane active" id="reserve-channel-chart">
+                        <canvas class="tab-pane" id="channel-chart" height="160"></canvas>
+                        <br />
+                        <div class="row">
+                            <div class="col-xs-3 text-center">
+                                <p class="channel-count" id="outside-count">@Model.ReserveOutsideAppointmentsCount</p>
+                                <p class="service-heading">OutOfSchedule</p>
+                            </div>
+                            <div class="col-xs-2 text-center">
+                                <p class="channel-count" id="sms-count">@Model.SMSAppointmentsCount</p>
+                                <p class="service-heading">SMS</p>
+                            </div>
+                            <div class="col-xs-2 text-center">
+                                <p class="channel-count" id="kiosk-count">@Model.KioskAppointmentsCount</p>
+                                <p class="service-heading">Kiosk</p>
+                            </div>
+                            <div class="col-xs-2 text-center">
+                                <p class="channel-count" id="app-count">@Model.AndroidAppAppointmentsCount</p>
+                                <p class="service-heading">Mobile App</p>
+                            </div>
+                            <div class="col-xs-2 text-center">
+                                <p class="channel-count" id="web-count">@Model.WebsiteAppointmentsCount</p>
+                                <p class="service-heading">Website</p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+        <section class="col-lg-5 connectedSortable">
+            <div class="box box-solid bg-info">
+                <div class="box-header">                   
+                    <h3 class="box-title">@Global.Status</h3>                   
+                </div>
+                <div class="box-body border-radius-none">
+                    <div class="chart" id="sales-chart" style="position: relative; height: 300px;"></div>
+                </div>
+                <div class="box-footer no-border">
+                    <div class="row">
+                        <div class="col-xs-4 text-center" style="border-right: 1px solid #f4f4f4">
+                            <input type="text" class="knob" data-readonly="true" value="@Model.PendingAppointsPercent" data-width="60" data-height="60" data-fgColor="#ff851b">
+                            <div class="knob-label">@Global.New</div>
+                        </div>
+                        <div class="col-xs-4 text-center" style="border-right: 1px solid #f4f4f4">
+                            <input type="text" class="knob" data-readonly="true" value="@Model.DoneAppointsPercent" data-width="60" data-height="60" data-fgColor="#00a65a">
+                            <div class="knob-label"> @Global.Done</div>
+                        </div>
+                        <div class="col-xs-4 text-center">
+                            <input type="text" class="knob" data-readonly="true" value="@Model.CanceledAppointsPercent" data-width="60" data-height="60" data-fgColor="#f56954">
+                            <div class="knob-label"> @Global.Cancelled</div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+    </div>
+</section>
+
+
+@section scripts{
+    <script type="text/javascript" src="~/css/plugins/raphael/raphael-2.1.4/raphael-min.js"></script>
+    <script type="text/javascript" src="~/css/plugins/morris/morris.min.js"></script>
+    <script type="text/javascript" src="~/css/plugins/knob/jquery.knob.js"></script>
+    <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/2.7.1/Chart.min.js"></script>
+
+    <script type="text/javascript">
+        $.widget.bridge('uibutton', $.ui.button);
+        /* jQueryKnob */
+        $(".knob").knob();
+
+        var ctx = document.getElementById("myChart").getContext('2d');
+        var myChart = new Chart(ctx, {
+            type: 'line',
+            data: {
+                labels: [
+                    @foreach(var item in Model.DaysAppoints)
+                    {
+                        <Text>
+                            "@item.Date",
+                        </text>
+                    }
+                ],
+                datasets: [{
+                    label: '@PanelResource.InPastWeek',
+                    data: [
+                         @foreach(var item in Model.DaysAppoints)
+                    {
+                        <Text>
+                            @item.Counts,
+                        </text>
+                    }
+                    ],
+                    fill: true,
+                    fillColor: "rgb(75, 192, 192)",
+                    borderColor: "rgb(75, 192, 192)",
+                    lineTension: 0.1,
+                    borderWidth: 3
+                }]
+            },
+            options: {
+                responsive: true,
+                scales: {
+                    yAxes: [{
+                        ticks: {
+                            beginAtZero: true
+                        }
+                    }]
+                }
+            }
+        });
+        var channelChartContext = document.getElementById("channel-chart").getContext('2d');
+
+        var barChartData = {
+            labels: ["@PanelResource.ReserveTurnsChannelsStatistics"],
+            datasets: [
+                {
+                label: 'Website',
+                backgroundColor: "#6fe46f",
+                stack: 'Stack 0',
+                data: [@Model.WebsiteAppointmentsCount]
+            },
+                {
+                label: 'App',
+                backgroundColor: "orangered",
+                stack: 'Stack 1',
+                data: [@Model.AndroidAppAppointmentsCount]
+                },
+                {
+                label: 'Kiosk',
+                backgroundColor: "rgb(75, 192, 192)",
+                stack: 'Stack 2',
+                data: [@Model.KioskAppointmentsCount]
+                },
+                 {
+                label: 'SMS',
+                backgroundColor: "gold",
+                stack: 'Stack 3',
+                data: [0]
+                },
+                {
+                label: 'Out Of Shcedule',
+                backgroundColor: "#ff006e",
+                stack: 'Stack 4',
+                data: [@Model.ReserveOutsideAppointmentsCount]
+            }
+            ]
+
+        };
+        var myChannelBarChart = new Chart(channelChartContext, {
+            type: 'bar',
+            data: barChartData,
+            options: {
+                responsive: true,
+                scales: {
+                    yAxes: [{
+                        ticks: {
+                            beginAtZero: true
+                        }
+                    }]
+                }
+            }
+        });
+        //Donut Chart
+        var donut = new Morris.Donut({
+            element: 'sales-chart',
+            resize: true,
+            colors: ["#ff851b", "#00a65a", "#f56954"],
+            data: [
+              { label: "@Global.New", value: '@Model.PendingAppointsCount' },
+              { label: "@Global.Done", value: '@Model.DoneAppointsCount' },
+              { label: "@Global.Cancelled", value: '@Model.CanceledAppointsCount' }
+            ],
+            hideHover: 'auto'
+        });
+
+        //Fix for charts under tabs
+        $('.box ul.nav a').on('shown.bs.tab', function () {
+            donut.redraw();
+            line.redraw();
+        });
+    </script>
+}

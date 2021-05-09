@@ -1,0 +1,32 @@
+﻿
+@model (int id, int sonarCenterId, int treatmentHistoryId, PrescriptionStatus status)
+
+<div class="btn-group" role="group" aria-label="Basic example">
+    <button type="button"
+            class="btn btn-outline-info btn-sm"
+            title="@Global.Details"
+            onclick="viewSonarPrescription('@Model.id')">
+        <i class="fa fa-info-circle"></i>
+    </button>
+    @if (Model.status == PrescriptionStatus.PENDING)
+    {
+        <button type="button"
+                class="btn btn-outline-secondary btn-sm"
+                title="@Global.Done"
+                onclick="createUpdatePrescription('@Model.id')">
+            <i class="fa fa-edit"></i>
+        </button>
+        <button type="button"
+                class="btn btn-outline-success btn-sm"
+                title="@Global.Done"
+                onclick="setNewStatus('@Model.id', '@Model.sonarCenterId', '@Model.treatmentHistoryId', '@PrescriptionStatus.DONE')">
+            <i class="fa fa-check"></i>
+        </button>
+        <button type="button"
+                class="btn btn-outline-danger btn-sm"
+                title="@Global.SendBack"
+                onclick="deletePrescription('@Model.id', '@Model.sonarCenterId', '@Model.treatmentHistoryId')">
+            <i class="fa fa-trash"></i>
+        </button>
+    }
+</div>

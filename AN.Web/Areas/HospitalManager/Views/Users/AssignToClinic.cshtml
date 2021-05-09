@@ -1,0 +1,104 @@
+﻿
+@model AN.Web.Areas.HospitalManager.Models.HMAssignUserToClinicViewModel
+
+@{
+    ViewBag.Title = "اختصاص کاربر به کلینیک";
+    Layout = "~/Views/Shared/_CpanelLayout.cshtml";
+}
+
+@section styles{
+    <link rel="stylesheet" type="text/css" href="~/css/DataTables/css/dataTables.bootstrap.min.css" />
+}
+
+@section scripts{
+    <script type="text/javascript" src="~/js/DataTables/jquery.dataTables.min.js"></script>
+    <script type="text/javascript" src="~/js/DataTables/dataTables.bootstrap.min.js"></script>
+    <script type="text/javascript">
+        $(function () {
+            $('#userHospitalsTable').DataTable();
+        });
+    </script>
+
+    <script type="text/javascript">
+        $(function () {
+            $("#chkSelectAll").bind("change", function () {
+                $(".chkSelect").prop("checked", $(this).prop("checked"));
+            });
+            $(".chkSelect").bind("change", function () {
+                if (!$(this).prop("checked"))
+                    $("#chkSelectAll").prop("checked", false);
+            });
+            $(".alert").hide().fadeIn("slow");
+        });
+    </script>
+}
+
+<section class="content-header">
+    <h1>
+        اختصاص کاربر به کلینیک
+        <small>@AN.Core.Resources.UI.AdminPanel.PanelResource.AdminPanel</small>
+    </h1>
+    <ol class="breadcrumb">
+        <li><a href="@Url.Action("Index","Home", new { area = "HospitalManager" })"><i class="fa fa-dashboard"></i> @AN.Core.Resources.Global.Global.Home</a></li>
+        <li><a href="@Url.Action("Index","Users", new { area = "HospitalManager" })"><i class="fa fa-list"></i> لیست کاربران</a></li>
+        <li class="active">اختصاص کاربر به کلینیک</li>
+    </ol>
+</section>
+
+<section class="content">
+    <div class="row">
+        <div class="col-xs-12">
+            <div class="box">
+                <div class="box-header">
+                    <h3 class="box-title"><a href="@Url.Action("Create", "Clinic", new { area = "HospitalManager" })" class="btn btn-success" role="button"><span class="glyphicon glyphicon-plus-sign"></span> افزودن کلینیک جدید </a></h3>
+                </div><!-- /.box-header -->
+                <div class="box-body">
+                    <div class="alert alert-dismissable alert-info">
+                        <span class="glyphicon glyphicon-info-sign" aria-hidden="true"></span>
+                        <button type="button" class="close" data-dismiss="alert">×</button>
+                        <span class="sr-only">توجه:</span>
+                        کلینیک هایی را که میخواهید کاربر را به آنها اختصاص دهید تیک بزنید
+                    </div>
+                    <div class="panel panel-info">
+                        <div class="panel-heading">
+                            <h3 class="panel-title"> @Model.UserFullName</h3>
+                        </div>
+                        <div class="panel-body">
+                            @using (Html.BeginForm("AssignToClinic", "Users", new { area = "HospitalManager" }, FormMethod.Post, true, new { @class = "form-horizontal", role = "form" }))
+                            {
+                                @Html.AntiForgeryToken()
+                                @Html.ValidationSummary(true, "", new { @class = "text-danger" })
+                                <div class="row">
+                                    <div class="col-md-12">
+                                        <table id="userHospitalsTable" class="table table-striped table-bordered" cellspacing="0" width="100%">
+                                            <thead>
+                                                <tr>
+                                                    <th><input type="checkbox" id="chkSelectAll" /></th>
+                                                    <th>@Global.Name</th>
+                                                    <th></th>
+                                                    <th></th>
+                                                </tr>
+                                            </thead>
+                                            <tbody>
+                                                @Html.EditorFor(m => m.Clinics)
+                                            </tbody>
+                                        </table>
+                                    </div>
+                                </div>
+                                <div class="row">
+                                    <div class="col-md-8 col-sm-4">
+                                        @Html.HiddenFor(m => m.UserId)
+                                    </div>
+                                    <div class="col-md-3 col-sm-2">
+                                        <button type="submit" class="btn btn-primary" style="min-width:100px;"><i class="fa fa-floppy-o"></i>@AN.Core.Resources.Global.Global.Save</button>
+                                        <a href="@Url.Action("Index","Users",new { area = "Admin" })" class="btn btn-danger"><i class="fa fa-ban"></i>@AN.Core.Resources.Global.Global.Cancel</a>
+                                    </div>
+                                </div>
+                            }
+                        </div>
+                    </div>
+                </div><!-- /.box-body -->
+            </div><!-- /.box -->
+        </div><!-- /.col -->
+    </div><!-- /.row -->
+</section><!-- /.content -->

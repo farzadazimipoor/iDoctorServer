@@ -1,0 +1,207 @@
+﻿@using AN.Core.Resources.UI.AdminPanel;
+@using AN.Core.Resources.Global
+
+@model AN.Web.Models.EditServiceSupplyViewModel
+
+@{
+    ViewBag.Title = PanelResource.EditDoctorInfo;
+    Layout = "~/Views/Shared/_CpanelLayout.cshtml";
+    var area = (string)TempData["area"];
+}
+
+@section styles{
+    <link rel="stylesheet" href="~/lib/flatpickr/flatpickr.min.css" />
+    <style>
+        .number-center {
+            direction: ltr;
+            text-align: center;
+        }
+
+        .start-point-input {
+            max-width: 50px;
+        }
+
+        .point-info {
+            display: none;
+        }
+    </style>
+}
+
+<div class="content-header">
+    <div class="container-fluid">
+        <div class="row mb-2">
+            <div class="col-sm-6">
+                <h1 class="m-0 text-dark">@PanelResource.EditDoctorInfo</h1>
+            </div>
+            <div class="col-sm-6">
+                <ol class="breadcrumb @(ViewBag.Lang == AN.Core.Enums.Lang.EN ? "float-sm-right" : "float-sm-left") ">
+                    <li class="breadcrumb-item"><a href="@Url.Action("Index","Home", new { area = area })">@AN.Core.Resources.Global.Global.Home</a></li>
+                    @if (area == "ADMIN")
+                    {
+                        <li class="breadcrumb-item"><a href="@Url.Action("List","IndependentPoliClinic", new { area = area })">@PanelResource.PolyclinicsList </a></li>
+                    }
+                    else if (area == "CLINICMANAGER")
+                    {
+                        <li class="breadcrumb-item"><a href="@Url.Action("Index","PoliClinic", new { area = area })">@PanelResource.PolyclinicsList </a></li>
+                    }
+                    else if (area == "POLYCLINICMANAGER")
+                    {
+
+                    }
+                    <li class="breadcrumb-item"><a href="@Url.Action("SettingDoctor","Polyclinic", new { area = area, polyclinicId = Model.PolyclinicId })">@PanelResource.PolyclinicsList </a></li>
+                    <li class="breadcrumb-item active">@PanelResource.EditDoctorInfo</li>
+                </ol>
+            </div>
+        </div>
+    </div>
+</div>
+
+<div class="content">
+    <div class="container-fluid">
+        <div class="card card-info card-outline">
+            <div class="card-body">
+                @using (Html.BeginForm("EditPolyclinicDoctor", "Polyclinic", new { area = "" }, FormMethod.Post, true, new { @class = "form-horizontal", role = "form" }))
+                {
+                    @Html.AntiForgeryToken()
+                    @Html.ValidationSummary(true, "", new { @class = "text-danger" })
+
+                    @Html.HiddenFor(m => m.ServiceSupplyId)
+                    @Html.HiddenFor(m => m.PolyclinicId)
+                    <div class="row">
+                        <div class="col-md-3">
+                            <div class="form-group">
+                                @Html.LabelFor(m => m.MedicalCouncilNumber)
+                                @Html.TextBoxFor(m => m.MedicalCouncilNumber, new { maxlength = "10", @class = "form-control number-center NumericOnly", @id = "supply-duration" })
+                                @Html.ValidationMessageFor(m => m.MedicalCouncilNumber, "", new { @class = "text-danger" })
+                            </div>
+                        </div>
+                        <div class="col-md-3">
+                            <div class="form-group">
+                                @Html.LabelFor(m => m.ReservationType)
+                                @Html.DropDownListFor(m => m.ReservationType, new List<SelectListItem> { new SelectListItem { Value = "1", Text = Global.Selective }, new SelectListItem { Value = "0", Text = Global.Sequentially } }, new { @class = "form-control", @id = "reservation-type" })
+                            </div>
+                        </div>
+                        <div class="col-md-3">
+                            <div class="form-group">
+                                @Html.LabelFor(m => m.OnlineReservationPercent)
+                                @Html.TextBoxFor(m => m.OnlineReservationPercent, new { @min = "0", @max = "100", @class = "form-control number-center NumericOnly", @id = "reserve-percent", maxlength = "3" })
+                                @Html.ValidationMessageFor(m => m.OnlineReservationPercent, "", new { @class = "text-danger" })
+                            </div>
+                        </div>
+                        <div class="col-md-3">
+                            <div class="form-group">
+                                @Html.LabelFor(m => m.StartReservationDate, new { @for = "startReservationDate" })
+                                @Html.TextBoxFor(m => m.StartReservationDate, new { @class = "form-control common-datepicker", @autocomplete = "off" })
+                                @Html.ValidationMessageFor(m => m.StartReservationDate, "", new { @class = "text-danger" })
+                            </div>
+                        </div>
+                        <div class="col-md-3">
+                            <div class="form-group">
+                                @Html.LabelFor(m => m.Phone)
+                                @Html.TextBoxFor(m => m.Phone, new { @class = "form-control number-center NumericOnly" })
+                                @Html.ValidationMessageFor(m => m.Phone, "", new { @class = "text-danger" })
+                            </div>
+                        </div>
+                    </div>
+                    <div class="row">
+                        <div class="col-md-12">
+                            <strong class="mr-3">@PanelResource.ReservationLimitationBeforeVisit:</strong>
+                        </div>
+                        <div class="col-md-6">
+                            <div class="form-group">
+                                @Html.LabelFor(m => m.ListReservationStartPoints)
+                                @Html.DropDownListFor(model => model.StartPoint, Model.ListReservationStartPoints.ToList(), new { @class = "form-control", @id = "liststartpoints" })
+                                <div class="point-info alert alert-info mt-2" id="start-point-info">
+                                    @PanelResource.StartReservation
+                                    @Html.TextBoxFor(m => m.StartPointNumber, new { @class = "number-center NumericOnly start-point-input", @id = "start-point-number" })
+                                    @Html.DropDownListFor(m => m.StartPointUnit, new List<SelectListItem> { new SelectListItem { Value = "0", Text = Global.Minute }, new SelectListItem { Value = "1", Text = Global.Hour }, new SelectListItem { Value = "2", Text = Global.Day } }, new { @id = "start-point-unit" })
+                                    @PanelResource.BeforeStartVisit
+                                </div>
+                            </div>
+                        </div>
+                        <div class="col-md-6">
+                            <div class="form-group">
+                                @Html.LabelFor(m => m.ListReservationEndPoints)
+                                @Html.DropDownListFor(model => model.EndPoint, Model.ListReservationEndPoints.ToList(), new { @class = "form-control", @id = "listendpoints" })
+                                <div class="point-info alert alert-info mt-2" id="end-point-info">
+                                    @PanelResource.EndReservation
+                                    @Html.TextBoxFor(m => m.EndPointNumber, new { @class = "number-center NumericOnly start-point-input", @id = "end-point-number" })
+                                    @Html.DropDownListFor(m => m.EndPointUnit, new List<SelectListItem> { new SelectListItem { Value = "0", Text = Global.Minute }, new SelectListItem { Value = "1", Text = Global.Hour } }, new { @id = "end-point-unit" })
+                                    @Html.DropDownListFor(m => m.EndPointPosition, new List<SelectListItem> { new SelectListItem { Value = "0", Text = Global.Before }, new SelectListItem { Value = "1", Text = Global.After } }, new { @id = "end-point-position" })
+                                    @PanelResource.StartVisit
+                                </div>
+                            </div>
+                        </div>
+                        <div class="col-md-4">
+                            <div class="form-group">
+                                @Html.LabelFor(m => m.Bio)
+                                @Html.TextAreaFor(m => m.Bio, new { maxlength = "1000", @class = "form-control" })
+                                @Html.ValidationMessageFor(m => m.Bio, "", new { @class = "text-danger" })
+                            </div>
+                        </div>
+                        <div class="col-md-4">
+                            <div class="form-group">
+                                @Html.LabelFor(m => m.Bio_Ku)
+                                @Html.TextAreaFor(m => m.Bio_Ku, new { maxlength = "1000", @class = "form-control" })
+                                @Html.ValidationMessageFor(m => m.Bio_Ku, "", new { @class = "text-danger" })
+                            </div>
+                        </div>
+                        <div class="col-md-4">
+                            <div class="form-group">
+                                @Html.LabelFor(m => m.Bio_Ar)
+                                @Html.TextAreaFor(m => m.Bio_Ar, new { maxlength = "1000", @class = "form-control" })
+                                @Html.ValidationMessageFor(m => m.Bio_Ar, "", new { @class = "text-danger" })
+                            </div>
+                        </div>
+                    </div>
+                    <br />
+                    <br />
+                    <div class="row">
+                        <div class="col-md-12 text-center">
+                            <button type="submit" class="btn btn-info">@Global.Update</button>
+                            <a class="btn btn-danger" href="@Url.Action("SettingDoctor","Polyclinic", new { area = "", polyclinicId = Model.PolyclinicId })">@Global.Cancel </a>
+                        </div>
+                    </div>
+                }
+            </div>
+        </div>
+    </div>
+</div>
+
+
+@section scripts{
+    <script type="text/javascript" src="~/lib/flatpickr/flatpickr.min.js"></script>
+    <script type="text/javascript" src="~/js/jquery.maskedinput.min.js"></script>
+
+    <script type="text/javascript">
+        $(function () {
+              $(".common-datepicker").flatpickr();
+              var startPointInfo = $("#start-point-info");
+              var endPointInfo = $("#end-point-info");
+              if ('@Model.StartPoint' == 1) {
+                  startPointInfo.css('display', 'block');
+              }
+              if ('@Model.EndPoint' == 1) {
+                  endPointInfo.css('display', 'block');
+              }
+              $("#liststartpoints").on('change', function (e) {
+                  var optionSelected = $("option:selected", this);
+                  var valueSelected = this.value;
+                  if (valueSelected == "1") {
+                      startPointInfo.show(1000);
+                  } else {
+                      startPointInfo.hide(1000);
+                  }
+              });
+              $("#listendpoints").on('change', function (e) {
+                  var optionSelected = $("option:selected", this);
+                  var valueSelected = this.value;
+                  if (valueSelected == "1") {
+                      endPointInfo.show(1000);
+                  } else {
+                      endPointInfo.hide(1000);
+                  }
+              });
+        });
+    </script>
+}

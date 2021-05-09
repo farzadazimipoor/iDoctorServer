@@ -1,0 +1,209 @@
+﻿@using X.PagedList.Mvc.Core;
+@using X.PagedList;
+@using AN.Core.Enums;
+@using AN.Core.Resources.Global;
+
+@model IPagedList<AN.Core.Domain.Appointment>
+
+@{
+    ViewBag.Title = AN.Core.Resources.UI.AdminPanel.PanelResource.AllSystemTurns;
+    Layout = "~/Views/Shared/_CpanelLayout.cshtml";
+    var dir = AN.Web.Helper.CultureHelper.Lang == Lang.EN ? "ltr" : "rtl";
+}
+
+@section styles{
+    <link href="~/lib/select2/css/select2.min.css" rel="stylesheet" type="text/css" />
+    <link href="~/lib/flatpickr/flatpickr.min.css" rel="stylesheet" type="text/css" />
+    <link href="~/css/PagedList.css" rel="stylesheet" type="text/css" />
+}
+
+<partial name="_ConfirmDeleteModalPartial" />
+
+<div class="content-header">
+    <div class="container-fluid">
+        <div class="row mb-2">
+            <div class="col-sm-6">
+                <h1 class="m-0 text-dark">@AN.Core.Resources.UI.AdminPanel.PanelResource.AllSystemTurns</h1>
+            </div>
+        </div>
+    </div>
+</div>
+
+<section class="content">
+    <div class="container-fluid">
+        <div class="card">
+            <div class="card-body">
+                @using (Html.BeginForm("Index", "Appointment", FormMethod.Get, new { @id = "filterForm" }))
+                {
+                <div class="row">
+                    <div class="col-md-4">
+                        <div class="form-group">
+                            <label>@Global.Doctor</label>
+                            <select id="doctors" class="form-control" name="ServiceSupplyId" form="filterForm">
+                                @if (string.IsNullOrEmpty(ViewBag.CurrentServiceSupplyIdFilter as string))
+                                {
+                                    <option value="" selected>...</option>
+                                    foreach (var item in ViewBag.Doctors as List<SelectListItem>)
+                                    {
+                                        <option value="@item.Value">@item.Text</option>
+                                    }
+                                }
+                                else
+                                {
+                                    <option value="">...</option>
+                                    foreach (var item in ViewBag.Doctors as List<SelectListItem>)
+                                    {
+                                        if (item.Value == ViewBag.CurrentServiceSupplyIdFilter as string)
+                                        {
+                                            <option value="@item.Value" selected>@item.Text</option>
+                                        }
+                                        else
+                                        {
+                                            <option value="@item.Value">@item.Text</option>
+                                        }
+                                    }
+                                }
+                            </select>
+                        </div>
+                    </div>
+                    <div class="col-md-2">
+                        <div class="form-group">
+                            <label>@Global.From</label>
+                            @Html.TextBox("FromDate", ViewBag.CurrentFromDateFilter as string, new { @class = "form-control common-datepicker", @autocomplete = "off" })
+                        </div>
+                    </div>
+                    <div class="col-md-2">
+                        <div class="form-group">
+                            <label>@Global.To</label>
+                            @Html.TextBox("ToDate", ViewBag.CurrentToDateFilter as string, new { @class = "form-control common-datepicker", @autocomplete = "off" })
+                        </div>
+                    </div>
+                    <div class="col-md-2">
+                        <div class="form-group">
+                            <label>&nbsp;</label>
+                            <button type="submit" class=" btn btn-outline-info form-control"><i class="fa fa-filter"></i>  @Global.Filter</button>
+                        </div>
+                    </div>
+                </div>                    
+                }
+            </div>
+        </div>
+        <div class="card card-info card-outline">
+            <div class="card-body p-0">
+                @if (Model.Count > 0)
+                {
+                    <div class="row">
+                        <div class="col-md-12 table-responsive">
+                            <table class="table table-striped" cellspacing="0" width="100%">
+                                <thead>
+                                    <tr>
+                                        <th>
+
+                                        </th>
+                                        <th>
+
+                                        </th>
+                                        <th>
+                                            @Html.ActionLink(Global.Date, "Index", new { sortOrder = ViewBag.DateSortParam, currentServiceSupplyIdFilter = ViewBag.CurrentServiceSupplyIdFilter, currentFromDateFilter = ViewBag.CurrentFromDateFilter, currentToDateFilter = ViewBag.CurrentToDateFilter })
+                                        </th>
+                                        <th>
+                                            @Global.Doctor
+                                        </th>
+                                        <th>
+                                            @Global.Patient
+                                        </th>
+                                        <th>
+                                            @AN.Core.Resources.EntitiesResources.User.Mobile
+                                        </th>
+                                    </tr>
+                                </thead>
+                                <tbody>
+                                    @foreach (var item in Model)
+                                    {
+                                        var doctor = ViewBag.Lang == Lang.KU ? item.ServiceSupply.Person.FullName_Ku : ViewBag.Lang == Lang.AR ? item.ServiceSupply.Person.FullName_Ar : item.ServiceSupply.Person.FullName;
+                                        var patient = ViewBag.Lang == Lang.KU ? item.Person.FullName_Ku : ViewBag.Lang == Lang.AR ? item.Person.FullName_Ar : item.Person.FullName;
+                                        <tr>
+                                            <td>
+                                                @if (item.Status == AppointmentStatus.Pending)
+                                                {
+                                                    <i class="fa fa-clock fa-lg" style="color:#5bc0de;" aria-hidden="true"></i>
+                                                }
+                                                else if (item.Status == AppointmentStatus.Done)
+                                                {
+                                                    <i class="fa fa-check-circle fa-lg" style="color:green;" aria-hidden="true"></i>
+                                                }
+                                                else if (item.Status == AppointmentStatus.Canceled)
+                                                {
+                                                    <i class="fa fa-ban fa-lg" style="color:red;" aria-hidden="true"></i>
+                                                }
+                                                else
+                                                {
+                                                    <i class="fa fa-ban fa-lg" style="color:red;" aria-hidden="true"></i>
+                                                }
+                                            </td>
+                                            <td>
+                                                @if (item.ReservationChannel == ReservationChannel.Website)
+                                                {
+                                                    <i class="fa fa-globe fa-lg" aria-hidden="true"></i>
+                                                }
+                                                else if (item.ReservationChannel == ReservationChannel.MobileApplication)
+                                                {
+                                                    <i class="fa fa-mobile fa-lg fa-2x" aria-hidden="true"></i>
+                                                }
+                                                else if (item.ReservationChannel == ReservationChannel.Kiosk)
+                                                {
+                                                    <i class="fa fa-desktop" aria-hidden="true"></i>
+                                                }
+                                                else if (item.ReservationChannel == ReservationChannel.ClinicManagerSection)
+                                                {
+                                                    <i class="fa fa-external-link-square" aria-hidden="true"></i>
+                                                }
+                                            </td>
+                                            <td>
+                                                @item.Start_DateTime.ToShortDateString() @item.Start_DateTime.ToShortTimeString()
+                                            </td>
+                                            <td>@doctor</td>
+                                            <td>@patient</td>
+                                            <td>@item.Person.Mobile</td>
+                                        </tr>
+                                    }
+                                </tbody>
+                            </table>
+                            <div class="text-center">
+                                @Html.PagedListPager(Model, page => Url.Action("Index", new { page, sortOrder = ViewBag.CurrentSort, currentServiceSupplyIdFilter = ViewBag.CurrentServiceSupplyIdFilter, currentFromDateFilter = ViewBag.CurrentFromDateFilter, currentToDateFilter = ViewBag.CurrentToDateFilter }))
+                                @if (Model.PageCount < Model.PageNumber)
+                                {
+                                    <p class="pager-info">@Global.From 0 @Global.Page @Model.PageCount</p>
+                                }
+                                else
+                                {
+                                    <p class="pager-info">@Global.Page @Model.PageNumber @Global.From @Model.PageCount</p>
+                                }
+                            </div>                           
+                        </div>
+                    </div>
+                }
+                else
+                {
+                    <div class="alert alert-default-info text-center m-3">
+                        <strong>@AN.Core.Resources.Global.Global.NoItemFound</strong>
+                    </div>
+                }
+            </div>           
+        </div>
+    </div>
+</section>
+
+@section scripts{
+    <script type="text/javascript" src="~/lib/select2/js/select2.min.js"></script>
+    <script type="text/javascript" src="~/lib/flatpickr/flatpickr.min.js"></script>
+    <script type="text/javascript">
+        $("#doctors").select2({
+            width: '100%',
+            placeholder: '@Html.Raw(Global.SelectDoctor)',
+            dir: "@dir",
+            allowClear: true
+        });
+        $(".common-datepicker").flatpickr();
+    </script>
+}

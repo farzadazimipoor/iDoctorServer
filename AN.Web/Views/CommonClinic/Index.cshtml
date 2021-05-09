@@ -1,0 +1,204 @@
+﻿@using AN.Core.Resources.Global;
+@using AN.Core.Resources.UI.AdminPanel;
+@using X.PagedList.Mvc.Core;
+@using X.PagedList;
+
+@model IPagedList<AN.Web.Models.List>
+
+@{
+    ViewBag.Title = Global.Clinics;
+
+    Layout = "~/Views/Shared/_CpanelLayout.cshtml";
+
+    var managersNames = string.Empty;
+}
+
+@section styles{
+    <link href="~/css/PagedList.css" rel="stylesheet" type="text/css" />
+}
+
+<div class="content-header">
+    <div class="container-fluid">
+        <div class="row mb-2">
+            <div class="col-sm-6">
+                <h1 class="m-0 text-dark">@Global.Clinics</h1>
+            </div>
+        </div>
+    </div>
+</div>
+
+<section class="content">
+    <div class="container-fluid">
+        <div class="card">
+            <div class="card-body">
+                @using (Html.BeginForm("Index", "CommonClinic", new { area = "" }, FormMethod.Get, true, new { @id = "filterForm" }))
+                {
+                    <div class="row">
+                        @if (ViewBag.LoginAs == "ADMIN")
+                        {
+                            <div class="col-md-4">
+                                <div class="form-group">
+                                    <label>@Global.Hospital</label>
+                                    <select id="hospitalId" class="form-control" name="hospitalId" form="filterForm">
+                                        @if (ViewBag.HospitalId == null)
+                                        {
+                                            foreach (var item in ViewBag.Hospitals as List<SelectListItem>)
+                                            {
+                                                <option value="@item.Value">@item.Text</option>
+                                            }
+                                        }
+                                        else
+                                        {
+                                            foreach (var item in ViewBag.Hospitals as List<SelectListItem>)
+                                            {
+                                                if (!string.IsNullOrEmpty(item.Value) && int.Parse(item.Value) == (int)ViewBag.HospitalId)
+                                                {
+                                                    <option value="@item.Value" selected>@item.Text</option>
+                                                }
+                                                else
+                                                {
+                                                    <option value="@item.Value">@item.Text</option>
+                                                }
+                                            }
+                                        }
+                                    </select>
+                                </div>
+                            </div>
+                        }
+                        <div class="col-md-3">
+                            <div class="form-group">
+                                <label for="searchString">@Global.SearchString</label>
+                                @Html.TextBox("searchString", ViewBag.CurrentFilter as string, new { @placeholder = Global.SearchString, @class = "form-control" })
+                            </div>
+                        </div>
+                        <div class="col-md-2">
+                            <div class="form-group">
+                                <label>&nbsp;</label>
+                                <button type="submit" class="btn btn-outline-info form-control"><i class="fa fa-filter"></i>@Global.Filter</button>
+                            </div>
+                        </div>
+                    </div>
+                }
+            </div>
+        </div>
+        <div class="card card-info card-outline">
+            <div class="card-header">
+                <a class="btn btn-default @(ViewBag.Lang == AN.Core.Enums.Lang.EN ? "float-right" : "float-left")"
+                   href="@Url.Action("Create", "CommonClinic", new { area = "" })">
+                    <i class="fa fa-plus"></i>
+                </a>
+            </div>
+            <div class="card-body p-0">
+                @if (Model.Any())
+                {
+                    <div class="row">
+                        <div class="col-md-12 table-responsive">
+                            <table class="table table-striped" cellspacing="0" width="100%">
+                                <thead>
+                                    <tr>
+                                        <th>
+                                            @Html.ActionLink(Global.Name, "Index", new { sortOrder = ViewBag.NameSortParam, currentFilter = ViewBag.CurrentFilter, hospitalId = ViewBag.HospitalId })
+                                        </th>
+                                        <th>
+                                            @Global.Description
+                                        </th>
+                                        <th>
+                                            @Global.Hospital
+                                        </th>
+                                        <th style="width:210px;"></th>
+                                    </tr>
+                                </thead>
+                                <tbody>
+                                    @foreach (var item in Model)
+                                    {
+                                        managersNames = string.Empty;
+                                        <tr>
+                                            <td>
+                                                @Html.DisplayFor(modelItem => item.Name)
+                                            </td>
+                                            <td>
+                                                @Html.DisplayFor(modelItem => item.Description)
+                                            </td>
+                                            <td>
+                                                @Html.DisplayFor(modelItem => item.Hospital)
+                                            </td>
+                                            <td>
+                                                @{
+                                                    if (item.Managers.ToList().Count >= 1)
+                                                    {
+                                                        foreach (var u in item.Managers)
+                                                        {
+                                                            managersNames += "<strong>" + u + "</strong>" + "<br />";
+                                                        }
+                                                    }
+                                                    else
+                                                    {
+                                                        managersNames = "<span class='txtdanger'>" + PanelResource.Msg_ManagerNotDefined + "</span>";
+                                                    }
+                                                }
+
+                                                @using (Html.BeginForm("Delete", "CommonClinic", new { area = "", id = item.Id }, FormMethod.Post, true, new { role = "form" }))
+                                                {
+                                                    @Html.AntiForgeryToken()
+                                                    <div class="btn-group" role="group" aria-label="Basic example">
+                                                        <a href="@Url.Action("Index", "Polyclinic", new { area = "", clinicId = item.Id, hospitalId = ViewBag.HospitalId })" class="btn btn-default btn-sm"><i class="fa fa-user-md"></i></a>
+                                                        <a href="@Url.Action("Edit", "CommonClinic",new { area = "" ,  id = item.Id  })" class="btn btn-default btn-sm"><i class="fa fa-edit"></i></a>
+                                                        <button type="button"
+                                                                class="btn btn-default btn-sm"
+                                                                onclick="getDetails('@item.Id')">
+                                                            <i class="fa fa-eye"></i>
+                                                        </button>
+                                                        <button class="btn btn-danger btn-sm"
+                                                                type="button"
+                                                                data-toggle="modal"
+                                                                data-target="#confirmDelete"
+                                                                data-title="@Global.Delete @item.Name"
+                                                                data-message="@Global.DoYouWantDeleteThisItem">
+                                                            <i class="fa fa-trash"></i>
+                                                        </button>
+                                                    </div>
+                                                }
+                                            </td>
+                                        </tr>
+                                    }
+                                </tbody>
+                            </table>
+                        </div>
+                    </div>
+                    <div class="text-center">
+                        @Html.PagedListPager(Model, page => Url.Action("Index", new { area = "", page, sortOrder = ViewBag.CurrentSort, currentFilter = ViewBag.CurrentFilter, hospitalId = ViewBag.HospitalId }))
+                    </div>                    
+                }
+                else
+                {
+                    @await Html.PartialAsync("_ItemNotFound", "Not Any Clinic Found")
+                }
+            </div>
+        </div>
+    </div>
+</section>
+
+<partial name="_ConfirmDeleteModalPartial" />
+
+@section scripts{
+    <script type="text/javascript">
+        function getDetails(id) {
+            waiting('body', '@AN.Core.Resources.Global.Global.PleaseWait');
+            $.ajax({
+                type: 'Get',
+                url: "/CommonClinic/Details/" + id,
+                success: function (response) {
+                    var commonModal = $("#AwroNoreModal");
+                    commonModal.find('.modal-title').text('@Html.Raw(Global.Details + " " + Global.Clinic)');
+                    commonModal.find('.modal-body').html(response);
+                    commonModal.modal({backdrop: 'static', keyboard: false});
+                },
+                error: function (jqXHR, ex) {
+                    handleAjaxError(jqXHR, ex);
+                }
+            }).always(function () {
+                waitingDone('body');
+            });
+        }
+    </script>
+}

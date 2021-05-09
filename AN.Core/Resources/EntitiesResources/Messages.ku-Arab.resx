@@ -1,0 +1,594 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<root>
+  <!-- 
+    Microsoft ResX Schema 
+    
+    Version 2.0
+    
+    The primary goals of this format is to allow a simple XML format 
+    that is mostly human readable. The generation and parsing of the 
+    various data types are done through the TypeConverter classes 
+    associated with the data types.
+    
+    Example:
+    
+    ... ado.net/XML headers & schema ...
+    <resheader name="resmimetype">text/microsoft-resx</resheader>
+    <resheader name="version">2.0</resheader>
+    <resheader name="reader">System.Resources.ResXResourceReader, System.Windows.Forms, ...</resheader>
+    <resheader name="writer">System.Resources.ResXResourceWriter, System.Windows.Forms, ...</resheader>
+    <data name="Name1"><value>this is my long string</value><comment>this is a comment</comment></data>
+    <data name="Color1" type="System.Drawing.Color, System.Drawing">Blue</data>
+    <data name="Bitmap1" mimetype="application/x-microsoft.net.object.binary.base64">
+        <value>[base64 mime encoded serialized .NET Framework object]</value>
+    </data>
+    <data name="Icon1" type="System.Drawing.Icon, System.Drawing" mimetype="application/x-microsoft.net.object.bytearray.base64">
+        <value>[base64 mime encoded string representing a byte array form of the .NET Framework object]</value>
+        <comment>This is a comment</comment>
+    </data>
+                
+    There are any number of "resheader" rows that contain simple 
+    name/value pairs.
+    
+    Each data row contains a name, and value. The row also contains a 
+    type or mimetype. Type corresponds to a .NET class that support 
+    text/value conversion through the TypeConverter architecture. 
+    Classes that don't support this are serialized and stored with the 
+    mimetype set.
+    
+    The mimetype is used for serialized objects, and tells the 
+    ResXResourceReader how to depersist the object. This is currently not 
+    extensible. For a given mimetype the value must be set accordingly:
+    
+    Note - application/x-microsoft.net.object.binary.base64 is the format 
+    that the ResXResourceWriter will generate, however the reader can 
+    read any of the formats listed below.
+    
+    mimetype: application/x-microsoft.net.object.binary.base64
+    value   : The object must be serialized with 
+            : System.Runtime.Serialization.Formatters.Binary.BinaryFormatter
+            : and then encoded with base64 encoding.
+    
+    mimetype: application/x-microsoft.net.object.soap.base64
+    value   : The object must be serialized with 
+            : System.Runtime.Serialization.Formatters.Soap.SoapFormatter
+            : and then encoded with base64 encoding.
+
+    mimetype: application/x-microsoft.net.object.bytearray.base64
+    value   : The object must be serialized into a byte array 
+            : using a System.ComponentModel.TypeConverter
+            : and then encoded with base64 encoding.
+    -->
+  <xsd:schema id="root" xmlns="" xmlns:xsd="http://www.w3.org/2001/XMLSchema" xmlns:msdata="urn:schemas-microsoft-com:xml-msdata">
+    <xsd:import namespace="http://www.w3.org/XML/1998/namespace" />
+    <xsd:element name="root" msdata:IsDataSet="true">
+      <xsd:complexType>
+        <xsd:choice maxOccurs="unbounded">
+          <xsd:element name="metadata">
+            <xsd:complexType>
+              <xsd:sequence>
+                <xsd:element name="value" type="xsd:string" minOccurs="0" />
+              </xsd:sequence>
+              <xsd:attribute name="name" use="required" type="xsd:string" />
+              <xsd:attribute name="type" type="xsd:string" />
+              <xsd:attribute name="mimetype" type="xsd:string" />
+              <xsd:attribute ref="xml:space" />
+            </xsd:complexType>
+          </xsd:element>
+          <xsd:element name="assembly">
+            <xsd:complexType>
+              <xsd:attribute name="alias" type="xsd:string" />
+              <xsd:attribute name="name" type="xsd:string" />
+            </xsd:complexType>
+          </xsd:element>
+          <xsd:element name="data">
+            <xsd:complexType>
+              <xsd:sequence>
+                <xsd:element name="value" type="xsd:string" minOccurs="0" msdata:Ordinal="1" />
+                <xsd:element name="comment" type="xsd:string" minOccurs="0" msdata:Ordinal="2" />
+              </xsd:sequence>
+              <xsd:attribute name="name" type="xsd:string" use="required" msdata:Ordinal="1" />
+              <xsd:attribute name="type" type="xsd:string" msdata:Ordinal="3" />
+              <xsd:attribute name="mimetype" type="xsd:string" msdata:Ordinal="4" />
+              <xsd:attribute ref="xml:space" />
+            </xsd:complexType>
+          </xsd:element>
+          <xsd:element name="resheader">
+            <xsd:complexType>
+              <xsd:sequence>
+                <xsd:element name="value" type="xsd:string" minOccurs="0" msdata:Ordinal="1" />
+              </xsd:sequence>
+              <xsd:attribute name="name" type="xsd:string" use="required" />
+            </xsd:complexType>
+          </xsd:element>
+        </xsd:choice>
+      </xsd:complexType>
+    </xsd:element>
+  </xsd:schema>
+  <resheader name="resmimetype">
+    <value>text/microsoft-resx</value>
+  </resheader>
+  <resheader name="version">
+    <value>2.0</value>
+  </resheader>
+  <resheader name="reader">
+    <value>System.Resources.ResXResourceReader, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </resheader>
+  <resheader name="writer">
+    <value>System.Resources.ResXResourceWriter, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </resheader>
+  <data name="AccordingToChangeDoctorSchedule" xml:space="preserve">
+    <value>بە پێی گۆڕینی خشتەی دکتۆر</value>
+  </data>
+  <data name="AccordingToDoctorAbsense" xml:space="preserve">
+    <value>بە پێی بەردەست نەبوونی دکتۆر</value>
+  </data>
+  <data name="ActionDoneSuccesfully" xml:space="preserve">
+    <value>بەسەرکەوتوویی ئەنجام درا</value>
+  </data>
+  <data name="AnErrorOccuredWhileAddingItem" xml:space="preserve">
+    <value>کرداری زیادکرنی بڕگه هەڵەی تێکەوت</value>
+  </data>
+  <data name="AnErrorOccuredWhileDeleteItem" xml:space="preserve">
+    <value>کرداری لابردنی بڕگه هەڵەی تێکەوت</value>
+  </data>
+  <data name="AnErrorOccuredWhileUpdateItem" xml:space="preserve">
+    <value>کرداری نوێکردنەوەی بڕگەی مەبەست هەڵەی تێکەوت</value>
+  </data>
+  <data name="AreYouSureToDeleteTurn" xml:space="preserve">
+    <value>ئایا لە سڕینەوەی ئەم نۆرەیە دڵنیایت؟</value>
+  </data>
+  <data name="CapacityIsSmallerThanRequested" xml:space="preserve">
+    <value>توانستی وەرگرتن کەمترە لە داواکارییەکان</value>
+  </data>
+  <data name="CenterHasPendingTurns" xml:space="preserve">
+    <value>ئەم سەنتەرە نۆرەی جێبەجێنەکراوی هەیە. تکایە یەکەم جار ئەم نۆرانە چارەسەر بکە ئێنجا ئەم نۆرینگەیە لابدە.</value>
+  </data>
+  <data name="Custom" xml:space="preserve">
+    <value>خوازیار</value>
+  </data>
+  <data name="DeleteCurrentUserException" xml:space="preserve">
+    <value>ناتوانیت ئەم بەکارهێنەرە بسڕیتەوە.</value>
+  </data>
+  <data name="DoctorAssignedToPolyclinicAlready" xml:space="preserve">
+    <value>ئەم دکتۆرە پێشتر کۆمەلگای پزیشکی بۆ تەرخان کراوە.</value>
+  </data>
+  <data name="DoctorHasPendingTurns" xml:space="preserve">
+    <value>دکتۆر نۆرەی ئەنجامنەدراوی هەیە.</value>
+  </data>
+  <data name="DoctorHasPendingTurnsYouCannotRemoveHisRole" xml:space="preserve">
+    <value>ئەم دکتۆرە نۆرەی ئەنجامنەدراوی هەیە. تکایە یەکەم جار نۆرەکانی بسڕەوە یاخۆد هەڵوەشێنەوە ئێنجا ڕۆڵی بگۆڕە.</value>
+  </data>
+  <data name="DoctorIsNotActive" xml:space="preserve">
+    <value>ئەم دکتۆرە بەردەست نییە بۆیە ناتوانی نۆرەی تەرخان بکەی.</value>
+  </data>
+  <data name="DoctorNotAvailable" xml:space="preserve">
+    <value>دکتۆر بەردەست نییە</value>
+  </data>
+  <data name="DoctorNotFound" xml:space="preserve">
+    <value>دکتۆر نەدۆزرایەوە</value>
+  </data>
+  <data name="DoctorNotPresentInPolyclinic" xml:space="preserve">
+    <value>ئەم دکتۆرە لە بەرواری مەبەست لە نۆرینگە بەردەست نییە.</value>
+  </data>
+  <data name="EmailIsDuplicate" xml:space="preserve">
+    <value>ئەم ئیمەیلە پێشتر بۆ کەسێکئ تر بەکارهێنراوە.</value>
+  </data>
+  <data name="EmailIsNotValid" xml:space="preserve">
+    <value>ئەم ئیمەیلە هەڵەیە.</value>
+  </data>
+  <data name="EmptyTimePeriodNotValid" xml:space="preserve">
+    <value>مەودای کاتی بەتاڵ هەڵەیە.</value>
+  </data>
+  <data name="EntityNotFoundException" xml:space="preserve">
+    <value>بڕگەی مەبەست نەدۆزرایەوە</value>
+  </data>
+  <data name="ErrorOccuredWhenCheckVersionPattern" xml:space="preserve">
+    <value>لەکاتی پشکنینی ڕەچەتە هەڵە ڕوویدا</value>
+  </data>
+  <data name="ErrorOccuredWhileAssignRole" xml:space="preserve">
+    <value>لە کاتی تەرخان کردنی بەکارهێنەر هەڵە ڕوویدا</value>
+  </data>
+  <data name="ErrorOccuredWhileDoneAction" xml:space="preserve">
+    <value>ئەم کردارە هەڵەی تێکەوت</value>
+  </data>
+  <data name="ErrorOccuredWhileFinalBookTurn" xml:space="preserve">
+    <value>تۆمارکردنی کۆتایی نۆرە هەڵەی تێکەوەت</value>
+  </data>
+  <data name="ErrorWhileUnAssignRole" xml:space="preserve">
+    <value>لەکاتی لادانی ڕۆڵی بەکارهێنەر هەڵە روویدا</value>
+  </data>
+  <data name="EveningShiftEndNotValid" xml:space="preserve">
+    <value>کاتی کۆتایی هاتنی شفتی ئێوارە بە هەڵە دیاری کراوە</value>
+  </data>
+  <data name="EveningShitStartNotValid" xml:space="preserve">
+    <value>کاتی دەستپێکی شفتی ئێوارە بە هەڵە دیاری کراوە</value>
+  </data>
+  <data name="FileExistWithThisKey" xml:space="preserve">
+    <value>فایلێک بەم ژمارەیە پێشتر زیادکراوە</value>
+  </data>
+  <data name="FileIsRequired" xml:space="preserve">
+    <value>فایل پێویستە</value>
+  </data>
+  <data name="FileNotFound" xml:space="preserve">
+    <value>فایلی مەبەست نەدۆزرایەوە</value>
+  </data>
+  <data name="HasBeenTransmitted" xml:space="preserve">
+    <value>گواستراوەتەوە</value>
+  </data>
+  <data name="HasCanceled" xml:space="preserve">
+    <value>هەڵوەشاوەتەوە</value>
+  </data>
+  <data name="HasDone" xml:space="preserve">
+    <value>ئەنجام درا</value>
+  </data>
+  <data name="HaveTurnPleaseComeAtTime" xml:space="preserve">
+    <value>نۆرەی دکتۆرت هەیە تکایە لە کاتی خۆت ئامادە بە.</value>
+  </data>
+  <data name="HaveTurns" xml:space="preserve">
+    <value>نۆرەت هەیە</value>
+  </data>
+  <data name="HealthServiceHasPendingTurn" xml:space="preserve">
+    <value>بۆ ئەم خزمەتگۆزارییە نۆرەی ئەنجامنەدراو هەیە</value>
+  </data>
+  <data name="HospitalNotFound" xml:space="preserve">
+    <value>نەخۆشخانەی مەبەست نەدۆزرایەوە</value>
+  </data>
+  <data name="InDate" xml:space="preserve">
+    <value>لە بەرواری</value>
+  </data>
+  <data name="InPolyclinic" xml:space="preserve">
+    <value>لە کۆمەڵگای پزیشکی</value>
+  </data>
+  <data name="ItemAddedSuccessFully" xml:space="preserve">
+    <value>بڕگەی مەبەست بە سەرکەوتوویی زیادکرا</value>
+  </data>
+  <data name="ItemDeletedSuccessFully" xml:space="preserve">
+    <value>بڕگەی مەبەست بە سەرکەوتوویی لادرا</value>
+  </data>
+  <data name="ItemNotFound" xml:space="preserve">
+    <value>بڕگەی مەبەست نەدۆزرایەوە</value>
+  </data>
+  <data name="ItemUpdatedSuccessFully" xml:space="preserve">
+    <value>گۆڕینی بڕگەی مەبەست بە سەرکەوتوویی ئەنجام درا</value>
+  </data>
+  <data name="MaxAllowedSize" xml:space="preserve">
+    <value>زۆرترین قەبارەی ڕێپێدراو</value>
+  </data>
+  <data name="MessageHasSentAlready" xml:space="preserve">
+    <value>ئەم پەیامە پێشتر نێردراوە.</value>
+  </data>
+  <data name="MobileHasTurnForDate" xml:space="preserve">
+    <value>ئەم ژمارە تەلەفۆنە لە بەرواری داواکراو نۆرەی هەیە ناتوانی دیسان نۆرەی بۆ تۆمار بکەی</value>
+  </data>
+  <data name="MobileIsNotValid" xml:space="preserve">
+    <value>ژمارە تەلەفۆن هەڵەیە</value>
+  </data>
+  <data name="MobileNumberDuplicate" xml:space="preserve">
+    <value>ژمارە تەلەفۆنی (ناوی بەکارهێنەر) دووبارەیە</value>
+  </data>
+  <data name="MorningShiftEndNotValid" xml:space="preserve">
+    <value>کاتی کۆتایی هاتنی شفتی بەیانی بە هەڵە دیاری کراوە</value>
+  </data>
+  <data name="MorningShiftStartNotValid" xml:space="preserve">
+    <value>کاتی دەستپێکی شفتی بەیانی بە هەڵە دیاری کراوە</value>
+  </data>
+  <data name="Msg_AccessDenied" xml:space="preserve">
+    <value>رێگەپێنەدراو</value>
+  </data>
+  <data name="Msg_AccessDenied403" xml:space="preserve">
+    <value>ئەم بەکارهێنەرە دەسەڵآتی بەکارهێنانی ئەم بابەتەی نییە. بۆ زانیاری زیاتر تکایە پەیوەندی بکەن بە بەڕێوەبەری سیستەم.</value>
+  </data>
+  <data name="Msg_AjaxRequestAborted" xml:space="preserve">
+    <value>Ajax request aborted</value>
+  </data>
+  <data name="Msg_ConnectionError" xml:space="preserve">
+    <value>کێشە لە پەیوەندی بە سێرڤەر، تکاێە لە هەبوونی هێڵی پەیوەندی دڵنیا بنەوە</value>
+  </data>
+  <data name="Msg_InternalServerError500" xml:space="preserve">
+    <value>کێشەیەکی ناوەکی ڕوویدا، کێشەی سێرڤەرساید</value>
+  </data>
+  <data name="Msg_RequestedJSONParseFailed" xml:space="preserve">
+    <value>داواکاری لە سەر بەڕێوەبردنی (جەیسەن) کێشەی هەیە</value>
+  </data>
+  <data name="Msg_RequestedPageNotFound404" xml:space="preserve">
+    <value>داواکاری بۆ ئەو لاپەڕەیە هیچ دەستکەوتێکی نەبوو [404]</value>
+  </data>
+  <data name="Msg_TimeOutError" xml:space="preserve">
+    <value>کێشەی زۆریی چاوەڕوانی (Time Out)</value>
+  </data>
+  <data name="NoDoctorSelected" xml:space="preserve">
+    <value>هیچ دکتۆرێک هەڵنەبژێردراوە</value>
+  </data>
+  <data name="NoHealthServiceSelected" xml:space="preserve">
+    <value>هیچ خزمەتێک هەڵنەبژێردراوە</value>
+  </data>
+  <data name="NoPictureSelected" xml:space="preserve">
+    <value>هیچ وێنەیەک هەڵنەبژێردراوە</value>
+  </data>
+  <data name="NoSpecialitySelected" xml:space="preserve">
+    <value>هیچ پسپۆڕییەک هەڵنەبژێردراوە</value>
+  </data>
+  <data name="NotFoundValidScheduleException" xml:space="preserve">
+    <value>کاتی خوازراو بۆ ئەم خزمەتە لە بەرواری داواکراو نەدۆزرایەوە</value>
+  </data>
+  <data name="OnlineTurnsQueueNumber" xml:space="preserve">
+    <value>ژمارە نۆرەی تۆ لە سەڕەی چاوەڕوانی</value>
+  </data>
+  <data name="PasswordAssignedSuccessfully" xml:space="preserve">
+    <value>ووشەی نهێنی بەسەرکەوتوویی تەرخان کرا</value>
+  </data>
+  <data name="PasswordChangedSuccessfully" xml:space="preserve">
+    <value>ووشەی نهێنی بەسەرکەوتوویی گۆڕدرا</value>
+  </data>
+  <data name="PasswordMustBe6Digits" xml:space="preserve">
+    <value>ووشەی نهێنی پێویستە زیادتر لە ٦ پیت بێت</value>
+  </data>
+  <data name="PasswordsNotSame" xml:space="preserve">
+    <value>ووشە نهێنییەکان یەک نین</value>
+  </data>
+  <data name="PatientHasNoTreatments" xml:space="preserve">
+    <value>هیچ تۆمارێک بۆ ئەم نەخۆشە نەدۆزرایەوە</value>
+  </data>
+  <data name="PatientHasPendingTurns" xml:space="preserve">
+    <value>ئەم نەخۆشه نۆرەی ئەنجامنەدراوی هەیە. تکایه یەکەم جار نۆرەکان هەڵبوەشێنەوە دواتر ڕۆڵی بگۆڕە</value>
+  </data>
+  <data name="PendingTurnsExistInDate" xml:space="preserve">
+    <value>لەم بەروارە نۆرەی ئەنجامنەدراوی هەیە بۆیە ناتوانی ئەم رۆژه بکەی بە پشوو.</value>
+  </data>
+  <data name="Person" xml:space="preserve">
+    <value>کەس</value>
+  </data>
+  <data name="PersonMobileDuplicate" xml:space="preserve">
+    <value>کەسێک بەم ژمارە مۆبایلە پێشتر تۆمار کراوە</value>
+  </data>
+  <data name="PleaseEnterAllRequestedData" xml:space="preserve">
+    <value>تکایە زانیاری داواکراو بەتەواوی تۆمار بکە</value>
+  </data>
+  <data name="PleaseEnterEmail" xml:space="preserve">
+    <value>تکایە ئیمەیل تۆمار بکە</value>
+  </data>
+  <data name="PleaseEnterFileKey" xml:space="preserve">
+    <value>تکایه ژمارەی فایل دیار بکە</value>
+  </data>
+  <data name="PleaseEnterMobile" xml:space="preserve">
+    <value>تکایه ژمارە تەلەفۆن تۆمار بکه</value>
+  </data>
+  <data name="PleaseEnterValidCaptcha" xml:space="preserve">
+    <value>تکایه وێنەی دڵنیایی بە درووستی تۆمار بکه</value>
+  </data>
+  <data name="PleaseEnterValidDate" xml:space="preserve">
+    <value>تکایه بەرواری درووست تۆمار بکە</value>
+  </data>
+  <data name="PleaseSelectFileWithSpecifiedFormat" xml:space="preserve">
+    <value>تکایه فایلی درووست هەڵبژێرە</value>
+  </data>
+  <data name="PleaseSelectPicWithSpecefiedFormat" xml:space="preserve">
+    <value>تکایه وێنەی درووست هەڵبژێرە</value>
+  </data>
+  <data name="PlsEnterStartEndDateTime" xml:space="preserve">
+    <value>تکایه کاتژمێر و بەرواری دەستپێک و کۆتایی تۆمار بکه</value>
+  </data>
+  <data name="PolyclinicDontHasHelathService" xml:space="preserve">
+    <value>خزمەتی هەڵبژێردراو لە کۆمەڵگای پزیشکی بەردەست نییه</value>
+  </data>
+  <data name="PolyclinicHasPendingTurns" xml:space="preserve">
+    <value>ئەم کۆمەڵگا پزیشکییە نۆرەی ئەنجامنەدراوی هەیە</value>
+  </data>
+  <data name="PolyclinicNotFound" xml:space="preserve">
+    <value>کۆمەڵگای پزیشکی داواکراو نەدۆزرایەوە</value>
+  </data>
+  <data name="Reception" xml:space="preserve">
+    <value>پێشوازی</value>
+  </data>
+  <data name="RecoverPassword" xml:space="preserve">
+    <value>دۆزینەوەی ووشەی نهێنی</value>
+  </data>
+  <data name="ReserveConfirmation" xml:space="preserve">
+    <value>دووپاتکردنی تەرخانی نۆرە</value>
+  </data>
+  <data name="ReservedTurnsList" xml:space="preserve">
+    <value>لیستی نۆرەکانی تەرخانکراو</value>
+  </data>
+  <data name="RulesAndRegulations" xml:space="preserve">
+    <value>یاساکان و ڕێنماییەکان</value>
+  </data>
+  <data name="ScheduleDeActiveSuccessfully" xml:space="preserve">
+    <value>بەرنامەی کات دانان بە سەرکەوتوویی له کارخرا</value>
+  </data>
+  <data name="ScheduleForDisabledDayException" xml:space="preserve">
+    <value>بەرواری هەڵبژێردراو لە خشتەی نۆرینگه کارا نەکراوە بۆیه کات دانان بۆ ئەم ڕۆژە بەردەست نییه</value>
+  </data>
+  <data name="ScheduleForNotWorkingHoursException" xml:space="preserve">
+    <value>ئەم دکتۆرە لە خشتەی نۆرینگه بۆ بەرواری داواکراو تۆمار نەکراوە بۆیه کات دانان بۆ ئەم رۆژە بەردەست نیه</value>
+  </data>
+  <data name="ScheduleForPastException" xml:space="preserve">
+    <value>ناتوانی کات بۆ ڕۆژانی تێپەڕبوو دابنێی</value>
+  </data>
+  <data name="ScheduleForVocationDayException" xml:space="preserve">
+    <value>بەرواری هەڵبژێردراو لە ناو رۆژانی پشوو دایه بۆیە ناتوانی کاتی بۆ دانێی</value>
+  </data>
+  <data name="ScheduleHasInterferesWithPreviews" xml:space="preserve">
+    <value>کاتی دەستپێک و کۆتایی ئەم کاتژمێرەی کارکردن لەگەڵ کاتژمێرەکانی کارکردنی پێشوو بۆ ئەم بەروارە تێکەڵ بووە</value>
+  </data>
+  <data name="ScheduleNotSpecifiedForDate" xml:space="preserve">
+    <value>بۆ بەرواری داواکراو نۆرە دانان تۆمار نەکراوە بۆیە ناتوانی تەرخانی نۆرەی بۆ بکەی</value>
+  </data>
+  <data name="ScheduleOutsideBoundException" xml:space="preserve">
+    <value>کاتژمێرەکانی دەستپێک و کۆتایی ئەم کات دانانه لەگەڵ کاتژمێرەکانی کارکردنی دکتۆر یەک ناگرن</value>
+  </data>
+  <data name="ScheduleStartMustSmallerThanEnd" xml:space="preserve">
+    <value>کاتی دەستپێکی نۆرە دانان دەبیت زووتر بیت لە کاتی کۆتایی</value>
+  </data>
+  <data name="ScheduleStartNotValidForBHR" xml:space="preserve">
+    <value>کاتی دەستپێکی تەرخان لەگەڵ سنووری کاتژمێرەکانی خشتەی نۆرە گرتن یەک ناگرنەوە</value>
+  </data>
+  <data name="ScheduleStartSmallerThanDoctorTurningStart" xml:space="preserve">
+    <value>کاتی دەستپێکی کاتژمێری کارکردن زووترە لە کاتی دەستپێکی نۆرەدانانی دکتۆر</value>
+  </data>
+  <data name="SendPicWithThisFormats" xml:space="preserve">
+    <value>تکایه وێنەیەک بەم فۆرمەتانه بنێرە</value>
+  </data>
+  <data name="StartingAndEndTimeNotValid" xml:space="preserve">
+    <value>کاتی دەستپێک و کۆتایی بە درووستی رێک نەخراون</value>
+  </data>
+  <data name="SystemVocationDayException" xml:space="preserve">
+    <value>ئەم رۆژە بە شێوەی ئۆتۆماتیکی وەکوو پشووه دانراوە و پێویست بە زیادکردنی ناکات</value>
+  </data>
+  <data name="ToDate" xml:space="preserve">
+    <value>لە بەرواری</value>
+  </data>
+  <data name="TommorwYou" xml:space="preserve">
+    <value>ئێوە سبەی</value>
+  </data>
+  <data name="TommowYouIn" xml:space="preserve">
+    <value>ئێوە سبەی لە</value>
+  </data>
+  <data name="TurnBookedFinally" xml:space="preserve">
+    <value>نۆرە بە سەرکەوتوویی تەرخان کرا</value>
+  </data>
+  <data name="TurnIsInProgressNow" xml:space="preserve">
+    <value>ئەم نۆرەیە ئێستا لە پڕۆسەی تەرخان کردن دایه</value>
+  </data>
+  <data name="TurnReservedSuccessfully" xml:space="preserve">
+    <value>نۆرەی داواکراو بە شێوەی کاتی تەرخان کرا</value>
+  </data>
+  <data name="TurnTimePassed" xml:space="preserve">
+    <value>کاتی ئەم نۆرەیە تێپەڕ بووە، ناتوانی تەرخانی بکەی</value>
+  </data>
+  <data name="UnAssignDoctorWithPendingAppointmentsException" xml:space="preserve">
+    <value>ئەم دکتۆرە نۆرەی جێبەچینەکراوی هەیە، ناتوانی لابدەی</value>
+  </data>
+  <data name="UnKnownErrorOccuredInServerPlsContactAdmin" xml:space="preserve">
+    <value>هەڵەیەک لە سیستەمی خزمەتگوزاری هەیە، تکایە پەیوەندی بە بەڕێوەبەری سیستەم بکە</value>
+  </data>
+  <data name="UntilEndVisitTime" xml:space="preserve">
+    <value>تاکۆتایی خشتەی تەرخانکردنی نۆرە</value>
+  </data>
+  <data name="UserIsAdminCanotDelIt" xml:space="preserve">
+    <value>ئەم بەکارهێنەرە بەڕێوەبەری سیستەمه، ناتوانی لابدەی</value>
+  </data>
+  <data name="UserIsAdminYouCannotDeleteIt" xml:space="preserve">
+    <value>ئەم بەکارهێنەرە بەڕێوەبەری سیستەمه، ناتوانی لابدەی</value>
+  </data>
+  <data name="UserIsClinicManagerAlready" xml:space="preserve">
+    <value>ئەم بەکارهێنەرە پێشتر وەکۆ بەڕێوەبەری ئەم نۆرینگەیە هەڵبژێردراوە</value>
+  </data>
+  <data name="UserIsManagingCentersPleaseUnassignFirst" xml:space="preserve">
+    <value>ئەم بەکارهێنەرە ئێستا بەڕێوەبەری سەنتەرە، تکایە یەکەمجار بەرپرسیارەتی لابدە ئینجا رۆڵی بگوڕە</value>
+  </data>
+  <data name="UserIsNotDoctorYouCannotAssignSpeciality" xml:space="preserve">
+    <value>ئەم بەکارهێنەرە دکتۆر نییە، ناتوانی پسپۆڕیی بۆ تەرخان بکەی</value>
+  </data>
+  <data name="UserIsNotDoctorYouCannotSelectExpertise" xml:space="preserve">
+    <value>ئەم بەکارهێنەرە دکتۆر نییە، ناتوانی پسپۆڕیی بۆ تەرخان بکەی</value>
+  </data>
+  <data name="UserIsPolyclinicManagerCannotDelIt" xml:space="preserve">
+    <value>ئەم بەکارهێنەرە بەڕیوەبەری کۆمەڵگای پزیشکییە، ناتوانی لابدەی</value>
+  </data>
+  <data name="UsernameOrPasswordIsInvalid" xml:space="preserve">
+    <value>ناو یا ووشەی نهێنی هەڵەیە</value>
+  </data>
+  <data name="UserRegisteredSuccessfully" xml:space="preserve">
+    <value>ناوتان بە سەرکەوتوویی تۆمار کرا</value>
+  </data>
+  <data name="UserWithThisEmailExistBefore" xml:space="preserve">
+    <value>بەکارهێنەرێک بەم ئیمەیلە (ناوی بەکارهێنەر) پێشتر تۆمار کراوە.</value>
+  </data>
+  <data name="UserWithThisMobileExist" xml:space="preserve">
+    <value>بەکارهێنەرێک بەم ژمارە مۆبایله پێشتر تۆمار کراوە.</value>
+  </data>
+  <data name="ValidEmptyTimePeriodNotFound" xml:space="preserve">
+    <value>مەودای زەمەنی درووست نەدۆزرایەوە</value>
+  </data>
+  <data name="VersionPatternIsNotValid" xml:space="preserve">
+    <value>دەربڕینی وەشانی تۆمارکراو هەڵەیە</value>
+  </data>
+  <data name="WillBeCanceled" xml:space="preserve">
+    <value>هەڵدەوەشێتەوە</value>
+  </data>
+  <data name="WithoutLimitation_FromNow" xml:space="preserve">
+    <value>بێ سنوور (لە ئێستاوە)</value>
+  </data>
+  <data name="WithStartingVisitTime" xml:space="preserve">
+    <value>هاوکات لەگەڵ دەستپێکی تەرخان</value>
+  </data>
+  <data name="YouAreLoggedInAndCannotChangeRole" xml:space="preserve">
+    <value>ئێوە ئێستا چوونەتە ناو سیستەم، ناتوانن رۆڵی خۆتان بگوڕن.</value>
+  </data>
+  <data name="YouAreLoggedInCannotChangeRole" xml:space="preserve">
+    <value>ئێوە ئێستا چوونەتە ناو سیستەم، ناتوانن رۆڵی خۆتان بگوڕن.</value>
+  </data>
+  <data name="YouCannotDeleteCurrentUserFromClinicManagers" xml:space="preserve">
+    <value>ناتوانی ئەم بەکارهێنەرە له لیستی بەڕێوەبەرانی کلینیک بسڕیتەوە.</value>
+  </data>
+  <data name="YouCannotRemoveAdminRoleForThisUser" xml:space="preserve">
+    <value>ئێوە ناتوانن ئەم بەکارهێنەرە لە ڕۆڵی بەڕێوەبەرایەتی لابدەن</value>
+  </data>
+  <data name="YouDontHavePermission" xml:space="preserve">
+    <value>بەکارهێنەری بەڕێز ببورە ئەم بەشە بەردەست نییە بۆ تۆ</value>
+  </data>
+  <data name="YourAppointmentForDoctor" xml:space="preserve">
+    <value>نۆرەی ئێوە بۆ دکتۆر</value>
+  </data>
+  <data name="YourMessageSenedToUsSuccessfully" xml:space="preserve">
+    <value>پەیامەکەتان بە سەرکەوتوویی نێردرا</value>
+  </data>
+  <data name="YourPhoneDeletedSuccessfully" xml:space="preserve">
+    <value>ژمارە مۆبایلی ئێوە بەسەرکەوتوویی لادرا</value>
+  </data>
+  <data name="YourPhoneHasBeenAdded" xml:space="preserve">
+    <value>ژمارە مۆبایلی ئێوە تۆمارکرا</value>
+  </data>
+  <data name="YourTurnFromDate" xml:space="preserve">
+    <value>نۆرەی ئێوە لە بەرواری</value>
+  </data>
+  <data name="YourTurnInDate" xml:space="preserve">
+    <value>نۆرەی ئێوە بۆ بەرواری</value>
+  </data>
+  <data name="YourTurnReservedSuccessfully" xml:space="preserve">
+    <value>نۆرەی ئێوە بەسەرکەوتوویی تۆمارکرا</value>
+  </data>
+  <data name="YourTurnWillBeCanceled" xml:space="preserve">
+    <value>نۆرەی ئێوە هەڵدەوەشێتەوە</value>
+  </data>
+  <data name="NoItemFound" xml:space="preserve">
+    <value>هیچ بڕگەیک نەدۆزرایەوە</value>
+  </data>
+  <data name="WontAbleRevertThis" xml:space="preserve">
+    <value>توانای گەڕاندنەوەی ئەم کردارەت نابێت</value>
+  </data>
+  <data name="PatientHasNoRecord" xml:space="preserve">
+    <value>هیچ تۆمارێک بۆ ئەم نەخۆشە نەدۆزرایەوە</value>
+  </data>
+  <data name="PrescriptionIsDoneBefore" xml:space="preserve">
+    <value>ئەم ڕاچیتە پێشتر ئەنجام دراوە</value>
+  </data>
+  <data name="PrescriptionNotFound" xml:space="preserve">
+    <value>ڕاچیت نەدۆزرایەوە</value>
+  </data>
+  <data name="SomethingWentWrong" xml:space="preserve">
+    <value>هەڵەیەک ڕوویداوە</value>
+  </data>
+  <data name="PageNotFound" xml:space="preserve">
+    <value>لاپەڕە نەدۆزرایەوە</value>
+  </data>
+  <data name="WeCouldNotFindPage" xml:space="preserve">
+    <value>لاپەڕەی داواکراو نەدۆزرایەوە</value>
+  </data>
+  <data name="AccessDenied" xml:space="preserve">
+    <value>توانای بەکارهێنانی ئەم بابەتەت نیە</value>
+  </data>
+  <data name="HaveAppointmentWithAnotherDoctorAtTime" xml:space="preserve">
+    <value>نۆره‌ی پزیشكت هه‌یه‌ له‌هه‌مان كاتی هه‌ڵبژێردراو</value>
+  </data>
+  <data name="WorkingScheduleNotFoundForThisTime" xml:space="preserve">
+    <value>كاتی كاركردن نه‌دۆزرایه‌وه‌ بۆ كاتی هه‌ڵبژێردراو، تكایه‌ سه‌یری كاته‌كانی كاركردن بكه‌ و نۆره‌یه‌كی نوێ داوابكه‌.</value>
+  </data>
+  <data name="AppointmentDoneNotificationBody" xml:space="preserve">
+    <value>نۆره‌كه‌ت ته‌واو بوو، تكایه‌ سه‌ردانكردنه‌كه‌ت هه‌ڵبسه‌نگێنه‌!</value>
+  </data>
+  <data name="AppointmentDoneNotificationTitle" xml:space="preserve">
+    <value>نۆره‌كه‌ت ته‌واو بوو</value>
+  </data>
+</root>

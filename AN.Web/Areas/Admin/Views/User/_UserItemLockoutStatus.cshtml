@@ -1,0 +1,11 @@
+﻿@model (string id, bool isLocked)
+
+@if (Model.isLocked)
+{
+    <i class="fa fa-lock text-danger" aria-hidden="true" title="Locked"></i>
+}
+else
+{
+    <i class="fa fa-unlock text-success" aria-hidden="true" title="Not Locked"></i>
+}
+

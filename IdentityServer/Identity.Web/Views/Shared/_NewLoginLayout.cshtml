@@ -1,0 +1,48 @@
+﻿@using IdentityServer4.Extensions
+@{
+    string name = null;
+    if (!true.Equals(ViewData["signed-out"]))
+    {
+        name = Context.User?.GetDisplayName();
+    }
+}
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <title>Awronore Control Panel</title>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <!--===============================================================================================-->
+    <link rel="icon" type="image/png" href="~/images/icons/favicon.ico" />
+    <!--===============================================================================================-->
+    <link rel="stylesheet" type="text/css" href="~/lib/bootstrap/css/bootstrap.min.css">
+    <!--===============================================================================================-->
+    <link rel="stylesheet" type="text/css" href="~/lib/font-awesome/css/all.min.css">
+    <!--===============================================================================================-->
+    <link rel="stylesheet" type="text/css" href="~/lib/animate.css/animate.min.css">
+    <!--===============================================================================================-->
+    <link rel="stylesheet" type="text/css" href="~/lib/hamburgers/hamburgers.min.css">
+    <!--===============================================================================================-->
+    <link rel="stylesheet" type="text/css" href="~/lib/select2/css/select2.min.css">
+    <!--===============================================================================================-->
+    <link rel="stylesheet" type="text/css" href="~/css/util.css">
+    <link rel="stylesheet" type="text/css" href="~/css/new-login.css">
+    <!--===============================================================================================-->
+</head>
+<body>
+    <div class="limiter">
+        <div class="container-login100">
+            @RenderBody()
+        </div>
+    </div>
+    <!--===============================================================================================-->
+    <script src="~/lib/jquery/jquery.min.js"></script>
+    <!--===============================================================================================-->
+    @*<script src="vendor/bootstrap/js/popper.js"></script>*@
+    <script src="~/lib/bootstrap/js/bootstrap.min.js"></script> 
+    <!--===============================================================================================-->
+    <script src="~/lib/select2/js/select2.min.js"></script>
+    <!--===============================================================================================-->
+    <script src="~/js/login-main.js"></script>
+</body>
+</html>

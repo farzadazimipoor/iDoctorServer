@@ -1,0 +1,111 @@
+﻿@using AN.Core.Resources.Global;
+@using AN.Core.Resources.UI.AdminPanel;
+
+@model int
+
+<li class="nav-item has-treeview">
+    <a href="#" class="nav-link" id="pcmTurnsNavLink">
+        <i class="nav-icon fas fa-calendar"></i>
+        <p>
+            @Global.Turns
+            <i class="right fas fa-angle-left"></i>
+        </p>
+    </a>
+    <ul class="nav nav-treeview">
+        <li class="nav-item">
+            <a href="@Url.Action("Index","Appointment",new { area = "PolyClinicManager", fromDate = DateTime.Now.ToShortDateString(), toDate = DateTime.Now.ToShortDateString() })" class="nav-link" data-nav-id="pcmTurnsNavLink">
+                <i class="far fa-circle nav-icon"></i>
+                <p>@Global.Today</p>
+            </a>
+        </li>
+        <li class="nav-item">
+            <a href="@Url.Action("Index","Appointment",new { area = "PolyClinicManager", currentStatus = AppointmentStatus.Pending, status = AppointmentStatus.Pending})" class="nav-link" data-nav-id="pcmTurnsNavLink">
+                <i class="far fa-circle nav-icon"></i>
+                <p>@Global.New</p>
+            </a>
+        </li>
+        <li class="nav-item">
+            <a href="@Url.Action("Index","Appointment",new { area = "PolyClinicManager", currentStatus = AppointmentStatus.Done, status = AppointmentStatus.Done })" class="nav-link" data-nav-id="pcmTurnsNavLink">
+                <i class="far fa-circle nav-icon"></i>
+                <p>@Global.Done</p>
+            </a>
+        </li>
+        <li class="nav-item">
+            <a href="@Url.Action("Index","Appointment",new { area = "PolyClinicManager"})" class="nav-link" data-nav-id="pcmTurnsNavLink">
+                <i class="far fa-circle nav-icon"></i>
+                <p>@PanelResource.AllList</p>
+            </a>
+        </li>
+    </ul>
+</li>
+
+<li class="nav-item">
+    <a class="nav-link" href="@Url.Action("Index","Booking",new { area = "PolyClinicManager" })" id="pcmBookingNavLink" data-nav-id="pcmBookingNavLink">
+        <i class="nav-icon fa fa-calendar-plus"></i>
+        <p>@PanelResource.ReserveTurn</p>
+    </a>
+</li>
+
+<li class="nav-item">
+    <a class="nav-link" href="@Url.Action("Index","Patient",new { area = "PolyClinicManager" })" id="pcmPatientsNavLink" data-nav-id="pcmPatientsNavLink">
+        <i class="nav-icon fa fa-users"></i>
+        <p>@Global.Patients</p>
+    </a>
+</li>
+
+<li class="nav-item">
+    <a class="nav-link" href="@Url.Action("Index","TreatmentHistory",new { area = "PolyClinicManager" })" id="pcmPrescriptionsNavLink" data-nav-id="pcmPrescriptionsNavLink">
+        <i class="nav-icon fa fa-book-medical"></i>
+        <p>@Global.Prescriptions</p>
+    </a>
+</li>
+
+<li class="nav-item">
+    <a class="nav-link" href="@Url.Action("Index","Offer", new { area = "PolyClinicManager" })" id="pcmOffersNavLink" data-nav-id="pcmOffersNavLink">
+        <i class="nav-icon fa fa-gift"></i>
+        <p>@Global.Offers</p>
+    </a>
+</li>
+
+<li class="nav-item has-treeview">
+    <a href="#" class="nav-link" id="pcmSettingsNavLink">
+        <i class="nav-icon fas fa-cog"></i>
+        <p>
+            @Global.Settings
+            <i class="right fas fa-angle-left"></i>
+        </p>
+    </a>
+    <ul class="nav nav-treeview">
+        <li class="nav-item">
+            <a href="@Url.Action("EditPoliclinic","polyclinic", new { area = "" })" class="nav-link" data-nav-id="pcmSettingsNavLink">
+                <i class="far fa-circle nav-icon"></i>
+                <p>@Global.Edit</p>
+            </a>
+        </li>
+        <li class="nav-item">
+            <a href="@Url.Action("SettingDoctor","Polyclinic", new { area = "", polyclinicId = Model })" class="nav-link" data-nav-id="pcmSettingsNavLink">
+                <i class="far fa-circle nav-icon"></i>
+                <p>@Global.Doctors</p>
+            </a>
+        </li>
+        <li class="nav-item">
+            <a href="@Url.Action("SetHealthServices","Polyclinic", new { area = "", polyclinicId = Model })" class="nav-link" data-nav-id="pcmSettingsNavLink">
+                <i class="far fa-circle nav-icon"></i>
+                <p>@Global.Services</p>
+            </a>
+        </li>
+        <li class="nav-item">
+            <a href="@Url.Action("SettingUsualPlan","Scheduling", new { area = "" , polyclinicId =  Model })" class="nav-link" data-nav-id="pcmSettingsNavLink">
+                <i class="far fa-circle nav-icon"></i>
+                <p>@PanelResource.PolyclinicGeneralSchedule</p>
+            </a>
+        </li>
+    </ul>
+</li>
+
+<li class="nav-item">
+    <a class="nav-link" href="@Url.Action("Guide","Home",new { area = "PolyClinicManager" })" target="_blank">
+        <i class="nav-icon fa fa-question"></i>
+        <p>@Global.Guide</p>
+    </a>
+</li>

@@ -1,0 +1,108 @@
+﻿@using AN.Core.Resources.Global;
+@using AN.Core.Resources.UI.AdminPanel;
+
+<ul class="sidebar-menu">
+    <li class="header">@AN.Core.Resources.EntitiesResources.Role.RolesResource.clinicmanager</li>
+    <li>
+        <a href="@Url.Action("Index","Home", new { area = "ClinicManager" })">
+            <i class="fa fa-dashboard" style="color: #3c8dbc;"></i> <span>@PanelResource.Dashboard</span>
+        </a>
+    </li>
+
+    <li class="treeview">
+        <a href="#">
+            <i class="fa fa-stethoscope"></i>
+            <span>@Global.Polyclinics</span>
+            <i class="fa fa-angle-left pull-left"></i>
+        </a>
+        <ul class="treeview-menu">
+            <li><a href="@Url.Action("Index","Polyclinic",new { area = "" })"><i class="fa fa-circle-o"></i>@AN.Core.Resources.UI.AdminPanel.PanelResource.AllList</a></li>
+            <li><a href="@Url.Action("AddPoliClinic","Polyclinic",new { area = "" })"><i class="fa fa-circle-o"></i>@AN.Core.Resources.UI.AdminPanel.PanelResource.AddNew</a></li>
+        </ul>
+    </li>
+
+    <li class="treeview">
+        <a href="#">
+            <i class="fa fa-users"></i>
+            <span>@PanelResource.Users</span>
+            <i class="fa fa-angle-left pull-left"></i>
+        </a>
+        <ul class="treeview-menu">
+            <li><a href="@Url.Action("Index","Users",new { area = "ClinicManager" })"><i class="fa fa-circle-o"></i>@AN.Core.Resources.UI.AdminPanel.PanelResource.AllList</a></li>
+            <li><a href="@Url.Action("Index","Doctors",new { area = "ClinicManager" })"><i class="fa fa-circle-o"></i> @PanelResource.ClinicDoctors</a></li>
+            <li><a href="@Url.Action("Create","Users",new { area = "ClinicManager" })"><i class="fa fa-circle-o"></i>@AN.Core.Resources.UI.AdminPanel.PanelResource.AddNew</a></li>
+        </ul>
+    </li>
+
+    <li class="treeview">
+        <a href="#">
+            <i class="fa fa-calendar"></i>
+            <span>@Global.Turns</span>
+            <i class="fa fa-angle-left pull-left"></i>
+        </a>
+        <ul class="treeview-menu">
+            <li><a href="@Url.Action("Today","Appointment",new { area = "ClinicManager" })"><i class="fa fa-circle-o"></i> @PanelResource.TodayTurns</a></li>
+            <li><a href="@Url.Action("Index","Appointment",new { area = "ClinicManager" })"><i class="fa fa-circle-o"></i> @PanelResource.AllTurns</a></li>
+            @*<li><a href="@Url.Action("Reservation","Appointment",new { area = "ClinicManager" })"><i class="fa fa-circle-o"></i> @PanelResource.ReserveTurnOutSide</a></li>*@
+        </ul>
+    </li>
+
+    <li class="treeview">
+        <a href="#">
+            <i class="fa fa-bar-chart"></i>
+            <span>@PanelResource.Reporting</span>
+            <i class="fa fa-angle-left pull-left"></i>
+        </a>
+        <ul class="treeview-menu">
+            <li><a href="@Url.Action("AppointmentsReport","Reporting", new { area = "ClinicManager" })"><i class="fa fa-chevron-circle-left"></i> @PanelResource.ClinicTurnsReport</a></li>
+            <li><a href="@Url.Action("ReportAll","Reporting", new { area = "ClinicManager" })"><i class="fa fa-chevron-circle-left"></i> @PanelResource.TurnsReport</a></li>
+            <li><a href="@Url.Action("ReportWorkingTimes","Reporting", new { area = "ClinicManager" })"><i class="fa fa-chevron-circle-left"></i> @PanelResource.DoctorsReport</a></li>
+        </ul>
+    </li>
+
+    <li class="treeview">
+        <a href="#">
+            <i class="fa fa-clock-o"></i>
+            <span>@PanelResource.Scheduling</span>
+            <i class="fa fa-angle-left pull-left"></i>
+        </a>
+        <ul class="treeview-menu">
+            <li><a href="@Url.Action("ClinicVocations","Schedule", new { area = "ClinicManager" })"><i class="fa fa-chevron-circle-left"></i> @PanelResource.ClinicVocations</a></li>
+        </ul>
+    </li>
+
+    <li class="treeview">
+        <a href="#">
+            <i class="fa fa-envelope"></i>
+            <span>@PanelResource.Announcement</span>
+            <i class="fa fa-angle-left pull-left"></i>
+        </a>
+        <ul class="treeview-menu">
+            <li><a href="@Url.Action("Index","Message", new { area = "ClinicManager" })"><i class="fa fa-chevron-circle-left"></i> @PanelResource.AnnouncementsList</a></li>
+        </ul>
+    </li>
+
+    @*<li class="treeview">
+        <a href="#">
+            <i class="fa fa-ban"></i>
+            <span>@PanelResource.BlackList</span>
+            <i class="fa fa-angle-left pull-left"></i>
+        </a>
+        <ul class="treeview-menu">
+            <li><a href="@Url.Action("Blocked","Security", new { area = "ClinicManager" })"><i class="fa fa-chevron-circle-left"></i> @PanelResource.BlackList</a></li>
+        </ul>
+    </li>*@
+
+    <li class="treeview">
+        <a href="#">
+            <i class="fa fa-medkit"></i>
+            <span>@Global.Settings</span>
+            <i class="fa fa-angle-left pull-left"></i>
+        </a>
+        <ul class="treeview-menu">
+            <li><a href="@Url.Action("Edit","CommonClinic", new { area = "" })"><i class="fa fa-chevron-circle-left"></i> @Global.Edit</a></li>
+            <li><a href="@Url.Action("Managers","CommonClinic", new { area = "" })"><i class="fa fa-chevron-circle-left"></i> @Global.Managers</a></li>
+        </ul>
+    </li>
+
+</ul>

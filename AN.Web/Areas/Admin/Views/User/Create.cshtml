@@ -1,0 +1,218 @@
+﻿@using Shared.Constants;
+
+@model AN.Web.Areas.Admin.Models.UserCreateViewModel
+
+@{
+    var centerDisabled = (string.IsNullOrEmpty(Model.Role) || Model.Role != "ADMIN" || Model.Role != "ROOTADMIN") ? "disabled" : "";
+}
+
+<div id="createUserArea">
+    <form id="createUpdateUserForm" class="form-horizontal" action="@Url.Action("CreateUpdate", "User", new {area = "Admin"})" method="POST">
+        @Html.HiddenFor(m => m.Id)
+        <div class="row">
+            <div class="col-sm-6 col-md-4 col-lg-4">
+                <div class="form-group">
+                    @Html.LabelFor(m => m.PersonId)
+                    @Html.DropDownListFor(m => m.PersonId, (ViewBag.PersonsList as IEnumerable<SelectListItem>).ToList(), new { @tabindex = "5", @class = "form-control select2" })
+                    @Html.ValidationMessageFor(m => m.PersonId, "", new { @class = "text-danger" })
+                </div>
+            </div>
+            <div class="col-sm-6 col-md-4 col-lg-4">
+                <div class="form-group">
+                    @Html.LabelFor(m => m.Role)
+                    @Html.DropDownListFor(m => m.Role, (ViewBag.RolesList as IEnumerable<SelectListItem>).ToList(), new { @tabindex = "5", @class = "form-control select2" })
+                    @Html.ValidationMessageFor(m => m.Role, "", new { @class = "text-danger" })
+                </div>
+            </div>
+            <div class="col-sm-6 col-md-4 col-lg-4">
+                <div class="form-group">
+                    @Html.LabelFor(m => m.CenterId)
+                    @Html.DropDownListFor(m => m.CenterId, (ViewBag.CentersList as IEnumerable<SelectListItem>).ToList(), new { @class = "form-control select2", disabled = centerDisabled })
+                    @Html.ValidationMessageFor(m => m.CenterId, "", new { @class = "text-danger" })
+                </div>
+            </div>
+            <div class="col-12">
+                <div class="form-group">
+                    <label asp-for="ServiceSupplyIds" class="form-label semibold"></label>
+                    @Html.DropDownListFor(m => m.ServiceSupplyIds, (ViewBag.ServiceSuppliesList as IEnumerable<SelectListItem>).ToList(), htmlAttributes: new { @class = "form-control select2", disabled = centerDisabled, multiple = true })
+                    <span asp-validation-for="ServiceSupplyIds" class="text-danger"></span>
+                </div>
+            </div>
+        </div>
+        <div class="row">
+            <div class="col-sm-6 col-md-4 col-lg-4">
+                <div class="form-group">
+                    @Html.LabelFor(m => m.UserName)
+                    @Html.TextBoxFor(m => m.UserName, new { @class = "form-control", maxlength = "50" })
+                    @Html.ValidationMessageFor(m => m.UserName, "", new { @class = "text-danger" })
+                </div>
+            </div>
+            <div class="col-sm-6 col-md-4 col-lg-4">
+                <div class="form-group">
+                    @Html.LabelFor(m => m.Password)
+                    @Html.PasswordFor(m => m.Password, new { @class = "form-control", maxlength = "100" })
+                    @Html.ValidationMessageFor(m => m.Password, "", new { @class = "text-danger" })
+                </div>
+            </div>
+            <div class="col-sm-6 col-md-4 col-lg-4">
+                <div class="form-group">
+                    @Html.LabelFor(m => m.ConfirmPassword)
+                    @Html.PasswordFor(m => m.ConfirmPassword, new { @class = "form-control", maxlength = "100" })
+                    @Html.ValidationMessageFor(m => m.ConfirmPassword, "", new { @class = "text-danger" })
+                </div>
+            </div>
+        </div>
+        <div class="row">
+            <div class="col-sm-6 col-md-4 col-lg-4">
+                <div class="form-group">
+                    @Html.LabelFor(m => m.Mobile)
+                    @Html.TextBoxFor(m => m.Mobile, new { @class = "form-control", maxlength = "11" })
+                    @Html.ValidationMessageFor(m => m.Mobile, "", new { @class = "text-danger" })
+                </div>
+            </div>
+            <div class="col-sm-6 col-md-4 col-lg-4">
+                <div class="form-group">
+                    @Html.LabelFor(m => m.Email)
+                    @Html.TextBoxFor(m => m.Email, new { @class = "form-control", maxlength = "256" })
+                    @Html.ValidationMessageFor(m => m.Email, "", new { @class = "text-danger" })
+                </div>
+            </div>
+            <div class="col-md-4" style="direction: ltr !important;">
+                @Html.LabelFor(m => m.TwoFactorEnabled)
+                <div class="custom-switch custom-switch-label-io">
+                    @Html.CheckBoxFor(m => m.TwoFactorEnabled, new { @class = "custom-switch-input" })
+                    <label class="custom-switch-btn" for="TwoFactorEnabled"></label>
+                </div>
+            </div>
+        </div>
+        <div class="row">
+            <div class="col-md-12 mt-5 text-center">
+                <button type="submit" class="btn btn-info">@(AN.Core.Resources.UI.AdminPanel.PanelResource.AddNew)</button>
+                <button type="button" class="btn btn-danger" data-dismiss="modal">@AN.Core.Resources.Global.Global.Cancel </button>
+            </div>
+        </div>
+    </form>
+</div>
+
+<script type="text/javascript">
+    var form = $("#createUserArea").find('form');
+    var roleElement = form.find("[name='Role']");
+    var centersElement = form.find("[name='CenterId']");
+    var doctorsElement = form.find("[name='ServiceSupplyIds']");
+    $(function () {
+        var _selectedServiceSupplies = [
+          @if (Model.ServiceSupplyIds != null && Model.ServiceSupplyIds.Any())
+            {
+                foreach (var p in Model.ServiceSupplyIds)
+                {
+                    @:'@p',
+                }
+            }
+        ];      
+        doctorsElement.val(_selectedServiceSupplies).trigger('change');   
+        $.validator.unobtrusive.parse(form);
+        $(form).on("submit", function (e) {
+            e.preventDefault();
+            if (form.valid()) {
+                waiting('createUserArea', '@AN.Core.Resources.Global.Global.PleaseWait');
+                $.ajax({
+                    method: "POST",
+                    url: $(this).attr("action"),
+                    dataType: "json",
+                    data: form.serialize(), success: function (result) {
+                         if (result.success) {
+                             form.closest('.modal').modal('toggle');
+                             Toast.fire({
+                                type: 'success',
+                                title: '@AN.Core.Resources.Global.Global.Successful',
+                                text: result.message
+                             });
+                            reloadDataTable();
+                         } else {
+                             Toast.fire({
+                                type: 'error',
+                                title: '@AN.Core.Resources.Global.Global.Error',
+                                text: result.message
+                             });
+                        }
+                    }, error: function (jqXHR, ex) {
+                        handleAjaxError(jqXHR, ex);
+                    }
+                }).always(function () {
+                    waitingDone('createUserArea');
+                });
+            }
+        });
+
+        roleElement.change(function () {
+            var value = this.value;          
+            if (value == '@SystemRoles.ADMIN') {
+                centersElement.attr("disabled", true);
+                doctorsElement.attr("disabled", true);
+                centersElement.find('option').remove();
+                doctorsElement.find('option').remove();
+            } else {
+                getCentersForLoginRole(value);
+            } 
+        });
+
+        centersElement.change(function () {
+            var centerId = this.value;
+            var role = roleElement.val();
+            if (role == '@SystemRoles.POLYCLINICMANAGER' || role == '@SystemRoles.DOCTOR' || role == '@SystemRoles.SECRETARY' || role == '@SystemRoles.BEAUTYCENTERMANAGER') {
+                getDoctorsForCenter(centerId);                      
+            } else {
+                doctorsElement.attr("disabled", true);
+                doctorsElement.find('option').remove();     
+            }
+        });
+    });
+
+    function getCentersForLoginRole(loginRole) {
+        waiting('AwroNoreModalDialog', '@AN.Core.Resources.Global.Global.PleaseWait');
+        $.ajax({
+            type: 'Get',
+            url: "/admin/user/GetCentersForRole?role=" + loginRole,
+            success: function (response) {
+                centersElement.attr("disabled", false);
+                centersElement.find('option').remove();
+                $.each(response, function (index, value) {
+                    var selected = index == 0;
+                    var newOption = new Option(value.Text, value.Value, selected, selected);
+                    centersElement.append(newOption)
+                });
+                centersElement.trigger('change');
+            },
+            error: function (jqXHR, ex) {
+                centersElement.find('option').remove();
+                handleAjaxError(jqXHR, ex);
+            }
+        }).always(function () {
+            waitingDone('AwroNoreModalDialog');
+        });
+    }
+
+    function getDoctorsForCenter(centerId) {
+        waiting('AwroNoreModalDialog', '@AN.Core.Resources.Global.Global.PleaseWait');
+        $.ajax({
+            type: 'Get',
+            url: "/admin/user/GetServiceSuppliesForCenter?centerId=" + centerId,
+            success: function (response) {
+                doctorsElement.attr("disabled", false);
+                doctorsElement.find('option').remove();
+                $.each(response, function (index, value) {
+                    var newOption = new Option(value.Text, value.Value, false, false);
+                    doctorsElement.append(newOption);
+                });
+                doctorsElement.trigger('change');
+            },
+            error: function (jqXHR, ex) {
+                doctorsElement.find('option').remove();
+                handleAjaxError(jqXHR, ex);
+            }
+        }).always(function () {
+            waitingDone('AwroNoreModalDialog');
+        });
+    }
+</script>
+

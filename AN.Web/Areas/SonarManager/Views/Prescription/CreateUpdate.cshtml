@@ -1,0 +1,112 @@
+﻿@using AN.Web.Areas.SonarManager.Models
+
+@model CreateUpdateSonarPrescriptionViewModel
+
+<div class="content">
+    <form id="CreateSonarRequestForm" class="form-horizontal" action="@Url.Action("CreateUpdate", "Prescription", new {area = "SonarManager"})" method="POST">
+        @Html.HiddenFor(m => m.Id)      
+        @Html.HiddenFor(m => m.PersonId)
+        <div class="row">
+            <div class="col-12">
+                <div class="card" id="accordion">
+                    <div class="card-header" id="headingOne">
+                        <a href="#" data-toggle="collapse" data-target="#collapseOne" aria-expanded="true" aria-controls="collapseOne">@Global.PatientInfo</a>
+                    </div>
+                    <div id="collapseOne" class="collapse" aria-labelledby="headingOne" data-parent="#accordion">
+                        <div class="card-body">
+                            <div class="row">
+                                <div class="col-md-4">
+                                    <div class="form-group">
+                                        @Html.LabelFor(m => m.PatientVisitAge)
+                                        @Html.TextBoxFor(m => m.PatientVisitAge, new { @class = "form-control", maxlength = "3" })
+                                        @Html.ValidationMessageFor(m => m.PatientVisitAge, "", new { @class = "text-danger" })
+                                    </div>
+                                </div>
+                                <div class="col-md-4">
+                                    <div class="form-group">
+                                        @Html.LabelFor(m => m.PatientVisitWeight)
+                                        @Html.TextBoxFor(m => m.PatientVisitWeight, new { @class = "form-control", maxlength = "3" })
+                                        @Html.ValidationMessageFor(m => m.PatientVisitWeight, "", new { @class = "text-danger" })
+                                    </div>
+                                </div>
+                                <div class="col-md-4">
+                                    <div class="form-group">
+                                        @Html.LabelFor(m => m.PatientVisitHeight)
+                                        @Html.TextBoxFor(m => m.PatientVisitHeight, new { @class = "form-control", maxlength = "3" })
+                                        @Html.ValidationMessageFor(m => m.PatientVisitHeight, "", new { @class = "text-danger" })
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="col-md-3">
+                <div class="form-group">
+                    @Html.LabelFor(m => m.VisitDate)
+                    @Html.TextBoxFor(m => m.VisitDate, new { @class = "form-control common-datapicker"})
+                    @Html.ValidationMessageFor(m => m.VisitDate, "", new { @class = "text-danger" })
+                </div>
+            </div>           
+            <div class="col-md-12">
+                <div class="form-group">
+                    @Html.LabelFor(m => m.SonarNeeds)
+                    @Html.DropDownListFor(m => m.SonarNeeds, (ViewBag.SonarNeeds as IEnumerable<SelectListItem>).ToList(), new { @class = "form-control select-2", multiple = true })
+                    <span asp-validation-for="SonarNeeds" class="text-danger"></span>
+                </div>
+            </div>
+            <div class="col-md-12">
+                <div class="form-group">
+                    @Html.LabelFor(m => m.Description)
+                    @Html.TextAreaFor(m => m.Description, new { @class = "form-control", rows = 2, maxlength = "1000"})
+                    @Html.ValidationMessageFor(m => m.Description, "", new { @class = "text-danger" })
+                </div>
+            </div>
+            <div class="col-md-12 text-center mt-5">
+                <button class="btn btn-info" type="submit">@AN.Core.Resources.Global.Global.Send</button>
+                <button class="btn btn-danger" data-dismiss="modal" type="button">@AN.Core.Resources.Global.Global.Cancel</button>
+            </div>
+        </div>
+    </form>
+</div>
+
+<script>
+    var form = $("#CreateSonarRequestForm");
+    $(function () {
+         var _selectedSonarNeeds = [
+            @if (Model.SonarNeeds != null && Model.SonarNeeds.Any())
+            {
+                  foreach (var p in Model.SonarNeeds)
+                  {
+                      @:'@p',
+                  }
+            }
+        ];
+        form.find("[name='SonarNeeds']").val(_selectedSonarNeeds).trigger('change');
+        $.validator.unobtrusive.parse(form);
+        $(form).on("submit", function (e) {
+            e.preventDefault();
+            var submitButton = $(this).find("button[type='submit']");
+            if (form.valid()) {
+                waiting('AwroNoreModalDialog', '@AN.Core.Resources.Global.Global.PleaseWait');
+                $.ajax({
+                    method: "POST",
+                    url: $(this).attr("action"),
+                    data: { model: form.serializeFormJSON() }, success: function (result) {
+                        if (result.success) {
+                            try {
+                                reloadDataTable();
+                            } catch(err){ }
+                             form.closest('.modal').modal('toggle');
+                             Swal.fire('@Global.Successful','@AN.Core.Resources.EntitiesResources.Messages.ActionDoneSuccesfully','success')
+                        }
+                    }, error: function (jqXHR, ex) {
+                        handleAjaxError(jqXHR, ex);
+                    }
+                }).always(function () {
+                    waitingDone('AwroNoreModalDialog');
+                });
+            }
+        });
+    });
+</script>

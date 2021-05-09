@@ -1,0 +1,264 @@
+﻿
+@using AN.Core.Resources.Global;
+
+@model AN.Core.ViewModels.TreatmentHistoryListItemViewModel
+
+@{
+    ViewBag.Title = Global.Prescriptions;
+    Layout = "~/Views/Shared/_CpanelLayout.cshtml";
+    var dir = AN.Web.Helper.CultureHelper.Lang == Lang.EN ? "ltr" : "rtl";
+}
+
+@section styles{
+    <link rel="stylesheet" href="~/lib/datatables/css/dataTables.bootstrap4.min.css" />
+    <link rel="stylesheet" href="~/lib/select2/css/select2.min.css" type="text/css" />
+    <link rel="stylesheet" href="~/lib/flatpickr/flatpickr.min.css" type="text/css" />
+}
+
+<div class="content-header">
+    <div class="container-fluid">
+        <div class="row mb-2">
+            <div class="col-sm-6">
+                <h1 class="m-0 text-dark">@Global.Prescriptions</h1>
+            </div>
+        </div>
+    </div>
+</div>
+
+<div class="content">
+    <div class="container-fluid">       
+        <div class="card">
+            <div class="card-body">
+                <form method="post" action="#" id="TreatmentHistoriesFilterForm">
+                    @Html.AntiForgeryToken()
+                    <div class="row">
+                        <div class="col-md-2">
+                            <div class="form-group">
+                                <label>@Global.SearchString</label>
+                                <input type="text" id="FilterString" name="FilterString" class="form-control" />
+                            </div>
+                        </div>
+                        <div class="col-md-2">
+                            <div class="form-group">
+                                <label>@Global.Doctor</label>
+                                @Html.DropDownList("ServiceSupplyId", ViewBag.Doctors as IEnumerable<SelectListItem>, "", htmlAttributes: new { @class = "form-control select-2" })
+                            </div>
+                        </div>
+                        <div class="col-md-2">
+                            <div class="form-group">
+                                <label>@Global.Patient</label>
+                                @Html.DropDownList("PatientId", ViewBag.Patients as IEnumerable<SelectListItem>, "", htmlAttributes: new { @class = "form-control select-2" })
+                            </div>
+                        </div>
+                        <div class="col-md-2">
+                            <div class="form-group">
+                                <label>@Global.From</label>
+                                <input type="text" id="VisitFrom" name="VisitFrom" class="form-control common-datepicker" autocomplete="off" />
+                            </div>
+                        </div>
+                        <div class="col-md-2">
+                            <div class="form-group">
+                                <label>@Global.To</label>
+                                <input type="text" id="VisitTo" name="VisitTo" class="form-control common-datepicker" autocomplete="off" />
+                            </div>
+                        </div>
+                        <div class="col-md-2 mt-1">
+                            <button type="button" class=" btn btn-outline-info mt-4" onclick="filterTreatmentHistories()"><i class="fa fa-filter"></i>  @Global.Filter</button>
+                        </div>
+                    </div>
+                </form>
+            </div>
+        </div>
+        <div class="card card-info card-outline">
+            <div class="card-body">
+                <div class="row">
+                    <div class="col-md-12 table-responsive">
+                        <table id="fingers10" class="table table-hover" style="width:100%">
+                            <thead>
+                                <tr>                                  
+                                    <th></th>
+                                    <th>@Html.DisplayNameFor(m => m.VisitDate)</th>
+                                    <th>@Html.DisplayNameFor(m => m.Doctor)</th>
+                                    <th>@Html.DisplayNameFor(m => m.Patient)</th>
+                                    <th>@Html.DisplayNameFor(m => m.Gender)</th>
+                                    <th>@Html.DisplayNameFor(m => m.Pharmacy)</th>                                   
+                                    <th></th>
+                                </tr>
+                            </thead>
+                        </table>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+@section scripts{
+    <script src="~/lib/datatables/js/jquery.dataTables.min.js"></script>
+    <script src="~/lib/datatables/js/dataTables.bootstrap4.min.js"></script>
+    <script src="~/lib/select2/js/select2.min.js"></script>
+    <script src="~/lib/flatpickr/flatpickr.min.js"></script>
+    <script src="~/js/My/DataTablesLocale/dt_@(ViewBag.Lang.ToString()).js" asp-append-version="true"></script>  
+    <script type="text/javascript">
+        var table;       
+        var filterForm = $("#TreatmentHistoriesFilterForm");
+        $(function () {
+            filterForm.find(".select-2").select2({
+                 width: '100%',
+                 placeholder: '...',
+                 dir: "@dir",
+                 allowClear: true
+            });
+            filterForm.find(".common-datepicker").flatpickr();
+            if ($('#fingers10').length !== 0) {
+                table = $('#fingers10').DataTable({
+                    language: dataTablesLocale,
+                    processing: true,
+                    serverSide: true,
+                    orderCellsTop: true,
+                    autoWidth: true,
+                    deferRender: true,
+                    order: [[ 1, "desc" ]],
+                    lengthMenu: [5, 10, 15, 20],
+                    dom: '<"row"<"col-sm-12 col-md-12"B><"col-sm-12 col-md-12 text-right"l>><"row"<"col-sm-12"tr>><"row"<"col-sm-12 col-md-5"i><"col-sm-12 col-md-7"p>>',
+                    ajax: {
+                        type: "POST",
+                        url: '/PolyClinicManager/TreatmentHistory/LoadTable/',
+                        contentType: "application/json; charset=utf-8",
+                        async: true,
+                        headers: {
+                            "XSRF-TOKEN": document.querySelector('[name="__RequestVerificationToken"]').value
+                        },
+                        data: function (data) {
+                            data.FiltersObject = JSON.stringify(objectifyForm(filterForm.serializeArray()));
+                            return JSON.stringify(data);
+                        }
+                    },
+                    columns: [                       
+                        {
+                            data: null,
+                            orderable: false,
+                            searchable: false,
+                            render: function (data, type, row, meta) {
+                                return row.AvatarHtml;
+                            },
+                            width: "5%"
+                        },
+                        {
+                            data: "VisitDate",
+                            name: "co",
+                            width: "10%"
+                        },
+                        {
+                            data: "Doctor",
+                            name: "co"                           
+                        },
+                        {
+                            data: "Patient",
+                            name: "co"                           
+                        },
+                        {
+                            data: "Gender",
+                            name: "co",
+                            width: "10%"
+                        },
+                        {
+                            orderable: false,
+                            data: "Pharmacy",
+                            name: "co",                           
+                        },                       
+                        {
+                            data: null,
+                            orderable: false,
+                            searchable: false,
+                            render: function (data, type, row, meta) {
+                                return row.ActionsHtml;
+                            }
+                        }
+                    ]
+                });
+
+                table.columns().every(function (index) {
+                    $('#fingers10 thead tr:last th:eq(' + index + ') input')
+                        .on('keyup',
+                            function (e) {
+                                if (e.keyCode === 13) {
+                                    table.column($(this).parent().index() + ':visible').search(this.value).draw();
+                                }
+                            });
+                });
+            }            
+        });
+
+        function reloadDataTable(initAgain = false) {
+            table.ajax.reload(null, initAgain);
+        }
+
+        function filterTreatmentHistories() {
+            reloadDataTable(true);
+        }
+
+        function editUpdateTreatmentHistory(id) {
+            var title = '@Html.Raw(Global.Update)';
+            waiting('body', '@Global.PleaseWait');
+            $.ajax({
+                type: 'Get',
+                url: "/PolyClinicManager/TreatmentHistory/Create?id=" + id,
+                success: function (response) {
+                    var commonModal = $("#AwroNoreModal");
+                    commonModal.find('#AwroNoreModalDialog').addClass("modal-lg");
+                    commonModal.find('.modal-title').text(title);
+                    commonModal.find('#CommonModalContent').html(response);
+                    commonModal.modal({backdrop: 'static', keyboard: false});
+                    $(".common-datapicker").flatpickr();
+                },
+                 error: function (jqXHR, ex) {
+                    handleAjaxError(jqXHR, ex);
+                 }
+            }).always(function () {
+                waitingDone('body');
+            });
+        }       
+        function deleteTreatmentHistory(id) {
+             Swal.fire({
+                title: '@AN.Core.Resources.Global.Global.Msg_AreYouSure',
+                text: "@Html.Raw(AN.Core.Resources.EntitiesResources.Messages.WontAbleRevertThis)",
+                type: 'warning',
+                showCancelButton: true,
+                confirmButtonColor: '#3085d6',
+                cancelButtonColor: '#d33',
+                confirmButtonText: '@AN.Core.Resources.Global.Global.Yes',
+                cancelButtonText: '@AN.Core.Resources.Global.Global.No',
+            }).then((result) => {
+                if (result.value) {
+                    waiting('body', '@AN.Core.Resources.Global.Global.PleaseWait');
+                    $.ajax({
+                        type: 'Get',
+                        url: "/PolyClinicManager/TreatmentHistory/Delete/" + id,
+                        success: function (response) {
+                        if (response.success) {
+                            reloadDataTable();
+                            Toast.fire({
+                                type: 'success',
+                                title: '@AN.Core.Resources.Global.Global.Successful',
+                                text: response.message
+                            });
+                        } else {
+                            Toast.fire({
+                                type: 'error',
+                                title: '@AN.Core.Resources.Global.Global.Error',
+                                text: response.message
+                            });
+                        }
+                    },
+                        error: function (jqXHR, ex) {
+                            handleAjaxError(jqXHR, ex);
+                        }
+                    }).always(function () {
+                        waitingDone('body');
+                    });
+                }
+            });
+        }
+    </script>
+}

@@ -1,0 +1,18 @@
+﻿@model ReservationChannel
+
+@if (Model == ReservationChannel.Website)
+{
+    <i class="fa fa-globe fa-lg mt-2" aria-hidden="true"></i>
+}
+else if (Model == ReservationChannel.MobileApplication)
+{
+    <i class="fa fa-mobile fa-lg fa-2x mt-2" aria-hidden="true"></i>
+}
+else if (Model == ReservationChannel.Kiosk)
+{
+    <i class="fa fa-desktop mt-2" aria-hidden="true"></i>
+}
+else if (Model == ReservationChannel.ClinicManagerSection)
+{
+    <i class="fa fa-external-link-square mt-2" aria-hidden="true"></i>
+}

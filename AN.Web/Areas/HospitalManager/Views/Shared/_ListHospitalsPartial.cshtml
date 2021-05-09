@@ -1,0 +1,44 @@
+﻿@using AN.Core
+@using AN.Core.Models
+@using Microsoft.AspNetCore.Http
+@inject IHttpContextAccessor HttpContextAccessor
+@{
+    var CurrentHospital = Newtonsoft.Json.JsonConvert.DeserializeObject<WorkingAreaModel>(HttpContextAccessor.HttpContext.Session.GetString("CurrentHospital"));
+
+    var hospitals = Newtonsoft.Json.JsonConvert.DeserializeObject<List<WorkingAreaModel>>(HttpContextAccessor.HttpContext.Session.GetString("Hospitals"));
+    
+    if (hospitals == null)
+    {
+        //TODO : exit from system
+    }
+    else if (hospitals.ToList().Count > 1)
+    {
+        <li class="dropdown notifications-menu">
+            <a href="#" class="dropdown-toggle" data-toggle="dropdown">
+                <span class="hidden-xs">Change Hospital</span>
+                <i class="fa fa-refresh"></i>
+                <span class="label label-info">@hospitals.ToList().Count</span>
+            </a>
+            <ul class="dropdown-menu">
+                <li class="header">You can manage this hospitals</li>
+                <li>
+                    <!-- inner menu: contains the actual data -->
+                    <ul class="menu">
+                        @foreach (var h in hospitals)
+                        {
+                            if (CurrentHospital.Id == h.Id)
+                            {
+                                <li style="background: #f4f4f4;"><a style="color:darkred;" class="disabled"><i class="fa fa-ban"></i> @h.Name - @AN.Core.Resources.Global.Global.Selected</a></li>
+                            }
+                            else
+                            {
+                                <li><a href="@Url.Action("ChangeHospital","Home",new { area = "HospitalManager" ,  id = h.Id  })"><i class="fa fa-hand-o-left text-aqua"></i>@h.Name</a></li>
+                            }
+                        }
+                    </ul>
+                </li>
+                <li class="footer"><a href="#"></a></li>
+            </ul>
+        </li>
+    }
+}

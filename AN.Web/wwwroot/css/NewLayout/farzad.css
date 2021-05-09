@@ -1,0 +1,106 @@
+﻿.w-100 {
+    width: 100%;
+}
+
+.otp-register {
+    padding: 0px;
+}
+
+.doctor-picture {
+    height: 128px;
+}
+
+.empty-turn-time {
+    width: 130px;
+    height: 130px;
+    line-height: 130px;
+    font-size: 1.5rem;
+    font-weight: 700;
+}
+
+.empty-turn-time-small {
+    width: 70px;
+    height: 70px;
+    line-height: 70px;
+    font-size: 1rem;
+    font-weight: 500;
+    cursor: pointer;
+}
+
+    .empty-turn-time-small:hover {
+        background-color: #17a2b8;
+    }
+
+.empty-turn-time, .empty-turn-time-small {
+    display: inline-block;
+    border-radius: 50%;
+    background-color: #45c2c6;
+    color: #fff;
+    text-align: center;
+}
+
+.contact-card {
+    min-height: 500px;
+}
+
+/*Start Loader*/
+
+@keyframes spin {
+    0% {
+        transform: rotate(0deg);
+    }
+    100% {
+        transform: rotate(360deg);
+    }
+}
+
+.loader-2 {
+    width: 100px;
+    margin-top: 100px;
+    margin-left: auto;
+    margin-right: auto;
+    height: 50px;
+}
+    .loader-2 > span {
+        display: inline-block;
+        margin-right: 4px;
+        width: 6px;
+        height: 100%;
+        animation: span-1 1.2s linear infinite;
+    }
+
+        .loader-2 > span:first-child {
+            animation-delay: -1.2s;
+            -webkit-animation-delay: -1.2s;
+            background: #fab1a0;
+        }
+        .loader-2 > span:nth-child(2) {
+            animation-delay: -1.1s;
+            -webkit-animation-delay: -1.1s;
+            background: #00cec9;
+        }
+
+        .loader-2 > span:nth-child(3) {
+            animation-delay: -1.0s;
+            -webkit-animation-delay: -1.0s;
+            background: #55efc4;
+        }
+
+        .loader-2 > span:last-child {
+            animation-delay: -0.9s;
+            -webkit-animation-delay: -0.9s;
+            background: #ffeaa7;
+        }
+
+@keyframes span-1 {
+    0%, 40%, 100% {
+        transform: scaleY(0.5);
+        -webkit-transform: scaleY(0.5);
+    }
+
+    20% {
+        transform: scaleY(1.5);
+        -webkit-transform: scaleY(1.5);
+    }
+}
+/*End Loader*/

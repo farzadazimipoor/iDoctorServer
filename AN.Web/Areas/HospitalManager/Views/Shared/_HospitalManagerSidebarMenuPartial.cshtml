@@ -1,0 +1,32 @@
+﻿
+<ul class="sidebar-menu">
+    <li class="header">@AN.Core.Resources.EntitiesResources.Role.RolesResource.hospitalmanager</li>
+    <li><a href="@Url.Action("Index","Home", new { area = "HospitalManager" })"><i class="fa fa-dashboard"></i> <span>@AN.Core.Resources.UI.AdminPanel.PanelResource.Dashboard</span></a></li>
+
+    <li class="treeview">
+        <a href="#">
+            <i class="fa fa-medkit"></i>
+            <span>@AN.Core.Resources.Global.Global.Clinics</span>
+            <i class="fa fa-angle-left pull-left"></i>
+            <small class="label pull-left bg-maroon">@ViewBag.HClinicsCount</small>
+        </a>
+        <ul class="treeview-menu">
+            <li><a href="@Url.Action("Index","CommonClinic",new { area = "" })"><i class="fa fa-chevron-circle-left"></i>@AN.Core.Resources.UI.AdminPanel.PanelResource.AllList</a></li>
+            <li><a href="@Url.Action("Create","CommonClinic",new { area = "" })"><i class="fa fa-chevron-circle-left"></i>@AN.Core.Resources.UI.AdminPanel.PanelResource.AddNew</a></li>            
+        </ul>
+    </li>
+
+    <li class="treeview">
+        <a href="#">
+            <i class="fa fa-stethoscope"></i>
+            <span>@AN.Core.Resources.Global.Global.Polyclinics</span>
+            <i class="fa fa-angle-left pull-left"></i>
+            <small class="label pull-left bg-maroon">@ViewBag.HPoliClinicsCount</small>
+        </a>
+        <ul class="treeview-menu">
+            <li><a href="@Url.Action("Index","Polyclinic",new { area = "" })"><i class="fa fa-chevron-circle-left"></i>@AN.Core.Resources.UI.AdminPanel.PanelResource.AllList</a></li>
+            <li><a href="@Url.Action("AddPoliClinic","PolyClinic",new { area = "" })"><i class="fa fa-chevron-circle-left"></i>@AN.Core.Resources.UI.AdminPanel.PanelResource.AddNew</a></li>            
+        </ul>
+    </li>
+            
+</ul>

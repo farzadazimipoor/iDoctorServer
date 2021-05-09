@@ -1,0 +1,52 @@
+﻿
+@model AN.Web.Areas.Admin.Models.ContactReadModel
+
+<div class="content">
+    <div class="row">
+        <div class="col-md-4 col-sm-4 col-xs-4">
+            <div class="detailTitle">
+                <span>@Html.DisplayNameFor(m => m.Name)</span>
+            </div>
+        </div>
+        <div class="col-md-8">
+            <div class="detailContent">
+                <span>@Model.Name</span>
+            </div>
+        </div>
+    </div>
+    <div class="row">
+        <div class="col-md-4 col-sm-4 col-xs-4">
+            <div class="detailTitle">
+                <span>@Html.DisplayNameFor(m => m.Email)</span>
+            </div>
+        </div>
+        <div class="col-md-8">
+            <div class="detailContent">
+                <span>@Model.Email</span>
+            </div>
+        </div>
+    </div>
+    <div class="row">
+        <div class="col-md-4 col-sm-4 col-xs-4">
+            <div class="detailTitle">
+                <span>@Html.DisplayNameFor(m => m.Mobile)</span>
+            </div>
+        </div>
+        <div class="col-md-8">
+            <div class="detailContent">
+                <span>@Model.Mobile</span>
+            </div>
+        </div>
+    </div>
+    <div class="row">
+        <div class="col-12">
+            <div class="detailContent">
+                <div class="panel panel-default">
+                    <div class="panel-body">
+                        <span>@Model.Message</span>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>

@@ -1,0 +1,34 @@
+﻿@model (Shared.Enums.LoginAs loginAs, AN.Core.Models.WorkingAreaModel workingArea)
+
+@if (Model.loginAs == Shared.Enums.LoginAs.ADMIN)
+{
+    @await Html.PartialAsync("~/Areas/Admin/Views/Shared/_AdminSidebarMenuPartial.cshtml")
+}
+else if (Model.loginAs == Shared.Enums.LoginAs.HOSPITALMANAGER)
+{
+    @await Html.PartialAsync("~/Areas/HospitalManager/Views/Shared/_HospitalManagerSidebarMenuPartial.cshtml", Model.workingArea.Id)
+}
+else if (Model.loginAs == Shared.Enums.LoginAs.CLINICMANAGER)
+{
+    @await Html.PartialAsync("~/Areas/ClinicManager/Views/Shared/_ClinicManagerSidebarMenuPartial.cshtml", Model.workingArea.Id)
+}
+else if (Model.loginAs == Shared.Enums.LoginAs.POLYCLINICMANAGER)
+{
+    @await Html.PartialAsync("~/Areas/PolyClinicManager/Views/Shared/_PolyClinicManagerSidebarMenuPartial.cshtml", Model.workingArea.Id)
+}
+else if (Model.loginAs == Shared.Enums.LoginAs.PHARMACYMANAGER)
+{
+    @await Html.PartialAsync("~/Areas/PharmacyManager/Views/Shared/_PharmacyManagerSidebarMenuPartial.cshtml", Model.workingArea.Id)
+}
+else if (Model.loginAs == Shared.Enums.LoginAs.SONARMANAGER)
+{
+    @await Html.PartialAsync("~/Areas/SonarManager/Views/Shared/_SonarManagerSidebarMenuPartial.cshtml", Model.workingArea.Id)
+}
+else if (Model.loginAs == Shared.Enums.LoginAs.LABMANAGER)
+{
+    @await Html.PartialAsync("~/Areas/LabManager/Views/Shared/_LabManagerSidebarMenuPartial.cshtml", Model.workingArea.Id)
+}
+else if (Model.loginAs == Shared.Enums.LoginAs.BEAUTYCENTERMANAGER)
+{
+    @await Html.PartialAsync("~/Areas/BeautyCenterManager/Views/Shared/_BeautyCenterManagerSidebarMenuPartial.cshtml", Model.workingArea.Id)
+}

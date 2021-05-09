@@ -1,0 +1,594 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<root>
+  <!-- 
+    Microsoft ResX Schema 
+    
+    Version 2.0
+    
+    The primary goals of this format is to allow a simple XML format 
+    that is mostly human readable. The generation and parsing of the 
+    various data types are done through the TypeConverter classes 
+    associated with the data types.
+    
+    Example:
+    
+    ... ado.net/XML headers & schema ...
+    <resheader name="resmimetype">text/microsoft-resx</resheader>
+    <resheader name="version">2.0</resheader>
+    <resheader name="reader">System.Resources.ResXResourceReader, System.Windows.Forms, ...</resheader>
+    <resheader name="writer">System.Resources.ResXResourceWriter, System.Windows.Forms, ...</resheader>
+    <data name="Name1"><value>this is my long string</value><comment>this is a comment</comment></data>
+    <data name="Color1" type="System.Drawing.Color, System.Drawing">Blue</data>
+    <data name="Bitmap1" mimetype="application/x-microsoft.net.object.binary.base64">
+        <value>[base64 mime encoded serialized .NET Framework object]</value>
+    </data>
+    <data name="Icon1" type="System.Drawing.Icon, System.Drawing" mimetype="application/x-microsoft.net.object.bytearray.base64">
+        <value>[base64 mime encoded string representing a byte array form of the .NET Framework object]</value>
+        <comment>This is a comment</comment>
+    </data>
+                
+    There are any number of "resheader" rows that contain simple 
+    name/value pairs.
+    
+    Each data row contains a name, and value. The row also contains a 
+    type or mimetype. Type corresponds to a .NET class that support 
+    text/value conversion through the TypeConverter architecture. 
+    Classes that don't support this are serialized and stored with the 
+    mimetype set.
+    
+    The mimetype is used for serialized objects, and tells the 
+    ResXResourceReader how to depersist the object. This is currently not 
+    extensible. For a given mimetype the value must be set accordingly:
+    
+    Note - application/x-microsoft.net.object.binary.base64 is the format 
+    that the ResXResourceWriter will generate, however the reader can 
+    read any of the formats listed below.
+    
+    mimetype: application/x-microsoft.net.object.binary.base64
+    value   : The object must be serialized with 
+            : System.Runtime.Serialization.Formatters.Binary.BinaryFormatter
+            : and then encoded with base64 encoding.
+    
+    mimetype: application/x-microsoft.net.object.soap.base64
+    value   : The object must be serialized with 
+            : System.Runtime.Serialization.Formatters.Soap.SoapFormatter
+            : and then encoded with base64 encoding.
+
+    mimetype: application/x-microsoft.net.object.bytearray.base64
+    value   : The object must be serialized into a byte array 
+            : using a System.ComponentModel.TypeConverter
+            : and then encoded with base64 encoding.
+    -->
+  <xsd:schema id="root" xmlns="" xmlns:xsd="http://www.w3.org/2001/XMLSchema" xmlns:msdata="urn:schemas-microsoft-com:xml-msdata">
+    <xsd:import namespace="http://www.w3.org/XML/1998/namespace" />
+    <xsd:element name="root" msdata:IsDataSet="true">
+      <xsd:complexType>
+        <xsd:choice maxOccurs="unbounded">
+          <xsd:element name="metadata">
+            <xsd:complexType>
+              <xsd:sequence>
+                <xsd:element name="value" type="xsd:string" minOccurs="0" />
+              </xsd:sequence>
+              <xsd:attribute name="name" use="required" type="xsd:string" />
+              <xsd:attribute name="type" type="xsd:string" />
+              <xsd:attribute name="mimetype" type="xsd:string" />
+              <xsd:attribute ref="xml:space" />
+            </xsd:complexType>
+          </xsd:element>
+          <xsd:element name="assembly">
+            <xsd:complexType>
+              <xsd:attribute name="alias" type="xsd:string" />
+              <xsd:attribute name="name" type="xsd:string" />
+            </xsd:complexType>
+          </xsd:element>
+          <xsd:element name="data">
+            <xsd:complexType>
+              <xsd:sequence>
+                <xsd:element name="value" type="xsd:string" minOccurs="0" msdata:Ordinal="1" />
+                <xsd:element name="comment" type="xsd:string" minOccurs="0" msdata:Ordinal="2" />
+              </xsd:sequence>
+              <xsd:attribute name="name" type="xsd:string" use="required" msdata:Ordinal="1" />
+              <xsd:attribute name="type" type="xsd:string" msdata:Ordinal="3" />
+              <xsd:attribute name="mimetype" type="xsd:string" msdata:Ordinal="4" />
+              <xsd:attribute ref="xml:space" />
+            </xsd:complexType>
+          </xsd:element>
+          <xsd:element name="resheader">
+            <xsd:complexType>
+              <xsd:sequence>
+                <xsd:element name="value" type="xsd:string" minOccurs="0" msdata:Ordinal="1" />
+              </xsd:sequence>
+              <xsd:attribute name="name" type="xsd:string" use="required" />
+            </xsd:complexType>
+          </xsd:element>
+        </xsd:choice>
+      </xsd:complexType>
+    </xsd:element>
+  </xsd:schema>
+  <resheader name="resmimetype">
+    <value>text/microsoft-resx</value>
+  </resheader>
+  <resheader name="version">
+    <value>2.0</value>
+  </resheader>
+  <resheader name="reader">
+    <value>System.Resources.ResXResourceReader, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </resheader>
+  <resheader name="writer">
+    <value>System.Resources.ResXResourceWriter, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </resheader>
+  <data name="AccordingToChangeDoctorSchedule" xml:space="preserve">
+    <value>According to change doctor schedule</value>
+  </data>
+  <data name="AccordingToDoctorAbsense" xml:space="preserve">
+    <value>According to doctor absense</value>
+  </data>
+  <data name="ActionDoneSuccesfully" xml:space="preserve">
+    <value>Action done succesfully</value>
+  </data>
+  <data name="AnErrorOccuredWhileAddingItem" xml:space="preserve">
+    <value>An error occurred while adding item</value>
+  </data>
+  <data name="AnErrorOccuredWhileDeleteItem" xml:space="preserve">
+    <value>An error occurred while delete item</value>
+  </data>
+  <data name="AnErrorOccuredWhileUpdateItem" xml:space="preserve">
+    <value>An error occurred while update item</value>
+  </data>
+  <data name="AreYouSureToDeleteTurn" xml:space="preserve">
+    <value>Are you sure to delete appointment?</value>
+  </data>
+  <data name="CapacityIsSmallerThanRequested" xml:space="preserve">
+    <value>Capacity is smaller than requested</value>
+  </data>
+  <data name="CenterHasPendingTurns" xml:space="preserve">
+    <value>Center has pending appointments </value>
+  </data>
+  <data name="Custom" xml:space="preserve">
+    <value>Custom</value>
+  </data>
+  <data name="DeleteCurrentUserException" xml:space="preserve">
+    <value>Delete current user exception</value>
+  </data>
+  <data name="DoctorAssignedToPolyclinicAlready" xml:space="preserve">
+    <value>The doctor has already been assigned to the polyclinic </value>
+  </data>
+  <data name="DoctorHasPendingTurns" xml:space="preserve">
+    <value>The doctor has pending appointments</value>
+  </data>
+  <data name="DoctorHasPendingTurnsYouCannotRemoveHisRole" xml:space="preserve">
+    <value>Doctor has pending appointments, you cannot remove his role</value>
+  </data>
+  <data name="DoctorIsNotActive" xml:space="preserve">
+    <value>Doctor is not active</value>
+  </data>
+  <data name="DoctorNotAvailable" xml:space="preserve">
+    <value>Doctor is not available</value>
+  </data>
+  <data name="DoctorNotFound" xml:space="preserve">
+    <value>Doctor not found</value>
+  </data>
+  <data name="DoctorNotPresentInPolyclinic" xml:space="preserve">
+    <value>Doctor not present in polyclinic</value>
+  </data>
+  <data name="EmailIsDuplicate" xml:space="preserve">
+    <value>Email is duplicate</value>
+  </data>
+  <data name="EmailIsNotValid" xml:space="preserve">
+    <value>Email is not valid</value>
+  </data>
+  <data name="EmptyTimePeriodNotValid" xml:space="preserve">
+    <value>Empty time period not valid</value>
+  </data>
+  <data name="EntityNotFoundException" xml:space="preserve">
+    <value>Entity not found exception</value>
+  </data>
+  <data name="ErrorOccuredWhenCheckVersionPattern" xml:space="preserve">
+    <value>Error occured when check version pattern</value>
+  </data>
+  <data name="ErrorOccuredWhileAssignRole" xml:space="preserve">
+    <value>Error occured while assign role</value>
+  </data>
+  <data name="ErrorOccuredWhileDoneAction" xml:space="preserve">
+    <value>Error occurred while done action</value>
+  </data>
+  <data name="ErrorOccuredWhileFinalBookTurn" xml:space="preserve">
+    <value>Error occurred while final book turn</value>
+  </data>
+  <data name="ErrorWhileUnAssignRole" xml:space="preserve">
+    <value>Error while unassigning role</value>
+  </data>
+  <data name="EveningShiftEndNotValid" xml:space="preserve">
+    <value>Evening shift end time is not valid</value>
+  </data>
+  <data name="EveningShitStartNotValid" xml:space="preserve">
+    <value>Evening shit start time is not valid</value>
+  </data>
+  <data name="FileExistWithThisKey" xml:space="preserve">
+    <value>File exists with this key</value>
+  </data>
+  <data name="FileIsRequired" xml:space="preserve">
+    <value>File is required</value>
+  </data>
+  <data name="FileNotFound" xml:space="preserve">
+    <value>File not found</value>
+  </data>
+  <data name="HasBeenTransmitted" xml:space="preserve">
+    <value>Has been transmitted</value>
+  </data>
+  <data name="HasCanceled" xml:space="preserve">
+    <value>Has canceled</value>
+  </data>
+  <data name="HasDone" xml:space="preserve">
+    <value>Has done</value>
+  </data>
+  <data name="HaveTurnPleaseComeAtTime" xml:space="preserve">
+    <value>You have an appointment, please come at time</value>
+  </data>
+  <data name="HaveTurns" xml:space="preserve">
+    <value>Have appointments</value>
+  </data>
+  <data name="HealthServiceHasPendingTurn" xml:space="preserve">
+    <value>Health service has a pending appointment</value>
+  </data>
+  <data name="HospitalNotFound" xml:space="preserve">
+    <value>Hospital not found</value>
+  </data>
+  <data name="InDate" xml:space="preserve">
+    <value>In date</value>
+  </data>
+  <data name="InPolyclinic" xml:space="preserve">
+    <value>In polyclinic</value>
+  </data>
+  <data name="ItemAddedSuccessFully" xml:space="preserve">
+    <value>Item added successFully</value>
+  </data>
+  <data name="ItemDeletedSuccessFully" xml:space="preserve">
+    <value>Item deleted  successFully</value>
+  </data>
+  <data name="ItemNotFound" xml:space="preserve">
+    <value>Item not found</value>
+  </data>
+  <data name="ItemUpdatedSuccessFully" xml:space="preserve">
+    <value>Item updated successFully</value>
+  </data>
+  <data name="MaxAllowedSize" xml:space="preserve">
+    <value>Maximum allowed size</value>
+  </data>
+  <data name="MessageHasSentAlready" xml:space="preserve">
+    <value>The message has been sent already</value>
+  </data>
+  <data name="MobileHasTurnForDate" xml:space="preserve">
+    <value>Mobile has turn for date</value>
+  </data>
+  <data name="MobileIsNotValid" xml:space="preserve">
+    <value>Mobile is not valid</value>
+  </data>
+  <data name="MobileNumberDuplicate" xml:space="preserve">
+    <value>Mobile number duplicate</value>
+  </data>
+  <data name="MorningShiftEndNotValid" xml:space="preserve">
+    <value>Morning shift end not valid</value>
+  </data>
+  <data name="MorningShiftStartNotValid" xml:space="preserve">
+    <value>Morning shift start not valid</value>
+  </data>
+  <data name="Msg_AccessDenied" xml:space="preserve">
+    <value>Access denied</value>
+  </data>
+  <data name="Msg_AccessDenied403" xml:space="preserve">
+    <value>Access denied 403</value>
+  </data>
+  <data name="Msg_AjaxRequestAborted" xml:space="preserve">
+    <value>Ajax request aborted</value>
+  </data>
+  <data name="Msg_ConnectionError" xml:space="preserve">
+    <value>Connection error</value>
+  </data>
+  <data name="Msg_InternalServerError500" xml:space="preserve">
+    <value>Internal server error 500</value>
+  </data>
+  <data name="Msg_RequestedJSONParseFailed" xml:space="preserve">
+    <value>Requested JSON parse failed</value>
+  </data>
+  <data name="Msg_RequestedPageNotFound404" xml:space="preserve">
+    <value>Requested page not found 404</value>
+  </data>
+  <data name="Msg_TimeOutError" xml:space="preserve">
+    <value>Time out error</value>
+  </data>
+  <data name="NoDoctorSelected" xml:space="preserve">
+    <value>No doctor is selected</value>
+  </data>
+  <data name="NoHealthServiceSelected" xml:space="preserve">
+    <value>No health service is selected</value>
+  </data>
+  <data name="NoPictureSelected" xml:space="preserve">
+    <value>No picture is selected</value>
+  </data>
+  <data name="NoSpecialitySelected" xml:space="preserve">
+    <value>No speciality selected</value>
+  </data>
+  <data name="NotFoundValidScheduleException" xml:space="preserve">
+    <value>Not found valid schedule exception</value>
+  </data>
+  <data name="OnlineTurnsQueueNumber" xml:space="preserve">
+    <value>Online appointments queue number</value>
+  </data>
+  <data name="PasswordAssignedSuccessfully" xml:space="preserve">
+    <value>Password assigned successfully</value>
+  </data>
+  <data name="PasswordChangedSuccessfully" xml:space="preserve">
+    <value>Password changed successfully</value>
+  </data>
+  <data name="PasswordMustBe6Digits" xml:space="preserve">
+    <value>Password must be 6 digits</value>
+  </data>
+  <data name="PasswordsNotSame" xml:space="preserve">
+    <value>Passwords did not match</value>
+  </data>
+  <data name="PatientHasNoTreatments" xml:space="preserve">
+    <value>Patient Has No Treatments</value>
+  </data>
+  <data name="PatientHasPendingTurns" xml:space="preserve">
+    <value>Patient has pending appointments</value>
+  </data>
+  <data name="PendingTurnsExistInDate" xml:space="preserve">
+    <value>Pending appointments exist in date</value>
+  </data>
+  <data name="Person" xml:space="preserve">
+    <value>Person</value>
+  </data>
+  <data name="PersonMobileDuplicate" xml:space="preserve">
+    <value>Person with this mobile number already exists</value>
+  </data>
+  <data name="PleaseEnterAllRequestedData" xml:space="preserve">
+    <value>Please enter all requested data</value>
+  </data>
+  <data name="PleaseEnterEmail" xml:space="preserve">
+    <value>Please enter email</value>
+  </data>
+  <data name="PleaseEnterFileKey" xml:space="preserve">
+    <value>Please enter file key</value>
+  </data>
+  <data name="PleaseEnterMobile" xml:space="preserve">
+    <value>Please enter mobile</value>
+  </data>
+  <data name="PleaseEnterValidCaptcha" xml:space="preserve">
+    <value>Please enter valid captcha</value>
+  </data>
+  <data name="PleaseEnterValidDate" xml:space="preserve">
+    <value>Please enter valid date</value>
+  </data>
+  <data name="PleaseSelectFileWithSpecifiedFormat" xml:space="preserve">
+    <value>Please select file with specified format</value>
+  </data>
+  <data name="PleaseSelectPicWithSpecefiedFormat" xml:space="preserve">
+    <value>Please select a picture with specefied format</value>
+  </data>
+  <data name="PlsEnterStartEndDateTime" xml:space="preserve">
+    <value>Please enter start end date time</value>
+  </data>
+  <data name="PolyclinicDontHasHelathService" xml:space="preserve">
+    <value>Polyclinic does not have health service</value>
+  </data>
+  <data name="PolyclinicHasPendingTurns" xml:space="preserve">
+    <value>Polyclinic has pending appointments</value>
+  </data>
+  <data name="PolyclinicNotFound" xml:space="preserve">
+    <value>Polyclinic not found</value>
+  </data>
+  <data name="Reception" xml:space="preserve">
+    <value>Reception</value>
+  </data>
+  <data name="RecoverPassword" xml:space="preserve">
+    <value>Recover password</value>
+  </data>
+  <data name="ReserveConfirmation" xml:space="preserve">
+    <value>Reserve confirmation</value>
+  </data>
+  <data name="ReservedTurnsList" xml:space="preserve">
+    <value>Reserved appointments list</value>
+  </data>
+  <data name="RulesAndRegulations" xml:space="preserve">
+    <value>Rules and regulations</value>
+  </data>
+  <data name="ScheduleDeActiveSuccessfully" xml:space="preserve">
+    <value>Schedule deactivated successfully</value>
+  </data>
+  <data name="ScheduleForDisabledDayException" xml:space="preserve">
+    <value>Schedule for disabled day exception</value>
+  </data>
+  <data name="ScheduleForNotWorkingHoursException" xml:space="preserve">
+    <value>Schedule for not working hours exception</value>
+  </data>
+  <data name="ScheduleForPastException" xml:space="preserve">
+    <value>Schedule for past exception</value>
+  </data>
+  <data name="ScheduleForVocationDayException" xml:space="preserve">
+    <value>Schedule for vocation day exception</value>
+  </data>
+  <data name="ScheduleHasInterferesWithPreviews" xml:space="preserve">
+    <value>Schedule has interferes with previews</value>
+  </data>
+  <data name="ScheduleNotSpecifiedForDate" xml:space="preserve">
+    <value>Schedule not specified for date</value>
+  </data>
+  <data name="ScheduleOutsideBoundException" xml:space="preserve">
+    <value>Schedule outside bound exception</value>
+  </data>
+  <data name="ScheduleStartMustSmallerThanEnd" xml:space="preserve">
+    <value>The end date must be greater than the start date</value>
+  </data>
+  <data name="ScheduleStartNotValidForBHR" xml:space="preserve">
+    <value>Schedule start not valid for BHR</value>
+  </data>
+  <data name="ScheduleStartSmallerThanDoctorTurningStart" xml:space="preserve">
+    <value>Schedule start smaller than doctor turning start</value>
+  </data>
+  <data name="SendPicWithThisFormats" xml:space="preserve">
+    <value>Send picture with this format</value>
+  </data>
+  <data name="StartingAndEndTimeNotValid" xml:space="preserve">
+    <value>Starting and end time not valid</value>
+  </data>
+  <data name="SystemVocationDayException" xml:space="preserve">
+    <value>System vacation day exception</value>
+  </data>
+  <data name="ToDate" xml:space="preserve">
+    <value>To date</value>
+  </data>
+  <data name="TommorwYou" xml:space="preserve">
+    <value>Tomorrow you</value>
+  </data>
+  <data name="TommowYouIn" xml:space="preserve">
+    <value>Tomorrow you in</value>
+  </data>
+  <data name="TurnBookedFinally" xml:space="preserve">
+    <value>Appointment booked finally</value>
+  </data>
+  <data name="TurnIsInProgressNow" xml:space="preserve">
+    <value>Appointment is in progress now</value>
+  </data>
+  <data name="TurnReservedSuccessfully" xml:space="preserve">
+    <value>Appointment reserved successfully</value>
+  </data>
+  <data name="TurnTimePassed" xml:space="preserve">
+    <value>Appointment time passed</value>
+  </data>
+  <data name="UnAssignDoctorWithPendingAppointmentsException" xml:space="preserve">
+    <value>Unassign doctor with pending appointments exception</value>
+  </data>
+  <data name="UnKnownErrorOccuredInServerPlsContactAdmin" xml:space="preserve">
+    <value>Unknown error occurred in server please contact admin</value>
+  </data>
+  <data name="UntilEndVisitTime" xml:space="preserve">
+    <value>Until end visit time</value>
+  </data>
+  <data name="UserIsAdminCanotDelIt" xml:space="preserve">
+    <value>This user is admin, it cannot be deleted</value>
+  </data>
+  <data name="UserIsAdminYouCannotDeleteIt" xml:space="preserve">
+    <value>This user is admin, it cannot be deleted</value>
+  </data>
+  <data name="UserIsClinicManagerAlready" xml:space="preserve">
+    <value>User is clinic manager already</value>
+  </data>
+  <data name="UserIsManagingCentersPleaseUnassignFirst" xml:space="preserve">
+    <value>User is managing centers, please unassign first</value>
+  </data>
+  <data name="UserIsNotDoctorYouCannotAssignSpeciality" xml:space="preserve">
+    <value>User is not doctor, you cannot assign speciality</value>
+  </data>
+  <data name="UserIsNotDoctorYouCannotSelectExpertise" xml:space="preserve">
+    <value>User is not doctor, you cannot select expertise</value>
+  </data>
+  <data name="UserIsPolyclinicManagerCannotDelIt" xml:space="preserve">
+    <value>User is polyclinic manager, you cannot delete it</value>
+  </data>
+  <data name="UsernameOrPasswordIsInvalid" xml:space="preserve">
+    <value>Username or password is invalid</value>
+  </data>
+  <data name="UserRegisteredSuccessfully" xml:space="preserve">
+    <value>User registered successfully</value>
+  </data>
+  <data name="UserWithThisEmailExistBefore" xml:space="preserve">
+    <value>User with this email alreay exists</value>
+  </data>
+  <data name="UserWithThisMobileExist" xml:space="preserve">
+    <value>Mobile number exists</value>
+  </data>
+  <data name="ValidEmptyTimePeriodNotFound" xml:space="preserve">
+    <value>Valid empty time period not found</value>
+  </data>
+  <data name="VersionPatternIsNotValid" xml:space="preserve">
+    <value>Version pattern is not valid</value>
+  </data>
+  <data name="WillBeCanceled" xml:space="preserve">
+    <value>Will be canceled</value>
+  </data>
+  <data name="WithoutLimitation_FromNow" xml:space="preserve">
+    <value>Without limitation from now</value>
+  </data>
+  <data name="WithStartingVisitTime" xml:space="preserve">
+    <value>With starting visit time</value>
+  </data>
+  <data name="YouAreLoggedInAndCannotChangeRole" xml:space="preserve">
+    <value>You are logged in, you cannot change role</value>
+  </data>
+  <data name="YouAreLoggedInCannotChangeRole" xml:space="preserve">
+    <value>You are logged in, you cannot change role</value>
+  </data>
+  <data name="YouCannotDeleteCurrentUserFromClinicManagers" xml:space="preserve">
+    <value>You cannot delete current user from clinic managers</value>
+  </data>
+  <data name="YouCannotRemoveAdminRoleForThisUser" xml:space="preserve">
+    <value>You cannot remove admin role for this user</value>
+  </data>
+  <data name="YouDontHavePermission" xml:space="preserve">
+    <value>You don’t have permission</value>
+  </data>
+  <data name="YourAppointmentForDoctor" xml:space="preserve">
+    <value>Your appointment for doctor</value>
+  </data>
+  <data name="YourMessageSenedToUsSuccessfully" xml:space="preserve">
+    <value>Your message was sent successfully</value>
+  </data>
+  <data name="YourPhoneDeletedSuccessfully" xml:space="preserve">
+    <value>Mobile number deleted successfully</value>
+  </data>
+  <data name="YourPhoneHasBeenAdded" xml:space="preserve">
+    <value>Phone number has been added</value>
+  </data>
+  <data name="YourTurnFromDate" xml:space="preserve">
+    <value>Your appointment from date</value>
+  </data>
+  <data name="YourTurnInDate" xml:space="preserve">
+    <value>Your appointment in date</value>
+  </data>
+  <data name="YourTurnReservedSuccessfully" xml:space="preserve">
+    <value>Your appointment is reserved successfully</value>
+  </data>
+  <data name="YourTurnWillBeCanceled" xml:space="preserve">
+    <value>Your appointment will be canceled</value>
+  </data>
+  <data name="NoItemFound" xml:space="preserve">
+    <value>No Item Found</value>
+  </data>
+  <data name="WontAbleRevertThis" xml:space="preserve">
+    <value>You won't be able to revert this</value>
+  </data>
+  <data name="PatientHasNoRecord" xml:space="preserve">
+    <value>Patient has no record</value>
+  </data>
+  <data name="PrescriptionIsDoneBefore" xml:space="preserve">
+    <value>Prescription is done before</value>
+  </data>
+  <data name="PrescriptionNotFound" xml:space="preserve">
+    <value>Prescription not found</value>
+  </data>
+  <data name="SomethingWentWrong" xml:space="preserve">
+    <value>Oops! Something went wrong.</value>
+  </data>
+  <data name="PageNotFound" xml:space="preserve">
+    <value>Page Not Found</value>
+  </data>
+  <data name="WeCouldNotFindPage" xml:space="preserve">
+    <value>We could not find the page you were looking for.</value>
+  </data>
+  <data name="AccessDenied" xml:space="preserve">
+    <value>You do not have permission to do this action</value>
+  </data>
+  <data name="HaveAppointmentWithAnotherDoctorAtTime" xml:space="preserve">
+    <value>You have appointment with another doctor in the selected time</value>
+  </data>
+  <data name="WorkingScheduleNotFoundForThisTime" xml:space="preserve">
+    <value>Working schedule not found for this time. Please see working hours and request new appointment</value>
+  </data>
+  <data name="AppointmentDoneNotificationBody" xml:space="preserve">
+    <value>Your appointment has been done successfully, kindly rate your visit!</value>
+  </data>
+  <data name="AppointmentDoneNotificationTitle" xml:space="preserve">
+    <value>Appointment Done</value>
+  </data>
+</root>

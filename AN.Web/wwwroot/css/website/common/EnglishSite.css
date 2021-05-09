@@ -1,0 +1,19 @@
+﻿body {
+    font-family: 'Roboto', sans-serif, Tahoma !important;
+}
+
+h1, h2, h3, h4, h5, h6, .h1, .h2, .h3, .h4, .h5, .h6 {
+    font-family: 'Roboto', sans-serif, Tahoma !important;   
+}
+
+.footer-above .footer-col-body p {
+    font-family: 'Roboto', sans-serif, Tahoma !important;
+}
+
+.icon::before {
+    font-family: 'Roboto', sans-serif, Tahoma !important;
+}
+
+.ui-widget {
+    font-family: 'Roboto', sans-serif, Tahoma !important;
+}

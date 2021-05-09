@@ -1,0 +1,859 @@
+﻿
+/*tooltip over style*/
+body .custom-qtip {
+    border: none;
+    border-radius: 5px;
+    padding: 5px;
+    box-shadow: 1px 1px 3px #337ab7;
+    background-color: #337ab7;
+    font-size: 12px;
+    line-height: 20px;
+    color: #fff;
+}
+
+.doctorDisabled {
+    color: red;
+    background-color: lightgray;
+}
+
+.doctorEnabled {
+    color: black;
+    background-color: lightgreen;
+}
+
+.required-start {
+    color: red;
+    font-size: larger;
+}
+
+.command-buttons {
+    margin-top: 20px;
+}
+
+#btn-cancel-turn {
+    margin-top: 22px;
+}
+
+.text-color-black {
+    color: black;
+}
+
+.my-hr {
+    margin-top: 8px;
+    margin-bottom: 8px;
+}
+
+#final-book-appointment-submit {
+    float: left;
+    width: 100%;
+    margin-top: 30px;
+}
+
+#totalPrice {
+    margin-top: 5px;
+    padding: 5px;
+    background-color: orange;
+    margin-bottom: 5px;
+}
+
+.glass {
+    background-color: rgba(500,500,500,0.3);
+}
+
+#selected-turn-col {
+    padding: 150px 15px 5px 5px;
+}
+
+#selected-turn-panel {
+    padding: 10px;
+    border: 1px solid skyblue;
+    border-radius: 5px;
+}
+
+    #selected-turn-panel #title {
+        border-bottom: 1px solid skyblue;
+        margin-bottom: 10px;
+    }
+
+#doctor-details-col {
+    padding: 130px 5px 5px 5px;
+}
+
+#first-turn-details {
+    min-width: 100%;
+    min-height: 190px;
+    border: 1px solid skyblue;
+    border-radius: 5px;
+    padding: 10px;
+}
+
+    #first-turn-details #title {
+        min-width: 100%;
+        text-align: center;
+    }
+
+    #first-turn-details #content {
+        min-width: 100%;
+        text-align: center;
+        margin-top: 20px;
+    }
+
+.select2-container {
+    min-width: 130px;
+    font-size: small;
+}
+
+
+.select2-container--default .select2-selection--single {
+    border: 1px solid #337ab7;
+    min-width: 90px;
+    padding-bottom: 25px;
+    text-align: right;
+}
+
+
+
+.tab-container {
+    min-width: 100%;
+    /*padding: top right bottom left*/
+    padding: 15px 5px 5px 5px;
+}
+
+.search-row {
+    padding-right: 15px;
+}
+
+.row-title {
+    color: white;
+    text-align: right;
+    padding: 5px 5px 10px 5px;
+}
+
+.search-item-col {
+    margin: 2px;
+    padding: 6px 10px 5px 10px;
+    background-color: rgba(500,500,500,.3);
+    min-height: 45px;
+    border-radius: 4px;
+}
+
+#no-item-found {
+    margin-top: 30px;
+    opacity: 0.8;
+}
+
+    #no-item-found .alert {
+        width: 100%;
+        text-align: center;
+        float: none;
+    }
+
+
+#founded-doctors {
+    margin: 20px 5px 0 5px;
+}
+
+.thumbnail {
+    font-size: small;
+    border: 1px solid skyblue;
+    min-width: 220px;
+    min-height: 275px;
+    background-color: rgba(500,500,500,0.3);
+}
+
+    .thumbnail > img {
+        display: block;
+        width:100px;
+        height:100px;
+        border-radius: 50%;
+    }
+
+    .thumbnail .caption {
+        padding: 2px;
+        margin-top: 3px;
+        color: orange;
+    }
+
+        .thumbnail .caption > h4 {
+            color: white;
+            line-height: 1.5;
+        }
+
+        .thumbnail .caption > p {
+            color: rgb(255, 202, 167);
+            font-size: smaller;
+        }
+
+
+#search-help {
+    margin-top: 15px;
+    padding-right: 0;
+}
+
+    #search-help .jumbotron {
+        padding-top: 5px;
+        padding-bottom: 10px;
+        background-color: rgba(500,500,500,0.0);
+        margin-bottom: 5px;
+    }
+
+        #search-help .jumbotron .container {
+            background: none;
+            margin: 0;
+        }
+
+        #search-help .jumbotron p {
+            font-size: small;
+        }
+
+#selectedDoctor-select-turn {
+    position: relative;
+    padding: 5px 0;
+    min-height: 350px;
+}
+
+    #selectedDoctor-select-turn #selectedDoctorFromDate {
+        min-height: 50px;
+        min-width: 50px;
+        text-align: right;
+        padding: 10px;
+    }
+
+    #selectedDoctor-select-turn #selectedDoctorToDate {
+        min-height: 50px;
+        min-width: 50px;
+        text-align: right;
+        padding: 10px;
+    }
+
+#doctorWizardButtonArea {
+    position: absolute;
+    width: 100%;
+    bottom: 10px;
+}
+
+#validate-final {
+    padding: 15px 80px 0 0;
+}
+
+.modal-body {
+    padding: 0;
+}
+
+.myModalFooter {
+    background-color: white;
+    display: block !important;
+    position: relative !important;
+    bottom: 0;
+    margin-top: 10px;
+}
+
+#edit-info {
+    margin: 5px 0;
+}
+
+.tracking-search-item-col {
+    margin: 2px;
+    padding: 6px 0 5px 0;
+    background-color: #8ba5ae;
+    min-height: 45px;
+    border-radius: 4px;
+    text-align: center;
+}
+
+.trackingInput {
+    max-width: 150px;
+}
+
+#timer, #hospitalsTimer {
+    padding: 2px 15px 2px 15px;
+    background-color: #337ab7;
+    color: white;
+    font-weight: Cored;
+    font-size: 20px;
+    border-radius: 10px;
+}
+
+.notify-item {
+    font-size: small;
+    text-align: justify;
+    margin: 3px 0px 3px 0px;
+    border-right: 5px solid red;
+    padding: 3px;
+    background-color: rgba(105, 105, 105, 0.09);
+}
+
+.reserve-title {
+    font-size: x-large;
+    font-weight: Cored;
+}
+
+.turn-info {
+    background-color: #f1f1f1;
+    margin: 1px;
+    padding: 2px;
+}
+
+.turn-notify-card {
+    min-height: 200px;
+}
+
+.verify-turn-address {
+    margin-bottom: 0px;
+    font-size: smaller;
+}
+
+.no-bottom-margin {
+    margin-bottom: 0px;
+}
+
+#selected-turn-dayofweek {
+    font-size: 20px;
+    text-align: center;
+    color: #337ab7;
+}
+
+#selected-turn-date {
+    text-align: center;
+}
+
+#selected-turn-time {
+    font-size: 20px;
+    text-align: center;
+}
+
+.wellcome-alert {
+    opacity: 0.7;
+    margin-top: 50px;
+    text-align: justify;
+    font-size: 15px;
+}
+
+#doctorAvater {
+    min-height: 130px;
+    border: 2px solid gold;
+    border-radius: 10px;
+    max-height: 130px;
+}
+
+.sidenav {
+    height: 100%;
+    width: 0;
+    position: fixed;
+    z-index: 99999;
+    top: 0;
+    right: -2px;
+    overflow-x: hidden;
+    transition: 0.5s;
+    padding-top: 60px;
+    /*background-color: rgba(500,500,500,.5);*/
+    background-color: rgb(243, 243, 243);
+    border-left: 2px solid #337ab7;
+}
+
+    .sidenav .panel-group {
+        margin-right: 5px;
+        margin-left: 5px;
+    }
+
+    .sidenav a {
+        text-decoration: none;
+        font-size: 13px;
+        color: #000;
+        display: block;
+        transition: 0.3s;
+    }
+
+        .sidenav a:hover, .offcanvas a:focus {
+            color: #255f82;
+        }
+
+    .sidenav .closebtn {
+        position: absolute;
+        top: 0;
+        left: 25px;
+        font-size: 45px;
+        margin-right: 50px;
+    }
+
+.search-box {
+    min-width: 60%;
+    border: 0px;
+    border-radius: 20px;
+    color: white;
+    text-align: center;
+    border: 1px solid #337ab7;
+}
+
+::-webkit-input-placeholder { /* Chrome/Opera/Safari */
+    color: white;
+    opacity: 0.5;
+}
+
+::-moz-placeholder { /* Firefox 19+ */
+    color: white;
+    opacity: 0.5;
+}
+
+:-ms-input-placeholder { /* IE 10+ */
+    color: white;
+    opacity: 0.5;
+}
+
+:-moz-placeholder { /* Firefox 18- */
+    color: white;
+    opacity: 0.5;
+}
+
+.select2-container {
+    min-width: 100%;
+}
+
+#sticky.stick {
+    margin-top: 0 !important;
+    position: fixed;
+    top: 0;
+    z-index: 1049;
+    background-color: #f8f8f8;
+    border-bottom: 5px solid #337ab7;
+    padding: 10px;
+    min-width: 97%;
+    margin-right: -35px;
+}
+
+.clinic-reserve-title {
+    margin-top: 20px;
+    margin-bottom: 20px;
+}
+
+.clinic-item {
+    min-height: 350px;
+}
+
+#founded-clinics {
+    margin-top: 70px;
+}
+
+#clinics-not-found {
+    margin-right: 0px;
+    margin-top: 40px;
+    padding-right: 0px;
+    padding-left: 15px;
+}
+
+.clinic-item-action {
+    position: absolute;
+    bottom: 30px;
+    min-width: 87%;
+}
+
+.selected-clinic-navigation {
+    margin-top: 20px;
+    margin-bottom: 20px;
+}
+
+#btn-search-clinics {
+    min-width: 100%;
+}
+
+#txtClinicName {
+    min-width: 99%;
+    border-radius: 0px;
+}
+
+#clinic-name-col {
+    margin-right: 18px;
+}
+
+.special-clinic-cols {
+    padding: 14px;
+    height: 60px;
+}
+
+.darmangah {
+    cursor: pointer;
+    border-right: 5px solid #00dffe;
+    background-color: whitesmoke;
+}
+
+    .darmangah :hover {
+        background-color: #faa71b;
+    }
+
+    .darmangah .caption {
+        font-size: 15px;
+    }
+
+#founded-clinic-doctors {
+    margin-top: 30px;
+}
+
+.clinic-name-title {
+    line-height: 1.8;
+    color: #000;
+}
+
+
+/****************************Switch CheckBox******************************/
+/* The switch - the box around the slider */
+.switch {
+    position: relative;
+    display: inline-block;
+    width: 60px;
+    height: 28px;
+}
+
+    /* Hide default HTML checkbox */
+    .switch input {
+        display: none;
+    }
+
+/* The slider */
+.slider {
+    position: absolute;
+    cursor: pointer;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background-color: grey;
+    -webkit-transition: .4s;
+    transition: .4s;
+}
+
+    .slider:before {
+        position: absolute;
+        content: "";
+        height: 25px;
+        width: 25px;
+        left: 4px;
+        bottom: 2px;
+        top: 1px;
+        background-color: white;
+        -webkit-transition: .4s;
+        transition: .4s;
+    }
+
+input:checked + .slider {
+    background-color: #337ab7;
+}
+
+input:focus + .slider {
+    box-shadow: 0 0 1px #2196F3;
+}
+
+input:checked + .slider:before {
+    -webkit-transform: translateX(26px);
+    -ms-transform: translateX(26px);
+    transform: translateX(26px);
+}
+
+/* Rounded sliders */
+.slider.round {
+    border-radius: 26px;
+}
+
+    .slider.round:before {
+        border-radius: 50%;
+    }
+/****************************End Switch CheckBox******************************/
+
+
+.banobat-statistics {
+    position: relative;
+    z-index: 14;
+    text-align: center;
+    padding-top: 10px;
+    padding-bottom: 10px;
+}
+
+    .banobat-statistics li {
+        display: inline-block;
+        margin: 5px 7px;
+        border-radius: 50px;
+        transition: all .7s;
+        width: 120px;
+    }
+
+.banobat-statis {
+    height: 80px;
+    width: 80px;
+    display: block;
+    border-radius: 50px;
+    background: #fff;
+    box-shadow: 5px 5px 5px 0 rgba(0,0,0,0.2);
+    margin: 30px auto 10px auto;
+    transition: all .7s;
+    padding: 15px;
+}
+
+.statis-icon-hospitals {
+    color: #00c0ef !important;
+}
+
+.statis-icon-clinics {
+    color: #00a65a !important;
+}
+
+.statis-icon-polyclinics {
+    color: #f39c12 !important;
+}
+
+.statis-icon-users {
+    color: #dd4b39 !important
+}
+
+.statis-icon-appoints {
+    color: #69d8d8 !important;
+}
+/*** Mobile Devices ****/
+@media(max-width:768px) {
+    #selected-turn-col {
+        padding: 10px 5px 5px 5px;
+    }
+
+    #selectedDoctor-select-turn {
+        padding: 10px 50px;
+    }
+
+    .reserve-title {
+        margin-top: 40px;
+    }
+
+    .myModalFooter {
+        display: none !important;
+    }
+
+    #founded-clinics {
+        margin-top: 50px;
+    }
+}
+
+.glyphicon-lg {
+    font-size: 3em
+}
+
+.blockquote-box {
+    border-left: 5px solid #E6E6E6;
+    margin-bottom: 25px;
+    margin-left: 20px;
+}
+
+    .blockquote-box .square {
+        width: 100px;
+        min-height: 50px;
+        margin-right: 22px;
+        text-align: center !important;
+        background-color: #E6E6E6;
+        padding: 20px 0
+    }
+
+    .blockquote-box.blockquote-primary {
+        border-color: #357EBD
+    }
+
+        .blockquote-box.blockquote-primary .square {
+            background-color: #428BCA;
+            color: #FFF
+        }
+
+    .blockquote-box.blockquote-success {
+        border-color: #4CAE4C
+    }
+
+        .blockquote-box.blockquote-success .square {
+            background-color: #5CB85C;
+            color: #FFF
+        }
+
+    .blockquote-box.blockquote-info {
+        border-color: #46B8DA
+    }
+
+        .blockquote-box.blockquote-info .square {
+            background-color: #5BC0DE;
+            color: #FFF
+        }
+
+    .blockquote-box.blockquote-warning {
+        border-color: #EEA236
+    }
+
+        .blockquote-box.blockquote-warning .square {
+            background-color: #F0AD4E;
+            color: #FFF
+        }
+
+    .blockquote-box.blockquote-danger {
+        border-color: #D43F3A
+    }
+
+        .blockquote-box.blockquote-danger .square {
+            background-color: #D9534F;
+            color: #FFF
+        }
+
+.blockquote-box-title {
+    text-align: center;
+    padding-bottom: 20px;
+}
+
+.qoute-title {
+    padding-right: 135px;
+}
+
+.qoute-text {
+    padding-right: 135px;
+    padding-left: 5px;
+    text-align: justify;
+    font-size: smaller;
+}
+
+@media(max-width:480px) {
+    #selected-turn-col {
+        padding: 10px 5px 5px 5px;
+    }
+
+    #doctor-details-col {
+        padding: 10px 5px 5px 5px;
+    }
+
+    #selectedDoctor-select-turn {
+        padding: 10px 15px;
+    }
+
+    .reserve-title {
+        font-size: smaller;
+        font-weight: Cored;
+        margin-top: 40px;
+    }
+
+    .myModalFooter {
+        display: none !important;
+    }
+
+    #founded-clinics {
+        margin-top: 50px;
+    }
+}
+
+@media(max-width:338px) {
+    #selected-turn-col {
+        padding: 10px 5px 5px 5px;
+    }
+
+    #doctor-details-col {
+        padding: 10px 5px 5px 5px;
+    }
+
+    #selectedDoctor-select-turn {
+        padding: 10px 5px;
+    }
+
+    .reserve-title {
+        font-size: smaller;
+        font-weight: Cored;
+        margin-top: 40px;
+    }
+
+    .myModalFooter {
+        display: none !important;
+    }
+
+    #founded-clinics {
+        margin-top: 50px;
+    }
+}
+
+@media(max-width:310px) {
+    #selected-turn-col {
+        padding: 10px 5px 5px 5px;
+    }
+
+    #doctor-details-col {
+        padding: 10px 5px 5px 5px;
+    }
+
+    #selectedDoctor-select-turn {
+        padding: 10px 5px;
+    }
+
+    .reserve-title {
+        font-size: smaller;
+        font-weight: Cored;
+        margin-top: 40px;
+    }
+
+    .myModalFooter {
+        display: none !important;
+    }
+
+    #founded-clinics {
+        margin-top: 50px;
+    }
+}
+
+.graybox {
+    background: #F5F5F5;
+    padding: 2em 0
+}
+
+#frame1-content .input-group {
+    margin-bottom: .8rem !important
+}
+
+.info-box {
+    padding: 0 1em;
+}
+
+.info-title {
+    color: #717171;
+    font-size: 1.8rem;
+    padding: 5px;
+}
+
+.info-body {
+    color: #646464;
+    font-size: 1.3rem;
+}
+
+.owl-dots {
+    text-align: center;
+    padding-top: 10px
+}
+
+.owl-dot {
+    border: 1px solid #aaa !important;
+    border-radius: 50px !important;
+    overflow: hidden !important;
+    max-height: 8px;
+    margin: 3px
+}
+
+    .owl-dot.active {
+        background: #18bc9c !important
+    }
+
+    .owl-dot > span {
+        padding: 3px !important
+    }
+
+.box-title {
+    text-align: center;
+    font-size: 2rem;
+    padding: 1em 0;
+    color: #646464;
+}
+
+#frame1-content select option:first-child {
+    color: #E6E6E6;
+}
+
+.clinicSnackbar {
+    max-width: 100%
+}
+
+    .clinicSnackbar p {
+        font-size: 1.333rem !important;
+        line-height: 1.9rem !important;
+    }

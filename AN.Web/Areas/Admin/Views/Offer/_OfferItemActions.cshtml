@@ -1,0 +1,11 @@
+﻿@model AN.Core.ViewModels.OfferListViewModel
+
+<div class="btn-group" role="group" aria-label="Basic example">
+    @if (Model.OfferStatus == OfferStatus.PENDING)
+    {
+        <button class='btn btn-outline-success btn-sm' onclick='approveOffer(@Model.Id);'>@AN.Core.Resources.Global.Global.Approve</button>
+        <button class='btn btn-outline-dark btn-sm' onclick='rejectOffer(@Model.Id);'>@AN.Core.Resources.Global.Global.Reject</button>
+    }
+    <button class='btn btn-outline-danger btn-sm' onclick='deleteOffer(@Model.Id);'><i class="fa fa-times"></i></button>
+</div>
+

@@ -1,0 +1,275 @@
+﻿@using AN.Core.Resources.Global;
+
+@model AN.Web.Models.PoliClinicViewModel
+
+@{ 
+    var actionType = !Model.Id.HasValue ? ActionType.Insert : ActionType.Update;
+
+    var backUrl = Url.Action("Index", "Polyclinic", new { area = "" });
+
+    if(ViewBag.LoginAs == "POLYCLINICMANAGER")
+    {
+        backUrl = Url.Action("Index", "Home", new { area = "PolyClinicManager" });
+    }
+}
+
+<div class="card">
+    <div class="card-body">
+        <div class="row">
+            @if (ViewBag.LoginAs == "HOSPITALMANAGER" || ViewBag.LoginAs == "ADMIN")
+            {
+                <div class="col-md-6">
+                    <div class="form-group">
+                        @Html.LabelFor(m => m.ClinicId)
+                        @Html.DropDownListFor(m => m.ClinicId, (ViewBag.Clinics as IEnumerable<SelectListItem>).ToList(), new { @class = "form-control" })
+                    </div>
+                </div>
+            }
+            <div class="col-md-3">
+                <div class="checkbox pt-2">
+                    <label class="mt-4">
+                        @Html.CheckBoxFor(m => m.SupportAppointments, new { @type = "checkbox", @class = "flat-red" })
+                        @Html.LabelFor(m => m.SupportAppointments)
+                    </label>
+                </div>
+            </div>
+            <div class="col-md-3">
+                <div class="checkbox pt-2">
+                    <label class="mt-4">
+                        @Html.CheckBoxFor(m => m.ShowInHealthBank, new { @type = "checkbox", @class = "flat-red" })
+                        @Html.LabelFor(m => m.ShowInHealthBank)
+                    </label>
+                </div>
+            </div>
+            <div class="col-md-3">
+                <div class="form-group">
+                    @Html.LabelFor(m => m.Type)
+                    @Html.DropDownListFor(m => m.Type, (ViewBag.ShiftCenterTypes as IEnumerable<SelectListItem>).ToList(), new { @tabindex = "5", @class = "form-control" })
+                </div>
+            </div>
+            <div class="col-md-3">
+                <div class="form-group">
+                    @Html.LabelFor(m => m.CityId)
+                    @Html.DropDownListFor(model => model.CityId, Model.listCities, new { @class = "form-control" })
+                </div>
+            </div>
+            <div class="col-md-3">
+                <div class="form-group">
+                    @Html.LabelFor(m => m.GoogleMap_lat)
+                    @Html.TextBoxFor(m => m.GoogleMap_lat, new { maxlength = "9", @class = "form-control", @placeholder = "Latitude" })
+                    @Html.ValidationMessageFor(m => m.GoogleMap_lat, "", new { @class = "text-danger" })
+                </div>
+            </div>
+            <div class="col-md-3">
+                <div class="form-group">
+                    @Html.LabelFor(m => m.GoogleMap_lng)
+                    @Html.TextBoxFor(m => m.GoogleMap_lng, new { maxlength = "9", @class = "form-control", @placeholder = "Longitude" })
+                    @Html.ValidationMessageFor(m => m.GoogleMap_lng, "", new { @class = "text-danger" })
+                </div>
+            </div>
+        </div>       
+    </div>
+</div>
+
+<div class="row">
+    <div class="col-md-4">
+        <div class="card">
+            <div class="card-header">
+                <h5 class="m-0">@Global.Kurdish</h5>
+            </div>
+            <div class="card-body">
+                <div class="form-group">
+                    @Html.LabelFor(m => m.Name_Ku)
+                    @Html.TextBoxFor(m => m.Name_Ku, new { maxlength = "100", @class = "form-control" })
+                    @Html.ValidationMessageFor(m => m.Name_Ku, "", new { @class = "text-danger" })
+                </div>
+                <div class="form-group">
+                    @Html.LabelFor(m => m.Address_Ku)
+                    @Html.TextBoxFor(m => m.Address_Ku, new { maxlength = "1000", @class = "form-control" })
+                    @Html.ValidationMessageFor(m => m.Address_Ku, "", new { @class = "text-danger" })
+                </div>
+                <div class="form-group">
+                    @Html.LabelFor(m => m.FinalBookMessage_Ku)
+                    @Html.TextAreaFor(m => m.FinalBookMessage_Ku, new { maxlength = "255", @class = "form-control" })
+                    @Html.ValidationMessageFor(m => m.FinalBookMessage_Ku, "", new { @class = "text-danger" })
+                </div>
+                <div class="form-group">
+                    @Html.LabelFor(m => m.FinalBookSMSMessage_Ku)
+                    @Html.TextAreaFor(m => m.FinalBookSMSMessage_Ku, new { maxlength = "50", @class = "form-control" })
+                    @Html.ValidationMessageFor(m => m.FinalBookSMSMessage_Ku, "", new { @class = "text-danger" })
+                </div>
+
+                <div class="form-group">
+                    @Html.LabelFor(m => m.Notification_Ku)
+                    @Html.TextAreaFor(m => m.Notification_Ku, new { maxlength = "1000", @class = "form-control" })
+                    @Html.ValidationMessageFor(m => m.Notification_Ku, "", new { @class = "text-danger" })
+                </div>
+                <div class="form-group">
+                    @Html.LabelFor(m => m.Description_Ku)
+                    @Html.TextAreaFor(m => m.Description_Ku, new { maxlength = "1000", @class = "form-control" })
+                    @Html.ValidationMessageFor(m => m.Description_Ku, "", new { @class = "text-danger" })
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="col-md-4">
+        <div class="card">
+            <div class="card-header">
+                <h5 class="m-0">@Global.Arabic</h5>
+            </div>
+            <div class="card-body">
+                <div class="form-group">
+                    @Html.LabelFor(m => m.Name_Ar)
+                    @Html.TextBoxFor(m => m.Name_Ar, new { maxlength = "100", @class = "form-control" })
+                    @Html.ValidationMessageFor(m => m.Name_Ar, "", new { @class = "text-danger" })
+                </div>
+                <div class="form-group">
+                    @Html.LabelFor(m => m.Address_Ar)
+                    @Html.TextBoxFor(m => m.Address_Ar, new { maxlength = "1000", @class = "form-control" })
+                    @Html.ValidationMessageFor(m => m.Address_Ar, "", new { @class = "text-danger" })
+                </div>
+                <div class="form-group">
+                    @Html.LabelFor(m => m.FinalBookMessage_Ar)
+                    @Html.TextAreaFor(m => m.FinalBookMessage_Ar, new { maxlength = "255", @class = "form-control" })
+                    @Html.ValidationMessageFor(m => m.FinalBookMessage_Ar, "", new { @class = "text-danger" })
+                </div>
+                <div class="form-group">
+                    @Html.LabelFor(m => m.FinalBookSMSMessage_Ar)
+                    @Html.TextAreaFor(m => m.FinalBookSMSMessage_Ar, new { maxlength = "50", @class = "form-control" })
+                    @Html.ValidationMessageFor(m => m.FinalBookSMSMessage_Ar, "", new { @class = "text-danger" })
+                </div>
+
+                <div class="form-group">
+                    @Html.LabelFor(m => m.Notification_Ar)
+                    @Html.TextAreaFor(m => m.Notification_Ar, new { maxlength = "1000", @class = "form-control" })
+                    @Html.ValidationMessageFor(m => m.Notification_Ar, "", new { @class = "text-danger" })
+                </div>
+                <div class="form-group">
+                    @Html.LabelFor(m => m.Description_Ar)
+                    @Html.TextAreaFor(m => m.Description_Ar, new { maxlength = "1000", @class = "form-control" })
+                    @Html.ValidationMessageFor(m => m.Description_Ar, "", new { @class = "text-danger" })
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <div class="col-md-4">
+        <div class="card">
+            <div class="card-header">
+                <h5 class="m-0">@Global.English</h5>
+            </div>
+            <div class="card-body">
+                <div class="form-group">
+                    @Html.LabelFor(m => m.Name)
+                    @Html.TextBoxFor(m => m.Name, new { maxlength = "100", @class = "form-control beLTR" })
+                    @Html.ValidationMessageFor(m => m.Name, "", new { @class = "text-danger" })
+                </div>
+                <div class="form-group">
+                    @Html.LabelFor(m => m.Address)
+                    @Html.TextBoxFor(m => m.Address, new { maxlength = "1000", @class = "form-control beLTR" })
+                    @Html.ValidationMessageFor(m => m.Address, "", new { @class = "text-danger" })
+                </div>
+                <div class="form-group">
+                    @Html.LabelFor(m => m.FinalBookMessage)
+                    @Html.TextAreaFor(m => m.FinalBookMessage, new { maxlength = "255", @class = "form-control beLTR" })
+                    @Html.ValidationMessageFor(m => m.FinalBookMessage, "", new { @class = "text-danger" })
+                </div>
+                <div class="form-group">
+                    @Html.LabelFor(m => m.FinalBookSMSMessage)
+                    @Html.TextAreaFor(m => m.FinalBookSMSMessage, new { maxlength = "50", @class = "form-control beLTR" })
+                    @Html.ValidationMessageFor(m => m.FinalBookSMSMessage, "", new { @class = "text-danger" })
+                </div>
+
+                <div class="form-group">
+                    @Html.LabelFor(m => m.Notification)
+                    @Html.TextAreaFor(m => m.Notification, new { maxlength = "1000", @class = "form-control beLTR" })
+                    @Html.ValidationMessageFor(m => m.Notification, "", new { @class = "text-danger" })
+                </div>
+                <div class="form-group">
+                    @Html.LabelFor(m => m.Description)
+                    @Html.TextAreaFor(m => m.Description, new { maxlength = "1000", @class = "form-control beLTR" })
+                    @Html.ValidationMessageFor(m => m.Description, "", new { @class = "text-danger" })
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+<div class="card">
+    <div class="card-body">
+        <div class="row">
+            <div class="col-md-6">
+                <div class="row">
+                    <div class="col-md-7">
+                        <div class="form-group">
+                            @Html.LabelFor(m => m.Phone1)
+                            @Html.TextBoxFor(m => m.Phone1, new { maxlength = "15", @class = "form-control NumericOnly" })
+                            @Html.ValidationMessageFor(m => m.Phone1, "", new { @class = "text-danger" })
+                        </div>
+                    </div>
+                    <div class="col-md-5">
+                        <div class="checkbox">
+                            <label class="mt-5">
+                                @Html.CheckBoxFor(m => m.Phone1IsForReserve, new { @type = "checkbox", @class = "flat-red" })
+                                @Html.LabelFor(m => m.Phone1IsForReserve, new { @id = "PCPhone1IsForReserve" })
+                            </label>
+                        </div>
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="col-md-7">
+                        <div class="form-group">
+                            @Html.LabelFor(m => m.Phone2)
+                            @Html.TextBoxFor(m => m.Phone2, new { maxlength = "15", @class = "form-control NumericOnly" })
+                            @Html.ValidationMessageFor(m => m.Phone2, "", new { @class = "text-danger" })
+                        </div>
+                    </div>
+                    <div class="col-md-5">
+                        <div class="checkbox">
+                            <label class="mt-5">
+                                @Html.CheckBoxFor(m => m.Phone2IsForReserve, new { @type = "checkbox", @class = "flat-red" })
+                                @Html.LabelFor(m => m.Phone2IsForReserve, new { @id = "Phone2IsForReserve" })
+                            </label>
+                        </div>
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="col-md-7">
+                        <div class="form-group">
+                            @Html.LabelFor(m => m.Phone3)
+                            @Html.TextBoxFor(m => m.Phone3, new { maxlength = "15", @class = "form-control NumericOnly" })
+                            @Html.ValidationMessageFor(m => m.Phone3, "", new { @class = "text-danger" })
+                        </div>
+                    </div>
+                    <div class="col-md-5">
+                        <div class="checkbox">
+                            <label class="mt-5">
+                                @Html.CheckBoxFor(m => m.Phone3IsForReserve, new { @type = "checkbox", @class = "flat-red" })
+                                @Html.LabelFor(m => m.Phone3IsForReserve, new { @id = "Phone3IsForReserve" })
+                            </label>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="col-md-6">
+                <div class="form-group">
+                    @Html.LabelFor(m => m.BookingRestriction)
+                    @Html.TextBoxFor(m => m.BookingRestriction, new { maxlength = "3", @class = "form-control NumericOnly" })
+                    @Html.ValidationMessageFor(m => m.BookingRestriction, "", new { @class = "text-danger" })
+                </div>
+                <div class="form-group">
+                    @Html.LabelFor(m => m.ActiveDaysAhead, new { @for = "active-days" })
+                    @Html.TextBoxFor(m => m.ActiveDaysAhead, new { maxlength = "3", @class = "form-control NumericOnly", @id = "active-days" })
+                    @Html.ValidationMessageFor(m => m.ActiveDaysAhead, "", new { @class = "text-danger" })
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+<div class="row">
+    <div class="col-12 text-center">
+        <button type="submit" class="btn btn-info">@(actionType == ActionType.Insert ? AN.Core.Resources.Global.Global.Save : AN.Core.Resources.Global.Global.Update)</button>
+        <a href="@backUrl" class="btn btn-danger">@AN.Core.Resources.Global.Global.Cancel</a>
+    </div>
+</div>

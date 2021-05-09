@@ -1,0 +1,159 @@
+﻿
+@model AN.Web.Models.ClinicDetailsViewModel
+
+<div class="content">
+    <div class="panel panel-default">
+        <div class="panel-body">
+            <div class="row">
+                <div class="col-md-4 col-sm-4 col-xs-4">
+                    <div class="detailTitle">
+                        <span>@Html.DisplayNameFor(m => m.Name)</span>
+                    </div>
+                </div>
+                <div class="col-md-8">
+                    <div class="detailContent">
+                        <span>@Model.Name</span>
+                    </div>
+                </div>
+            </div>
+            <div class="row">
+                <div class="col-md-4 col-sm-4 col-xs-4">
+                    <div class="detailTitle">
+                        <span>@Html.DisplayNameFor(m => m.Description)</span>
+                    </div>
+                </div>
+                <div class="col-md-8">
+                    <div class="detailContent">
+                        <span>@Model.Description</span>
+                    </div>
+                </div>
+            </div>
+            <div class="row">
+                <div class="col-md-4 col-sm-4 col-xs-4">
+                    <div class="detailTitle">
+                        <span>@Html.DisplayNameFor(m => m.Place)</span>
+                    </div>
+                </div>
+                <div class="col-md-8">
+                    <div class="detailContent">
+                        <span>@Model.Place</span>
+                    </div>
+                </div>
+            </div>
+
+            <div class="row">
+                <div class="col-md-4 col-sm-4 col-xs-4">
+                    <div class="detailTitle">
+                        <span>@Html.DisplayNameFor(m => m.Address)</span>
+                    </div>
+                </div>
+                <div class="col-md-8">
+                    <div class="detailContent">
+                        <span>@Model.Address</span>
+                    </div>
+                </div>
+            </div>
+
+            <div class="row">
+                <div class="col-md-4 col-sm-4 col-xs-4">
+                    <div class="detailTitle">
+                        <span>@Html.DisplayNameFor(m => m.IsGovernmental)</span>
+                    </div>
+                </div>
+                <div class="col-md-8">
+                    <div class="detailContent">
+                        <span>@Model.IsGovernmental</span>
+                    </div>
+                </div>
+            </div>
+
+            <div class="row">
+                <div class="col-md-4 col-sm-4 col-xs-4">
+                    <div class="detailTitle">
+                        <span>@Html.DisplayNameFor(m => m.IsHostelry)</span>
+                    </div>
+                </div>
+                <div class="col-md-8">
+                    <div class="detailContent">
+                        <span>@Model.IsHostelry</span>
+                    </div>
+                </div>
+            </div>
+
+            <div class="row">
+                <div class="col-md-4 col-sm-4 col-xs-4">
+                    <div class="detailTitle">
+                        <span>@Html.DisplayNameFor(m => m.Type)</span>
+                    </div>
+                </div>
+                <div class="col-md-8">
+                    <div class="detailContent">
+                        <span>@Model.Type</span>
+                    </div>
+                </div>
+            </div>
+
+            <div class="row">
+                <div class="col-md-4 col-sm-4 col-xs-4">
+                    <div class="detailTitle">
+                        <span>@Html.DisplayNameFor(m => m.Phones)</span>
+                    </div>
+                </div>
+                <div class="col-md-8">
+                    <div class="detailContent">
+                        @{
+                            foreach (var p in Model.Phones)
+                            {
+                                <p>@p</p>
+                            }
+                        }
+                    </div>
+                </div>
+            </div>
+
+            <div class="row">
+                <div class="col-md-4 col-sm-4 col-xs-4">
+                    <div class="detailTitle">
+                        <span>@Html.DisplayNameFor(m => m.Managers)</span>
+                    </div>
+                </div>
+                <div class="col-md-8">
+                    <div class="detailContent">
+                        @{
+                            foreach (var m in Model.Managers)
+                            {
+                                <p>@m</p>
+                            }
+                        }
+                    </div>
+                </div>
+            </div>
+
+            <div class="row">
+                <div class="col-md-4 col-sm-4 col-xs-4">
+                    <div class="detailTitle">
+                        <span>@Html.DisplayNameFor(m => m.PolyclinicsCount)</span>
+                    </div>
+                </div>
+                <div class="col-md-8">
+                    <div class="detailContent">
+                        <span>@Model.PolyclinicsCount</span>
+                    </div>
+                </div>
+            </div>
+
+            <div class="row">
+                <div class="col-md-4 col-sm-4 col-xs-4">
+                    <div class="detailTitle">
+                        <span>@Html.DisplayNameFor(m => m.CreationDate)</span>
+                    </div>
+                </div>
+                <div class="col-md-8">
+                    <div class="detailContent">
+                        <span>@Model.CreationDate</span>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>

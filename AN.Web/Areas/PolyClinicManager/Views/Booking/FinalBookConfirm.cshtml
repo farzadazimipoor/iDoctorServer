@@ -1,0 +1,115 @@
+﻿@model AN.Core.ViewModels.PolyclinicConfirmBookingViewModel;
+
+@{
+    Lang lng = ViewBag.Lang;
+    var dir = lng == Lang.EN ? LayoutDir.LTR : LayoutDir.RTL;
+}
+
+<section class="content">
+    <div class="container-fluid">
+        <div class="row">
+            <div class="col-md-5">
+                <div class="card card-primary card-outline">
+                    <div class="card-body box-profile">
+                        <div class="text-center">
+                            <img class="profile-user-img img-fluid img-circle"
+                                 src="@Model.PatientPersonInfo.Avatar"
+                                 alt="User profile picture">
+                        </div>
+                        <h3 class="profile-username text-center">@Model.PatientPersonInfo.FirstName @Model.PatientPersonInfo.SecondName @Model.PatientPersonInfo.ThirdName</h3>
+                        <p class="text-muted text-center">@Model.PatientPersonInfo.UniqueId</p>
+                        <ul class="list-group list-group-unbordered mb-3">
+                            <li class="list-group-item">
+                                <b class="@(dir == LayoutDir.RTL ? "float-right" : "float-left")">@Global.Mobile</b> <a class="@(dir == LayoutDir.RTL ? "float-left" : "float-right")">@Model.PatientPersonInfo.MobileNumber</a>
+                            </li>
+                            @if (!string.IsNullOrEmpty(Model.PatientPersonInfo.Birthdate))
+                            {
+                                <li class="list-group-item">
+                                    <b class="@(dir == LayoutDir.RTL ? "float-right" : "float-left")">@Global.Birthdate</b> <a class="@(dir == LayoutDir.RTL ? "float-left" : "float-right")">@Model.PatientPersonInfo.Birthdate</a>
+                                </li>
+                            }
+                            <li class="list-group-item">
+                                <b class="@(dir == LayoutDir.RTL ? "float-right" : "float-left")">@Global.Age</b> <a class="@(dir == LayoutDir.RTL ? "float-left" : "float-right")">@Model.PatientPersonInfo.Age</a>
+                            </li>
+                            <li class="list-group-item">
+                                <b class="@(dir == LayoutDir.RTL ? "float-right" : "float-left")">@Global.Gender</b> <a class="@(dir == LayoutDir.RTL ? "float-left" : "float-right")">@Model.PatientPersonInfo.Sex</a>
+                            </li>
+                        </ul>
+                        <strong><i class="fas fa-map-marker-alt mr-1"></i> @Global.Address</strong>
+                        <p class="text-muted">@Model.PatientPersonInfo.Address</p>
+                        <hr>
+                        <strong><i class="far fa-file-alt mr-1"></i> Notes</strong>
+                        <p class="text-muted">@Model.PatientPersonInfo.MarriageStatus</p>
+                    </div>
+                </div>
+            </div>
+            <div class="col-md-7">
+                <div class="card">
+                    <div class="card-header">
+                        <h5 class="text-center">@Global.YourTurn</h5>
+                    </div>
+                    <div class="card-body">                        
+                        <div class="row justify-content-center">
+                            <div class="col-12">
+                                <div class="info-box">
+                                    <span class="info-box-icon bg-success"><i class="fa fa-user-md"></i></span>
+                                    <div class="info-box-content">
+                                        <span class="info-box-number">@Model.DoctorPersonInfo.FirstName @Model.DoctorPersonInfo.SecondName @Model.DoctorPersonInfo.ThirdName</span>
+                                        <span class="info-box-text">@Model.DoctorExpertiseCategory</span>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="col-12">
+                                <div class="info-box">
+                                    <span class="info-box-icon bg-info"><i class="fa fa-book"></i></span>
+                                    <div class="info-box-content">
+                                        <span class="info-box-number mt-3">@Model.Service</span>                                       
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="col-12">
+                                <div class="info-box">
+                                    <span class="info-box-icon bg-warning"><i class="far fa-clock"></i></span>
+                                    <div class="info-box-content">
+                                        <span class="info-box-number mt-3">@AN.BLL.Helpers.Utils.ConvertDayOfWeek(Model.StartTime.DayOfWeek.ToString()) @Model.StartTime.ToString("yyyy-MM-dd") @Global.Time: <span class="badge badge-info">@Model.StartTime.ToString("HH:mm")</span></span>
+                                    </div>
+                                </div>
+                            </div>
+
+                            <div class="col-12 justify-content-center text-center">
+                                <button type="button" class="btn btn-success form-control" onclick="finalBookTurn('@Model.BookingData.ServiceSupplyId','@Model.BookingData.CenterServiceId','@Model.BookingData.PatientId','@Model.StartTime','@Model.EndTime');">@PanelResource.FinalBook</button>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+
+<script type="text/javascript">
+    function finalBookTurn(ssId, csId, pId, start, end) {
+         waiting('AwroNoreModalDialog', '@Global.PleaseWait');
+         $.ajax({
+             method: "GET",
+             url: "/PolyclinicManager/Booking/FinalBookTurn?serviceSupplyId=" + ssId + "&centerServiceId=" + csId + "&patientId=" + pId + "&start=" + start + "&end=" + end,            
+             success: function (result) {
+                 if (result.success) {
+                     $('.modal').modal('toggle');
+                     Toast.fire({
+                        type: 'success',
+                        title: '@AN.Core.Resources.Global.Global.Successful',
+                        text: "@Html.Raw(@Global.TurnReservedSuccessfully)"
+                     });
+                     refreshBookableTimes();
+                 }                 
+             }, error: function (jqXHR, ex) {
+                 handleAjaxError(jqXHR, ex);
+             }
+         }).always(function () {
+             waitingDone('AwroNoreModalDialog');
+         });
+    }
+</script>
+
+

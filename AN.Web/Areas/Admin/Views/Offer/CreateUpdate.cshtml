@@ -1,0 +1,454 @@
+﻿
+@model AN.Core.ViewModels.OfferCreateUpdateViewModel
+
+<div id="createOfferArea">
+    <form id="createOfferForm" class="form-horizontal" action="@Url.Action("CreateUpdate", "Offer", new {area = "Admin"})" method="POST" enctype="multipart/form-data">
+        @Html.HiddenFor(m => m.Id)
+        @Html.HiddenFor(m => m.Type)
+        <div class="row">
+            <div class="col-6">
+                <div class="form-group">
+                    @Html.LabelFor(m => m.StartAt)
+                    @Html.TextBoxFor(m => m.StartAt, new { @class = "form-control" })
+                    @Html.ValidationMessageFor(m => m.StartAt, "", new { @class = "text-danger", })
+                </div>
+            </div>
+            <div class="col-6">
+                <div class="form-group">
+                    @Html.LabelFor(m => m.ExpiredAt)
+                    @Html.TextBoxFor(m => m.ExpiredAt, new { @class = "form-control" })
+                    @Html.ValidationMessageFor(m => m.ExpiredAt, "", new { @class = "text-danger", })
+                </div>
+            </div>
+            <div class="col-sm-3 col-md-3 col-lg-3">
+                <div class="form-group">
+                    @Html.LabelFor(m => m.ShiftCenterId)
+                    @Html.DropDownListFor(m => m.ShiftCenterId, (ViewBag.ShiftCenters as IEnumerable<SelectListItem>).ToList(), new { @class = "form-control select2" })
+                    @Html.ValidationMessageFor(m => m.ShiftCenterId, "", new { @class = "text-danger" })
+                </div>
+            </div>
+            <div class="col-sm-3 col-md-3 col-lg-3">
+                <div class="form-group">
+                    @Html.LabelFor(m => m.ServiceSupplyId)
+                    @Html.DropDownListFor(m => m.ServiceSupplyId, (ViewBag.Doctors as IEnumerable<SelectListItem>).ToList(), new { @tabindex = "5", @class = "form-control select2" })
+                    @Html.ValidationMessageFor(m => m.ServiceSupplyId, "", new { @class = "text-danger" })
+                </div>
+            </div>
+            <div class="col-sm-3 col-md-3 col-lg-3">
+                <div class="form-group">
+                    @Html.LabelFor(m => m.ShiftCenterServiceId)
+                    @Html.DropDownListFor(m => m.ShiftCenterServiceId, (ViewBag.HealthServices as IEnumerable<SelectListItem>).ToList(), new { @tabindex = "5", @class = "form-control" })
+                    @Html.ValidationMessageFor(m => m.ShiftCenterServiceId, "", new { @class = "text-danger" })
+                </div>
+            </div>
+            <div class="col-md-3 pt-1">
+                <div class="checkbox">
+                    <label class="mt-4 form-control">
+                        @Html.CheckBoxFor(m => m.ShowDiscountBanner, new { @type = "checkbox", @class = "flat-red" })
+                        @Html.LabelFor(m => m.ShowDiscountBanner)
+                    </label>
+                </div>
+            </div>
+            @if (Model.Type == OfferType.FREE_APPOINTMENTS)
+            {
+                <div class="col-sm-3 col-md-3 col-lg-3">
+                    <div class="form-group">
+                        @Html.LabelFor(m => m.MaxCount)
+                        @Html.TextBoxFor(m => m.MaxCount, new { @class = "form-control", maxlength = "3" })
+                        @Html.ValidationMessageFor(m => m.MaxCount, "", new { @class = "text-danger" })
+                    </div>
+                </div>
+                <div class="col-sm-3 col-md-3">
+                    <div class="form-group">
+                        @Html.LabelFor(m => m.Date)
+                        @Html.TextBoxFor(m => m.Date, new { @class = "form-control common-datapicker", @autocomplete = "off" })
+                        @Html.ValidationMessageFor(m => m.Date, "", new { @class = "text-danger" })
+                    </div>
+                </div>
+                <div class="col-sm-3 col-md-3">
+                    <div class="form-group clockpicker" data-placement="left" data-align="top" data-autoclose="true">
+                        @Html.LabelFor(m => m.StartTime)
+                        @Html.TextBoxFor(m => m.StartTime, new { @class = "form-control txtclockpicker", @tabindex = "2", @autocomplete = "off" })
+                        @Html.ValidationMessageFor(m => m.StartTime, "", new { @class = "text-danger" })
+                    </div>
+                </div>
+                <div class="col-sm-3 col-md-3">
+                    <div class="form-group clockpicker" data-placement="left" data-align="top" data-autoclose="true">
+                        @Html.LabelFor(m => m.Endtime)
+                        @Html.TextBoxFor(m => m.Endtime, new { @class = "form-control txtclockpicker", @tabindex = "3", @autocomplete = "off" })
+                        @Html.ValidationMessageFor(m => m.Endtime, "", new { @class = "text-danger" })
+                    </div>
+                </div>
+            }
+            <div class="col-sm-3 col-md-3 col-lg-3">
+                <div class="form-group">
+                    @Html.LabelFor(m => m.OldPrice)
+                    @Html.TextBoxFor(m => m.OldPrice, new { maxlength = "50", @class = "form-control" })
+                    @Html.ValidationMessageFor(m => m.OldPrice, "", new { @class = "text-danger" })
+                </div>
+            </div>
+            <div class="col-sm-3 col-md-3 col-lg-3">
+                <div class="form-group">
+                    @Html.LabelFor(m => m.CurrentPrice)
+                    @Html.TextBoxFor(m => m.CurrentPrice, new { maxlength = "50", @class = "form-control" })
+                    @Html.ValidationMessageFor(m => m.CurrentPrice, "", new { @class = "text-danger" })
+                </div>
+            </div>
+            <div class="col-sm-3 col-md-3 col-lg-3">
+                <div class="form-group">
+                    @Html.LabelFor(m => m.DiscountPercentange)
+                    @Html.TextBoxFor(m => m.DiscountPercentange, new { maxlength = "50", @class = "form-control" })
+                    @Html.ValidationMessageFor(m => m.DiscountPercentange, "", new { @class = "text-danger" })
+                </div>
+            </div>
+            <div class="col-sm-3 col-md-3 col-lg-3">
+                <div class="form-group">
+                    @Html.LabelFor(m => m.CurrencyType)
+                    @Html.DropDownListFor(m => m.CurrencyType, (ViewBag.CurrencyTypes as IEnumerable<SelectListItem>).ToList(), new { @tabindex = "5", @class = "form-control select2" })
+                    @Html.ValidationMessageFor(m => m.CurrencyType, "", new { @class = "text-danger" })
+                </div>
+            </div>
+        </div>
+        <div class="row">
+            <div class="col-md-4">
+                <div class="card">
+                    <div class="card-header">
+                        <h5 class="m-0">@Global.Kurdish</h5>
+                    </div>
+                    <div class="card-body">
+                        <div class="form-group">
+                            @Html.LabelFor(m => m.Title_Ku)
+                            @Html.TextBoxFor(m => m.Title_Ku, new { maxlength = "50", @class = "form-control" })
+                            @Html.ValidationMessageFor(m => m.Title_Ku, "", new { @class = "text-danger" })
+                        </div>
+                        <div class="form-group">
+                            @Html.LabelFor(m => m.Summary_Ku)
+                            @Html.TextBoxFor(m => m.Summary_Ku, new { maxlength = "255", @class = "form-control" })
+                            @Html.ValidationMessageFor(m => m.Summary_Ku, "", new { @class = "text-danger" })
+                        </div>
+                        <div class="col-12 text-center">
+                            <div class="kv-avatar">
+                                <div class="file-loading">
+                                    @Html.TextBoxFor(m => m.ImageUpload_Ku, new { @type = "file", @accept = "image/*" })
+                                </div>
+                            </div>
+                            <div class="kv-avatar-hint"><small>Max File Size: 500 KB</small></div>
+                            <div id="kv-avatar-errors-1" class="center-block" style="display:none"></div>
+                            @Html.ValidationMessageFor(m => m.ImageUpload_Ku, "", new { @class = "text-danger" })
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="col-md-4">
+                <div class="card">
+                    <div class="card-header">
+                        <h5 class="m-0">@Global.Arabic</h5>
+                    </div>
+                    <div class="card-body">
+                        <div class="form-group">
+                            @Html.LabelFor(m => m.Title_Ar)
+                            @Html.TextBoxFor(m => m.Title_Ar, new { maxlength = "50", @class = "form-control" })
+                            @Html.ValidationMessageFor(m => m.Title_Ar, "", new { @class = "text-danger" })
+                        </div>
+                        <div class="form-group">
+                            @Html.LabelFor(m => m.Summary_Ar)
+                            @Html.TextBoxFor(m => m.Summary_Ar, new { maxlength = "255", @class = "form-control" })
+                            @Html.ValidationMessageFor(m => m.Summary_Ar, "", new { @class = "text-danger" })
+                        </div>
+                        <div class="col-12 text-center">
+                            <div class="kv-avatar">
+                                <div class="file-loading">
+                                    @Html.TextBoxFor(m => m.ImageUpload_Ar, new { @type = "file", @accept = "image/*" })
+                                </div>
+                            </div>
+                            <div class="kv-avatar-hint"><small>Max File Size: 500 KB</small></div>
+                            <div id="kv-avatar-errors-1" class="center-block" style="display:none"></div>
+                            @Html.ValidationMessageFor(m => m.ImageUpload_Ar, "", new { @class = "text-danger" })
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="col-md-4">
+                <div class="card">
+                    <div class="card-header">
+                        <h5 class="m-0">@Global.English</h5>
+                    </div>
+                    <div class="card-body">
+                        <div class="form-group">
+                            @Html.LabelFor(m => m.Title)
+                            @Html.TextBoxFor(m => m.Title, new { maxlength = "50", @class = "form-control beLTR pl-3" })
+                            @Html.ValidationMessageFor(m => m.Title, "", new { @class = "text-danger" })
+                        </div>
+                        <div class="form-group">
+                            @Html.LabelFor(m => m.Summary)
+                            @Html.TextBoxFor(m => m.Summary, new { maxlength = "255", @class = "form-control beLTR pl-3" })
+                            @Html.ValidationMessageFor(m => m.Summary, "", new { @class = "text-danger" })
+                        </div>
+                        <div class="col-12 text-center">
+                            <div class="kv-avatar">
+                                <div class="file-loading">
+                                    @Html.TextBoxFor(m => m.ImageUpload, new { @type = "file", @accept = "image/*" })
+                                </div>
+                            </div>
+                            <div class="kv-avatar-hint"><small>Max File Size: 500 KB</small></div>
+                            <div id="kv-avatar-errors-1" class="center-block" style="display:none"></div>
+                            @Html.ValidationMessageFor(m => m.ImageUpload, "", new { @class = "text-danger" })
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="col-md-12">
+                <div class="checkbox">
+                    <label class="mt-4 form-control">
+                        @Html.CheckBoxFor(m => m.SendNotification, new { @type = "checkbox", @class = "flat-red" })
+                        @Html.LabelFor(m => m.SendNotification)
+                    </label>
+                </div>
+            </div>
+        </div>        
+
+        <div class="collapse" id="FindPersonArea">
+            <div class="card card-body">
+                <div class="card-header">
+                    <h5 class="m-0">@Global.Notification</h5>
+                </div>
+                <div class="row">
+                    <div class="col-md-4">
+                        <div class="card">
+                            <div class="card-header">
+                                <h5 class="m-0">@Global.Kurdish</h5>
+                            </div>
+                            <div class="card-body">
+                                <div class="form-group">
+                                    @Html.LabelFor(m => m.NotificationTitle_Ku)
+                                    @Html.TextBoxFor(m => m.NotificationTitle_Ku, new { maxlength = "50", @class = "form-control" })
+                                    @Html.ValidationMessageFor(m => m.NotificationTitle_Ku, "", new { @class = "text-danger" })
+                                </div>
+                                <div class="form-group">
+                                    @Html.LabelFor(m => m.NotificationBody_Ku)
+                                    @Html.TextBoxFor(m => m.NotificationBody_Ku, new { maxlength = "255", @class = "form-control" })
+                                    @Html.ValidationMessageFor(m => m.NotificationBody_Ku, "", new { @class = "text-danger" })
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-md-4">
+                        <div class="card">
+                            <div class="card-header">
+                                <h5 class="m-0">@Global.Arabic</h5>
+                            </div>
+                            <div class="card-body">
+                                <div class="form-group">
+                                    @Html.LabelFor(m => m.NotificationTitle_Ar)
+                                    @Html.TextBoxFor(m => m.NotificationTitle_Ar, new { maxlength = "50", @class = "form-control" })
+                                    @Html.ValidationMessageFor(m => m.NotificationTitle_Ar, "", new { @class = "text-danger" })
+                                </div>
+                                <div class="form-group">
+                                    @Html.LabelFor(m => m.NotificationBody_Ar)
+                                    @Html.TextBoxFor(m => m.NotificationBody_Ar, new { maxlength = "255", @class = "form-control" })
+                                    @Html.ValidationMessageFor(m => m.NotificationBody_Ar, "", new { @class = "text-danger" })
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-md-4">
+                        <div class="card">
+                            <div class="card-header">
+                                <h5 class="m-0">@Global.English</h5>
+                            </div>
+                            <div class="card-body">
+                                <div class="form-group">
+                                    @Html.LabelFor(m => m.NotificationTitle)
+                                    @Html.TextBoxFor(m => m.NotificationTitle, new { maxlength = "50", @class = "form-control beLTR pl-3" })
+                                    @Html.ValidationMessageFor(m => m.NotificationTitle, "", new { @class = "text-danger" })
+                                </div>
+                                <div class="form-group">
+                                    @Html.LabelFor(m => m.NotificationBody)
+                                    @Html.TextBoxFor(m => m.NotificationBody, new { maxlength = "255", @class = "form-control beLTR pl-3" })
+                                    @Html.ValidationMessageFor(m => m.NotificationBody, "", new { @class = "text-danger" })
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+            </div>
+        </div>
+
+        <div class="row">
+            <div class="col-md-12 mt-5 text-center">
+                <button type="submit" class="btn btn-info">@(Model.Id == null ? AN.Core.Resources.UI.AdminPanel.PanelResource.AddNew : AN.Core.Resources.Global.Global.Update)</button>
+                <button type="button" class="btn btn-danger" data-dismiss="modal">@AN.Core.Resources.Global.Global.Cancel </button>
+            </div>
+        </div>
+    </form>
+</div>
+
+<script type="text/javascript">
+    var form = $("#createOfferArea").find('form');
+    var centersElement = form.find("[name='ShiftCenterId']");
+    var doctorElement = form.find("[name='ServiceSupplyId']");
+    var centerServicesElement = form.find("[name='ShiftCenterServiceId']");
+    $(function () {    
+        
+        $('input[type="checkbox"].flat-red, input[type="radio"].flat-red').iCheck({
+            checkboxClass: 'icheckbox_flat-red',
+            radioClass: 'iradio_flat-red',
+            handle: 'checkbox'
+        });
+
+        $.validator.unobtrusive.parse(form);
+
+        $(form).on("submit", function (e) {
+            e.preventDefault();
+            if (form.valid()) {
+                var data = new FormData($(this)[0]);
+                waiting('createOfferArea', '@AN.Core.Resources.Global.Global.PleaseWait');
+                $.ajax({
+                    method: "POST",
+                    url: $(this).attr("action"),
+                    processData: false,
+                    contentType: false, // contentType option to false is used for multipart/form-data forms that pass files
+                    data: data, success: function (result) {
+                        form.closest('.modal').modal('toggle');
+                        toastr.success("Success", "Message");
+                        reloadDataTable();
+                    }, error: function (jqXHR, ex) {
+                        handleAjaxError(jqXHR, ex);
+                    }
+                }).always(function () {
+                    waitingDone('createOfferArea');
+                });
+            }
+        });
+
+        // This is iCheck issue
+        form.find("[name='SendNotification']").on('ifChanged', function (event) { $(event.target).trigger('change'); });
+
+        form.find("[name='SendNotification']").change(function () {
+            if (this.checked) {
+                $('.collapse').collapse("show")
+            } else {
+                $('.collapse').collapse("hide")
+            }
+        });
+       
+        form.find("[name='ImageUpload']").fileinput({
+            theme: "fas",
+            overwriteInitial: true,
+            showClose: false,
+            showCaption: false,
+            showUpload: false,
+            browseLabel: '',
+            removeLabel: '',
+            browseIcon: '<i class="fa fa-folder-open"></i>',
+            removeIcon: '<i class="fa fa-trash"></i>',
+            removeTitle: 'Cancel or reset changes',
+            elErrorContainer: '#kv-avatar-errors-1',
+            msgErrorClass: 'alert alert-block alert-danger',
+            defaultPreviewContent: '@Html.Raw(ViewBag.PhotoPreview)',
+            maxFileSize: 500,
+            minImageWidth: 400,
+            minImageHeight: 150,
+            maxImageWidth: 400,
+            maxImageHeight: 150,
+            allowedFileExtensions: ["jpg", "png", "jpeg"]
+        });
+
+        form.find("[name='ImageUpload_Ku']").fileinput({
+            theme: "fas",
+            overwriteInitial: true,
+            showClose: false,
+            showCaption: false,
+            showUpload: false,
+            browseLabel: '',
+            removeLabel: '',
+            browseIcon: '<i class="fa fa-folder-open"></i>',
+            removeIcon: '<i class="fa fa-trash"></i>',
+            removeTitle: 'Cancel or reset changes',
+            elErrorContainer: '#kv-avatar-errors-1',
+            msgErrorClass: 'alert alert-block alert-danger',
+            defaultPreviewContent: '@Html.Raw(ViewBag.PhotoPreviewKu)',
+            maxFileSize: 500,
+            minImageWidth: 400,
+            minImageHeight: 150,
+            maxImageWidth: 400,
+            maxImageHeight: 150,
+            allowedFileExtensions: ["jpg", "png", "jpeg"]
+        });
+
+        form.find("[name='ImageUpload_Ar']").fileinput({
+            theme: "fas",
+            overwriteInitial: true,
+            showClose: false,
+            showCaption: false,
+            showUpload: false,
+            browseLabel: '',
+            removeLabel: '',
+            browseIcon: '<i class="fa fa-folder-open"></i>',
+            removeIcon: '<i class="fa fa-trash"></i>',
+            removeTitle: 'Cancel or reset changes',
+            elErrorContainer: '#kv-avatar-errors-1',
+            msgErrorClass: 'alert alert-block alert-danger',
+            defaultPreviewContent: '@Html.Raw(ViewBag.PhotoPreviewAr)',
+            maxFileSize: 500,
+            minImageWidth: 400,
+            minImageHeight: 150,
+            maxImageWidth: 400,
+            maxImageHeight: 150,
+            allowedFileExtensions: ["jpg", "png", "jpeg"]
+        });
+
+        centersElement.change(function () {
+            var centerId = this.value;
+            getDoctorsForCenter(centerId);
+            getServicesForCenter(centerId);
+        });
+    });
+
+    function getDoctorsForCenter(centerId) {
+        waiting('AwroNoreModalDialog', '@AN.Core.Resources.Global.Global.PleaseWait');
+        $.ajax({
+            type: 'Get',
+            url: "/admin/user/GetServiceSuppliesForCenter?centerId=" + centerId,
+            success: function (response) {
+                doctorElement.attr("disabled", false);
+                doctorElement.find('option').remove();
+                $.each(response, function (index, value) {
+                    var newOption = new Option(value.Text, value.Value, false, false);
+                    doctorElement.append(newOption);
+                });
+                doctorElement.trigger('change');
+            },
+            error: function (jqXHR, ex) {
+                doctorElement.find('option').remove();
+                handleAjaxError(jqXHR, ex);
+            }
+        }).always(function () {
+            waitingDone('AwroNoreModalDialog');
+        });
+    }
+
+    function getServicesForCenter(centerId) {
+        waiting('AwroNoreModalDialog', '@AN.Core.Resources.Global.Global.PleaseWait');
+        $.ajax({
+            type: 'Get',
+            url: "/admin/offer/GetCenterServices?centerId=" + centerId,
+            success: function (response) {
+                centerServicesElement.attr("disabled", false);
+                centerServicesElement.find('option').remove();
+                $.each(response, function (index, value) {
+                    var newOption = new Option(value.Text, value.Value, false, false);
+                    centerServicesElement.append(newOption);
+                });
+                centerServicesElement.trigger('change');
+            },
+            error: function (jqXHR, ex) {
+                centerServicesElement.find('option').remove();
+                handleAjaxError(jqXHR, ex);
+            }
+        }).always(function () {
+            waitingDone('AwroNoreModalDialog');
+        });
+    }
+</script>

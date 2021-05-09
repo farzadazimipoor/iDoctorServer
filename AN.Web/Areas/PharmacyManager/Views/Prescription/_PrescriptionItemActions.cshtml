@@ -1,0 +1,32 @@
+﻿
+@model (int id, int pharmacyId, int treatmentHistoryId, PrescriptionStatus status)
+
+<div class="btn-group" role="group" aria-label="Basic example">
+    <button type="button"
+            class="btn btn-outline-info btn-sm"
+            title="@Global.PrintPrescription"
+            onclick="printPharmacyPrescription('@Model.pharmacyId', '@Model.treatmentHistoryId')">
+        <i class="fa fa-print"></i>
+    </button>
+    @if (Model.status == PrescriptionStatus.PENDING)
+    {
+        <button type="button"
+                class="btn btn-outline-primary btn-sm"
+                title="@Global.ProcessPrescription"
+                onclick="processPharmacyPrescription('@Model.id')">
+            <i class="fa fa-cogs"></i>
+        </button>
+        <button type="button"
+                class="btn btn-outline-success btn-sm"
+                title="@Global.Done"
+                onclick="setNewStatus('@Model.pharmacyId', '@Model.treatmentHistoryId', '@PrescriptionStatus.DONE')">
+            <i class="fa fa-check"></i>
+        </button>
+        <button type="button"
+                class="btn btn-outline-danger btn-sm"
+                title="@Global.SendBack"
+                onclick="deletePrescription('@Model.pharmacyId', '@Model.treatmentHistoryId')">
+            <i class="fa fa-trash"></i>
+        </button>
+    }
+</div>

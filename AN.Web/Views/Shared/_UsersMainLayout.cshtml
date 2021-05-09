@@ -1,0 +1,185 @@
+﻿
+@using AN.Web.Models;
+@using AN.Core.Resources.UI.AdminPanel;
+@using AN.Core.Resources.Global;
+@using AN.Web.AppCode.Extensions;
+
+@inject AN.Core.IWorkContext _workContext;
+
+@{
+    var message = "";
+    var messageType = MVCResultStatus.success;
+    try
+    {
+        var messageModel = TempData.Get<MVCResultModel>("message");
+        message = messageModel.message;
+        messageType = messageModel.status;
+    }
+    catch
+    { //Ignored }
+    }
+}
+
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8" />
+    <meta content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no" name="viewport">
+    <title>@ViewBag.Title - @PanelResource.AwroNoreManager</title>
+    <link rel="stylesheet" href="~/css/bootstrap.min.css" />
+    <link rel="stylesheet" href="~/css/bootstrap-rtl/bootstrap-rtl.min.css" />
+    <link rel="stylesheet" href="~/css/website/common/Site.css" />
+    <link rel="stylesheet" href="~/css/website/admin-section/admin-panel/AdminLTE.min.css" />
+    <link rel="stylesheet" href="~/css/website/admin-section/admin-panel/skins/skin-purple.min.css" />
+    <link rel="stylesheet" href="~/css/font-awesome.min.css" />
+    <link rel="stylesheet" href="~/css/toastr.min.css" />
+    <link rel="stylesheet" href="~/css/bootstrap4utilities/bootstrap-4-utilities.min.css" />
+    <link rel="stylesheet" href="~/lib/limonte-sweetalert2/sweetalert2.min.css" />
+    <link rel="stylesheet" href="~/css/website/admin-section/admin-panel/AdminCommon.css" />
+    <link rel="stylesheet" href="~/css/website/common/KurdishSite.css" />
+    @RenderSection("styles", required: false)
+    @*<script type="text/javascript" src="~/js/modernizr-2.8.3.js"></script>*@
+</head>
+<body id="body" class="skin-purple sidebar-mini">
+    <div class="wrapper">
+        <header class="main-header">
+            <a href="@Url.Action("Index", "Home", new { area = _workContext.LoginAs.ToString() })" class="logo">
+                <span class="logo-mini"><span class="fa fa-cog" aria-hidden="true"></span></span>
+                <span class="logo-lg">
+                    <b>@_workContext.WorkingArea.SystemTitle</b>
+                </span>
+            </a>
+            <nav class="navbar navbar-static-top" role="navigation">
+                <a href="#" class="sidebar-toggle" data-toggle="offcanvas" role="button">
+                    <span class="sr-only">Toggle navigation</span>
+                </a>
+                <div class="navbar-custom-menu">
+                    <ul class="nav navbar-nav">
+                        <li class="dropdown">
+                            <a href="#" class="dropdown-toggle" data-toggle="dropdown">
+                                @if (AN.Web.Helper.CultureHelper.CurrentCulture == AN.Core.SupportedLangs.KU)
+                                {
+                                    <img src="~/images/flags/ku.png" style="height:15px;" />
+                                }
+                                else if (AN.Web.Helper.CultureHelper.CurrentCulture == AN.Core.SupportedLangs.AR)
+                                {
+                                    <img src="~/images/flags/iq.png" style="height:15px;" />
+                                }
+                            </a>
+                            <ul class="dropdown-menu">
+                                <li>
+                                    <div class="row">
+                                        <div class="col-md-6">
+                                            <a href="/AwroNore/SetCulture?culture=ku-Arab" class="text-center"><p><img src="~/images/flags/ku.png" /></p><p>کوردی</p></a>
+                                        </div>
+                                        <div class="col-md-6">
+                                            <a href="/AwroNore/SetCulture?culture=ar-SA" class="text-center"><p><img src="~/images/flags/iq.png" /></p><p>العربی</p></a>
+                                        </div>
+                                    </div>
+                                </li>
+                            </ul>
+                        </li>
+                        @if (_workContext.LoginAs == Shared.Enums.LoginAs.ADMIN)
+                        {
+                            <li class="dropdown messages-menu">
+                                <a href="#" class="dropdown-toggle" data-toggle="dropdown">
+                                    <i class="fa fa-envelope-o"></i>
+                                    <span class="label label-success">@ViewData["AdminContactUsCount"]</span>
+                                </a>
+                                <ul class="dropdown-menu">
+                                    <li class="header">@ViewData["AdminContactUsCount"] @Global.Msg_HaveNewMessages</li>
+                                    <li>
+                                        <ul class="menu">
+                                            <li></li>
+                                        </ul>
+                                    </li>
+                                    <li class="footer"><a href="/Admin/Contact">@PanelResource.ShowAllMessages</a></li>
+                                </ul>
+                            </li>
+                        }
+                        <li class="dropdown user user-menu">
+                            <a href="#" class="dropdown-toggle" data-toggle="dropdown">
+                                <img src="@_workContext.WorkingArea.CurrentUser.Avatar" class="user-image" alt="User Image">
+                                <span class="hidden-xs">@_workContext.WorkingArea.CurrentUser.FullName</span>
+                            </a>
+                            <ul class="dropdown-menu">
+                                <li class="user-header">
+                                    <img src="@_workContext.WorkingArea.CurrentUser.Avatar" class="img-circle" alt="User Image">
+                                    <p>
+                                        @_workContext.WorkingArea.UserTitle
+                                        <small>@_workContext.WorkingArea.CurrentUser.UserName</small>
+                                    </p>
+                                </li>
+                                <li class="user-footer">
+                                    @*<div class="pull-right top10">
+                                            <a href="@Url.Action("Details","Manage",new { area = "" })" class="btn btn-default btn-flat">  @PanelResource.ChangePassword</a>
+                                        </div>*@
+                                    <div @*class="pull-left" *@ class="text-center" style="margin-top:8px;">
+                                        <a href="~/Account/Logout" class="btn btn-danger btn-flat"> @AN.Core.Resources.UI.login.LoginResource.SignOut</a>
+                                    </div>
+                                </li>
+                            </ul>
+                        </li>
+                    </ul>
+                </div>
+            </nav>
+        </header>
+        <aside class="main-sidebar">
+            <section class="sidebar">
+                <div class="user-panel">
+                    <div class="pull-right image">
+                        <img src="@_workContext.WorkingArea.CurrentUser.Avatar" class="img-circle" alt="User Image">
+                    </div>
+                    <div class="pull-left info">
+                        <p>@_workContext.WorkingArea.CurrentUser.FullName</p>
+                        <a href="#"><i class="fa fa-circle text-success"></i> @Global.Online</a>
+                    </div>
+                </div>
+
+                @await Html.PartialAsync("_ManagersSidebarMenuPartial.cshtml", (_workContext.LoginAs, _workContext.WorkingArea))
+
+            </section>
+        </aside>
+        <div class="content-wrapper">
+            @RenderBody()
+        </div>
+        <footer class="main-footer">
+            <div class="pull-left hidden-xs">
+                <b>@Global.Version</b> 1.0.0
+            </div>
+            <strong>Copyright (C) Reserved</strong>
+        </footer>
+    </div>
+
+    @await Html.PartialAsync("_CommonModalPartial", LayoutDir.RTL)
+
+    <script type="text/javascript" src="~/js/jquery-2.2.4.min.js"></script>
+    <script type="text/javascript" src="~/js/jquery-ui-1.12.1.min.js"></script>
+    <script type="text/javascript" src="~/js/jquery.validate.min.js"></script>
+    <script type="text/javascript" src="~/js/jquery.validate.unobtrusive.min.js"></script>
+    <script type="text/javascript" src="~/js/bootstrap.min.js"></script>
+    <script type="text/javascript" src="~/js/adminlte/app.min.js"></script>
+    <script type="text/javascript" src="~/js/moment.min.js"></script>
+    <script type="text/javascript" src="~/js/toastr.min.js"></script>
+    <script type="text/javascript" src="~/js/My/confirm.delete.js"></script>
+    <script type="text/javascript" src="~/css/plugins/slimScroll/jquery.slimscroll.min.js"></script>
+    <script type="text/javascript" src="~/js/BlockUI/jquery.blockUI.min.js"></script>
+    <script type="text/javascript" src="~/lib/limonte-sweetalert2/sweetalert2.all.min.js"></script>
+    <script type="text/javascript" src="~/js/My/admin-app.js"></script>
+
+    @RenderSection("scripts", required: false)
+
+    <script type="text/javascript">
+        if ('@message' != "") {
+             if('@messageType' == '@MVCResultStatus.success'){
+                 toastr.success('@message', '@Global.SystemMessage');
+             }else if('@messageType' == '@MVCResultStatus.danger'){
+                 toastr.error('@message', '@Global.SystemMessage');
+             }else {
+                 toastr.warning('@message', '@Global.SystemMessage');
+             }
+        }
+    </script>
+    <partial name="_AjaxErrorHandler" />
+</body>
+</html>

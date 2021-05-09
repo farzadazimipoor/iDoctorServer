@@ -1,0 +1,60 @@
+﻿@using AN.Web.Areas.HospitalManager.Models
+@{
+    ViewBag.Title = AN.Core.Resources.EntitiesResources.Role.RolesResource.hospitalmanager;
+    Layout = "~/Views/Shared/_CpanelLayout.cshtml";
+
+    var _indexData = ViewData["IndexData"] as HMIndexViewModel;
+}
+
+<section class="content">
+    <div class="row">
+        <div class="col-lg-3 col-xs-6">
+            <div class="small-box bg-aqua">
+                <div class="inner">
+                    <h3>@ViewBag.ClinicsCount</h3>
+                    <p>@AN.Core.Resources.Global.Global.Clinic</p>
+                </div>
+                <div class="icon">
+                    <i class="fa fa-medkit"></i>
+                </div>
+                <a href="@Url.Action("Index","CommonClinic", new { area = "" })" class="small-box-footer">@AN.Core.Resources.Global.Global.Clinics <i class="fa fa-arrow-circle-left"></i></a>
+            </div>
+        </div>
+        <div class="col-lg-3 col-xs-6">           
+            <div class="small-box bg-green">
+                <div class="inner">
+                    <h3>@ViewBag.PolyClinicsCount<sup style="font-size: 20px"></sup></h3>
+                    <p>@AN.Core.Resources.Global.Global.Polyclinic</p>
+                </div>
+                <div class="icon">
+                    <i class="fa fa-stethoscope"></i>
+                </div>
+                <a href="@Url.Action("Index","Polyclinic", new { area = "" })" class="small-box-footer">@AN.Core.Resources.Global.Global.Polyclinics <i class="fa fa-arrow-circle-left"></i></a>
+            </div>
+        </div>
+        <div class="col-lg-3 col-xs-6">
+            <div class="small-box bg-yellow">
+                <div class="inner">
+                    <h3>@ViewBag.DoctorsCountCount</h3>
+                    <p>@AN.Core.Resources.Global.Global.Doctor</p>
+                </div>
+                <div class="icon">
+                    <i class="fa fa-user-md"></i>
+                </div>
+                <a href="#" class="small-box-footer"><i class="fa fa-arrow-circle-left"></i></a>
+            </div>
+        </div>
+        <div class="col-lg-3 col-xs-6">
+            <div class="small-box bg-red">
+                <div class="inner">
+                    <h3>@ViewBag.TurnsCountCount</h3>
+                    <p>@AN.Core.Resources.Global.Global.Turn</p>
+                </div>
+                <div class="icon">
+                    <i class="fa fa-calendar"></i>
+                </div>
+                <a href="#" class="small-box-footer"><i class="fa fa-arrow-circle-left"></i></a>
+            </div>
+        </div>
+    </div>
+</section>

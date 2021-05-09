@@ -1,0 +1,83 @@
+﻿@using AN.Core.Resources.Global
+@using AN.Core.Resources.UI.AdminPanel
+
+@model AN.Web.Areas.Admin.Models.IndexViewModel
+
+@{
+    ViewBag.Title = PanelResource.Dashboard;
+    Layout = "~/Views/Shared/_CpanelLayout.cshtml";
+}
+
+<div class="content-header">
+    <div class="container-fluid">
+        <div class="row mb-2">
+            <div class="col-sm-6">
+                <h1 class="m-0 text-dark">@PanelResource.Dashboard</h1>
+            </div>
+        </div>
+    </div>
+</div>
+
+<section class="content">
+    <div class="container-fluid">
+        <div class="row">
+            <div class="col-12 col-sm-6 col-md-3">
+                <a class="dashboard-link" href="@Url.Action("Index","Hospital", new { area = "Admin" })">
+                    <div class="info-box">
+                        <span class="info-box-icon bg-info elevation-1"><i class="fas fa-hospital"></i></span>
+                        <div class="info-box-content">
+                            <span class="info-box-text">@Global.Hospitals</span>
+                            <span class="info-box-number">
+                                @Model.HospitalsCount
+                            </span>
+                        </div>
+                    </div>
+                </a>
+            </div>
+            <div class="col-12 col-sm-6 col-md-3">
+                <a class="dashboard-link" href="@Url.Action("Index","CommonClinic", new { area = "" })">
+                    <div class="info-box mb-3">
+                        <span class="info-box-icon bg-warning elevation-1"><i class="fas fa-clinic-medical"></i></span>
+                        <div class="info-box-content">
+                            <span class="info-box-text">@Global.Clinics</span>
+                            <span class="info-box-number">
+                                @Model.ClinicsCount
+                            </span>
+                        </div>
+                    </div>
+                </a>
+            </div>
+            <div class="clearfix hidden-md-up"></div>
+            <div class="col-12 col-sm-6 col-md-3">
+                <a class="dashboard-link" href="@Url.Action("Index","Polyclinic", new { area = "" })">
+                    <div class="info-box mb-3">
+                        <span class="info-box-icon bg-success elevation-1"><i class="fas fa-stethoscope"></i></span>
+                        <div class="info-box-content">
+                            <span class="info-box-text">@Global.ShiftCenters</span>
+                            <span class="info-box-number">
+                                @Model.PoliClinicsCount
+                            </span>
+                        </div>
+                    </div>
+                </a>
+            </div>
+            <div class="col-12 col-sm-6 col-md-3">
+                <a class="dashboard-link" href="@Url.Action("Index","Person", new { area = "Admin" })">
+                    <div class="info-box mb-3">
+                        <span class="info-box-icon bg-primary elevation-1"><i class="fas fa-users"></i></span>
+                        <div class="info-box-content">
+                            <span class="info-box-text">@Global.Persons</span>
+                            <span class="info-box-number">
+                                @Model.AllUsersCount
+                            </span>
+                        </div>
+                    </div>
+                </a>
+            </div>
+        </div>
+        <div class="row">
+            <div class="col-md-12">
+            </div>
+        </div>
+    </div>
+</section>

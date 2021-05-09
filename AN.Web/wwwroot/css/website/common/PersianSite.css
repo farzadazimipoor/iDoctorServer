@@ -1,0 +1,33 @@
+﻿@import url('../../../fonts/iransans/fontiran.css');
+body {
+    font-family: IRANSans !important;
+    font-weight: 300;
+}
+
+h1, h2, h3, h4, h5, h6, input, textarea {
+    font-family: IRANSans !important;
+}
+
+h1 {
+    font-weight: Cored;
+}
+h1, h2, h3, h4, h5, h6, .h1, .h2, .h3, .h4, .h5, .h6 {
+    font-family: IRANSans,sans-serif;
+    font-weight: Cored;
+}
+
+b, strong {
+    font-family: IRANSans,sans-serif;
+}
+
+.footer-above .footer-col-body p {
+    font-family: IRANSans,sans-serif;
+}
+
+.icon::before {
+    font-family: IRANSans,sans-serif;
+}
+
+.ui-widget {
+    font-family: IRANSans,sans-serif;
+}

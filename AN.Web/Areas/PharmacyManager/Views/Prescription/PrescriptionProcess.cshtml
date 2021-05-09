@@ -1,0 +1,127 @@
+﻿@using AN.Web.Areas.PharmacyManager.Models
+
+@model ProcessPrescriptionViewModel
+
+@{
+    var expertise = !string.IsNullOrEmpty(Model.DoctorExpertise) ? $"({Model.DoctorExpertise})" : "";
+    var doctorName = $"{Model.DoctorName} {expertise}";
+}
+
+<div class="row">
+    <div class="col-12">
+        <div class="row" style="border:1px gray solid; border-radius:4px;">
+            <div class="col-2 mt-1">
+                <img src="@("/Print/QrGenerator?data=" + Model.PatientName)" style="width:100px; height:100px;" />
+            </div>
+            <div class="col-8 mt-1">
+                <h3 style="margin-top:5px;margin-bottom:3px;">@AN.Core.Resources.Global.Global.Doctor @doctorName</h3>
+                <p><strong>@Model.HealthCenterName</strong></p>
+                <p>@Model.HealthCenterAddress</p>
+                <p>@Model.HealthCenterPhone</p>
+            </div>
+        </div>
+        <div class="row mt-3 p-2" style="border:1px gray solid; border-radius:4px;">
+            <div class="col-12">
+                <div class="col-md-8 mt-2">
+                    <h4>@Model.PatientName</h4>
+                </div>
+                <div class="col-md-4 mt-2">
+                    <small> @AN.Core.Resources.Global.Global.VisitDate: @Model.VisitDate</small>
+                </div>
+            </div>
+            <div class="col-12">
+                <form id="PrescriptionItemsForm" method="post" action="@Url.Action("PrescriptionProcessDone", "Prescription", new {area = "PharmacyManager"})">
+                    <table id="fingers10" class="table table-striped" style="width:100%">
+                        <thead>
+                            <tr>
+                                <th></th>
+                                <th>@Global.DrugName</th>
+                                <th>@Global.Dose</th>
+                                <th>@Global.Quantity</th>
+                                <th>@Global.Frequency</th>
+                                <th>@Global.Description</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            @foreach (var item in Model.Treatments)
+                            {
+                                <tr>
+                                    <td width="5%">
+                                        <div class="form-group">
+                                            <label>
+                                                <input type="checkbox" class="flat-red" id="@item.Id" name="@item.Id">
+                                            </label>
+                                        </div>
+                                    </td>
+                                    <td>@item.TradeName</td>
+                                    <td>@item.Dose</td>
+                                    <td>@item.Quantity</td>
+                                    <td>@item.Frequency</td>
+                                    <td>@item.Description</td>
+                                </tr>
+
+                            }
+                        </tbody>
+                    </table>
+                </form>
+            </div>
+            <div class="col-12">
+                @Model.Instructions
+            </div>
+        </div>       
+    </div>
+</div>
+<div class="row mt-5">
+    <div class="col-md-12 text-center">
+        <button class="btn btn-success" onclick="prescriptionDone('@Model.Id');"><i class="fa fa-check"></i> @Global.Done</button>
+    </div>
+</div>
+
+<script type="text/javascript">
+    function prescriptionDone(id) {
+        var form = $("#PrescriptionItemsForm");
+         Swal.fire({
+                title: "@AN.Core.Resources.Global.Global.Msg_AreYouSure",
+                text: "@Html.Raw(AN.Core.Resources.EntitiesResources.Messages.WontAbleRevertThis)",
+                type: 'warning',
+                showCancelButton: true,
+                confirmButtonColor: '#3085d6',
+                cancelButtonColor: '#d33',
+                confirmButtonText: "@AN.Core.Resources.Global.Global.Yes",
+                cancelButtonText: "@AN.Core.Resources.Global.Global.No",
+            }).then((result) => {
+                if (result.value) {
+                    waiting('AwroNoreModalDialog', '@AN.Core.Resources.Global.Global.PleaseWait');
+                    $.ajax({
+                        method: "POST",
+                        url: form.attr("action"),
+                        data: { pharmacyPrescriptionId: id, doneItemsJson: JSON.stringify(form.serializeFormJSON()) }, success: function (response) {
+                            if (response.success) {
+                                form.closest('.modal').modal('toggle');
+                                try {
+                                    reloadDataTable();
+                                } catch(err){ }
+                                 try {
+                                     var dashboarNewCountElement = $("#DashboardNewPrescriptionCount");
+                                     var dashboarDoneCountElement = $("#DashboardDonePrescriptionCount");
+                                     var newCountValue = parseInt(dashboarNewCountElement.text());
+                                     var doneCountValue = parseInt(dashboarDoneCountElement.text());
+                                     dashboarNewCountElement.text(--newCountValue);
+                                     dashboarDoneCountElement.text(++doneCountValue);
+                                } catch(err){ }
+                                Toast.fire({ type: 'success', title: '@AN.Core.Resources.Global.Global.Successful', text: response.message });
+                            } else {
+                                Toast.fire({ type: 'error', title: '@AN.Core.Resources.Global.Global.Error', text: response.message });
+                             }
+                        }, error: function (jqXHR, ex) {
+                            handleAjaxError(jqXHR, ex);
+                        }
+                    }).always(function () {
+                        waitingDone('AwroNoreModalDialog');
+                    });
+                }
+            });
+    }
+</script>
+
+

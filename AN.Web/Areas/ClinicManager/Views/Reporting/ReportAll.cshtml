@@ -1,0 +1,62 @@
+﻿@using AN.Core.Resources.Global;
+@using AN.Core.Resources.UI.AdminPanel;
+
+@model AN.Web.Areas.ClinicManager.Models.ReportAllViewModel
+
+@{
+    ViewBag.Title = PanelResource.ClinicTurnsReport;
+    Layout = "~/Views/Shared/_CpanelLayout.cshtml";
+}
+
+@section styles{
+    <link rel="stylesheet" href="~/lib/flatpickr/flatpickr.min.css" type="text/css" />
+}
+
+<section class="content-header">
+    <h1>
+        @PanelResource.ClinicTurnsReport
+        <small>@AN.Core.Resources.UI.AdminPanel.PanelResource.AdminPanel</small>
+    </h1>
+    <ol class="breadcrumb">
+        <li><a href="@Url.Action("Index","Home", new { area = "ClinicManager" })"><i class="fa fa-dashboard"></i> @Global.Home</a></li>
+        <li class="active">@PanelResource.ClinicTurnsReport</li>
+    </ol>
+</section>
+
+<section class="content">
+    <div class="box card">
+        <div class="box-header">
+            @using (Html.BeginForm("ReportAll", "Reporting", new { area = "ClinicManager" }, FormMethod.Post, true, new { @class = "form-horizontal", role = "form" }))
+            {
+                <div class="row">
+                    <div class="col-md-2">
+                        @Html.Label("",Global.Polyclinic)
+                        @Html.DropDownListFor(m => m.PolyclinicId, Model.ListPolyclinics, new { @id = "polyclinicsSelect", @cLass = "form-control" })
+                        @Html.ValidationMessageFor(m => m.PolyclinicId)
+                    </div>
+                    <div class="col-md-2">
+                        @Html.Label("",Global.From, new { @for = "fromDate" })
+                        @Html.TextBoxFor(m => m.FromDate, new { @id = "fromDate", @class = "form-control common-datepicker", @autocomplete = "off" })
+                        @Html.ValidationMessageFor(m => m.FromDate)
+                    </div>
+                    <div class="col-md-2">
+                        @Html.Label("",Global.To, new { @for = "toDate" })
+                        @Html.TextBoxFor(m => m.ToDate, new { @id = "toDate", @class = "form-control common-datepicker", @autocomplete = "off" })
+                        @Html.ValidationMessageFor(m => m.ToDate)
+                    </div>
+                    <div class="col-md-2">
+                        @Html.Label("",Global.Shift, new { @for = "shift" })
+                        @Html.DropDownListFor(m => m.Shift, new List<SelectListItem> { new SelectListItem { Value = "0", Text = Global.Morning }, new SelectListItem { Value = "1", Text = Global.Evening } }, new { @class = "form-control", @id = "shift" })
+                    </div>
+                    <div class="col-md-2">
+                        <input id="btnSearch" class="btn btn-danger" type="submit" value="@PanelResource.ViewAndPrintReport" />
+                    </div>
+                </div>
+            }
+        </div>
+    </div>
+</section>
+
+@section scripts{
+    <script type="text/javascript" src="~/lib/flatpickr/flatpickr.min.js"></script>
+}

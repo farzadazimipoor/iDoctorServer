@@ -1,0 +1,43 @@
+﻿@model AN.Web.Areas.Admin.Models.IndexViewModel
+
+<div class="box box-solid">
+    <div class="box-header">        
+        <div class="pull-left box-tools">
+            <button class="btn btn-default btn-sm pull-left" data-widget="collapse" data-toggle="tooltip" title="Collapse" style="margin-right: 5px;"><i class="fa fa-minus"></i></button>
+        </div>
+        <h5 class="box-title">@AN.Core.Resources.UI.AdminPanel.PanelResource.ReserveTurnsChannelsStatistics</h5>
+    </div>
+    <div class="box-body">
+        <div class="tab-pane active" id="reserve-channel-chart">
+            <canvas class="tab-pane" id="channel-chart" height="160"></canvas>
+            <br />
+            <table class="table table-bordered table-responsive">
+                <thead>
+                    <tr>
+                        <th class="text-center" scope="col">Out</th>
+                        <th class="text-center" scope="col">VOIP</th>
+                        <th class="text-center" scope="col">USSD</th>
+                        <th class="text-center" scope="col">SMS</th>
+                        <th class="text-center" scope="col">Kiosk</th>
+                        <th class="text-center" scope="col">App</th>
+                        <th class="text-center" scope="col">Site</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr>
+                        <td class="text-center">@Model.ChannelReservationStatistics.ReserveOutsideAppointmentsCount</td>
+                        <td class="text-center">@Model.ChannelReservationStatistics.VoipAppointmentsCount</td>
+                        <td class="text-center">@Model.ChannelReservationStatistics.USSDAppointmentsCount</td>
+                        <td class="text-center">@Model.ChannelReservationStatistics.SMSAppointmentsCount</td>
+                        <td class="text-center">@Model.ChannelReservationStatistics.KioskAppointmentsCount</td>
+                        <td class="text-center">@Model.ChannelReservationStatistics.AndroidAppAppointmentsCount</td>
+                        <th class="text-center">@Model.ChannelReservationStatistics.WebsiteAppointmentsCount</th>
+                    </tr>
+                </tbody>
+            </table>           
+        </div>
+    </div>
+    <div class="box-footer no-border">
+
+    </div>
+</div>

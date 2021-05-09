@@ -1,0 +1,127 @@
+﻿@using AN.Core.Resources.Global;
+@using AN.Core.Resources.UI.AdminPanel;
+
+@model IEnumerable<AN.Web.Areas.Admin.Models.ListHospitalsViewModel>
+
+@{
+    ViewBag.Title = Global.Hospitals;
+    Layout = "~/Views/Shared/_CpanelLayout.cshtml";
+}
+
+<partial name="_ConfirmDeleteModalPartial" />
+
+<div class="content-header">
+    <div class="container-fluid">
+        <div class="row mb-2">
+            <div class="col-sm-6">
+                <h1 class="m-0 text-dark">@Global.Hospitals</h1>
+            </div>
+        </div>
+    </div>
+</div>
+
+<div class="content">
+    <div class="container-fluid">
+        <div class="card card-info card-outline">
+            <div class="card-header">
+                <a class="btn btn-default @((AN.Core.Enums.Lang)ViewBag.Lang == AN.Core.Enums.Lang.EN ? "float-right" : "float-left")"
+                   href="@Url.Action("CreateUpdate", "Hospital", new { area = "Admin" })">
+                    <i class="fa fa-plus"></i>
+                </a>
+            </div>
+            <div class="card-body p-0">
+                @if (Model.Any())
+                {
+                    <div class="row">
+                        <div class="col-md-12 table-responsive">
+                            <table class="table table-head-fixed table-striped" style="width:100%">
+                                <thead>
+                                    <tr>
+                                        <th>
+                                            @Html.DisplayNameFor(model => model.HospitalName)
+                                        </th>
+                                        <th>
+                                            @Html.DisplayNameFor(model => model.City)
+                                        </th>
+                                        <th>
+                                            @Html.DisplayNameFor(model => model.Address)
+                                        </th>
+                                        <th style="width:210px;">
+                                            <span></span>
+                                        </th>
+                                    </tr>
+                                </thead>
+                                <tbody>
+                                    @foreach (var item in Model)
+                                    {
+                                        <tr>
+                                            <td>
+                                                @Html.DisplayFor(modelItem => item.HospitalName)
+                                            </td>
+                                            <td>
+                                                @Html.DisplayFor(modelItem => item.City)
+                                            </td>
+                                            <td>
+                                                @Html.DisplayFor(modelItem => item.Address)
+                                            </td>
+                                            <td>
+                                                @using (Html.BeginForm("Delete", "Hospital", new { area = "Admin", id = item.HospitalId }, FormMethod.Post, true, new { role = "form" }))
+                                                {
+                                                    @Html.AntiForgeryToken()
+
+                                                    <div class="btn-group" role="group" aria-label="Basic example">
+                                                        <a href="@Url.Action("Index", "CommonClinic", new { area = "", hospitalId = item.HospitalId })" class="btn btn-default btn-sm"><i class="fa fa-medkit"></i></a>
+                                                        <a href="@Url.Action("CreateUpdate", "Hospital", new { area = "Admin", id = item.HospitalId })" class="btn btn-default btn-sm"><i class="fa fa-edit"></i></a>
+                                                        <button type="button"
+                                                                class="btn btn-default btn-sm"
+                                                                onclick="getDetails('@item.HospitalId')">
+                                                            <i class="fa fa-eye"></i>
+                                                        </button>
+                                                        <a class="btn btn-default btn-sm"
+                                                           data-toggle="modal"
+                                                           data-target="#confirmDelete"
+                                                           data-title="@Global.Delete @item.HospitalName"
+                                                           data-message="@PanelResource.DoYouWantToDeleteThisItem">
+                                                            <i class="fa fa-trash"></i>
+                                                        </a>
+                                                    </div>
+                                                }
+                                            </td>
+                                        </tr>
+                                    }
+                                </tbody>
+                            </table>
+                        </div>
+                    </div>
+                }
+                else
+                {
+                    @await Html.PartialAsync("_ItemNotFound", "Not Any Hospital Found")
+                }
+            </div>
+        </div>
+    </div>
+</div>
+
+@section scripts{
+    <script type="text/javascript">
+        function getDetails(id) {
+            waiting('body', '@AN.Core.Resources.Global.Global.PleaseWait');
+            $.ajax({
+                type: 'Get',
+                url: "/Admin/Hospital/Details/" + id,
+                success: function (response) {
+                    var commonModal = $("#AwroNoreModal");
+                    commonModal.find('.modal-title').text('@Html.Raw(Global.Details + " " + Global.Hospital)');
+                    commonModal.find('.modal-body').html(response);
+                    commonModal.modal({backdrop: 'static', keyboard: false});
+                },
+                error: function (jqXHR, ex) {
+                    handleAjaxError(jqXHR, ex);
+                }
+            }).always(function () {
+                waitingDone('body');
+            });
+        }
+    </script>
+}

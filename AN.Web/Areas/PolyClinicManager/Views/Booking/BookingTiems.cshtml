@@ -1,0 +1,71 @@
+﻿
+@model AN.Core.ViewModels.PolyclinicBookableTimesViewModel
+
+<div class="card card-info card-outline">
+    <div class="card-body @(Model.BokkableTimes.Any() ? "p-0" : "")">
+        @if (Model.BokkableTimes.Any())
+        {
+            <div class="table-responsive">
+                <table class="table table-striped" style="width:100%">
+                    <thead>
+                        <tr>
+                            <th>@Global.DayOFWeek</th>
+                            <th>@Global.Date</th>
+                            <th>@Global.Start</th>
+                            <th>@Global.ToTime</th>
+                            <th></th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        @foreach (var item in Model.BokkableTimes)
+                        {
+                            <tr class="@(item.Type == TimePeriodType.Empty ? "" : "bg-light")">
+                                <td> <span>@AN.BLL.Helpers.Utils.ConvertDayOfWeek(item.StartTime.DayOfWeek.ToString())</span></td>
+                                <td> <span class="badge bg-light">@item.StartTime.ToString("yyyy-MM-dd")</span></td>
+                                <td> <span class="badge @(item.Type == TimePeriodType.Empty ? "bg-info" : "bg-light")">@item.StartTime.ToString("HH:mm")</span></td>
+                                <td> <span class="badge @(item.Type == TimePeriodType.Empty ? "bg-info" : "bg-light")">@item.EndTime.ToString("HH:mm")</span></td>
+                                <td>
+                                    @if (item.Type == TimePeriodType.Empty)
+                                    {
+                                        <button id="btn_@(item.StartTime.ToString("yyyyMMddHHmm"))" type="button" class="btn btn-sm btn-outline-success" onclick="finalBookPreview('@Model.BookingModel.ServiceSupplyId','@Model.BookingModel.CenterServiceId','@Model.BookingModel.PatientId','@item.StartTime','@item.EndTime');">@AN.Web.LocalResource.Resource.ReserveThisTurn</button>
+                                    }
+                                    else if (item.Type == TimePeriodType.Appointment)
+                                    {
+                                        <button class="btn btn-sm btn-default" disabled>@AN.Web.LocalResource.Resource.ReserveThisTurn</button>
+                                    }
+                                </td>
+                            </tr>
+                        }
+                    </tbody>
+                </table>
+            </div>
+        }
+        else
+        {
+            <h5 class="text-center">@AN.Core.Resources.Global.Global.NoAvailableTurnFound</h5>
+        }
+    </div>
+</div>
+
+<script type="text/javascript">
+    function finalBookPreview(ssId,csId,pId,start,end) {       
+         waiting('body', '@Global.PleaseWait');
+         $.ajax({
+             method: "GET",
+             url: "/PolyclinicManager/Booking/FinalBookConfirm?serviceSupplyId=" + ssId + "&centerServiceId=" + csId + "&patientId=" + pId + "&start=" + start + "&end=" + end,
+             dataType: "html",
+             success: function (result) {
+                  var commonModal = $("#AwroNoreModal");
+                  commonModal.find('#AwroNoreModalDialog').addClass("modal-lg");
+                  commonModal.find('.modal-title').text('@Html.Raw(PanelResource.ReserveTurn)');
+                  commonModal.find('#CommonModalContent').html(result);
+                  commonModal.modal({backdrop: 'static', keyboard: false});
+             }, error: function (jqXHR, ex) {
+                 handleAjaxError(jqXHR, ex);
+             }
+         }).always(function () {
+             waitingDone('body');
+         });
+    }
+</script>
+

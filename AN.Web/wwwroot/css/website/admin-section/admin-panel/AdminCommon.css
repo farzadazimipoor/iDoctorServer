@@ -1,0 +1,210 @@
+﻿.toast {
+    opacity: 1 !important;
+}
+
+.beLTR { direction:ltr; }
+
+.appointments-statistics {
+    padding: 0 20px 10px 20px;
+    color: white;
+}
+
+.my-dashboard-card {
+    min-width: 100%;
+    padding: 10px;   
+    border-radius: 3px;
+    color:black;
+    background-color: whitesmoke;
+}
+
+.popover-content {
+    color: black;
+    font-size: 12px;
+    font-family: 'Vazir';
+}
+
+.txtdanger {
+    color: red;
+}
+.ui-state-highlight {
+    /*height: 100px;*/
+    background-color: #ccc !important;
+}
+
+#tblclinicImages td {
+    text-align: center;
+    vertical-align: middle;
+}
+
+#tblclinicImages .size {
+    direction: ltr;
+    unicode-bidi: bidi-override;
+    text-align: center;
+}
+
+#tblclinicImages .name {
+    direction: ltr;
+    unicode-bidi: bidi-override;
+    text-align: center;
+}
+
+.ui-sortable-helper {
+    display: table !important;
+    background-color: white;
+}
+
+div.editable-input input {
+    direction: ltr;
+    text-align: center;
+}
+
+#fileupload {
+    margin-top: 20px;
+}
+
+.checkbox label {
+    padding-right: 0px;
+    padding-left: initial;
+}
+
+.description-control {
+    min-height: 110px;
+}
+#tblPoliclinicImages td {
+    text-align: center;
+    vertical-align: middle;
+}
+
+#tblPoliclinicImages .size {
+    direction: ltr;
+    unicode-bidi: bidi-override;
+    text-align: center;
+}
+
+#tblPoliclinicImages .name {
+    direction: ltr;
+    unicode-bidi: bidi-override;
+    text-align: center;
+}
+
+.pager-info {
+    text-align: center;
+}
+
+.pagination-container {
+    text-align: center;
+}
+
+#previewAvatar {
+    display: none;
+}
+
+.date-input {
+    direction: ltr;
+    text-align: left;
+}
+
+#btnGo {
+    margin-top: 22px;
+}
+
+.resrver-action {
+    text-align: center;
+}
+
+.required {
+    color: red;
+}
+
+.reservationInfo {
+    text-align: center;
+}
+
+.reserved {
+    background-color: lightblue;
+}
+
+.reserved-outside {
+    background-color: lightgray;
+}
+
+#healthservice-col {
+    display: none;
+}
+
+#btn-reserve-outside {
+    margin-bottom: 10px;
+}
+
+.reserve-inprogress {
+    background-color: lightgoldenrodyellow;
+}
+
+.cancel {
+    color: red;
+}
+
+.delivered {
+    color: green;
+    font-weight: Cored;
+}
+
+.number-center {
+    direction: ltr;
+    text-align: center;
+}
+
+#loadProgress {
+    display: none;
+}
+
+#btnSearch {
+    margin-top: 25px;
+}
+.my-dropdown-link {
+    display: block;
+    padding: 3px 20px;
+    clear: both;
+    font-weight: 400;
+    line-height: 1.42857143;
+    color: #777;
+    white-space: nowrap;
+}
+
+.err-field {
+    border: 2px solid red;
+    color: darkred;
+}
+
+.true-field {
+    border: 2px solid green;
+    color: darkgreen;
+}
+
+#queue-count {
+    font-size: 50px;
+}
+
+.queue-today-title {
+    padding-top: 15px;
+}
+
+.queue-today-patient {
+    padding: 5px;
+}
+
+#mobileCheckLoader {
+    display: none;
+}
+
+#mobileCheck {
+    display: none;
+}
+
+[v-cloak] > * {
+    display: none;
+}
+
+[v-cloak]::before {
+    content: "لطفا صبر نمایید..."
+}

@@ -1,0 +1,76 @@
+﻿
+@model AN.Web.Areas.PolyClinicManager.Models.FindPatientViewModel
+
+<div id="FindPatientArea">
+    <div id="findpatient">
+        <div class="row">
+            <div class="col-md-6 col-md-offset-3 text-center">
+                <button id="AddPatientButton" type="button" class="btn btn-primary" onclick="addNewPatient('@Model.AppointmentId')"><i class="fa fa-plus"></i> @AN.Core.Resources.UI.AdminPanel.PanelResource.AddNewPatient </button>
+            </div>
+        </div>
+        <div class="row top20">
+            <div class="col-md-6 col-md-offset-3">
+                <div class="panel panel-default">
+                    <div class="panel-body">
+                        <form id="findPatientForm" class="form-horizontal" action="@Url.Action("FindByUniqueId", "Patient", new {area = "PolyClinicManager"})" method="POST">
+                            @Html.HiddenFor(m => m.AppointmentId)
+                            <div class="col-md-12 top10">
+                                @Html.LabelFor(m => m.UniqueId) : @Html.ValidationMessageFor(m => m.UniqueId, "", new { @class = "text-danger" })
+                                <div class="input-group">
+                                    @Html.TextBoxFor(m => m.UniqueId, new { maxlength = "10", @class = "form-control", @placeholder = AN.Core.Resources.Global.Global.TrackingCode })
+                                    <span class="input-group-btn">
+                                        <button type="submit" class="btn btn-default">@AN.Core.Resources.Global.Global.Search <i class="fa fa-search"></i></button>
+                                    </span>
+                                </div>
+                            </div>
+                        </form>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+<script type="text/javascript">
+    $(function () {
+        var form = $("#findpatient").find('form');
+        $.validator.unobtrusive.parse(form);
+        $(form).on("submit", function (e) {
+            e.preventDefault();
+            if (form.valid()) {
+                waiting('findpatient', '@AN.Core.Resources.Global.Global.PleaseWait');
+                $.ajax({
+                    method: "POST",
+                    url: $(this).attr("action"),
+                    dataType: "html",
+                    data: form.serialize(), success: function (result) {
+                        $("#CommonModalContent").html(result);
+                        $("#CommonModalContent .common-datapicker").flatpickr();
+                    }, error: function (jqXHR, ex) {
+                        handleAjaxError(jqXHR, ex);
+                    }
+                }).always(function () {
+                    waitingDone('findpatient');
+                });
+            }
+        });
+    });
+
+    function addNewPatient(appointmentId) {
+        waiting('FindPatientArea', '@AN.Core.Resources.Global.Global.PleaseWait');
+        $.ajax({
+            method: "GET",
+            url: "/PolyClinicManager/Patient/CreateUpdate?appointmentId=" + appointmentId,
+            dataType: "html",
+            success: function (result) {
+                $("#CommonModalContent").html(result);
+                $("#CommonModalContent .common-datapicker").flatpickr();
+            },
+            error: function (jqXHR, ex) {
+                handleAjaxError(jqXHR, ex);
+            }
+        }).always(function () {
+            waitingDone('FindPatientArea');
+        });
+    }
+</script>

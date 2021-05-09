@@ -1,0 +1,253 @@
+﻿@using AN.Core.Resources.Global
+
+@model AN.Web.Models.DoctorsFilterDTO
+
+@{
+    ViewBag.Title = "Doctors";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<main id="SearchDoctorsSection" class="section search__result" ng-controller="DoctorsController">
+    <div class="container-fluid">
+        <div class="container an-container">
+            <div class="row">
+                <div class="col-lg-4">
+                    <div class="card filter-card filter-widget" id="filter-widget">
+                        <div class="filter-card__title">
+                            <h4 class="h4">@Global.Filter</h4>
+                            <div class="panel-close-btn hide--desktop"> <span>&times;</span></div>
+                        </div>
+                        <div class="divider"></div>
+                        <form>
+                            <div class="search__param filter-name">
+                                <div class="input-group">
+                                    <input class="form-control"
+                                           type="search"
+                                           placeholder="@Global.DoctorOrClinicOrHospitalName"
+                                           name="SearchTerm"
+                                           ng-model="SearchTerm" />
+                                </div>
+                            </div>
+                            <div class="divider"></div>
+                            <div class="search__param filter-hospital">
+                                <select id="filter-hospital" style="visibility: hidden" name="Hospital" ng-model="Hospital">
+                                    @if (Model.Hospital == null)
+                                    {
+                                        <option value="" selected>@Global.Hospital</option>
+                                    }
+                                    @foreach (var h in (ViewBag.Hospitals as List<SelectListItem>))
+                                    {
+                                        if (h.Selected)
+                                        {
+                                            <option value="@h.Value" selected>@h.Text</option>
+                                        }
+
+                                        else
+                                        {
+                                            <option value="@h.Value">@h.Text</option>
+                                        }
+                                    }
+                                </select>
+                            </div>
+                            <div class="divider"></div>
+                            <div class="search__param filter-city">
+                                <select id="filter-city" style="visibility: hidden" name="City" ng-model="City">
+                                    @if (Model.City == null)
+                                    {
+                                        <option value="" selected>@Global.City</option>
+                                    }
+                                    @foreach (var h in (ViewBag.Cities as List<SelectListItem>))
+                                    {
+                                        if (h.Selected)
+                                        {
+                                            <option value="@h.Value" selected>@h.Text</option>
+                                        }
+
+                                        else
+                                        {
+                                            <option value="@h.Value">@h.Text</option>
+                                        }
+                                    }
+                                </select>
+                            </div>
+                            <div class="divider">       </div>
+                            <div class="search__param filter-clinic">
+                                <select id="filter-clinic" style="visibility: hidden" name="Clinic" ng-model="Clinic">
+                                    @if (Model.Clinic == null)
+                                    {
+                                        <option value="" selected>@Global.Clinic</option>
+                                    }
+                                    @foreach (var h in (ViewBag.ClinicTypes as List<SelectListItem>))
+                                    {
+                                        if (h.Selected)
+                                        {
+                                            <option value="@h.Value" selected>@h.Text</option>
+                                        }
+
+                                        else
+                                        {
+                                            <option value="@h.Value">@h.Text</option>
+                                        }
+                                    }
+                                </select>
+                            </div>
+                            <div class="divider"></div>
+                            <div class="search__param filter-proficiency">
+                                <select id="filter-proficiency" style="visibility: hidden" name="Expertise" ng-model="Expertise">
+                                    @if (Model.Expertise == null)
+                                    {
+                                        <option value="" selected>@Global.Expertise</option>
+                                    }
+                                    @foreach (var h in (ViewBag.Expertises as List<SelectListItem>))
+                                    {
+                                        if (h.Selected)
+                                        {
+                                            <option value="@h.Value" selected>@h.Text</option>
+                                        }
+
+                                        else
+                                        {
+                                            <option value="@h.Value">@h.Text</option>
+                                        }
+                                    }
+                                </select>
+                            </div>
+                            <div class="divider"></div>
+                            <div class="hasAppointment">
+                                <strong>@AN.Web.LocalResource.Resource.OnlyHaveTurn</strong>
+                                <label class="an-checkbox">
+                                    <input type="checkbox" id="HasEmptyTurn" name="HasEmptyTurn" ng-model="HasEmptyTurn" /><span></span>
+                                </label>
+                            </div>
+                            <div class="divider"></div>
+                            <div class="search__param filter-gender">
+                                <strong>@Global.Gender</strong>
+                                <div class="form-check-groups">
+                                    <div class="form-checks form-checks-inline">
+                                        <label class="form-check-label" for="maleFemale">
+                                            <input class="form-check-input" id="maleFemale" type="radio" name="Gender" value="2" ng-model="Gender" /><span>@AN.Core.Resources.Global.Global.All</span>
+                                        </label>
+                                    </div>
+                                    <div class="form-checks form-checks-inline">
+                                        <label class="form-check-label" for="male">
+                                            <input class="form-check-input" id="male" type="radio" name="Gender" value="1" ng-model="Gender" /><span>@Global.Male</span>
+                                        </label>
+                                    </div>
+                                    <div class="form-checks form-checks-inline">
+                                        <label class="form-check-label" for="female">
+                                            <input class="form-check-input" id="female" type="radio" name="Gender" value="0" ng-model="Gender" /><span>@Global.FeMale</span>
+                                        </label>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="divider"></div>
+                            <button id="btnApplyFilters" class="btn btn--search filter-trigger" type="button">@Global.Search</button>
+                        </form>
+                    </div>
+                </div>
+                <div class="col-lg-8">
+                    <div class="doctors-results">
+                        <div class="mobile-filter-trigger">
+                            <button class="btn btn--large btn--primary btn--radius" type="button" id="filter-trigger-btn">@AN.Core.Resources.Global.Global.Filter</button>
+                        </div>
+                        @*<div class="row">
+                                <div class="col-lg-12">
+                                    <h4>ئەنجامی گەڕان</h4>
+                                    <div class="divider">  </div>
+                                </div>
+                            </div>*@
+                        <div class="row" ng-hide="!copy_items" ng-cloak>
+                            <div class="col-xs-12 col-md-6 col-lg-4" ng-repeat="doctor in copy_items">
+                                <div class="card doctor-card {{doctor.hasEmptyTurn | iif: 'has--appointment' : ''}}" id="DoctorCard{{doctor.id}}" ng-cloak>
+                                    <div class="doctor-profile">
+                                        <div class="doctor-picture"><img src="~/images/avatars/{{doctor.avatar}}?ver=@(Guid.NewGuid())" alt="{{doctor.fullName}}" ng-cloak /></div>
+                                        <div class="doctor-details">
+                                            <h6 class="doctor-name">{{doctor.fullName}}</h6>
+                                            <p class="doctor-proficiency">{{doctor.expertise}}</p>
+                                        </div>
+                                    </div>
+                                    <div class="card-actions">
+                                        <button ng-show="doctor.hasEmptyTurn" class="action action--appointment btn" type="button" ng-click="ReserveAppointment(doctor,'@ViewBag.Lng')">@Global.BookingTurn</button>
+                                        <button ng-show="!doctor.hasEmptyTurn" class="action action--appointment btn disabled" type="button" disabled="disabled">@Global.BookingTurn</button>
+                                        <button class="action action--detail btn" type="button" ng-click="GetDetails(doctor.id)">@Global.Details</button>
+                                    </div>
+                                </div>
+                            </div>
+
+                            <div class="col-lg-12" ng-hide="!copy_items" ng-cloak>
+                                <div class="card doctors__result-pagination">
+                                    <nav aria-label="Page navigation example">
+                                        <ul class="pagination">
+                                            <li class="page-item" ng-class="{disabled:!navigators.prev.state}">
+                                                <a href="" class="page-link" aria-label="Previous" ng-click="prev()">
+                                                    @Global.Previews
+                                                </a>
+                                            </li>
+                                            <li class="page-item" ng-repeat="page in pages" ng-class="{active:page.active}" ng-disabled="page.active">
+                                                <a href="" class="page-link" ng-click="setPageActive(page.page)">{{page.page}}</a>
+                                            </li>
+                                            <li class="page-item" ng-class="{disabled:!navigators.next.state}">
+                                                <a href="" class="page-link" aria-label="Next" ng-click="next()">
+                                                    @Global.Next
+                                                </a>
+                                            </li>
+                                        </ul>
+                                    </nav>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <partial name="~/Views/Doctors/Partials/_ReserveTurnModal.cshtml"/>
+    <partial name="~/Views/Doctors/Partials/_DoctorDetailsModal.cshtml"/>
+    <partial name="~/Views/Doctors/Partials/_OtpLoginModal.cshtml"/>   
+
+</main>
+
+@section scripts{
+    <script type="text/javascript">
+
+        $(function () {
+            $('#filter-hospital').select2({
+                width: '100%',
+                placeholder: '@Html.Raw(AN.Core.Resources.Global.Global.Hospital)',
+                dir: 'rtl'
+            });
+            $('#filter-clinic').select2({
+                width: '100%',
+                placeholder: '@Html.Raw(AN.Core.Resources.Global.Global.Clinic)',
+                dir: 'rtl'
+            });
+            $('#filter-proficiency').select2({
+                width: '100%',
+                placeholder: '@Html.Raw(AN.Core.Resources.Global.Global.Expertise)',
+                dir: 'rtl'
+            });
+            $('#filter-city').select2({
+                width: '100%',
+                placeholder: '@Html.Raw(AN.Core.Resources.Global.Global.City)',
+                dir: 'rtl'
+            });
+            var searchScope = $("#SearchDoctorsSection").scope();
+            searchScope.SearchTerm = '@Model.SearchTerm';
+            searchScope.Expertise = '@Model.Expertise';
+            searchScope.Hospital = '@Model.Hospital';
+            searchScope.Clinic = '@Model.Clinic';
+            searchScope.City = '@Model.City';
+            searchScope.HasEmptyTurn = '@Model.HasEmptyTurn';
+
+            searchScope.SearchDoctors(0, true);
+        });
+
+        $("#btnApplyFilters").on("click", function () {
+            $("#SearchDoctorsSection").scope().SearchDoctors(0, true);
+        });
+
+    </script>
+}
+
+

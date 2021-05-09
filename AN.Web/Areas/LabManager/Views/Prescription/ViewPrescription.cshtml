@@ -1,0 +1,142 @@
+﻿
+@model AN.Web.Areas.LabManager.Models.LabratoryPrescriptionDetailsViewModel
+
+@{
+    var expertise = !string.IsNullOrEmpty(Model.DoctorExpertise) ? $"({Model.DoctorExpertise})" : "";
+    var doctorName = $"{Model.DoctorName} {expertise}";
+}
+
+<div class="row">
+    <div class="col-12">
+        <div class="card card-widget widget-user-2 m-0 card-primary card-outline">
+            <div class="widget-user-header bg-light">
+                <div class="widget-user-image">
+                    <img class="img-bordered elevation-2 mt-3" src="@("/Print/QrGenerator?data=" + Model.PatientName)">
+                </div>
+                <h2 class="widget-user-username text-bold">@AN.Core.Resources.Global.Global.Doctor @doctorName</h2>
+                <h6 class="widget-user-desc">@Model.HealthCenterName</h6>
+                <h6 class="widget-user-desc">@Model.HealthCenterAddress</h6>
+                <h6 class="widget-user-desc">@Model.HealthCenterPhone</h6>
+            </div>
+        </div>
+        <div class="card card-widget widget-user-2 mt-3">
+            <div class="widget-user-header bg-warning">
+                <div class="widget-user-image">
+                    <img class="img-circle elevation-2" src="@Model.PatientAvatar">
+                </div>
+                <h3 class="widget-user-username">@Model.PatientName</h3>
+                <h5 class="widget-user-desc">@AN.Core.Resources.Global.Global.VisitDate: @Model.VisitDate</h5>
+            </div>
+            @if (Model.LabNeeds != null && Model.LabNeeds.Any())
+            {
+                <div class="card-footer p-0">
+                    <ul class="nav flex-column">
+                        @foreach (var item in Model.LabNeeds)
+                        {
+                            <li class="nav-item">
+                                <a href="#" class="nav-link">
+                                    @item
+                                </a>
+                            </li>
+                        }
+                    </ul>
+                </div>
+            }
+        </div>
+        <div class="row">
+            <div class="col-12 mb-5">
+                <div class="row mt-3" style="border-top:1px lightgray solid; margin:10px; padding:10px;">
+                    <div class="col-xs-12">
+                        @Model.Instructions
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+@if (Model.Status == PrescriptionStatus.PENDING)
+{
+    <div class="row mt-5">
+        <div class="col-md-12 text-center">
+            <button class="btn btn-success" onclick="previewSetNewStatus('@Model.Id', '@ViewBag.CenterId','@Model.TreatmentHistoryId','@PrescriptionStatus.DONE');"><i class="fa fa-check"></i> @Global.Done</button>
+            <button class="btn btn-danger" onclick="previewDeletePrescription('@Model.Id', '@ViewBag.CenterId','@Model.TreatmentHistoryId');"><i class="fa fa-trash"></i> @Global.Delete</button>
+        </div>
+    </div>
+}
+
+<script type="text/javascript">
+    function previewSetNewStatus(id, sonarId, treatmentId, newStatus) {
+             Swal.fire({
+                title: "@AN.Core.Resources.Global.Global.Msg_AreYouSure",
+                text: "@Html.Raw(AN.Core.Resources.EntitiesResources.Messages.WontAbleRevertThis)",
+                type: 'warning',
+                showCancelButton: true,
+                confirmButtonColor: '#3085d6',
+                cancelButtonColor: '#d33',
+                confirmButtonText: "@AN.Core.Resources.Global.Global.Yes",
+                cancelButtonText: "@AN.Core.Resources.Global.Global.No",
+            }).then((result) => {
+                if (result.value) {
+                    waiting('AwroNoreModalDialog', '@AN.Core.Resources.Global.Global.PleaseWait');
+                    $.ajax({
+                        type: 'Get',
+                        url: "/LabManager/Prescription/SetStatus?id=" + id + "&centerId=" + sonarId + "&treatmentId=" + treatmentId + "&status=" + newStatus,
+                        success: function (response) {
+                        if (response.success) {
+                            try {
+                                $("#AwroNoreModal").modal('toggle');
+                                reloadDataTable();
+                            } catch(err){ }
+                            Toast.fire({ type: 'success', title: '@AN.Core.Resources.Global.Global.Successful', text: response.message });
+                        } else {
+                            Toast.fire({ type: 'error', title: '@AN.Core.Resources.Global.Global.Error', text: response.message });
+                        }
+                    },
+                        error: function (jqXHR, ex) {
+                            handleAjaxError(jqXHR, ex);
+                        }
+                    }).always(function () {
+                        waitingDone('AwroNoreModalDialog');
+                    });
+                }
+            });
+    }
+
+    function previewDeletePrescription(id, sonarId, treatmentId) {
+             Swal.fire({
+                title: "@AN.Core.Resources.Global.Global.Msg_AreYouSure",
+                text: "@Html.Raw(AN.Core.Resources.EntitiesResources.Messages.WontAbleRevertThis)",
+                type: 'warning',
+                showCancelButton: true,
+                confirmButtonColor: '#3085d6',
+                cancelButtonColor: '#d33',
+                confirmButtonText: "@AN.Core.Resources.Global.Global.Yes",
+                cancelButtonText: "@AN.Core.Resources.Global.Global.No",
+            }).then((result) => {
+                if (result.value) {
+                    waiting('AwroNoreModalDialog', '@AN.Core.Resources.Global.Global.PleaseWait');
+                    $.ajax({
+                        type: 'Get',
+                        url: "/LabManager/Prescription/DeletePrescription?id=" + id + "&centerId=" + sonarId + "&treatmentId=" + treatmentId,
+                        success: function (response) {
+                            if (response.success) {
+                                try {
+                                    $("#AwroNoreModal").modal('toggle');
+                                    reloadDataTable();
+                                } catch(err){ }
+                                Toast.fire({ type: 'success', title: '@AN.Core.Resources.Global.Global.Successful', text: response.message });
+                            } else {
+                                Toast.fire({ type: 'error', title: '@AN.Core.Resources.Global.Global.Error', text: response.message });
+                            }
+                    },
+                        error: function (jqXHR, ex) {
+                            handleAjaxError(jqXHR, ex);
+                        }
+                    }).always(function () {
+                        waitingDone('AwroNoreModalDialog');
+                    });
+                }
+            });
+    }
+</script>

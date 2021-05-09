@@ -1,0 +1,283 @@
+﻿@using AN.Core.Resources.UI.AdminPanel;
+@using AN.Core.Resources.Global;
+
+@model AN.Web.Areas.Admin.Models.HospitalViewModel
+
+@{
+    var title = Model.Id.HasValue ? PanelResource.EditHospital : PanelResource.AddNewHospital;
+    ViewBag.Title = title;
+    Layout = "~/Views/Shared/_CpanelLayout.cshtml";
+}
+
+@section styles{
+    <link rel="stylesheet" href="~/lib/bootstrap-fileinput/css/fileinput.min.css" />
+    <link rel="stylesheet" href="~/lib/iCheck/skins/all.css" type="text/css" />
+}
+
+<div class="content-header">
+    <div class="container-fluid">
+        <div class="row mb-2">
+            <div class="col-sm-6">
+                <h1 class="m-0 text-dark">@title</h1>
+            </div>
+            <div class="col-sm-6">
+                <ol class="breadcrumb @(ViewBag.Lang == AN.Core.Enums.Lang.EN ? "float-sm-right" : "float-sm-left") ">
+                    <li class="breadcrumb-item"><a href="@Url.Action("Index","Home", new { area = "Admin" })">@AN.Core.Resources.Global.Global.Home</a></li>
+                    <li class="breadcrumb-item"><a href="@Url.Action("Index","Hospital", new { area = "admin" })">@Global.Hospitals</a></li>
+                    <li class="breadcrumb-item active">@title</li>
+                </ol>
+            </div>
+        </div>
+    </div>
+</div>
+
+<div class="content">
+    <div class="container-fluid">
+        @using (Html.BeginForm("CreateUpdate", "Hospital", new { area = "Admin" }, FormMethod.Post, true, new { @class = "form-horizontal", role = "form" }))
+        {
+            @Html.AntiForgeryToken()
+            @Html.HiddenFor(m => m.Id)
+            <div class="card card-info card-outline">
+                <div class="card-body">
+                    <!--Tabs Start-->
+                    <div class="row">
+                        <div class="col-md-12">
+                            <ul class="nav nav-tabs">
+                                <li class="nav-item">
+                                    <a class="nav-link active" href="#hospitalInfoTab" data-toggle="tab"><i class="fa fa-list-alt fa-lg fa-fw"></i> @AN.Core.Resources.Global.Global.Details</a>
+                                </li>
+                                @if (Model.Id != null)
+                                {
+                                    <li class="nav-item">
+                                        <a class="nav-link" href="#HospitalLogoTab" data-toggle="tab"><i class="fa fa-image fa-lg fa-fw"></i> @AN.Core.Resources.Global.Global.Images</a>
+                                    </li>
+                                }
+                            </ul>
+                            <div class="tab-content">
+                                <div class="tab-pane active animated fadeIn" id="hospitalInfoTab">
+                                   <div class="card">
+                                       <div class="card-body">
+                                           <div class="row">
+                                               <div class="col-md-6">
+                                                   <div class="form-group">
+                                                       @Html.LabelFor(m => m.CityId)
+                                                       @Html.DropDownListFor(model => model.CityId, Model.listPlaces, new { @class = "form-control" })
+                                                       @Html.ValidationMessageFor(m => m.CityId, "", new { @class = "text-danger" })
+                                                   </div>
+                                               </div>
+                                               <div class="col-md-3">
+                                                   <div class="form-group">
+                                                       @Html.LabelFor(m => m.GoogleMap_lat)
+                                                       @Html.TextBoxFor(m => m.GoogleMap_lat, new { maxlength = "9", @class = "form-control", @placeholder = "Latitude" })
+                                                       @Html.ValidationMessageFor(m => m.GoogleMap_lat, "", new { @class = "text-danger" })
+                                                   </div>
+                                               </div>
+                                               <div class="col-md-3">
+                                                   <div class="form-group">
+                                                       @Html.LabelFor(m => m.GoogleMap_lng)
+                                                       @Html.TextBoxFor(m => m.GoogleMap_lng, new { maxlength = "9", @class = "form-control", @placeholder = "Longitude" })
+                                                       @Html.ValidationMessageFor(m => m.GoogleMap_lng, "", new { @class = "text-danger" })
+                                                   </div>
+                                               </div>
+                                           </div>
+                                           <div class="row">
+                                               <div class="col-md-4">
+                                                   <div class="card">
+                                                       <div class="card-header">
+                                                           <h5 class="m-0">@Global.Kurdish</h5>
+                                                       </div>
+                                                       <div class="card-body">
+                                                           <div class="form-group">
+                                                               @Html.LabelFor(m => m.Name_Ku)
+                                                               @Html.TextBoxFor(m => m.Name_Ku, new { @class = "form-control", maxlength = "100" })
+                                                               @Html.ValidationMessageFor(m => m.Name_Ku, "", new { @class = "text-danger" })
+                                                           </div>
+                                                           <div class="form-group">
+                                                               @Html.LabelFor(m => m.Address_Ku)
+                                                               @Html.TextBoxFor(m => m.Address_Ku, new { @class = "form-control", maxlength = "255" })
+                                                               @Html.ValidationMessageFor(m => m.Address_Ku, "", new { @class = "text-danger" })
+                                                           </div>
+                                                           <div class="form-group">
+                                                               @Html.LabelFor(m => m.FinalBookMessage_Ku)
+                                                               @Html.TextAreaFor(m => m.FinalBookMessage_Ku, new { @class = "form-control", maxlength = "255" })
+                                                               @Html.ValidationMessageFor(m => m.FinalBookMessage_Ku, "", new { @class = "text-danger" })
+                                                           </div>
+                                                           <div class="form-group">
+                                                               @Html.LabelFor(m => m.FinalBookSMSMessage_Ku)
+                                                               @Html.TextAreaFor(m => m.FinalBookSMSMessage_Ku, new { @class = "form-control", maxlength = "50" })
+                                                               @Html.ValidationMessageFor(m => m.FinalBookSMSMessage_Ku, "", new { @class = "text-danger" })
+                                                           </div>
+                                                           <div class="form-group">
+                                                               @Html.LabelFor(m => m.Description_Ku)
+                                                               @Html.TextAreaFor(m => m.Description_Ku, new { @class = "form-control", maxlength = "1000" })
+                                                               @Html.ValidationMessageFor(m => m.Description_Ku, "", new { @class = "text-danger" })
+                                                           </div>
+                                                       </div>
+                                                   </div>
+                                               </div>
+                                               <div class="col-md-4">
+                                                   <div class="card">
+                                                       <div class="card-header">
+                                                           <h5 class="m-0">@Global.Arabic</h5>
+                                                       </div>
+                                                       <div class="card-body">
+                                                           <div class="form-group">
+                                                               @Html.LabelFor(m => m.Name_Ar)
+                                                               @Html.TextBoxFor(m => m.Name_Ar, new { @class = "form-control", maxlength = "100" })
+                                                               @Html.ValidationMessageFor(m => m.Name_Ar, "", new { @class = "text-danger" })
+                                                           </div>
+                                                           <div class="form-group">
+                                                               @Html.LabelFor(m => m.Address_Ar)
+                                                               @Html.TextBoxFor(m => m.Address_Ar, new { @class = "form-control", maxlength = "255" })
+                                                               @Html.ValidationMessageFor(m => m.Address_Ar, "", new { @class = "text-danger" })
+                                                           </div>
+                                                           <div class="form-group">
+                                                               @Html.LabelFor(m => m.FinalBookMessage_Ar)
+                                                               @Html.TextAreaFor(m => m.FinalBookMessage_Ar, new { @class = "form-control", maxlength = "255" })
+                                                               @Html.ValidationMessageFor(m => m.FinalBookMessage_Ar, "", new { @class = "text-danger" })
+                                                           </div>
+                                                           <div class="form-group">
+                                                               @Html.LabelFor(m => m.FinalBookSMSMessage_Ar)
+                                                               @Html.TextAreaFor(m => m.FinalBookSMSMessage_Ar, new { @class = "form-control", maxlength = "50" })
+                                                               @Html.ValidationMessageFor(m => m.FinalBookSMSMessage_Ar, "", new { @class = "text-danger" })
+                                                           </div>
+                                                           <div class="form-group">
+                                                               @Html.LabelFor(m => m.Description_Ar)
+                                                               @Html.TextAreaFor(m => m.Description_Ar, new { @class = "form-control", maxlength = "1000" })
+                                                               @Html.ValidationMessageFor(m => m.Description_Ar, "", new { @class = "text-danger" })
+                                                           </div>
+                                                       </div>
+                                                   </div>
+                                               </div>
+                                               <div class="col-md-4">
+                                                   <div class="card">
+                                                       <div class="card-header">
+                                                           <h5 class="m-0">@Global.English</h5>
+                                                       </div>
+                                                       <div class="card-body">
+                                                           <div class="form-group">
+                                                               @Html.LabelFor(m => m.Name)
+                                                               @Html.TextBoxFor(m => m.Name, new { @class = "form-control beLTR", maxlength = "100" })
+                                                               @Html.ValidationMessageFor(m => m.Name, "", new { @class = "text-danger" })
+                                                           </div>
+                                                           <div class="form-group">
+                                                               @Html.LabelFor(m => m.Address)
+                                                               @Html.TextBoxFor(m => m.Address, new { @class = "form-control beLTR", maxlength = "255" })
+                                                               @Html.ValidationMessageFor(m => m.Address, "", new { @class = "text-danger" })
+                                                           </div>
+                                                           <div class="form-group">
+                                                               @Html.LabelFor(m => m.FinalBookMessage)
+                                                               @Html.TextAreaFor(m => m.FinalBookMessage, new { @class = "form-control beLTR", maxlength = "255" })
+                                                               @Html.ValidationMessageFor(m => m.FinalBookMessage, "", new { @class = "text-danger" })
+                                                           </div>
+                                                           <div class="form-group">
+                                                               @Html.LabelFor(m => m.FinalBookSMSMessage)
+                                                               @Html.TextAreaFor(m => m.FinalBookSMSMessage, new { @class = "form-control beLTR", maxlength = "50" })
+                                                               @Html.ValidationMessageFor(m => m.FinalBookSMSMessage, "", new { @class = "text-danger" })
+                                                           </div>
+                                                           <div class="form-group">
+                                                               @Html.LabelFor(m => m.Description)
+                                                               @Html.TextAreaFor(m => m.Description, new { @class = "form-control beLTR", maxlength = "1000" })
+                                                               @Html.ValidationMessageFor(m => m.Description, "", new { @class = "text-danger" })
+                                                           </div>
+                                                       </div>
+                                                   </div>
+                                               </div>
+                                           </div>
+                                           <div class="box box-default">
+                                               <div class="box-body">
+                                                   <div class="panel panel-default">
+                                                       <div class="panel-body">
+
+                                                       </div>
+                                                   </div>
+                                               </div>
+                                               <div class="box-footer text-center">
+
+                                               </div>
+                                           </div>
+                                           <div class="card-footer text-center">
+                                               <button type="submit" class="btn btn-info">@AN.Core.Resources.Global.Global.Save</button>
+                                               <a href="@Url.Action("Index","Hospital",new { area = "Admin" })" class="btn btn-danger">@AN.Core.Resources.Global.Global.Cancel</a>
+                                           </div>
+                                       </div>
+                                   </div>
+                                </div>
+                                @if (Model.Id != null)
+                                {
+                                    <div class="tab-pane animated fadeIn p-3" id="HospitalLogoTab">
+                                        <div class="card card-info">
+                                            <div class="card-header">
+                                                <h5 class="m-0">@Global.Logo</h5>
+                                            </div>
+                                            <div class="card-body p-2">
+                                                <div class="row justify-content-center">
+                                                    <div class="col-md-4 text-center">
+                                                        <div class="kv-avatar">
+                                                            <div class="file-loading">
+                                                                <input id="LogoPhoto" name="LogoPhoto" type="file" accept="image/*">
+                                                            </div>
+                                                        </div>
+                                                        <div class="kv-avatar-hint"><small>Max File Size: 500 KB</small></div>
+                                                        <div id="kv-avatar-errors-1" class="center-block" style="display:none"></div>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                }
+                            </div>
+                        </div>
+                    </div>
+                    <!--Tabs End-->
+                </div>
+            </div>
+        }
+    </div>
+</div>
+
+
+@section scripts{
+    <script type="text/javascript" src="~/lib/bootstrap-fileinput/js/fileinput.min.js"></script>
+    <script type="text/javascript" src="~/lib/bootstrap-fileinput/themes/fas/theme.min.js"></script>
+    <script>
+        (function () {
+            $("#LogoPhoto").fileinput({
+                theme: "fas",
+                uploadUrl: "/Upload/UploadHospitalLogo/@Model.Id",
+                overwriteInitial: true,
+                showClose: false,
+                showCancel: false,
+                showCaption: false,
+                showUpload: false,
+                showRemove: true,
+                browseLabel: '',
+                removeLabel: '',
+                browseIcon: '<i class="fa fa-folder-open"></i>',
+                removeIcon: '<i class="fa fa-trash"></i>',
+                removeTitle: 'Cancel or reset changes',
+                elErrorContainer: '#kv-avatar-errors-1',
+                msgErrorClass: 'alert alert-block alert-danger',
+                defaultPreviewContent: '@Html.Raw(ViewBag.LogoPreview)',
+                maxFileSize: 500,
+                minImageWidth: 96,
+                minImageHeight: 96,
+                maxImageWidth: 246,
+                maxImageHeight: 246,
+                allowedFileExtensions: ["jpg", "png", "jpeg"]
+            }).on('fileuploaded', function (event, previewId, index, fileId) {
+                Toast.fire({
+                    type: 'success',
+                    title: '@AN.Core.Resources.Global.Global.Successful',
+                    text: 'Logo Uploaded Successfully'
+                });
+            }).on('fileuploaderror', function (event, data, msg) {
+                Toast.fire({
+                    type: 'error',
+                    title: '@AN.Core.Resources.Global.Global.Error',
+                    text: 'Logo file upload error. please try again or select another photo'
+                });
+            });
+        })();
+    </script>
+}

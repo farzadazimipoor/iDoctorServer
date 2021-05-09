@@ -1,0 +1,594 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<root>
+  <!-- 
+    Microsoft ResX Schema 
+    
+    Version 2.0
+    
+    The primary goals of this format is to allow a simple XML format 
+    that is mostly human readable. The generation and parsing of the 
+    various data types are done through the TypeConverter classes 
+    associated with the data types.
+    
+    Example:
+    
+    ... ado.net/XML headers & schema ...
+    <resheader name="resmimetype">text/microsoft-resx</resheader>
+    <resheader name="version">2.0</resheader>
+    <resheader name="reader">System.Resources.ResXResourceReader, System.Windows.Forms, ...</resheader>
+    <resheader name="writer">System.Resources.ResXResourceWriter, System.Windows.Forms, ...</resheader>
+    <data name="Name1"><value>this is my long string</value><comment>this is a comment</comment></data>
+    <data name="Color1" type="System.Drawing.Color, System.Drawing">Blue</data>
+    <data name="Bitmap1" mimetype="application/x-microsoft.net.object.binary.base64">
+        <value>[base64 mime encoded serialized .NET Framework object]</value>
+    </data>
+    <data name="Icon1" type="System.Drawing.Icon, System.Drawing" mimetype="application/x-microsoft.net.object.bytearray.base64">
+        <value>[base64 mime encoded string representing a byte array form of the .NET Framework object]</value>
+        <comment>This is a comment</comment>
+    </data>
+                
+    There are any number of "resheader" rows that contain simple 
+    name/value pairs.
+    
+    Each data row contains a name, and value. The row also contains a 
+    type or mimetype. Type corresponds to a .NET class that support 
+    text/value conversion through the TypeConverter architecture. 
+    Classes that don't support this are serialized and stored with the 
+    mimetype set.
+    
+    The mimetype is used for serialized objects, and tells the 
+    ResXResourceReader how to depersist the object. This is currently not 
+    extensible. For a given mimetype the value must be set accordingly:
+    
+    Note - application/x-microsoft.net.object.binary.base64 is the format 
+    that the ResXResourceWriter will generate, however the reader can 
+    read any of the formats listed below.
+    
+    mimetype: application/x-microsoft.net.object.binary.base64
+    value   : The object must be serialized with 
+            : System.Runtime.Serialization.Formatters.Binary.BinaryFormatter
+            : and then encoded with base64 encoding.
+    
+    mimetype: application/x-microsoft.net.object.soap.base64
+    value   : The object must be serialized with 
+            : System.Runtime.Serialization.Formatters.Soap.SoapFormatter
+            : and then encoded with base64 encoding.
+
+    mimetype: application/x-microsoft.net.object.bytearray.base64
+    value   : The object must be serialized into a byte array 
+            : using a System.ComponentModel.TypeConverter
+            : and then encoded with base64 encoding.
+    -->
+  <xsd:schema id="root" xmlns="" xmlns:xsd="http://www.w3.org/2001/XMLSchema" xmlns:msdata="urn:schemas-microsoft-com:xml-msdata">
+    <xsd:import namespace="http://www.w3.org/XML/1998/namespace" />
+    <xsd:element name="root" msdata:IsDataSet="true">
+      <xsd:complexType>
+        <xsd:choice maxOccurs="unbounded">
+          <xsd:element name="metadata">
+            <xsd:complexType>
+              <xsd:sequence>
+                <xsd:element name="value" type="xsd:string" minOccurs="0" />
+              </xsd:sequence>
+              <xsd:attribute name="name" use="required" type="xsd:string" />
+              <xsd:attribute name="type" type="xsd:string" />
+              <xsd:attribute name="mimetype" type="xsd:string" />
+              <xsd:attribute ref="xml:space" />
+            </xsd:complexType>
+          </xsd:element>
+          <xsd:element name="assembly">
+            <xsd:complexType>
+              <xsd:attribute name="alias" type="xsd:string" />
+              <xsd:attribute name="name" type="xsd:string" />
+            </xsd:complexType>
+          </xsd:element>
+          <xsd:element name="data">
+            <xsd:complexType>
+              <xsd:sequence>
+                <xsd:element name="value" type="xsd:string" minOccurs="0" msdata:Ordinal="1" />
+                <xsd:element name="comment" type="xsd:string" minOccurs="0" msdata:Ordinal="2" />
+              </xsd:sequence>
+              <xsd:attribute name="name" type="xsd:string" use="required" msdata:Ordinal="1" />
+              <xsd:attribute name="type" type="xsd:string" msdata:Ordinal="3" />
+              <xsd:attribute name="mimetype" type="xsd:string" msdata:Ordinal="4" />
+              <xsd:attribute ref="xml:space" />
+            </xsd:complexType>
+          </xsd:element>
+          <xsd:element name="resheader">
+            <xsd:complexType>
+              <xsd:sequence>
+                <xsd:element name="value" type="xsd:string" minOccurs="0" msdata:Ordinal="1" />
+              </xsd:sequence>
+              <xsd:attribute name="name" type="xsd:string" use="required" />
+            </xsd:complexType>
+          </xsd:element>
+        </xsd:choice>
+      </xsd:complexType>
+    </xsd:element>
+  </xsd:schema>
+  <resheader name="resmimetype">
+    <value>text/microsoft-resx</value>
+  </resheader>
+  <resheader name="version">
+    <value>2.0</value>
+  </resheader>
+  <resheader name="reader">
+    <value>System.Resources.ResXResourceReader, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </resheader>
+  <resheader name="writer">
+    <value>System.Resources.ResXResourceWriter, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </resheader>
+  <data name="AccordingToChangeDoctorSchedule" xml:space="preserve">
+    <value>وفق تغييرات برنامج عمل الطبيب </value>
+  </data>
+  <data name="AccordingToDoctorAbsense" xml:space="preserve">
+    <value>وفق عدم تواجد الطبيب </value>
+  </data>
+  <data name="ActionDoneSuccesfully" xml:space="preserve">
+    <value>تم بنجاح </value>
+  </data>
+  <data name="AnErrorOccuredWhileAddingItem" xml:space="preserve">
+    <value>عملية أضافة الفقرة خاطئة </value>
+  </data>
+  <data name="AnErrorOccuredWhileDeleteItem" xml:space="preserve">
+    <value>عملية حذف الفقرة خاطئة</value>
+  </data>
+  <data name="AnErrorOccuredWhileUpdateItem" xml:space="preserve">
+    <value>عملية تجديد الفقرة المقصودة خاطئة </value>
+  </data>
+  <data name="AreYouSureToDeleteTurn" xml:space="preserve">
+    <value>هل أنت متأكد من حذف الموعد؟</value>
+  </data>
+  <data name="CapacityIsSmallerThanRequested" xml:space="preserve">
+    <value>المساحة المسجلة أقل من </value>
+  </data>
+  <data name="CenterHasPendingTurns" xml:space="preserve">
+    <value>للمركز موعد غير منفذ. الرجاء معالجة هذه المواعيد ون ثم احذف العيادة </value>
+  </data>
+  <data name="Custom" xml:space="preserve">
+    <value>المطلوب </value>
+  </data>
+  <data name="DeleteCurrentUserException" xml:space="preserve">
+    <value>لا يمكنكم حذف هذا المستخدم </value>
+  </data>
+  <data name="DoctorAssignedToPolyclinicAlready" xml:space="preserve">
+    <value>تم تعيين العيادة للطبيب  كتور  مسبقا </value>
+  </data>
+  <data name="DoctorHasPendingTurns" xml:space="preserve">
+    <value>للطبيب موعد معلق </value>
+  </data>
+  <data name="DoctorHasPendingTurnsYouCannotRemoveHisRole" xml:space="preserve">
+    <value>للمستخدم موعد معلق. الرجاء حذف المواعيد أولا أو إلغائها ومن ثم تغييره. </value>
+  </data>
+  <data name="DoctorIsNotActive" xml:space="preserve">
+    <value>الطبيب ليس فعالا لذلك لا يمكنك تحديده. </value>
+  </data>
+  <data name="DoctorNotAvailable" xml:space="preserve">
+    <value>الطبيب غير فعال </value>
+  </data>
+  <data name="DoctorNotFound" xml:space="preserve">
+    <value>الطبيب غير موجود</value>
+  </data>
+  <data name="DoctorNotPresentInPolyclinic" xml:space="preserve">
+    <value>الطبيب ليس متواجدا في التاريخ المحدد</value>
+  </data>
+  <data name="EmailIsDuplicate" xml:space="preserve">
+    <value>تم استخدام البريد الإلكتروني لشخص آخر</value>
+  </data>
+  <data name="EmailIsNotValid" xml:space="preserve">
+    <value>البريد الإلكتروني خطأ</value>
+  </data>
+  <data name="EmptyTimePeriodNotValid" xml:space="preserve">
+    <value>الفاصلة الزمنية الفارغة خطأ</value>
+  </data>
+  <data name="EntityNotFoundException" xml:space="preserve">
+    <value>لا توجد الفقرة المقصودة </value>
+  </data>
+  <data name="ErrorOccuredWhenCheckVersionPattern" xml:space="preserve">
+    <value>يوجد خطأ عند البحث عن الوصفية </value>
+  </data>
+  <data name="ErrorOccuredWhileAssignRole" xml:space="preserve">
+    <value>يوجد خطأ في تعيين المستخدم </value>
+  </data>
+  <data name="ErrorOccuredWhileDoneAction" xml:space="preserve">
+    <value>يوجد خطأ في العملية </value>
+  </data>
+  <data name="ErrorOccuredWhileFinalBookTurn" xml:space="preserve">
+    <value>يوجد خطأ في التسجيل النهائي </value>
+  </data>
+  <data name="ErrorWhileUnAssignRole" xml:space="preserve">
+    <value>يوجد خطأ عند رفع دور المستخدم </value>
+  </data>
+  <data name="EveningShiftEndNotValid" xml:space="preserve">
+    <value>تم تنظيم الوجية المسائية بشكل غير صحيح </value>
+  </data>
+  <data name="EveningShitStartNotValid" xml:space="preserve">
+    <value>تم تنظيم وقت بدء الوجبة بشكل غير صحيح </value>
+  </data>
+  <data name="FileExistWithThisKey" xml:space="preserve">
+    <value>عدد الملف مضاف مسبقا </value>
+  </data>
+  <data name="FileIsRequired" xml:space="preserve">
+    <value>الحاجة إلى الملف </value>
+  </data>
+  <data name="FileNotFound" xml:space="preserve">
+    <value>لم يتم العثور على الملف المقصود</value>
+  </data>
+  <data name="HasBeenTransmitted" xml:space="preserve">
+    <value>منقول </value>
+  </data>
+  <data name="HasCanceled" xml:space="preserve">
+    <value>ملغى </value>
+  </data>
+  <data name="HasDone" xml:space="preserve">
+    <value>تمت العملية </value>
+  </data>
+  <data name="HaveTurnPleaseComeAtTime" xml:space="preserve">
+    <value>لحجز موعد عند الطبيب يرجى الحضور عند الوقت المحدد</value>
+  </data>
+  <data name="HaveTurns" xml:space="preserve">
+    <value>عندكم موعد؟</value>
+  </data>
+  <data name="HealthServiceHasPendingTurn" xml:space="preserve">
+    <value>لهذه الخدمة مواعيد منتظرة </value>
+  </data>
+  <data name="HospitalNotFound" xml:space="preserve">
+    <value>لم يتم العثور على المستشفى المطلوب </value>
+  </data>
+  <data name="InDate" xml:space="preserve">
+    <value>بتاريخ</value>
+  </data>
+  <data name="InPolyclinic" xml:space="preserve">
+    <value>في عيادة </value>
+  </data>
+  <data name="ItemAddedSuccessFully" xml:space="preserve">
+    <value>تمت إضافة الفقرة المطلوبة بنجاح </value>
+  </data>
+  <data name="ItemDeletedSuccessFully" xml:space="preserve">
+    <value>تم حذف الفقرة المقصودة بنجاح </value>
+  </data>
+  <data name="ItemNotFound" xml:space="preserve">
+    <value>لم يتم العثور على الفقرة المقصودة </value>
+  </data>
+  <data name="ItemUpdatedSuccessFully" xml:space="preserve">
+    <value>تم تغيير الفقرة المقصودة بنجاح </value>
+  </data>
+  <data name="MaxAllowedSize" xml:space="preserve">
+    <value>أوسع مجال للصلاحيات المخولة </value>
+  </data>
+  <data name="MessageHasSentAlready" xml:space="preserve">
+    <value>الرسالة مرسلة مسبقا،لا يحتاج إلى إعادة إرسال </value>
+  </data>
+  <data name="MobileHasTurnForDate" xml:space="preserve">
+    <value>لهذا الرقم المبايل موعد في التاريخ المحدد لا يمكن تجديد حجز موعد مرة أخرى </value>
+  </data>
+  <data name="MobileIsNotValid" xml:space="preserve">
+    <value>رقم المبايل غير صحيح </value>
+  </data>
+  <data name="MobileNumberDuplicate" xml:space="preserve">
+    <value>رقم المبايل (اسم المستخدم) معاد (مكرر)</value>
+  </data>
+  <data name="MorningShiftEndNotValid" xml:space="preserve">
+    <value>وقت انتهاء الوجبة المسائية غير صحيح</value>
+  </data>
+  <data name="MorningShiftStartNotValid" xml:space="preserve">
+    <value>وقت بدء الوجبة الصباحية غير صحيح</value>
+  </data>
+  <data name="Msg_AccessDenied" xml:space="preserve">
+    <value>تم الرفض</value>
+  </data>
+  <data name="Msg_AccessDenied403" xml:space="preserve">
+    <value>تم رفض الدخول [403]</value>
+  </data>
+  <data name="Msg_AjaxRequestAborted" xml:space="preserve">
+    <value>تم إحباط طلب Ajax</value>
+  </data>
+  <data name="Msg_ConnectionError" xml:space="preserve">
+    <value>خطأ في الإتصال. الرجاء التحقق من اتصال الانترنت الخاص بك.</value>
+  </data>
+  <data name="Msg_InternalServerError500" xml:space="preserve">
+    <value>خطأ خادم داخلي [500]</value>
+  </data>
+  <data name="Msg_RequestedJSONParseFailed" xml:space="preserve">
+    <value>طلب تحليل JSON فشل.</value>
+  </data>
+  <data name="Msg_RequestedPageNotFound404" xml:space="preserve">
+    <value>الصفحة المطلوبة غير موجودة [404]</value>
+  </data>
+  <data name="Msg_TimeOutError" xml:space="preserve">
+    <value>خطأ مهلة.</value>
+  </data>
+  <data name="NoDoctorSelected" xml:space="preserve">
+    <value>لم يتم تحديد طبيب </value>
+  </data>
+  <data name="NoHealthServiceSelected" xml:space="preserve">
+    <value>لم يتم تحديد أية خدمة </value>
+  </data>
+  <data name="NoPictureSelected" xml:space="preserve">
+    <value>لم يتم تحديد أية صورة</value>
+  </data>
+  <data name="NoSpecialitySelected" xml:space="preserve">
+    <value>لم يتم تحديد أي اختصاص</value>
+  </data>
+  <data name="NotFoundValidScheduleException" xml:space="preserve">
+    <value>لم يتم تحديد الوقت الصحيح لهذه الخدمة في التاريخ المحدد </value>
+  </data>
+  <data name="OnlineTurnsQueueNumber" xml:space="preserve">
+    <value>رقم تسلسل موعدك في الانتظار </value>
+  </data>
+  <data name="PasswordAssignedSuccessfully" xml:space="preserve">
+    <value>تم تعيين رمز العبور بنجاح </value>
+  </data>
+  <data name="PasswordChangedSuccessfully" xml:space="preserve">
+    <value>تم تغيير رمز العبور بنجاح </value>
+  </data>
+  <data name="PasswordMustBe6Digits" xml:space="preserve">
+    <value>لا يمكن أن يكون رمز العبور أقل من ست حروف </value>
+  </data>
+  <data name="PasswordsNotSame" xml:space="preserve">
+    <value>رمز العبور غير متطابق </value>
+  </data>
+  <data name="PatientHasNoTreatments" xml:space="preserve">
+    <value>المريض ليس لديه سجل</value>
+  </data>
+  <data name="PatientHasPendingTurns" xml:space="preserve">
+    <value>للمريض موعد منتظر، الرجاء إلغاء المواعيد ومن ثم تغيير الدور </value>
+  </data>
+  <data name="PendingTurnsExistInDate" xml:space="preserve">
+    <value>بهذا التاريخ يوجد موعد الإجراء فلا يمكن لكم جعله عطلة </value>
+  </data>
+  <data name="Person" xml:space="preserve">
+    <value>شخص </value>
+  </data>
+  <data name="PersonMobileDuplicate" xml:space="preserve">
+    <value>الشخص الذي يحمل رقم الجوال هذا موجود بالفعل</value>
+  </data>
+  <data name="PleaseEnterAllRequestedData" xml:space="preserve">
+    <value>الرجاء تسجيل المعلومات بصورة صحيحة </value>
+  </data>
+  <data name="PleaseEnterEmail" xml:space="preserve">
+    <value>الرجاء تسجيل البريد الإلكتروني </value>
+  </data>
+  <data name="PleaseEnterFileKey" xml:space="preserve">
+    <value>الرجاء تحديد الملف </value>
+  </data>
+  <data name="PleaseEnterMobile" xml:space="preserve">
+    <value>الرجاء تسجيل رقم المبايل </value>
+  </data>
+  <data name="PleaseEnterValidCaptcha" xml:space="preserve">
+    <value>الرجاء تسجيل الحراسة بشكل صحيح </value>
+  </data>
+  <data name="PleaseEnterValidDate" xml:space="preserve">
+    <value>الرجاء تسجيل التاريخ بشكل صحيح </value>
+  </data>
+  <data name="PleaseSelectFileWithSpecifiedFormat" xml:space="preserve">
+    <value>الرجاء اختيار الملف الصحيح </value>
+  </data>
+  <data name="PleaseSelectPicWithSpecefiedFormat" xml:space="preserve">
+    <value>الرجاء اختيار الصورة الصحيحة  </value>
+  </data>
+  <data name="PlsEnterStartEndDateTime" xml:space="preserve">
+    <value>الرجاء تحديد ساعة البدء والانتهاء بطريقة صحيحة </value>
+  </data>
+  <data name="PolyclinicDontHasHelathService" xml:space="preserve">
+    <value>الطلب غير موجود في العيادة </value>
+  </data>
+  <data name="PolyclinicHasPendingTurns" xml:space="preserve">
+    <value>للعيادة موعد غير منفذ </value>
+  </data>
+  <data name="PolyclinicNotFound" xml:space="preserve">
+    <value>لم يتم العثور على العيادة المطلوبة </value>
+  </data>
+  <data name="Reception" xml:space="preserve">
+    <value>الاستلام </value>
+  </data>
+  <data name="RecoverPassword" xml:space="preserve">
+    <value>كشف رمز التعبير </value>
+  </data>
+  <data name="ReserveConfirmation" xml:space="preserve">
+    <value>تأييد تخصيص الموعد </value>
+  </data>
+  <data name="ReservedTurnsList" xml:space="preserve">
+    <value>قائمة المواعيد المخصصة </value>
+  </data>
+  <data name="RulesAndRegulations" xml:space="preserve">
+    <value>القوانين و التعليمات </value>
+  </data>
+  <data name="ScheduleDeActiveSuccessfully" xml:space="preserve">
+    <value>تم إلغاء برنامج تحديد الوقت بنجاح </value>
+  </data>
+  <data name="ScheduleForDisabledDayException" xml:space="preserve">
+    <value>التاريخ المحدود غير فعال في البرنامج الدائم للعيادة لذلك تحديد هذا اليوم غير متوفر</value>
+  </data>
+  <data name="ScheduleForNotWorkingHoursException" xml:space="preserve">
+    <value>لم يتم تسجيل هذا الطبيب في البرنامج الدائم في التاريخ المحدد لذلك هذا اليوم غير متوفر لليوم</value>
+  </data>
+  <data name="ScheduleForPastException" xml:space="preserve">
+    <value>لا توجد طريقة لتحديد توقيت الماضي</value>
+  </data>
+  <data name="ScheduleForVocationDayException" xml:space="preserve">
+    <value>التاريخ المحدد واقع في أيام العطلة لذلك لا يمكن تحديده </value>
+  </data>
+  <data name="ScheduleHasInterferesWithPreviews" xml:space="preserve">
+    <value>هناك خلط بين أوقات بدء وانتهاء لأوقات العمل مع ساعات الأعمال السابقة </value>
+  </data>
+  <data name="ScheduleNotSpecifiedForDate" xml:space="preserve">
+    <value>لم يتم تحديد الساعة للتاريخ المحدد لذلك لا يمكنكم تحديده كموعد </value>
+  </data>
+  <data name="ScheduleOutsideBoundException" xml:space="preserve">
+    <value>لا تتطابق ساعات البدء والانتهاء لتحديد الوقن مع ساعات عمل الطبيب</value>
+  </data>
+  <data name="ScheduleStartMustSmallerThanEnd" xml:space="preserve">
+    <value>وقت البدء يجب أن يكون أصغر من وقت الانتهاء </value>
+  </data>
+  <data name="ScheduleStartNotValidForBHR" xml:space="preserve">
+    <value>لا يتطابق وقت البدء المخصص مع ساعات الموعد المخصصة </value>
+  </data>
+  <data name="ScheduleStartSmallerThanDoctorTurningStart" xml:space="preserve">
+    <value>وقت البدء بالعمل أصغر من وقت البدء بمواعيد الطبيب </value>
+  </data>
+  <data name="SendPicWithThisFormats" xml:space="preserve">
+    <value>الرجاء إرسال صورة بهذه الأشكال </value>
+  </data>
+  <data name="StartingAndEndTimeNotValid" xml:space="preserve">
+    <value>لم يتم تنظيم الوقت بين البدء والانتهاء </value>
+  </data>
+  <data name="SystemVocationDayException" xml:space="preserve">
+    <value>تم تحديد اليوم كعطلة ولا يحتاج إلى لإضافته </value>
+  </data>
+  <data name="ToDate" xml:space="preserve">
+    <value>بتاريخ </value>
+  </data>
+  <data name="TommorwYou" xml:space="preserve">
+    <value>أنتم غداً </value>
+  </data>
+  <data name="TommowYouIn" xml:space="preserve">
+    <value>أنتم غداً في </value>
+  </data>
+  <data name="TurnBookedFinally" xml:space="preserve">
+    <value>تم تسجيل الموعد بنجاح </value>
+  </data>
+  <data name="TurnIsInProgressNow" xml:space="preserve">
+    <value>تحديد الموعد جارٍ </value>
+  </data>
+  <data name="TurnReservedSuccessfully" xml:space="preserve">
+    <value>تم تحديد الموعد المطلوب مؤقتاً </value>
+  </data>
+  <data name="TurnTimePassed" xml:space="preserve">
+    <value>وقت الموعد منقضٍ لا يمكنكم تحديده </value>
+  </data>
+  <data name="UnAssignDoctorWithPendingAppointmentsException" xml:space="preserve">
+    <value>للطبيب موعد غير منفذ,لا يمكنكم حذفه </value>
+  </data>
+  <data name="UnKnownErrorOccuredInServerPlsContactAdmin" xml:space="preserve">
+    <value>يوجد خطأ في نظام الخدمة، الرجاء الاتصال بمدير النظام </value>
+  </data>
+  <data name="UntilEndVisitTime" xml:space="preserve">
+    <value>إلى نهاية الوقت المحدد </value>
+  </data>
+  <data name="UserIsAdminCanotDelIt" xml:space="preserve">
+    <value>هذا المستخدم مدير النظام لا يمكنكم حذفه</value>
+  </data>
+  <data name="UserIsAdminYouCannotDeleteIt" xml:space="preserve">
+    <value>هذا المستخدم مدير النظام لا يمكنكم حذفه</value>
+  </data>
+  <data name="UserIsClinicManagerAlready" xml:space="preserve">
+    <value>تم اختيار هذا المستخدم كمدير العيادة </value>
+  </data>
+  <data name="UserIsManagingCentersPleaseUnassignFirst" xml:space="preserve">
+    <value>هذا المستخدم حالياً مدير المركز، الرجاء حذف المسؤولية ومن ثم قم بتغيير دوره </value>
+  </data>
+  <data name="UserIsNotDoctorYouCannotAssignSpeciality" xml:space="preserve">
+    <value>هذا المستخدم ليس طبيبا، لا يمكنكم تحديد اختصاص له </value>
+  </data>
+  <data name="UserIsNotDoctorYouCannotSelectExpertise" xml:space="preserve">
+    <value>هذا المستخدم ليس طبيبا، لا يمكنكم تحديد اختصاص له </value>
+  </data>
+  <data name="UserIsPolyclinicManagerCannotDelIt" xml:space="preserve">
+    <value>هذا المستخدم مدير العيادة لا يمكنكم حذفه</value>
+  </data>
+  <data name="UsernameOrPasswordIsInvalid" xml:space="preserve">
+    <value>الاسم أو رمز العبور غير صحيح </value>
+  </data>
+  <data name="UserRegisteredSuccessfully" xml:space="preserve">
+    <value>تم تسجيل اسمكم بنجاح </value>
+  </data>
+  <data name="UserWithThisEmailExistBefore" xml:space="preserve">
+    <value>تم تسجيل مستخدم بهذا الاسم (اسم المستخدم) مسبقا</value>
+  </data>
+  <data name="UserWithThisMobileExist" xml:space="preserve">
+    <value>تم تسجيل مستخدم بهذا الرقم </value>
+  </data>
+  <data name="ValidEmptyTimePeriodNotFound" xml:space="preserve">
+    <value>لم يتم العثور على الفاصلة الزمنية الصحيحة </value>
+  </data>
+  <data name="VersionPatternIsNotValid" xml:space="preserve">
+    <value>تعبير الطبع المسجل غير صحيح </value>
+  </data>
+  <data name="WillBeCanceled" xml:space="preserve">
+    <value>يتم الإلغاء  </value>
+  </data>
+  <data name="WithoutLimitation_FromNow" xml:space="preserve">
+    <value>غير محدود (من الآن)</value>
+  </data>
+  <data name="WithStartingVisitTime" xml:space="preserve">
+    <value>متزامنا مع بدء التخصيص </value>
+  </data>
+  <data name="YouAreLoggedInAndCannotChangeRole" xml:space="preserve">
+    <value>دخلتم الآن في النظام، لا يمكنم القيام بلعبة دوركم</value>
+  </data>
+  <data name="YouAreLoggedInCannotChangeRole" xml:space="preserve">
+    <value>دخلتم الآن في النظام، لا يمكنم القيام بلعبة دوركم</value>
+  </data>
+  <data name="YouCannotDeleteCurrentUserFromClinicManagers" xml:space="preserve">
+    <value>لا يمكنكم حذف هذا المستخدم من قائمة مدراء العيادة </value>
+  </data>
+  <data name="YouCannotRemoveAdminRoleForThisUser" xml:space="preserve">
+    <value>لا يمكنكم إلغاء دور مدير هذا المستخدم </value>
+  </data>
+  <data name="YouDontHavePermission" xml:space="preserve">
+    <value>المستخدم العزيز! هذا القسم غير متوفر لك!</value>
+  </data>
+  <data name="YourAppointmentForDoctor" xml:space="preserve">
+    <value>موعدك للطبيب</value>
+  </data>
+  <data name="YourMessageSenedToUsSuccessfully" xml:space="preserve">
+    <value>تم إرسال رسالتكم بنجاح </value>
+  </data>
+  <data name="YourPhoneDeletedSuccessfully" xml:space="preserve">
+    <value>تم حذف رقم مبايلكم بنجاح </value>
+  </data>
+  <data name="YourPhoneHasBeenAdded" xml:space="preserve">
+    <value>تم تسجيل رقم موبايلكم </value>
+  </data>
+  <data name="YourTurnFromDate" xml:space="preserve">
+    <value>موعدكم بتاريخ </value>
+  </data>
+  <data name="YourTurnInDate" xml:space="preserve">
+    <value>موعدكم بتاريخ </value>
+  </data>
+  <data name="YourTurnReservedSuccessfully" xml:space="preserve">
+    <value>تم تسجيل موعدكم بنجاح </value>
+  </data>
+  <data name="YourTurnWillBeCanceled" xml:space="preserve">
+    <value>يتم إلغاء موعدكم </value>
+  </data>
+  <data name="NoItemFound" xml:space="preserve">
+    <value>هیچ بڕگەیک نەدۆزرایەوە</value>
+  </data>
+  <data name="WontAbleRevertThis" xml:space="preserve">
+    <value>لن تتمكن من التراجع عن هذا الإجراء</value>
+  </data>
+  <data name="PatientHasNoRecord" xml:space="preserve">
+    <value>المريض ليس لديه سجل</value>
+  </data>
+  <data name="PrescriptionIsDoneBefore" xml:space="preserve">
+    <value>ويتم وصفة طبية من قبل</value>
+  </data>
+  <data name="PrescriptionNotFound" xml:space="preserve">
+    <value>وصفة طبية غير موجود</value>
+  </data>
+  <data name="SomethingWentWrong" xml:space="preserve">
+    <value>أوە! هناك خطأ ما</value>
+  </data>
+  <data name="PageNotFound" xml:space="preserve">
+    <value>الصفحة غير موجودة</value>
+  </data>
+  <data name="WeCouldNotFindPage" xml:space="preserve">
+    <value>لم نتمكن من العثور على الصفحة التي كنت تبحث عنها.</value>
+  </data>
+  <data name="AccessDenied" xml:space="preserve">
+    <value>ليس لديك إذن للقيام بهذا الإجراء</value>
+  </data>
+  <data name="HaveAppointmentWithAnotherDoctorAtTime" xml:space="preserve">
+    <value>لديك موعد مع طبيب آخر في الوقت المحدد</value>
+  </data>
+  <data name="WorkingScheduleNotFoundForThisTime" xml:space="preserve">
+    <value>جدول العمل غير موجود لهذا الوقت. يرجى الاطلاع على ساعات العمل وطلب موعد جديد.</value>
+  </data>
+  <data name="AppointmentDoneNotificationBody" xml:space="preserve">
+    <value>تم الموعد بنجاح، يرجى تقييم زيارتك.</value>
+  </data>
+  <data name="AppointmentDoneNotificationTitle" xml:space="preserve">
+    <value>تم الموعد</value>
+  </data>
+</root>

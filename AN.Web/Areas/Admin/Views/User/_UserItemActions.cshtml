@@ -1,0 +1,7 @@
+﻿@model (string id, bool isLocked)
+
+<div class="btn-group" role="group" aria-label="Basic example">
+    <button class='btn btn-outline-info btn-sm' onclick='userCreateUpdate("@Model.id");' title="Edit"><i class="fa fa-edit"></i></button>
+    <button class='btn btn-outline-secondary btn-sm' onclick='lockoutIdentityUser("@Model.id", @(Model.isLocked ? "false" : "true"));'><i class="fa @(Model.isLocked ? "fa-unlock" : "fa-lock")" title="@(Model.isLocked ? "Unlock" : "Lock")"></i></button>
+    <button class='btn btn-outline-danger btn-sm' onclick='deleteIdentityUser("@Model.id");' title="Delete"><i class="fa fa-trash"></i></button>
+</div>
