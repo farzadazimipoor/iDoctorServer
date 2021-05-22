@@ -1,4 +1,6 @@
 ﻿using Microsoft.AspNetCore.Http;
+using System;
+using System.Collections.Generic;
 using System.Threading.Tasks;
 
 namespace AN.BLL.Services.Upload
@@ -94,6 +96,23 @@ namespace AN.BLL.Services.Upload
         (string newName, string thumbName, string dirPath, string baseUrl) GenerateServiceCategoryLogoName(int catId, IFormFile photo);
         Task UploadServiceCategoryLogoAsync(IFormFile photo, string dirPath, string newName, string thumbName);
         void RemoveServiceCategoryLogo(int personId);
+        #endregion
+
+        #region Medical Request Attachment
+        string GenerateMedicalRequestFilesBaseDirPath(int reqId, DateTime createdAt);
+
+        string GenerateMedicalRequestFilesBaseUrl(int reqId, DateTime createdAt);
+
+        string GenerateMedicalRequestFilesFullDirPath(int reqId, DateTime createdAt);
+
+        // Full Url
+        string GenerateMedicalRequestFilesFullUrl(int reqId, DateTime createdAt, string fileName);
+
+        (string newName, string thumbName) GenerateMedicalRequestFileName(int reqId, IFormFile file);
+
+        Task UploadMedicalRequestFilesAsync(int reqId, DateTime createdAt, Dictionary<IFormFile, (string newFileName, string thumbName)> files);
+
+        void RemoveMedicalRequestFiles(int recId);
         #endregion
 
         Task<string> UploadHospitalLogoAsync(int hospitalId, IFormFile photo);

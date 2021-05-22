@@ -3,6 +3,7 @@ using AN.DAL;
 using Microsoft.AspNetCore.Http;
 using Microsoft.EntityFrameworkCore;
 using System;
+using System.Collections.Generic;
 using System.Drawing;
 using System.IO;
 using System.Linq;
@@ -991,6 +992,90 @@ namespace AN.BLL.Services.Upload
         public void RemoveServiceCategoryLogo(int categoryId)
         {
             var dirPath = $"uploaded\\services\\{categoryId}";
+
+            var fullDirectoryPath = Path.Combine(Directory.GetCurrentDirectory(), "wwwroot", dirPath);
+
+            if (Directory.Exists(fullDirectoryPath))
+            {
+                // Delete Previews Images If Any Exists
+                if (Directory.GetFiles(fullDirectoryPath, "*.*", SearchOption.AllDirectories).Any())
+                {
+                    foreach (var file in Directory.GetFiles(fullDirectoryPath, "*.*", SearchOption.AllDirectories))
+                    {
+                        if (File.Exists(file))
+                        {
+                            File.Delete(file);
+                        }
+                    }
+                }
+            }
+        }
+        #endregion
+
+        #region Medical Request Attachment
+
+        public string GenerateMedicalRequestFilesBaseDirPath(int reqId, DateTime createdAt)
+        {
+            return $"uploaded\\attachments\\medicalrequests\\{createdAt.Year}\\{createdAt.Month}\\{reqId}";
+        }
+
+        public string GenerateMedicalRequestFilesBaseUrl(int reqId, DateTime createdAt)
+        {
+            return GenerateMedicalRequestFilesBaseDirPath(reqId, createdAt).Replace('\\', '/');
+        }
+
+        public string GenerateMedicalRequestFilesFullDirPath(int reqId, DateTime createdAt)
+        {
+            return $"{GenerateMedicalRequestFilesBaseDirPath(reqId, createdAt)}";
+        }
+
+        // Full Url
+        public string GenerateMedicalRequestFilesFullUrl(int reqId, DateTime createdAt, string fileName)
+        {
+            return $"{GenerateMedicalRequestFilesBaseUrl(reqId, createdAt)}/{fileName}";
+        }
+
+        public (string newName, string thumbName) GenerateMedicalRequestFileName(int reqId, IFormFile file)
+        {
+            var originFileName = file.FileName;
+            var ext = Path.GetExtension(originFileName);
+            var time = DateTime.Now.ToString("yyyy-MM-dd_HH-mm-ss-fffff");
+            var newFileName = $"mr_{time}{ext}";
+            var thumbFileName = $"mr_{time}.thumb{ext}";          
+
+            return (newFileName, thumbFileName);
+        }       
+
+        public async Task UploadMedicalRequestFilesAsync(int reqId, DateTime createdAt, Dictionary<IFormFile, (string newFileName, string thumbName)> files)
+        {
+            // Process Photos Physical Files
+            var dirPath = GenerateMedicalRequestFilesFullDirPath(reqId, createdAt);
+
+            var fullDirectoryPath = Path.Combine(Directory.GetCurrentDirectory(), "wwwroot", dirPath);
+
+            if (files.Any() && !Directory.Exists(fullDirectoryPath))
+            {
+                Directory.CreateDirectory(fullDirectoryPath);
+            }           
+
+            foreach (var photo in files)
+            {
+                // Generate photos pathes
+                var path = Path.Combine(fullDirectoryPath, photo.Value.newFileName);
+
+                var thumbPath = Path.Combine(dirPath, photo.Value.thumbName);
+
+                // Save Main Image File On Disk
+                using (var stream = new FileStream(path, FileMode.Create))
+                {
+                    await photo.Key.CopyToAsync(stream);
+                }               
+            }           
+        }
+
+        public void RemoveMedicalRequestFiles(int recId)
+        {
+            var dirPath = $"uploaded\\attachments\\medicalrequests\\{recId}";          
 
             var fullDirectoryPath = Path.Combine(Directory.GetCurrentDirectory(), "wwwroot", dirPath);
 
