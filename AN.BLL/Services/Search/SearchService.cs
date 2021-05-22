@@ -1,6 +1,9 @@
-﻿using AN.Core.DTO;
+﻿using AN.Core.Domain;
+using AN.Core.DTO;
 using AN.Core.Enums;
 using AN.DAL;
+using Microsoft.EntityFrameworkCore;
+using System.Linq;
 using System.Threading.Tasks;
 
 namespace AN.BLL.Services.Search
@@ -13,50 +16,81 @@ namespace AN.BLL.Services.Search
             _dbContext = dbContext;
         }
 
-        public async Task<SearchResultDTO> DoSearchAsync(Lang lng, SearchDTO model)
+        public async Task<SearchResultDTO> DoSearchAsync(Lang lng, SearchDTO model, string hostAddress)
         {
-            var result = new SearchResultDTO
+            var result = new SearchResultDTO();
+
+            #region Doctors
+            IQueryable<ServiceSupply> doctorsQuery = _dbContext.ServiceSupplies;
+
+            if (lng == Lang.KU)
             {
-                Doctors = new System.Collections.Generic.List<SearchResulItemtDTO>
-                {
-                    new SearchResulItemtDTO
-                    {
-                        Id = 1,
-                        Title = "Ahmad Karim Ali",
-                        Avatar = "https://firebasestorage.googleapis.com/v0/b/ibazzar-7549a.appspot.com/o/avatars%2Fdefault%2Favatar.png?alt=media&token=96b2a643-6894-437f-a510-608ac3a7ba2e"
-                    },
-                    new SearchResulItemtDTO
-                    {
-                        Id = 2,
-                        Title = "Mohammed Valid Jasem",
-                        Avatar = "https://firebasestorage.googleapis.com/v0/b/ibazzar-7549a.appspot.com/o/avatars%2Fdefault%2Favatar.png?alt=media&token=96b2a643-6894-437f-a510-608ac3a7ba2e"
-                    }
-                },
-                HealthTips = new System.Collections.Generic.List<SearchResulItemtDTO>
-                {
-                    new SearchResulItemtDTO
-                    {
-                        Id = 1,
-                        Title = "Benefits of drinking water",
-                        Avatar = "https://firebasestorage.googleapis.com/v0/b/ibazzar-7549a.appspot.com/o/avatars%2Fdefault%2Favatar.png?alt=media&token=96b2a643-6894-437f-a510-608ac3a7ba2e"
-                    }
-                },
-                HealthBank = new System.Collections.Generic.List<SearchResulItemtDTO>
-                {
-                    new SearchResulItemtDTO
-                    {
-                        Id = 1,
-                        Title = "Arzhin Hospital",
-                        Avatar = "https://firebasestorage.googleapis.com/v0/b/ibazzar-7549a.appspot.com/o/avatars%2Fdefault%2Favatar.png?alt=media&token=96b2a643-6894-437f-a510-608ac3a7ba2e"
-                    },
-                   new SearchResulItemtDTO
-                   {
-                       Id = 2,
-                       Title = "CMS Eye Center",
-                       Avatar = "https://firebasestorage.googleapis.com/v0/b/ibazzar-7549a.appspot.com/o/avatars%2Fdefault%2Favatar.png?alt=media&token=96b2a643-6894-437f-a510-608ac3a7ba2e"
-                   }
-                }
-            };
+                doctorsQuery = doctorsQuery.Where(x => x.Person.FullName_Ku.Contains(model.SearchTerm));
+            }
+            else if (lng == Lang.AR)
+            {
+                doctorsQuery = doctorsQuery.Where(x => x.Person.FullName_Ar.Contains(model.SearchTerm));
+            }
+            else
+            {
+                doctorsQuery = doctorsQuery.Where(x => x.Person.FullName.Contains(model.SearchTerm));
+            }
+
+            result.Doctors = await doctorsQuery.Select(x => new SearchResulItemtDTO
+            {
+                Id = x.Id,
+                Title = lng == Lang.KU ? x.Person.FullName_Ku : lng == Lang.AR ? x.Person.FullName_Ar : x.Person.FullName,
+                Avatar = $"{hostAddress}{x.Person.RealAvatar}"
+            }).ToListAsync();
+            #endregion
+
+            #region Health Tips
+            IQueryable<ContentArticle> articlesQuery = _dbContext.ContentArticles;
+
+            if (lng == Lang.KU)
+            {
+                articlesQuery = articlesQuery.Where(x => x.Title_Ku.Contains(model.SearchTerm));
+            }
+            else if (lng == Lang.AR)
+            {
+                articlesQuery = articlesQuery.Where(x => x.Title_Ar.Contains(model.SearchTerm));
+            }
+            else
+            {
+                articlesQuery = articlesQuery.Where(x => x.Title.Contains(model.SearchTerm));
+            }
+
+            result.HealthTips = await articlesQuery.Select(x => new SearchResulItemtDTO
+            {
+                Id = x.Id,
+                Title = lng == Lang.KU ? x.Title_Ku : lng == Lang.AR ? x.Title_Ar : x.Title,
+                Avatar = hostAddress + (lng == Lang.KU ? x.ImageUrl_Ku : lng == Lang.AR ? x.ImageUrl_Ar : x.ImageUrl)
+            }).ToListAsync();
+            #endregion
+
+            #region Health Bank
+            IQueryable<ShiftCenter> healthBankQuery = _dbContext.ShiftCenters.Where(x => x.ShowInHealthBank);
+
+            if (lng == Lang.KU)
+            {
+                healthBankQuery = healthBankQuery.Where(x => x.Name_Ku.Contains(model.SearchTerm));
+            }
+            else if (lng == Lang.AR)
+            {
+                healthBankQuery = healthBankQuery.Where(x => x.Name_Ar.Contains(model.SearchTerm));
+            }
+            else
+            {
+                healthBankQuery = healthBankQuery.Where(x => x.Name.Contains(model.SearchTerm));
+            }
+
+            result.HealthBank = await healthBankQuery.Select(x => new SearchResulItemtDTO
+            {
+                Id = x.Id,
+                Title = lng == Lang.KU ? x.Name_Ku : lng == Lang.AR ? x.Name_Ar : x.Name,
+                Avatar = hostAddress + x.RealLogo
+            }).ToListAsync();
+            #endregion
 
             return result;
         }

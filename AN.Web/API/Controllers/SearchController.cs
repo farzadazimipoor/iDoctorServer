@@ -18,7 +18,7 @@ namespace AN.Web.API.Controllers
         [HttpPost]
         public async Task<IActionResult> Index([FromBody] SearchDTO model)
         {
-            var result = await _searchService.DoSearchAsync(RequestLang, model);
+            var result = await _searchService.DoSearchAsync(RequestLang, model, HostAddress);
 
             return Ok(result);
         }
