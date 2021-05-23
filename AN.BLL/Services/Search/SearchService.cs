@@ -20,20 +20,22 @@ namespace AN.BLL.Services.Search
         {
             var result = new SearchResultDTO();
 
+            if (string.IsNullOrEmpty(model.SearchTerm)) return result;
+
             #region Doctors
             IQueryable<ServiceSupply> doctorsQuery = _dbContext.ServiceSupplies;
 
             if (lng == Lang.KU)
             {
-                doctorsQuery = doctorsQuery.Where(x => x.Person.FullName_Ku.Contains(model.SearchTerm));
+                doctorsQuery = doctorsQuery.Where(x => x.Person.FullName_Ku != null && x.Person.FullName_Ku.ToLower().Contains(model.SearchTerm.ToLower()));
             }
             else if (lng == Lang.AR)
             {
-                doctorsQuery = doctorsQuery.Where(x => x.Person.FullName_Ar.Contains(model.SearchTerm));
+                doctorsQuery = doctorsQuery.Where(x => x.Person.FullName_Ar != null && x.Person.FullName_Ar.ToLower().Contains(model.SearchTerm.ToLower()));
             }
             else
             {
-                doctorsQuery = doctorsQuery.Where(x => x.Person.FullName.Contains(model.SearchTerm));
+                doctorsQuery = doctorsQuery.Where(x => x.Person.FullName != null && x.Person.FullName.ToLower().Contains(model.SearchTerm.ToLower()));
             }
 
             result.Doctors = await doctorsQuery.Select(x => new SearchResulItemtDTO
@@ -49,15 +51,15 @@ namespace AN.BLL.Services.Search
 
             if (lng == Lang.KU)
             {
-                articlesQuery = articlesQuery.Where(x => x.Title_Ku.Contains(model.SearchTerm));
+                articlesQuery = articlesQuery.Where(x => x.Title_Ku != null && x.Title_Ku.ToLower().Contains(model.SearchTerm.ToLower()));
             }
             else if (lng == Lang.AR)
             {
-                articlesQuery = articlesQuery.Where(x => x.Title_Ar.Contains(model.SearchTerm));
+                articlesQuery = articlesQuery.Where(x => x.Title_Ar != null && x.Title_Ar.ToLower().Contains(model.SearchTerm.ToLower()));
             }
             else
             {
-                articlesQuery = articlesQuery.Where(x => x.Title.Contains(model.SearchTerm));
+                articlesQuery = articlesQuery.Where(x => x.Title != null && x.Title.ToLower().Contains(model.SearchTerm.ToLower()));
             }
 
             result.HealthTips = await articlesQuery.Select(x => new SearchResulItemtDTO
@@ -73,15 +75,15 @@ namespace AN.BLL.Services.Search
 
             if (lng == Lang.KU)
             {
-                healthBankQuery = healthBankQuery.Where(x => x.Name_Ku.Contains(model.SearchTerm));
+                healthBankQuery = healthBankQuery.Where(x => x.Name_Ku != null && x.Name_Ku.ToLower().Contains(model.SearchTerm.ToLower()));
             }
             else if (lng == Lang.AR)
             {
-                healthBankQuery = healthBankQuery.Where(x => x.Name_Ar.Contains(model.SearchTerm));
+                healthBankQuery = healthBankQuery.Where(x => x.Name_Ar != null && x.Name_Ar.ToLower().Contains(model.SearchTerm.ToLower()));
             }
             else
             {
-                healthBankQuery = healthBankQuery.Where(x => x.Name.Contains(model.SearchTerm));
+                healthBankQuery = healthBankQuery.Where(x => x.Name != null && x.Name.ToLower().Contains(model.SearchTerm.ToLower()));
             }
 
             result.HealthBank = await healthBankQuery.Select(x => new SearchResulItemtDTO

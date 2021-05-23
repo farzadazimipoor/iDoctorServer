@@ -77,7 +77,7 @@ namespace AN.BLL.Services.MedicalRequest
                                 OwnerTableId = request.Id,
                                 FileType = AN.Core.Enums.FileType.Image,
                                 Description = ""
-                            });                            
+                            });
                         }
 
                         await _dbContext.SaveChangesAsync();
@@ -92,7 +92,7 @@ namespace AN.BLL.Services.MedicalRequest
 
         public async Task<DataTablesPagedResults<MedicalRequestListViewModel>> GetPagingListDataAsync(DataTablesParameters table)
         {
-            IQueryable<AN.Core.Domain.MedicalRequest> query = _dbContext.MedicalRequests;           
+            IQueryable<AN.Core.Domain.MedicalRequest> query = _dbContext.MedicalRequests;
 
             if (table.Order != null && table.Order.Any())
             {
@@ -103,7 +103,11 @@ namespace AN.BLL.Services.MedicalRequest
                 if (orderIndex == 1 || orderIndex == 2)
                 {
                     query = orderDir == DataTablesOrderDir.DESC ? query.OrderByDescending(x => x.CreatedAt) : query = query.OrderBy(x => x.CreatedAt);
-                }               
+                }
+                else
+                {
+                    query = query.OrderByDescending(x => x.CreatedAt);
+                }
             }
             else
             {
@@ -121,9 +125,9 @@ namespace AN.BLL.Services.MedicalRequest
                     Id = x.Id,
                     RequestDate = x.Date.ToString("yyyy/MM/dd HH:mm:ss"),
                     CountryName = x.RequestedCountry.Name,
-                    PersonName = x.RequesterPerson.FullName, 
+                    PersonName = x.RequesterPerson.FullName,
                     PersonPhone = x.RequesterPerson.Mobile,
-                    AttachmentsCount = _dbContext.Attachments.Count(a => a.Owner == AN.Core.Enums.FileOwner.MEDICAL_REQUEST && a.OwnerTableId == x.Id),                    
+                    AttachmentsCount = _dbContext.Attachments.Count(a => a.Owner == AN.Core.Enums.FileOwner.MEDICAL_REQUEST && a.OwnerTableId == x.Id),
                 })
                 .ToListAsync();
 
@@ -154,6 +158,6 @@ namespace AN.BLL.Services.MedicalRequest
             };
 
             return result;
-        }            
+        }
     }
 }

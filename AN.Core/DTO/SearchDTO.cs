@@ -9,9 +9,9 @@ namespace AN.Core.DTO
 
     public class SearchResultDTO
     {
-        public List<SearchResulItemtDTO> Doctors { get; set; }
-        public List<SearchResulItemtDTO> HealthTips { get; set; }
-        public List<SearchResulItemtDTO> HealthBank { get; set; }
+        public List<SearchResulItemtDTO> Doctors { get; set; } = new List<SearchResulItemtDTO>();
+        public List<SearchResulItemtDTO> HealthTips { get; set; } = new List<SearchResulItemtDTO>();
+        public List<SearchResulItemtDTO> HealthBank { get; set; } = new List<SearchResulItemtDTO>();
     }
 
     public class SearchResulItemtDTO
