@@ -85,11 +85,11 @@ namespace AN.Core.Enums
         [Display(Name = "nailSpa", ResourceType = typeof(EnumResource))]
         NailSpa = 12,
 
-        [CenterTypeOrder(Order = 6)]
-        [CenterTypeIcon(Name = "berber")]
-        [DisplayName("berber")]
-        [Display(Name = "berber", ResourceType = typeof(EnumResource))]
-        Barber = 13,
+        //[CenterTypeOrder(Order = 6)]
+        //[CenterTypeIcon(Name = "berber")]
+        //[DisplayName("berber")]
+        //[Display(Name = "berber", ResourceType = typeof(EnumResource))]
+        //Barber = 13,
 
         [CenterTypeOrder(Order = 5)]
         [CenterTypeIcon(Name = "homecare")]
