@@ -111,7 +111,7 @@ namespace AN.BLL.Core.Appointments
 
                                 if (offer == null) throw new AwroNoreException("Offer Not Found");
 
-                                if(offer.RemainedCount <= 0) throw new AwroNoreException("All Offer Appointments Are Reserved");
+                                if (offer.RemainedCount <= 0) throw new AwroNoreException("All Offer Appointments Are Reserved");
 
                                 offer.RemainedCount -= 1;
 
@@ -139,7 +139,7 @@ namespace AN.BLL.Core.Appointments
                                     IsApproved = true,
                                     IsDeleted = false,
                                     CreatorRole = Shared.Enums.LoginAs.UNKNOWN,
-                                    CreationPlaceId = null                                    
+                                    CreationPlaceId = null
                                 };
 
                                 _dbContext.Persons.Add(patientUser);
@@ -212,7 +212,11 @@ namespace AN.BLL.Core.Appointments
                                     ReservationChannel = channel,
                                     CreatedAt = DateTime.Now,
                                     OfferId = offerId,
-                                    RequestLang = requestLang
+                                    RequestLang = requestLang,
+                                    PersonLocation = new NetTopologySuite.Geometries.Point(patinetModel.Xlongitude, patinetModel.Ylatitude)
+                                    {
+                                        SRID = 4326 // Set the SRID (spatial reference system id) to 4326, which is the spatial reference system used by Google maps (WGS84)
+                                    }
                                 };
                                 _dbContext.Appointments.Add(appointment);
                                 _dbContext.SaveChanges();
@@ -287,7 +291,7 @@ namespace AN.BLL.Core.Appointments
 
                                 _dbContext.SaveChanges();
 
-                                appointmentId = appointment.Id;                                
+                                appointmentId = appointment.Id;
                             }
                             #endregion
 
@@ -347,7 +351,7 @@ namespace AN.BLL.Core.Appointments
                                 if (finalBookabeTimePeriods == null || finalBookabeTimePeriods.Count() <= 0)
                                     throw new Exception(Messages.ValidEmptyTimePeriodNotFound);
 
-                                var ipaTimePeriod = finalBookabeTimePeriods.FirstOrDefault(f => f.StartDateTime == startDateTime && f.EndDateTime == endDateTime && f.Type == TimePeriodType.InProgressAppointment);                                                     
+                                var ipaTimePeriod = finalBookabeTimePeriods.FirstOrDefault(f => f.StartDateTime == startDateTime && f.EndDateTime == endDateTime && f.Type == TimePeriodType.InProgressAppointment);
 
                                 if (ipaTimePeriod == null)
                                     throw new Exception(Messages.ValidEmptyTimePeriodNotFound);
@@ -372,10 +376,15 @@ namespace AN.BLL.Core.Appointments
                                     ReservationChannel = channel,
                                     CreatedAt = DateTime.Now,
                                     OfferId = offerId,
-                                    RequestLang = requestLang
+                                    RequestLang = requestLang,
+                                    PersonLocation = new NetTopologySuite.Geometries.Point(patinetModel.Xlongitude, patinetModel.Ylatitude)
+                                    {
+                                        SRID = 4326 // Set the SRID (spatial reference system id) to 4326, which is the spatial reference system used by Google maps (WGS84)
+                                    }
                                 };
 
                                 _dbContext.Appointments.Add(appointment);
+
                                 _dbContext.SaveChanges();
 
                                 #region Send SMS notification  
@@ -448,7 +457,7 @@ namespace AN.BLL.Core.Appointments
 
                                 _dbContext.SaveChanges();
 
-                                appointmentId = appointment.Id;                               
+                                appointmentId = appointment.Id;
                             }
                             #endregion                            
 
@@ -498,7 +507,7 @@ namespace AN.BLL.Core.Appointments
 
             if (centerService == null) throw new AwroNoreException(NewResource.NotAnyServiceDefinedForThisCenter);
 
-            _scheduleManager.EnsureHasSchedule(serviceSupply, model.CenterServiceId, turnStartDateTime, turnEndDateTime, passIfNoSchedules: true);            
+            _scheduleManager.EnsureHasSchedule(serviceSupply, model.CenterServiceId, turnStartDateTime, turnEndDateTime, passIfNoSchedules: true);
 
             // Ensure that user don't have another appointment with same time
             await EnsureNotHaveSameTimeAppointmentAsync(turnStartDateTime, userMobile);
@@ -523,20 +532,24 @@ namespace AN.BLL.Core.Appointments
                 ReservationChannel = ReservationChannel.MobileApplication,
                 CreatedAt = DateTime.Now,
                 OfferId = null,
-                RequestLang = requestLang
+                RequestLang = requestLang,
+                PersonLocation = new NetTopologySuite.Geometries.Point(model.Xlongitude, model.Ylatitude)
+                {
+                    SRID = 4326 // Set the SRID (spatial reference system id) to 4326, which is the spatial reference system used by Google maps (WGS84)
+                }
             };
 
             _dbContext.Appointments.Add(appointment);
 
             // Send notification for agents here
             var agents = _settings?.Value?.AwroNoreSettings?.RequestAppointmentAgents;
-            if(agents != null && agents.Any())
+            if (agents != null && agents.Any())
             {
-                foreach(var agent in agents)
+                foreach (var agent in agents)
                 {
                     var agentPerson = await _dbContext.Persons.FirstOrDefaultAsync(x => x.Mobile == agent);
 
-                    if(agentPerson != null)
+                    if (agentPerson != null)
                     {
                         var title = "Appointment Request";
                         var message = "New Appointment Request Created";
@@ -555,7 +568,7 @@ namespace AN.BLL.Core.Appointments
                                    $"ژمارە: {person.Mobile}{Environment.NewLine}" +
                                    $"ناو: {person.FullName}";
 
-                if(serviceSupply.ServiceSupplyInfo != null && !string.IsNullOrEmpty(serviceSupply.ServiceSupplyInfo.Phone))
+                if (serviceSupply.ServiceSupplyInfo != null && !string.IsNullOrEmpty(serviceSupply.ServiceSupplyInfo.Phone))
                 {
                     var mobile = serviceSupply.ServiceSupplyInfo.Phone;
 
@@ -591,7 +604,7 @@ namespace AN.BLL.Core.Appointments
         {
             var _date = DateTime.Parse(date).Date;
 
-            return _appointmentService.GetAppointmentForMobileInDate(serviceSupplyId,centerServiceId, mobile, _date) != null;
+            return _appointmentService.GetAppointmentForMobileInDate(serviceSupplyId, centerServiceId, mobile, _date) != null;
         }
 
         public async Task EnsureNotHaveSameTimeAppointmentAsync(DateTime dateTime, string mobile)

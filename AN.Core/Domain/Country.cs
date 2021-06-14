@@ -22,6 +22,12 @@ namespace AN.Core.Domain
         public string Latitude { get; set; }
 
         public string Longitude { get; set; }
+
+        public string HomeCareDescription { get; set; }
+
+        public string HomeCareDescription_Ku { get; set; }
+
+        public string HomeCareDescription_Ar { get; set; }
        
         public virtual ICollection<Province> Provinces { get; set; }
 

@@ -15,11 +15,11 @@ namespace AN.Core.Models
 
         [Required]
         public string ThirdName { get; set; }
-      
+
         public int Age { get; set; }
 
         public Gender Gender { get; set; }
-      
+
         [MaxLength(10)]
         [MinLength(10)]
         [Required]
@@ -31,9 +31,9 @@ namespace AN.Core.Models
 
         public string Address { get; set; }
 
-        public string Description { get; set; }     
-        
-        public string Password { get; set; }   
+        public string Description { get; set; }
+
+        public string Password { get; set; }
     }
 
 
@@ -56,7 +56,7 @@ namespace AN.Core.Models
 
         public string WebSite { get; set; }
     }
-    
+
 
     public class PatientModel : BaseUserModel
     {
@@ -65,6 +65,9 @@ namespace AN.Core.Models
         public int InsuranceId { get; set; }
 
         public string InsuranceNumber { get; set; }
-    }    
-    
+
+        public double Xlongitude { get; set; }
+
+        public double Ylatitude { get; set; }
+    }
 }

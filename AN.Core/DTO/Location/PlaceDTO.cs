@@ -10,6 +10,7 @@ namespace AN.Core.DTO.Location
     public class CountryDTO : PlaceDTO
     {
         public List<ProvinceDTO> Provinces { get; set; }
+        public string HomeCareDescription { get; set; }
     }
 
     public class ProvinceDTO : PlaceDTO

@@ -16,6 +16,8 @@ namespace AN.Core.DTO.Turn
         /// This is for doctors who are not in the system and we want to allow users to request turnovers.
         /// </summary>
         public bool IsRequested { get; set; } = false;
+        public double Xlongitude { get; set; }
+        public double Ylatitude { get; set; }
     }   
 
     public class FinalBookTurnResultDTO

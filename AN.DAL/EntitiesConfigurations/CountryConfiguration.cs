@@ -20,6 +20,12 @@ namespace AN.DAL.EntitiesConfigurations
 
             builder.Property(p => p.Name_Ar).IsUnicode().HasMaxLength(50).IsRequired();
 
+            builder.Property(p => p.HomeCareDescription).IsUnicode().IsRequired(false);
+
+            builder.Property(p => p.HomeCareDescription_Ku).IsUnicode().IsRequired(false);
+
+            builder.Property(p => p.HomeCareDescription_Ar).IsUnicode().IsRequired(false);
+
             builder.Property(p => p.CreatedAt).IsRequired();
 
             builder.Property(p => p.UpdatedAt).IsRequired(false).HasColumnType("datetime2");

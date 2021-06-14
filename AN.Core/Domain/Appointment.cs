@@ -11,6 +11,7 @@ namespace AN.Core.Domain
 {
     using AN.Core.Data;
     using AN.Core.Enums;
+    using NetTopologySuite.Geometries;
     using System;
     using System.Collections.Generic;
     public partial class Appointment : BaseEntity
@@ -61,6 +62,8 @@ namespace AN.Core.Domain
         public string UniqueTrackingCode { get; set; }
 
         public Lang RequestLang { get; set; }
+
+        public Point PersonLocation { get; set; }
 
         public virtual ServiceSupply ServiceSupply { get; set; }
               

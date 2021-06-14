@@ -1,8 +1,10 @@
 ﻿using AN.BLL.Services.Filters;
 using AN.Core.DTO;
+using AN.Core.Enums;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.Extensions.Options;
 using Shared.Settings;
+using System.Collections.Generic;
 using System.Net;
 using System.Threading.Tasks;
 
@@ -37,9 +39,18 @@ namespace AN.Web.API.Controllers
 
             var disclamer = _options.Value.AwroNoreSettings.ConsultancyDisclamer;
 
-            result.ConsultancyDisclaimer = RequestLang == Core.Enums.Lang.KU ? disclamer.DisclamerKu : RequestLang == Core.Enums.Lang.AR ? disclamer.DisclamerAr : disclamer.Disclamer;
+            result.ConsultancyDisclaimer = RequestLang == Lang.KU ? disclamer.DisclamerKu : RequestLang == Lang.AR ? disclamer.DisclamerAr : disclamer.Disclamer;
 
             return Ok(result);
-        }       
+        }
+
+        [HttpGet("services/type")]
+        [ProducesResponseType(typeof(List<ServiceDTO>), (int)HttpStatusCode.OK)]
+        public async Task<IActionResult> GetServicesFiltersData([FromQuery]ShiftCenterType centerType)
+        {
+            var result = await _filtersService.GetServicesFilterDataAsync(RequestLang, centerType);
+
+            return Ok(result);
+        }
     }
 }

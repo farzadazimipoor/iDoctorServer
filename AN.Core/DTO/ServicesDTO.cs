@@ -12,5 +12,12 @@ namespace AN.Core.DTO
     {
         public string Name { get; set; }
         public int CategoryId { get; set; }
+        public decimal Price { get; set; }
+    }
+
+    public class CenterServiceDTO : ServiceDTO
+    {
+        public int CenterServiceId { get; set; }
+        public int CenterId { get; set; }
     }
 }

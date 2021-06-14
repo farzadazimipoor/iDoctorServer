@@ -182,6 +182,8 @@ namespace AN.Web.API.Controllers
                     var patientModel = new PatientModel
                     {
                         Mobile = mobile,
+                        Xlongitude = model.Xlongitude,
+                        Ylatitude = model.Ylatitude
                     };
 
                     string message = string.Empty;

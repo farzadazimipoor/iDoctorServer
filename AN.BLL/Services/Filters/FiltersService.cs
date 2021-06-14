@@ -3,6 +3,7 @@ using AN.Core.DTO.Location;
 using AN.Core.Enums;
 using AN.DAL;
 using Microsoft.EntityFrameworkCore;
+using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
 
@@ -22,6 +23,7 @@ namespace AN.BLL.Services.Filters
             {
                 Id = x.Id,
                 Name = lng == Lang.KU ? x.Name_Ku : lng == Lang.AR ? x.Name_Ar : x.Name,
+                HomeCareDescription = lng == Lang.KU ? x.HomeCareDescription_Ku : lng == Lang.AR ? x.HomeCareDescription_Ar : x.HomeCareDescription,
             }).ToListAsync();
 
             var cities = await _dbContext.Cities.Select(x => new CityDTO
@@ -60,7 +62,8 @@ namespace AN.BLL.Services.Filters
                 CategoryId = x.ExpertiseCategoryId
             }).ToListAsync();
 
-            var insurances = await _dbContext.Insurances.Select(x => new InsuranceItemDTO {
+            var insurances = await _dbContext.Insurances.Select(x => new InsuranceItemDTO
+            {
                 Id = x.Id,
                 Name = lng == Lang.KU ? x.Name_Ku : lng == Lang.AR ? x.Name_Ar : x.Name,
                 Logo = x.Logo
@@ -93,7 +96,8 @@ namespace AN.BLL.Services.Filters
             {
                 Id = x.Id,
                 Name = lang == Lang.KU ? x.Name_Ku : lang == Lang.AR ? x.Name_Ar : x.Name,
-                CategoryId = x.ServiceCategoryId
+                CategoryId = x.ServiceCategoryId,
+                Price = x.Price
             }).ToListAsync();
 
             var result = new ServicesFilterDTO
@@ -102,7 +106,24 @@ namespace AN.BLL.Services.Filters
                 Services = services
             };
 
+            var homecareCenterTypes = await _dbContext.CenterServices.Where(x => x.Service.ServiceCategory.CenterType == ShiftCenterType.HomeCare).ToListAsync();
+
             return result;
+        }
+
+        public async Task<List<CenterServiceDTO>> GetServicesFilterDataAsync(Lang lang, ShiftCenterType centerType)
+        {
+            var services = await _dbContext.CenterServices.Where(x => x.Service.ServiceCategory.CenterType == centerType).Select(x => new CenterServiceDTO
+            {
+                Id = x.Id,
+                Name = lang == Lang.KU ? x.Service.Name_Ku : lang == Lang.AR ? x.Service.Name_Ar : x.Service.Name,
+                CategoryId = x.Service.ServiceCategoryId,
+                Price = x.Service.Price,
+                CenterId = x.ShiftCenterId,
+                CenterServiceId = x.Id
+            }).ToListAsync();
+
+            return services;
         }
     }
 }

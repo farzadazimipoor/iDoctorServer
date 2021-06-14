@@ -38,6 +38,8 @@ namespace AN.DAL.EntitiesConfigurations
 
             builder.Property(p => p.UniqueTrackingCode).HasMaxLength(10).IsRequired();
 
+            builder.Property(p => p.PersonLocation).IsRequired(false);
+
             builder.Property(p => p.CreatedAt).IsRequired();
 
             builder.Property(p => p.UpdatedAt).IsRequired(false).HasColumnType("datetime2");
