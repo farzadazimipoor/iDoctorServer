@@ -37,6 +37,7 @@ using AN.BLL.Services.MedicalRequest;
 using AN.BLL.Services.Offers;
 using AN.BLL.Services.Profile;
 using AN.BLL.Services.Reports;
+using AN.BLL.Services.Search;
 using AN.BLL.Services.Treatment;
 using AN.BLL.Services.Turns;
 using AN.BLL.Services.Upload;
@@ -165,6 +166,7 @@ namespace AN.Web
             services.AddTransient<IKurtenameSmsService, KurtenameSmsService>();
             services.AddTransient<IMedicalRequestService, MedicalRequestService>();
             services.AddTransient<IAppointmentReminderJob, AppointmentReminderJob>();
+            services.AddTransient<ISearchService, SearchService>();
             services.AddScoped<LogFilterAttribute>();
             return services;
         }

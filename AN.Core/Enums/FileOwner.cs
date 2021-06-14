@@ -24,6 +24,8 @@
 
         CLINIC = 4,
 
-        HOSPITAL = 5
+        HOSPITAL = 5,
+
+        MEDICAL_REQUEST = 6
     }
 }

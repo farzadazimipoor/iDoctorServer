@@ -547,10 +547,10 @@ namespace AN.DAL
                    CenterType = Core.Enums.ShiftCenterType.HomeCare,
                    CreatedAt = DateTime.Now,
                    IsDeleted = false
-               },
+               }
 
                // Barber
-               new ServiceCategory
+               /*new ServiceCategory
                {
                    Id = barberServicesCategoryId,
                    Name = "Barber",
@@ -559,7 +559,7 @@ namespace AN.DAL
                    CenterType = Core.Enums.ShiftCenterType.Barber,
                    CreatedAt = DateTime.Now,
                    IsDeleted = false
-               }
+               }*/
             );
 
             #region COMMON HEALTH SERVICES
