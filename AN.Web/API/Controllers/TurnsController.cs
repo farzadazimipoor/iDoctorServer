@@ -84,12 +84,15 @@ namespace AN.Web.API.Controllers
 
             var mobile = CurrentUserName;
 
-            // Check if this patient has reserved appointment today or not?
-            if (_appointmentsManager.HaveAppointmentForDate(model.Date, mobile, model.ServiceSupplyId, model.CenterServiceId))
+            if(model.ServiceSupplyId != null)
             {
-                throw new AwroNoreException(Global.Err_UserHaveTurnForDate);
+                // Check if this patient has reserved appointment today or not?
+                if (_appointmentsManager.HaveAppointmentForDate(model.Date, mobile, model.ServiceSupplyId.Value, model.CenterServiceId))
+                {
+                    throw new AwroNoreException(Global.Err_UserHaveTurnForDate);
+                }
             }
-
+            
             // Save Requested Turn
             if (model.IsRequested)
             {
@@ -108,14 +111,18 @@ namespace AN.Web.API.Controllers
                 return Ok(result);
             }
             else
-            {                
+            {
+                if (model.ServiceSupplyId == null) throw new AwroNoreException("Doctor is required");
+
+                var serviceSupplyId = model.ServiceSupplyId.Value;
+
                 var offerCode = string.Empty;
 
                 var turnDate = DateTime.Parse(model.Date);
                 var turnStartDateTime = DateTime.Parse($"{model.Date} {model.StartTime}");
                 var turnEndDateTime = DateTime.Parse($"{model.Date} {model.EndTime}");
 
-                var serviceSupply = await _serviceSupplyService.GetServiceSupplyByIdAsync(model.ServiceSupplyId);
+                var serviceSupply = await _serviceSupplyService.GetServiceSupplyByIdAsync(serviceSupplyId);
 
                 if (serviceSupply == null) throw new AwroNoreException(Global.Err_DoctorNotFound);
 
@@ -144,7 +151,7 @@ namespace AN.Web.API.Controllers
                     var ipa = new IPAModel
                     {
                         AddedAt = DateTime.Now,
-                        ServiceSupplyId = model.ServiceSupplyId,
+                        ServiceSupplyId = serviceSupplyId,
                         StartDateTime = emptyTurn.StartDateTime,
                         EndDateTime = emptyTurn.EndDateTime,
                         UserHostAgent = "Stand-WPF",
@@ -255,7 +262,7 @@ namespace AN.Web.API.Controllers
                 {
                     try
                     {
-                        _iPAsManager.Delete(model.ServiceSupplyId, turnStartDateTime);
+                        _iPAsManager.Delete(serviceSupplyId, turnStartDateTime);
                     }
                     catch
                     {

@@ -6,7 +6,7 @@ namespace AN.Core.DTO.Turn
 {
     public class FinalBookTurnDTO
     {
-        public int ServiceSupplyId { get; set; }
+        public int? ServiceSupplyId { get; set; }
         public int CenterServiceId { get; set; }
         public string Date { get; set; }
         public string StartTime { get; set; }

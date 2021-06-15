@@ -496,17 +496,32 @@ namespace AN.BLL.Core.Appointments
             if (person == null) throw new AwroNoreException("Person not found");
 
             var turnDate = DateTime.Parse(model.Date);
+
             var turnStartDateTime = DateTime.Parse($"{model.Date} {model.StartTime}");
+
             var turnEndDateTime = DateTime.Parse($"{model.Date} {model.EndTime}");
-
-            var serviceSupply = await _dbContext.ServiceSupplies.FindAsync(model.ServiceSupplyId);
-
-            if (serviceSupply == null) throw new AwroNoreException(Global.Err_DoctorNotFound);
 
             var centerService = await _dbContext.CenterServices.FindAsync(model.CenterServiceId);
 
             if (centerService == null) throw new AwroNoreException(NewResource.NotAnyServiceDefinedForThisCenter);
 
+            ServiceSupply serviceSupply;
+
+            if (model.ServiceSupplyId != null)
+            {
+                serviceSupply = await _dbContext.ServiceSupplies.FindAsync(model.ServiceSupplyId.Value);
+            }
+            else
+            {
+                var shiftCenter = await _dbContext.ShiftCenters.FirstOrDefaultAsync(x => x.Id == centerService.ShiftCenterId);
+
+                if(shiftCenter == null) throw new AwroNoreException(NewResource.NotAnyServiceDefinedForThisCenter);
+
+                serviceSupply = shiftCenter.ServiceSupplies.FirstOrDefault();
+            }
+
+            if (serviceSupply == null) throw new AwroNoreException(Global.Err_DoctorNotFound);
+           
             _scheduleManager.EnsureHasSchedule(serviceSupply, model.CenterServiceId, turnStartDateTime, turnEndDateTime, passIfNoSchedules: true);
 
             // Ensure that user don't have another appointment with same time
