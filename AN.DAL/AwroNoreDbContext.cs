@@ -210,12 +210,12 @@ namespace AN.DAL
             modelBuilder.Entity<Country>().HasData(
                 new Country
                 {
-                    Id = 1,
-                    Name = "Turkey",
-                    Name_Ku = "تورکیا",
-                    Name_Ar = "تركيا",
-                    Code = "TR",
-                    CreatedAt = DateTime.Now,
+                     Id = 1,
+                     Name = "Germany",
+                     Name_Ku = "ئاڵمانیا",
+                     Name_Ar = "ألمانيا",
+                     Code = "DE",
+                     CreatedAt = DateTime.Now,
                 },
                 new Country
                 {
@@ -224,6 +224,24 @@ namespace AN.DAL
                     Name_Ku = "هیند",
                     Name_Ar = "الهند",
                     Code = "IN",
+                    CreatedAt = DateTime.Now,
+                },
+                new Country
+                {
+                    Id = 3,
+                    Name = "Turkey",
+                    Name_Ku = "تورکیا",
+                    Name_Ar = "تركيا",
+                    Code = "TR",
+                    CreatedAt = DateTime.Now,
+                },
+                new Country
+                {
+                    Id = 4,
+                    Name = "Jordan",
+                    Name_Ku = "ئوردن",
+                    Name_Ar = "اردن",
+                    Code = "JO",
                     CreatedAt = DateTime.Now,
                 }
             );
