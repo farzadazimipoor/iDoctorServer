@@ -93,7 +93,8 @@ namespace AN.BLL.DataRepository.Places
             var result = await _countryRepository.Table.Select(x => new CountryDTO
             {
                 Id = x.Id,
-                Name = lng == Lang.AR ? x.Name_Ar : lng == Lang.KU ? x.Name_Ku : x.Name
+                Name = lng == Lang.AR ? x.Name_Ar : lng == Lang.KU ? x.Name_Ku : x.Name,
+                HomeCareDescription = lng == Lang.AR ? x.HomeCareDescription_Ar : lng == Lang.KU ? x.HomeCareDescription_Ku : x.HomeCareDescription,
             }).ToListAsync();
 
             return result;
