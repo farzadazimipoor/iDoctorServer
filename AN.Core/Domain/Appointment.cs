@@ -37,7 +37,9 @@ namespace AN.Core.Domain
         public PaymentStatus Paymentstatus { get; set; } = PaymentStatus.Free;
 
         public ReservationChannel ReservationChannel { get; set; } = ReservationChannel.Website;
-       
+
+        public AppointmentProgressStatus? ProgressStatus { get; set; }
+
         /// <summary>
         /// این فیلد بیشتر برای زمانی کاربرد دارد که نوبتی لغو می شود
         /// و باید بفهمیم که آیا اطلاع رسانی موفق انجام شده است یا نه؟

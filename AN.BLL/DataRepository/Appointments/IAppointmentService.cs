@@ -68,5 +68,7 @@ namespace AN.BLL.DataRepository.Appointments
         Task ApproveAppointmentRequestAsync(ApproveAppointmentRequestModel model);
 
         Task DeleteAppointmentRequestAsync(int id);
+
+        Task ChangeAppointmentRequestProgressStatusAsync(int id, AppointmentProgressStatus status);
     }
 }

@@ -159,6 +159,12 @@
   <data name="checkup" xml:space="preserve">
     <value>Check-up</value>
   </data>
+  <data name="completed" xml:space="preserve">
+    <value>Completed</value>
+  </data>
+  <data name="created" xml:space="preserve">
+    <value>Created</value>
+  </data>
   <data name="CTScan" xml:space="preserve">
     <value>CT-Scan</value>
   </data>
@@ -204,6 +210,9 @@
   <data name="offerappointment" xml:space="preserve">
     <value>Offer Appointment</value>
   </data>
+  <data name="on_the_way" xml:space="preserve">
+    <value>On the way</value>
+  </data>
   <data name="optometrist" xml:space="preserve">
     <value>تركيب النظارات</value>
   </data>
@@ -224,6 +233,9 @@
   </data>
   <data name="price" xml:space="preserve">
     <value>Price</value>
+  </data>
+  <data name="processing" xml:space="preserve">
+    <value>Processing</value>
   </data>
   <data name="radiology" xml:space="preserve">
     <value>Radiology</value>

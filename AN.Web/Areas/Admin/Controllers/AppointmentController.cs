@@ -1,5 +1,6 @@
 ﻿using AN.BLL.DataRepository.Appointments;
 using AN.BLL.DataRepository.ServiceSupplies;
+using AN.Core.Enums;
 using AN.Core.Exceptions;
 using AN.Core.Extensions;
 using AN.Core.ViewModels;
@@ -105,10 +106,13 @@ namespace AN.Web.Areas.Admin.Controllers
                     CenterPhone = x.CenterPhone,
                     Avatar = x.Avatar,
                     Service = x.Service,
+                    IsHomeCare = x.IsHomeCare,
+                    ProgressStatus = x.ProgressStatus,
                     AvatarHtml = await this.RenderViewToStringAsync("_AppointmentRequestPersonAvatar", x.Avatar),
                     ActionsHtml = await this.RenderViewToStringAsync("_AppointmentRequestActions", (x.Id,x.Status)),
                     ChannelHtml = await this.RenderViewToStringAsync("_AppointmentRequestChannels", x.ReservationChannel),
-                    StatusHtml = await this.RenderViewToStringAsync("_AppointmentRequestStatus", x.Status)
+                    StatusHtml = await this.RenderViewToStringAsync("_AppointmentRequestStatus", x.Status),
+                    ProgressStatusHtml = await this.RenderViewToStringAsync("_AppointmentRequestProgressStatus", (x.Id, x.Status, x.IsHomeCare, x.ProgressStatus)),
                 }).ToList());
 
                 return new JsonResult(new DataTablesResult<AppointmentRequestsListViewModel>
@@ -157,6 +161,13 @@ namespace AN.Web.Areas.Admin.Controllers
             await _appointmentService.DeleteAppointmentRequestAsync(id);
 
             return Json(new { success = true, message = Core.Resources.EntitiesResources.Messages.ItemDeletedSuccessFully });
+        }
+
+        public async Task<IActionResult> ChangeAppointmentRequestProgressStatus(int id, AppointmentProgressStatus status)
+        {
+            await _appointmentService.ChangeAppointmentRequestProgressStatusAsync(id, status);
+
+            return Json(new { success = true, message = Core.Resources.EntitiesResources.Messages.ActionDoneSuccesfully });
         }
     }
 }

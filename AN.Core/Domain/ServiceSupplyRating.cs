@@ -12,8 +12,12 @@ namespace AN.Core.Domain
 
         public double Rating { get; set; }
 
+        public string Review { get; set; }
+
         public virtual Person Person { get; set; }
+
         public virtual Appointment Appointment { get; set; }
+
         public virtual ServiceSupply ServiceSupply { get; set; }
     }
 }

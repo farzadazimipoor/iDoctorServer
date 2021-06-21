@@ -34,7 +34,7 @@ namespace AN.BLL.Jobs.AppointmentRemider
                                                     a.Person.FcmInstanceIds != null
                                               select a).ToListAsync();
 
-            var notificationTitle = "Awronore";
+            var notificationTitle = "iDoctor";
 
             foreach (var appointment in tomorrowAppointments)
             {

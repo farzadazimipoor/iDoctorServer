@@ -73,17 +73,17 @@ namespace AN.Core.Enums
         [Display(Name = "pharmacy", ResourceType = typeof(EnumResource))]
         Pharmacy = 10,
 
-        [CenterTypeOrder(Order = 3)]
-        [CenterTypeIcon(Name = "salon")]
-        [DisplayName("salon")]
-        [Display(Name = "salon", ResourceType = typeof(EnumResource))]
-        Salon = 11,
+        //[CenterTypeOrder(Order = 3)]
+        //[CenterTypeIcon(Name = "salon")]
+        //[DisplayName("salon")]
+        //[Display(Name = "salon", ResourceType = typeof(EnumResource))]
+        //Salon = 11,
 
-        [CenterTypeOrder(Order = 14)]
-        [CenterTypeIcon(Name = "nailSpa")]
-        [DisplayName("nailSpa")]
-        [Display(Name = "nailSpa", ResourceType = typeof(EnumResource))]
-        NailSpa = 12,
+        //[CenterTypeOrder(Order = 14)]
+        //[CenterTypeIcon(Name = "nailSpa")]
+        //[DisplayName("nailSpa")]
+        //[Display(Name = "nailSpa", ResourceType = typeof(EnumResource))]
+        //NailSpa = 12,
 
         //[CenterTypeOrder(Order = 6)]
         //[CenterTypeIcon(Name = "berber")]
@@ -97,10 +97,10 @@ namespace AN.Core.Enums
         [Display(Name = "homecare", ResourceType = typeof(EnumResource))]
         HomeCare = 14,
 
-        [CenterTypeOrder(Order = 15)]
-        [CenterTypeIcon(Name = "optometrist")]
-        [DisplayName("optometrist")]
-        [Display(Name = "optometrist", ResourceType = typeof(EnumResource))]       
-        Optometrist = 15
+        //[CenterTypeOrder(Order = 15)]
+        //[CenterTypeIcon(Name = "optometrist")]
+        //[DisplayName("optometrist")]
+        //[Display(Name = "optometrist", ResourceType = typeof(EnumResource))]       
+        //Optometrist = 15
     }
 }

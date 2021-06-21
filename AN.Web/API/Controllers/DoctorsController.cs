@@ -120,7 +120,7 @@ namespace AN.Web.API.Controllers
 
         [HttpGet("rate/{id:int}/{averageRating:double}")]
         [Authorize(AuthenticationSchemes = JwtBearerDefaults.AuthenticationScheme)]
-        public async Task<IActionResult> Rate(int id, double averageRating, [FromQuery] int? appointmentId = null)
+        public async Task<IActionResult> Rate(int id, double averageRating, [FromQuery] int? appointmentId = null, [FromQuery] string review = "")
         {
             if (string.IsNullOrEmpty(CurrentUserName)) return Unauthorized();
 
@@ -134,7 +134,8 @@ namespace AN.Web.API.Controllers
                 UserId = user.Id,
                 ServiceSupplyId = id,
                 AppointmentId = appointmentId,
-                AverageRating = averageRating
+                AverageRating = averageRating,
+                Review = review
             };
 
             await _doctorsService.RateDoctorAsync(rateModel);

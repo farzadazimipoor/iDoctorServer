@@ -97,6 +97,8 @@ namespace AN.DAL.Migrations
 
                     b.Property<Point>("PersonLocation");
 
+                    b.Property<int?>("ProgressStatus");
+
                     b.Property<int>("RequestLang");
 
                     b.Property<int>("ReservationChannel");
@@ -307,7 +309,7 @@ namespace AN.DAL.Migrations
                         new
                         {
                             Id = 1,
-                            CreatedAt = new DateTime(2021, 6, 15, 14, 58, 41, 222, DateTimeKind.Local).AddTicks(5237),
+                            CreatedAt = new DateTime(2021, 6, 21, 17, 14, 42, 330, DateTimeKind.Local).AddTicks(7142),
                             IsDeleted = false,
                             Name = "Erbil",
                             Name_Ar = "اربیل",
@@ -317,7 +319,7 @@ namespace AN.DAL.Migrations
                         new
                         {
                             Id = 2,
-                            CreatedAt = new DateTime(2021, 6, 15, 14, 58, 41, 222, DateTimeKind.Local).AddTicks(5264),
+                            CreatedAt = new DateTime(2021, 6, 21, 17, 14, 42, 330, DateTimeKind.Local).AddTicks(7169),
                             IsDeleted = false,
                             Name = "Sulaymaniyah",
                             Name_Ar = "السلیمانیه",
@@ -327,7 +329,7 @@ namespace AN.DAL.Migrations
                         new
                         {
                             Id = 3,
-                            CreatedAt = new DateTime(2021, 6, 15, 14, 58, 41, 222, DateTimeKind.Local).AddTicks(5267),
+                            CreatedAt = new DateTime(2021, 6, 21, 17, 14, 42, 330, DateTimeKind.Local).AddTicks(7172),
                             IsDeleted = false,
                             Name = "Dahuk",
                             Name_Ar = "دهوك",
@@ -788,7 +790,7 @@ namespace AN.DAL.Migrations
                         {
                             Id = 1,
                             Code = "DE",
-                            CreatedAt = new DateTime(2021, 6, 15, 14, 58, 41, 221, DateTimeKind.Local).AddTicks(6901),
+                            CreatedAt = new DateTime(2021, 6, 21, 17, 14, 42, 329, DateTimeKind.Local).AddTicks(9020),
                             IsDeleted = false,
                             Name = "Germany",
                             Name_Ar = "ألمانيا",
@@ -798,7 +800,7 @@ namespace AN.DAL.Migrations
                         {
                             Id = 2,
                             Code = "IN",
-                            CreatedAt = new DateTime(2021, 6, 15, 14, 58, 41, 221, DateTimeKind.Local).AddTicks(7148),
+                            CreatedAt = new DateTime(2021, 6, 21, 17, 14, 42, 329, DateTimeKind.Local).AddTicks(9276),
                             IsDeleted = false,
                             Name = "India",
                             Name_Ar = "الهند",
@@ -808,7 +810,7 @@ namespace AN.DAL.Migrations
                         {
                             Id = 3,
                             Code = "TR",
-                            CreatedAt = new DateTime(2021, 6, 15, 14, 58, 41, 221, DateTimeKind.Local).AddTicks(7150),
+                            CreatedAt = new DateTime(2021, 6, 21, 17, 14, 42, 329, DateTimeKind.Local).AddTicks(9279),
                             IsDeleted = false,
                             Name = "Turkey",
                             Name_Ar = "تركيا",
@@ -818,7 +820,7 @@ namespace AN.DAL.Migrations
                         {
                             Id = 4,
                             Code = "JO",
-                            CreatedAt = new DateTime(2021, 6, 15, 14, 58, 41, 221, DateTimeKind.Local).AddTicks(7152),
+                            CreatedAt = new DateTime(2021, 6, 21, 17, 14, 42, 329, DateTimeKind.Local).AddTicks(9281),
                             IsDeleted = false,
                             Name = "Jordan",
                             Name_Ar = "اردن",
@@ -1047,7 +1049,7 @@ namespace AN.DAL.Migrations
                         new
                         {
                             Id = 1,
-                            CreatedAt = new DateTime(2021, 6, 15, 14, 58, 41, 223, DateTimeKind.Local).AddTicks(6956),
+                            CreatedAt = new DateTime(2021, 6, 21, 17, 14, 42, 331, DateTimeKind.Local).AddTicks(9257),
                             GenericName = "Amoxil",
                             GenericName_Ar = "Amoxil",
                             GenericName_Ku = "Amoxil",
@@ -1057,7 +1059,7 @@ namespace AN.DAL.Migrations
                         new
                         {
                             Id = 2,
-                            CreatedAt = new DateTime(2021, 6, 15, 14, 58, 41, 223, DateTimeKind.Local).AddTicks(8415),
+                            CreatedAt = new DateTime(2021, 6, 21, 17, 14, 42, 332, DateTimeKind.Local).AddTicks(708),
                             GenericName = "Neurontin",
                             GenericName_Ar = "Neurontin",
                             GenericName_Ku = "Neurontin",
@@ -1067,7 +1069,7 @@ namespace AN.DAL.Migrations
                         new
                         {
                             Id = 3,
-                            CreatedAt = new DateTime(2021, 6, 15, 14, 58, 41, 223, DateTimeKind.Local).AddTicks(8462),
+                            CreatedAt = new DateTime(2021, 6, 21, 17, 14, 42, 332, DateTimeKind.Local).AddTicks(724),
                             GenericName = "Motrin",
                             GenericName_Ar = "Motrin",
                             GenericName_Ku = "Motrin",
@@ -1183,7 +1185,7 @@ namespace AN.DAL.Migrations
                         new
                         {
                             Id = 1,
-                            CreatedAt = new DateTime(2021, 6, 15, 14, 58, 41, 223, DateTimeKind.Local).AddTicks(5847),
+                            CreatedAt = new DateTime(2021, 6, 21, 17, 14, 42, 331, DateTimeKind.Local).AddTicks(8084),
                             Description_Ku = "شارەزای بوواری منداڵان",
                             ExpertiseCategoryId = 1,
                             IsDeleted = false,
@@ -1194,7 +1196,7 @@ namespace AN.DAL.Migrations
                         new
                         {
                             Id = 2,
-                            CreatedAt = new DateTime(2021, 6, 15, 14, 58, 41, 223, DateTimeKind.Local).AddTicks(5871),
+                            CreatedAt = new DateTime(2021, 6, 21, 17, 14, 42, 331, DateTimeKind.Local).AddTicks(8107),
                             Description_Ku = "شارەزای دڵ",
                             ExpertiseCategoryId = 2,
                             IsDeleted = false,
@@ -1252,7 +1254,7 @@ namespace AN.DAL.Migrations
                         new
                         {
                             Id = 1,
-                            CreatedAt = new DateTime(2021, 6, 15, 14, 58, 41, 223, DateTimeKind.Local).AddTicks(3220),
+                            CreatedAt = new DateTime(2021, 6, 21, 17, 14, 42, 331, DateTimeKind.Local).AddTicks(5404),
                             Description_Ku = "شارەزای منداڵان",
                             IsDeleted = false,
                             Name = "Kids",
@@ -1262,7 +1264,7 @@ namespace AN.DAL.Migrations
                         new
                         {
                             Id = 2,
-                            CreatedAt = new DateTime(2021, 6, 15, 14, 58, 41, 223, DateTimeKind.Local).AddTicks(4236),
+                            CreatedAt = new DateTime(2021, 6, 21, 17, 14, 42, 331, DateTimeKind.Local).AddTicks(6473),
                             Description_Ku = "شارەزای دڵ",
                             IsDeleted = false,
                             Name = "Heart",
@@ -2401,7 +2403,7 @@ namespace AN.DAL.Migrations
                         new
                         {
                             Id = 1,
-                            CreatedAt = new DateTime(2021, 6, 15, 14, 58, 41, 222, DateTimeKind.Local).AddTicks(643),
+                            CreatedAt = new DateTime(2021, 6, 21, 17, 14, 42, 330, DateTimeKind.Local).AddTicks(2724),
                             IsDeleted = false,
                             Name = "Erbil",
                             Name_Ar = "اربیل",
@@ -2410,7 +2412,7 @@ namespace AN.DAL.Migrations
                         new
                         {
                             Id = 2,
-                            CreatedAt = new DateTime(2021, 6, 15, 14, 58, 41, 222, DateTimeKind.Local).AddTicks(857),
+                            CreatedAt = new DateTime(2021, 6, 21, 17, 14, 42, 330, DateTimeKind.Local).AddTicks(2945),
                             IsDeleted = false,
                             Name = "Sulaymaniyah",
                             Name_Ar = "السلیمانیه",
@@ -2419,7 +2421,7 @@ namespace AN.DAL.Migrations
                         new
                         {
                             Id = 3,
-                            CreatedAt = new DateTime(2021, 6, 15, 14, 58, 41, 222, DateTimeKind.Local).AddTicks(859),
+                            CreatedAt = new DateTime(2021, 6, 21, 17, 14, 42, 330, DateTimeKind.Local).AddTicks(2947),
                             IsDeleted = false,
                             Name = "Dahuk",
                             Name_Ar = "دهوك",
@@ -2587,7 +2589,7 @@ namespace AN.DAL.Migrations
                         new
                         {
                             Id = 1,
-                            CreatedAt = new DateTime(2021, 6, 15, 14, 58, 41, 223, DateTimeKind.Local).AddTicks(883),
+                            CreatedAt = new DateTime(2021, 6, 21, 17, 14, 42, 331, DateTimeKind.Local).AddTicks(3070),
                             Description_Ku = "",
                             IsDeleted = false,
                             Name = "General",
@@ -2597,7 +2599,7 @@ namespace AN.DAL.Migrations
                         new
                         {
                             Id = 2,
-                            CreatedAt = new DateTime(2021, 6, 15, 14, 58, 41, 223, DateTimeKind.Local).AddTicks(2321),
+                            CreatedAt = new DateTime(2021, 6, 21, 17, 14, 42, 331, DateTimeKind.Local).AddTicks(4570),
                             Description_Ku = "",
                             IsDeleted = false,
                             Name = "Specialist",
@@ -2607,7 +2609,7 @@ namespace AN.DAL.Migrations
                         new
                         {
                             Id = 3,
-                            CreatedAt = new DateTime(2021, 6, 15, 14, 58, 41, 223, DateTimeKind.Local).AddTicks(2335),
+                            CreatedAt = new DateTime(2021, 6, 21, 17, 14, 42, 331, DateTimeKind.Local).AddTicks(4584),
                             Description_Ku = "",
                             IsDeleted = false,
                             Name = "Expertise",
@@ -2674,7 +2676,7 @@ namespace AN.DAL.Migrations
                         new
                         {
                             Id = 1,
-                            CreatedAt = new DateTime(2021, 6, 15, 14, 58, 41, 222, DateTimeKind.Local).AddTicks(9144),
+                            CreatedAt = new DateTime(2021, 6, 21, 17, 14, 42, 331, DateTimeKind.Local).AddTicks(1308),
                             IsDeleted = false,
                             Name = "Visit",
                             Name_Ar = "يزور",
@@ -2685,7 +2687,7 @@ namespace AN.DAL.Migrations
                         new
                         {
                             Id = 2,
-                            CreatedAt = new DateTime(2021, 6, 15, 14, 58, 41, 222, DateTimeKind.Local).AddTicks(9347),
+                            CreatedAt = new DateTime(2021, 6, 21, 17, 14, 42, 331, DateTimeKind.Local).AddTicks(1506),
                             IsDeleted = false,
                             Name = "Hydrofacial",
                             Name_Ar = "الهايدرا فيشيل",
@@ -2696,7 +2698,7 @@ namespace AN.DAL.Migrations
                         new
                         {
                             Id = 3,
-                            CreatedAt = new DateTime(2021, 6, 15, 14, 58, 41, 222, DateTimeKind.Local).AddTicks(9349),
+                            CreatedAt = new DateTime(2021, 6, 21, 17, 14, 42, 331, DateTimeKind.Local).AddTicks(1509),
                             IsDeleted = false,
                             Name = "Scarlet",
                             Name_Ar = "سكارليت",
@@ -2707,7 +2709,7 @@ namespace AN.DAL.Migrations
                         new
                         {
                             Id = 4,
-                            CreatedAt = new DateTime(2021, 6, 15, 14, 58, 41, 222, DateTimeKind.Local).AddTicks(9351),
+                            CreatedAt = new DateTime(2021, 6, 21, 17, 14, 42, 331, DateTimeKind.Local).AddTicks(1510),
                             IsDeleted = false,
                             Name = "Hypho",
                             Name_Ar = "هايفو",
@@ -2718,7 +2720,7 @@ namespace AN.DAL.Migrations
                         new
                         {
                             Id = 5,
-                            CreatedAt = new DateTime(2021, 6, 15, 14, 58, 41, 222, DateTimeKind.Local).AddTicks(9352),
+                            CreatedAt = new DateTime(2021, 6, 21, 17, 14, 42, 331, DateTimeKind.Local).AddTicks(1512),
                             IsDeleted = false,
                             Name = "PRP",
                             Name_Ar = "بلازما - PRP",
@@ -2729,7 +2731,7 @@ namespace AN.DAL.Migrations
                         new
                         {
                             Id = 6,
-                            CreatedAt = new DateTime(2021, 6, 15, 14, 58, 41, 222, DateTimeKind.Local).AddTicks(9354),
+                            CreatedAt = new DateTime(2021, 6, 21, 17, 14, 42, 331, DateTimeKind.Local).AddTicks(1514),
                             IsDeleted = false,
                             Name = "Mesotherapy",
                             Name_Ar = "بلازماميزو",
@@ -2740,7 +2742,7 @@ namespace AN.DAL.Migrations
                         new
                         {
                             Id = 7,
-                            CreatedAt = new DateTime(2021, 6, 15, 14, 58, 41, 222, DateTimeKind.Local).AddTicks(9356),
+                            CreatedAt = new DateTime(2021, 6, 21, 17, 14, 42, 331, DateTimeKind.Local).AddTicks(1516),
                             IsDeleted = false,
                             Name = "Thread face lifting",
                             Name_Ar = "شد الوجه بالخيوط",
@@ -2751,7 +2753,7 @@ namespace AN.DAL.Migrations
                         new
                         {
                             Id = 8,
-                            CreatedAt = new DateTime(2021, 6, 15, 14, 58, 41, 222, DateTimeKind.Local).AddTicks(9358),
+                            CreatedAt = new DateTime(2021, 6, 21, 17, 14, 42, 331, DateTimeKind.Local).AddTicks(1517),
                             IsDeleted = false,
                             Name = "Eyebrow lifting",
                             Name_Ar = "رفع الحاجب",
@@ -2762,7 +2764,7 @@ namespace AN.DAL.Migrations
                         new
                         {
                             Id = 9,
-                            CreatedAt = new DateTime(2021, 6, 15, 14, 58, 41, 222, DateTimeKind.Local).AddTicks(9359),
+                            CreatedAt = new DateTime(2021, 6, 21, 17, 14, 42, 331, DateTimeKind.Local).AddTicks(1519),
                             IsDeleted = false,
                             Name = "Pigmentation treatment",
                             Name_Ar = "علاج التصبغات",
@@ -2773,7 +2775,7 @@ namespace AN.DAL.Migrations
                         new
                         {
                             Id = 10,
-                            CreatedAt = new DateTime(2021, 6, 15, 14, 58, 41, 222, DateTimeKind.Local).AddTicks(9361),
+                            CreatedAt = new DateTime(2021, 6, 21, 17, 14, 42, 331, DateTimeKind.Local).AddTicks(1521),
                             IsDeleted = false,
                             Name = "Acne & acne scar management",
                             Name_Ar = "علاج ندبات حب الشباب",
@@ -2784,7 +2786,7 @@ namespace AN.DAL.Migrations
                         new
                         {
                             Id = 11,
-                            CreatedAt = new DateTime(2021, 6, 15, 14, 58, 41, 222, DateTimeKind.Local).AddTicks(9362),
+                            CreatedAt = new DateTime(2021, 6, 21, 17, 14, 42, 331, DateTimeKind.Local).AddTicks(1523),
                             IsDeleted = false,
                             Name = "Nose reconstruction",
                             Name_Ar = "عملية تجميل الأنف",
@@ -2795,7 +2797,7 @@ namespace AN.DAL.Migrations
                         new
                         {
                             Id = 12,
-                            CreatedAt = new DateTime(2021, 6, 15, 14, 58, 41, 222, DateTimeKind.Local).AddTicks(9364),
+                            CreatedAt = new DateTime(2021, 6, 21, 17, 14, 42, 331, DateTimeKind.Local).AddTicks(1525),
                             IsDeleted = false,
                             Name = "Nevus removal",
                             Name_Ar = "إزالة الشامة",
@@ -2806,7 +2808,7 @@ namespace AN.DAL.Migrations
                         new
                         {
                             Id = 13,
-                            CreatedAt = new DateTime(2021, 6, 15, 14, 58, 41, 222, DateTimeKind.Local).AddTicks(9365),
+                            CreatedAt = new DateTime(2021, 6, 21, 17, 14, 42, 331, DateTimeKind.Local).AddTicks(1526),
                             IsDeleted = false,
                             Name = "Carbon laser",
                             Name_Ar = "ليزر كربوني",
@@ -2817,7 +2819,7 @@ namespace AN.DAL.Migrations
                         new
                         {
                             Id = 14,
-                            CreatedAt = new DateTime(2021, 6, 15, 14, 58, 41, 222, DateTimeKind.Local).AddTicks(9368),
+                            CreatedAt = new DateTime(2021, 6, 21, 17, 14, 42, 331, DateTimeKind.Local).AddTicks(1528),
                             IsDeleted = false,
                             Name = "Eyebrow tatoo",
                             Name_Ar = "تاتو الحواجب",
@@ -2828,7 +2830,7 @@ namespace AN.DAL.Migrations
                         new
                         {
                             Id = 15,
-                            CreatedAt = new DateTime(2021, 6, 15, 14, 58, 41, 222, DateTimeKind.Local).AddTicks(9369),
+                            CreatedAt = new DateTime(2021, 6, 21, 17, 14, 42, 331, DateTimeKind.Local).AddTicks(1531),
                             IsDeleted = false,
                             Name = "face Adjustments",
                             Name_Ar = "تعديل الوجه",
@@ -2839,7 +2841,7 @@ namespace AN.DAL.Migrations
                         new
                         {
                             Id = 16,
-                            CreatedAt = new DateTime(2021, 6, 15, 14, 58, 41, 222, DateTimeKind.Local).AddTicks(9371),
+                            CreatedAt = new DateTime(2021, 6, 21, 17, 14, 42, 331, DateTimeKind.Local).AddTicks(1533),
                             IsDeleted = false,
                             Name = "Eyebrow Extention",
                             Name_Ar = "إكستنشن الرموش ",
@@ -2850,7 +2852,7 @@ namespace AN.DAL.Migrations
                         new
                         {
                             Id = 17,
-                            CreatedAt = new DateTime(2021, 6, 15, 14, 58, 41, 222, DateTimeKind.Local).AddTicks(9391),
+                            CreatedAt = new DateTime(2021, 6, 21, 17, 14, 42, 331, DateTimeKind.Local).AddTicks(1555),
                             IsDeleted = false,
                             Name = "Full makeup",
                             Name_Ar = "مكياج سهرة/ ثقيل",
@@ -2861,7 +2863,7 @@ namespace AN.DAL.Migrations
                         new
                         {
                             Id = 18,
-                            CreatedAt = new DateTime(2021, 6, 15, 14, 58, 41, 222, DateTimeKind.Local).AddTicks(9428),
+                            CreatedAt = new DateTime(2021, 6, 21, 17, 14, 42, 331, DateTimeKind.Local).AddTicks(1557),
                             IsDeleted = false,
                             Name = "Simple makeup",
                             Name_Ar = "مكياج ناعم",
@@ -2872,7 +2874,7 @@ namespace AN.DAL.Migrations
                         new
                         {
                             Id = 19,
-                            CreatedAt = new DateTime(2021, 6, 15, 14, 58, 41, 222, DateTimeKind.Local).AddTicks(9443),
+                            CreatedAt = new DateTime(2021, 6, 21, 17, 14, 42, 331, DateTimeKind.Local).AddTicks(1568),
                             IsDeleted = false,
                             Name = "Sculpture",
                             Name_Ar = "نحت الجسم",
@@ -2883,7 +2885,7 @@ namespace AN.DAL.Migrations
                         new
                         {
                             Id = 20,
-                            CreatedAt = new DateTime(2021, 6, 15, 14, 58, 41, 222, DateTimeKind.Local).AddTicks(9445),
+                            CreatedAt = new DateTime(2021, 6, 21, 17, 14, 42, 331, DateTimeKind.Local).AddTicks(1570),
                             IsDeleted = false,
                             Name = "Body contouring",
                             Name_Ar = "Body contouring",
@@ -2894,7 +2896,7 @@ namespace AN.DAL.Migrations
                         new
                         {
                             Id = 21,
-                            CreatedAt = new DateTime(2021, 6, 15, 14, 58, 41, 222, DateTimeKind.Local).AddTicks(9456),
+                            CreatedAt = new DateTime(2021, 6, 21, 17, 14, 42, 331, DateTimeKind.Local).AddTicks(1580),
                             IsDeleted = false,
                             Name = "Keratin",
                             Name_Ar = "كرياتين",
@@ -2905,7 +2907,7 @@ namespace AN.DAL.Migrations
                         new
                         {
                             Id = 22,
-                            CreatedAt = new DateTime(2021, 6, 15, 14, 58, 41, 222, DateTimeKind.Local).AddTicks(9458),
+                            CreatedAt = new DateTime(2021, 6, 21, 17, 14, 42, 331, DateTimeKind.Local).AddTicks(1582),
                             IsDeleted = false,
                             Name = "Mask",
                             Name_Ar = "ماسك",
@@ -2916,7 +2918,7 @@ namespace AN.DAL.Migrations
                         new
                         {
                             Id = 23,
-                            CreatedAt = new DateTime(2021, 6, 15, 14, 58, 41, 222, DateTimeKind.Local).AddTicks(9459),
+                            CreatedAt = new DateTime(2021, 6, 21, 17, 14, 42, 331, DateTimeKind.Local).AddTicks(1583),
                             IsDeleted = false,
                             Name = "Hair falling treatment",
                             Name_Ar = "علاج تساقط الشعر",
@@ -2927,7 +2929,7 @@ namespace AN.DAL.Migrations
                         new
                         {
                             Id = 24,
-                            CreatedAt = new DateTime(2021, 6, 15, 14, 58, 41, 222, DateTimeKind.Local).AddTicks(9461),
+                            CreatedAt = new DateTime(2021, 6, 21, 17, 14, 42, 331, DateTimeKind.Local).AddTicks(1585),
                             IsDeleted = false,
                             Name = "Hair transplant",
                             Name_Ar = "زرع الشعر",
@@ -2938,7 +2940,7 @@ namespace AN.DAL.Migrations
                         new
                         {
                             Id = 25,
-                            CreatedAt = new DateTime(2021, 6, 15, 14, 58, 41, 222, DateTimeKind.Local).AddTicks(9463),
+                            CreatedAt = new DateTime(2021, 6, 21, 17, 14, 42, 331, DateTimeKind.Local).AddTicks(1587),
                             IsDeleted = false,
                             Name = "Hair extension",
                             Name_Ar = "إكستنشن الشعر",
@@ -2949,7 +2951,7 @@ namespace AN.DAL.Migrations
                         new
                         {
                             Id = 26,
-                            CreatedAt = new DateTime(2021, 6, 15, 14, 58, 41, 222, DateTimeKind.Local).AddTicks(9464),
+                            CreatedAt = new DateTime(2021, 6, 21, 17, 14, 42, 331, DateTimeKind.Local).AddTicks(1588),
                             IsDeleted = false,
                             Name = "Dye",
                             Name_Ar = "صبغ",
@@ -2960,7 +2962,7 @@ namespace AN.DAL.Migrations
                         new
                         {
                             Id = 27,
-                            CreatedAt = new DateTime(2021, 6, 15, 14, 58, 41, 222, DateTimeKind.Local).AddTicks(9466),
+                            CreatedAt = new DateTime(2021, 6, 21, 17, 14, 42, 331, DateTimeKind.Local).AddTicks(1590),
                             IsDeleted = false,
                             Name = "Hair Styling",
                             Name_Ar = "تسريحة شعر",
@@ -2971,7 +2973,7 @@ namespace AN.DAL.Migrations
                         new
                         {
                             Id = 28,
-                            CreatedAt = new DateTime(2021, 6, 15, 14, 58, 41, 222, DateTimeKind.Local).AddTicks(9468),
+                            CreatedAt = new DateTime(2021, 6, 21, 17, 14, 42, 331, DateTimeKind.Local).AddTicks(1592),
                             IsDeleted = false,
                             Name = "Hair root dye",
                             Name_Ar = "صبغ اطراف الشعر",
@@ -2982,7 +2984,7 @@ namespace AN.DAL.Migrations
                         new
                         {
                             Id = 29,
-                            CreatedAt = new DateTime(2021, 6, 15, 14, 58, 41, 222, DateTimeKind.Local).AddTicks(9470),
+                            CreatedAt = new DateTime(2021, 6, 21, 17, 14, 42, 331, DateTimeKind.Local).AddTicks(1593),
                             IsDeleted = false,
                             Name = "Cutting",
                             Name_Ar = "قص شعر",
@@ -2993,7 +2995,7 @@ namespace AN.DAL.Migrations
                         new
                         {
                             Id = 30,
-                            CreatedAt = new DateTime(2021, 6, 15, 14, 58, 41, 222, DateTimeKind.Local).AddTicks(9471),
+                            CreatedAt = new DateTime(2021, 6, 21, 17, 14, 42, 331, DateTimeKind.Local).AddTicks(1595),
                             IsDeleted = false,
                             Name = "سشوار",
                             Name_Ar = "سشوار",
@@ -3004,7 +3006,7 @@ namespace AN.DAL.Migrations
                         new
                         {
                             Id = 31,
-                            CreatedAt = new DateTime(2021, 6, 15, 14, 58, 41, 222, DateTimeKind.Local).AddTicks(9473),
+                            CreatedAt = new DateTime(2021, 6, 21, 17, 14, 42, 331, DateTimeKind.Local).AddTicks(1625),
                             IsDeleted = false,
                             Name = "موهير",
                             Name_Ar = "موهير",
@@ -3015,7 +3017,7 @@ namespace AN.DAL.Migrations
                         new
                         {
                             Id = 32,
-                            CreatedAt = new DateTime(2021, 6, 15, 14, 58, 41, 222, DateTimeKind.Local).AddTicks(9475),
+                            CreatedAt = new DateTime(2021, 6, 21, 17, 14, 42, 331, DateTimeKind.Local).AddTicks(1627),
                             IsDeleted = false,
                             Name = "اونبرة",
                             Name_Ar = "اونبرة",
@@ -3026,7 +3028,7 @@ namespace AN.DAL.Migrations
                         new
                         {
                             Id = 33,
-                            CreatedAt = new DateTime(2021, 6, 15, 14, 58, 41, 222, DateTimeKind.Local).AddTicks(9488),
+                            CreatedAt = new DateTime(2021, 6, 21, 17, 14, 42, 331, DateTimeKind.Local).AddTicks(1641),
                             IsDeleted = false,
                             Name = "Full body",
                             Name_Ar = "كامل الجسم",
@@ -3037,7 +3039,7 @@ namespace AN.DAL.Migrations
                         new
                         {
                             Id = 34,
-                            CreatedAt = new DateTime(2021, 6, 15, 14, 58, 41, 222, DateTimeKind.Local).AddTicks(9489),
+                            CreatedAt = new DateTime(2021, 6, 21, 17, 14, 42, 331, DateTimeKind.Local).AddTicks(1643),
                             IsDeleted = false,
                             Name = "Face",
                             Name_Ar = "الوجه",
@@ -3048,7 +3050,7 @@ namespace AN.DAL.Migrations
                         new
                         {
                             Id = 35,
-                            CreatedAt = new DateTime(2021, 6, 15, 14, 58, 41, 222, DateTimeKind.Local).AddTicks(9501),
+                            CreatedAt = new DateTime(2021, 6, 21, 17, 14, 42, 331, DateTimeKind.Local).AddTicks(1654),
                             IsDeleted = false,
                             Name = "Manicure",
                             Name_Ar = "منيكير",
@@ -3059,7 +3061,7 @@ namespace AN.DAL.Migrations
                         new
                         {
                             Id = 36,
-                            CreatedAt = new DateTime(2021, 6, 15, 14, 58, 41, 222, DateTimeKind.Local).AddTicks(9503),
+                            CreatedAt = new DateTime(2021, 6, 21, 17, 14, 42, 331, DateTimeKind.Local).AddTicks(1656),
                             IsDeleted = false,
                             Name = "Pedicure",
                             Name_Ar = "بديكير",
@@ -3070,7 +3072,7 @@ namespace AN.DAL.Migrations
                         new
                         {
                             Id = 37,
-                            CreatedAt = new DateTime(2021, 6, 15, 14, 58, 41, 222, DateTimeKind.Local).AddTicks(9504),
+                            CreatedAt = new DateTime(2021, 6, 21, 17, 14, 42, 331, DateTimeKind.Local).AddTicks(1657),
                             IsDeleted = false,
                             Name = "Gel",
                             Name_Ar = "جلّ الأظافر",
@@ -3081,7 +3083,7 @@ namespace AN.DAL.Migrations
                         new
                         {
                             Id = 38,
-                            CreatedAt = new DateTime(2021, 6, 15, 14, 58, 41, 222, DateTimeKind.Local).AddTicks(9506),
+                            CreatedAt = new DateTime(2021, 6, 21, 17, 14, 42, 331, DateTimeKind.Local).AddTicks(1660),
                             IsDeleted = false,
                             Name = "Acrylic",
                             Name_Ar = "آكريليك",
@@ -3092,7 +3094,7 @@ namespace AN.DAL.Migrations
                         new
                         {
                             Id = 39,
-                            CreatedAt = new DateTime(2021, 6, 15, 14, 58, 41, 222, DateTimeKind.Local).AddTicks(9517),
+                            CreatedAt = new DateTime(2021, 6, 21, 17, 14, 42, 331, DateTimeKind.Local).AddTicks(1670),
                             IsDeleted = false,
                             Name = "Face",
                             Name_Ar = "الوجه",
@@ -3103,7 +3105,7 @@ namespace AN.DAL.Migrations
                         new
                         {
                             Id = 40,
-                            CreatedAt = new DateTime(2021, 6, 15, 14, 58, 41, 222, DateTimeKind.Local).AddTicks(9518),
+                            CreatedAt = new DateTime(2021, 6, 21, 17, 14, 42, 331, DateTimeKind.Local).AddTicks(1672),
                             IsDeleted = false,
                             Name = "Body",
                             Name_Ar = "الجسم",
@@ -3114,7 +3116,7 @@ namespace AN.DAL.Migrations
                         new
                         {
                             Id = 41,
-                            CreatedAt = new DateTime(2021, 6, 15, 14, 58, 41, 222, DateTimeKind.Local).AddTicks(9529),
+                            CreatedAt = new DateTime(2021, 6, 21, 17, 14, 42, 331, DateTimeKind.Local).AddTicks(1682),
                             IsDeleted = false,
                             Name = "Complete examination",
                             Name_Ar = "Complete examination",
@@ -3125,7 +3127,7 @@ namespace AN.DAL.Migrations
                         new
                         {
                             Id = 42,
-                            CreatedAt = new DateTime(2021, 6, 15, 14, 58, 41, 222, DateTimeKind.Local).AddTicks(9531),
+                            CreatedAt = new DateTime(2021, 6, 21, 17, 14, 42, 331, DateTimeKind.Local).AddTicks(1684),
                             IsDeleted = false,
                             Name = "Dental cleanings",
                             Name_Ar = "Dental cleanings",
@@ -3136,7 +3138,7 @@ namespace AN.DAL.Migrations
                         new
                         {
                             Id = 43,
-                            CreatedAt = new DateTime(2021, 6, 15, 14, 58, 41, 222, DateTimeKind.Local).AddTicks(9532),
+                            CreatedAt = new DateTime(2021, 6, 21, 17, 14, 42, 331, DateTimeKind.Local).AddTicks(1687),
                             IsDeleted = false,
                             Name = "Visit",
                             Name_Ar = "يزور",
@@ -3147,7 +3149,7 @@ namespace AN.DAL.Migrations
                         new
                         {
                             Id = 44,
-                            CreatedAt = new DateTime(2021, 6, 15, 14, 58, 41, 222, DateTimeKind.Local).AddTicks(9542),
+                            CreatedAt = new DateTime(2021, 6, 21, 17, 14, 42, 331, DateTimeKind.Local).AddTicks(1698),
                             IsDeleted = false,
                             Name = "Thread face lifting",
                             Name_Ar = "شد الوجه بالخيوط",
@@ -3158,7 +3160,7 @@ namespace AN.DAL.Migrations
                         new
                         {
                             Id = 45,
-                            CreatedAt = new DateTime(2021, 6, 15, 14, 58, 41, 222, DateTimeKind.Local).AddTicks(9544),
+                            CreatedAt = new DateTime(2021, 6, 21, 17, 14, 42, 331, DateTimeKind.Local).AddTicks(1700),
                             IsDeleted = false,
                             Name = "Eyebrow lifting",
                             Name_Ar = "رفع الحاجب",
@@ -3169,7 +3171,7 @@ namespace AN.DAL.Migrations
                         new
                         {
                             Id = 46,
-                            CreatedAt = new DateTime(2021, 6, 15, 14, 58, 41, 222, DateTimeKind.Local).AddTicks(9571),
+                            CreatedAt = new DateTime(2021, 6, 21, 17, 14, 42, 331, DateTimeKind.Local).AddTicks(1702),
                             IsDeleted = false,
                             Name = "Eyebrow tatoo",
                             Name_Ar = "تاتو الحواجب",
@@ -3180,7 +3182,7 @@ namespace AN.DAL.Migrations
                         new
                         {
                             Id = 47,
-                            CreatedAt = new DateTime(2021, 6, 15, 14, 58, 41, 222, DateTimeKind.Local).AddTicks(9573),
+                            CreatedAt = new DateTime(2021, 6, 21, 17, 14, 42, 331, DateTimeKind.Local).AddTicks(1704),
                             IsDeleted = false,
                             Name = "Eyebrow Extention",
                             Name_Ar = "إكستنشن الرموش ",
@@ -3191,7 +3193,7 @@ namespace AN.DAL.Migrations
                         new
                         {
                             Id = 48,
-                            CreatedAt = new DateTime(2021, 6, 15, 14, 58, 41, 222, DateTimeKind.Local).AddTicks(9586),
+                            CreatedAt = new DateTime(2021, 6, 21, 17, 14, 42, 331, DateTimeKind.Local).AddTicks(1714),
                             IsDeleted = false,
                             Name = "Full makeup",
                             Name_Ar = "مكياج سهرة/ ثقيل",
@@ -3202,7 +3204,7 @@ namespace AN.DAL.Migrations
                         new
                         {
                             Id = 49,
-                            CreatedAt = new DateTime(2021, 6, 15, 14, 58, 41, 222, DateTimeKind.Local).AddTicks(9588),
+                            CreatedAt = new DateTime(2021, 6, 21, 17, 14, 42, 331, DateTimeKind.Local).AddTicks(1717),
                             IsDeleted = false,
                             Name = "Simple makeup",
                             Name_Ar = "مكياج ناعم",
@@ -3213,7 +3215,7 @@ namespace AN.DAL.Migrations
                         new
                         {
                             Id = 50,
-                            CreatedAt = new DateTime(2021, 6, 15, 14, 58, 41, 222, DateTimeKind.Local).AddTicks(9589),
+                            CreatedAt = new DateTime(2021, 6, 21, 17, 14, 42, 331, DateTimeKind.Local).AddTicks(1719),
                             IsDeleted = false,
                             Name = "Brides' makeup",
                             Name_Ar = "مكياج عروس",
@@ -3224,7 +3226,7 @@ namespace AN.DAL.Migrations
                         new
                         {
                             Id = 51,
-                            CreatedAt = new DateTime(2021, 6, 15, 14, 58, 41, 222, DateTimeKind.Local).AddTicks(9600),
+                            CreatedAt = new DateTime(2021, 6, 21, 17, 14, 42, 331, DateTimeKind.Local).AddTicks(1729),
                             IsDeleted = false,
                             Name = "Keratin",
                             Name_Ar = "كرياتين",
@@ -3235,7 +3237,7 @@ namespace AN.DAL.Migrations
                         new
                         {
                             Id = 52,
-                            CreatedAt = new DateTime(2021, 6, 15, 14, 58, 41, 222, DateTimeKind.Local).AddTicks(9601),
+                            CreatedAt = new DateTime(2021, 6, 21, 17, 14, 42, 331, DateTimeKind.Local).AddTicks(1731),
                             IsDeleted = false,
                             Name = "Mask",
                             Name_Ar = "ماسك",
@@ -3246,7 +3248,7 @@ namespace AN.DAL.Migrations
                         new
                         {
                             Id = 53,
-                            CreatedAt = new DateTime(2021, 6, 15, 14, 58, 41, 222, DateTimeKind.Local).AddTicks(9603),
+                            CreatedAt = new DateTime(2021, 6, 21, 17, 14, 42, 331, DateTimeKind.Local).AddTicks(1733),
                             IsDeleted = false,
                             Name = "Hair falling treatment",
                             Name_Ar = "علاج تساقط الشعر",
@@ -3257,7 +3259,7 @@ namespace AN.DAL.Migrations
                         new
                         {
                             Id = 54,
-                            CreatedAt = new DateTime(2021, 6, 15, 14, 58, 41, 222, DateTimeKind.Local).AddTicks(9604),
+                            CreatedAt = new DateTime(2021, 6, 21, 17, 14, 42, 331, DateTimeKind.Local).AddTicks(1735),
                             IsDeleted = false,
                             Name = "Hair transplant",
                             Name_Ar = "زرع الشعر",
@@ -3268,7 +3270,7 @@ namespace AN.DAL.Migrations
                         new
                         {
                             Id = 55,
-                            CreatedAt = new DateTime(2021, 6, 15, 14, 58, 41, 222, DateTimeKind.Local).AddTicks(9607),
+                            CreatedAt = new DateTime(2021, 6, 21, 17, 14, 42, 331, DateTimeKind.Local).AddTicks(1737),
                             IsDeleted = false,
                             Name = "Hair extension",
                             Name_Ar = "إكستنشن الشعر",
@@ -3279,7 +3281,7 @@ namespace AN.DAL.Migrations
                         new
                         {
                             Id = 56,
-                            CreatedAt = new DateTime(2021, 6, 15, 14, 58, 41, 222, DateTimeKind.Local).AddTicks(9608),
+                            CreatedAt = new DateTime(2021, 6, 21, 17, 14, 42, 331, DateTimeKind.Local).AddTicks(1739),
                             IsDeleted = false,
                             Name = "Dye",
                             Name_Ar = "صبغ",
@@ -3290,7 +3292,7 @@ namespace AN.DAL.Migrations
                         new
                         {
                             Id = 57,
-                            CreatedAt = new DateTime(2021, 6, 15, 14, 58, 41, 222, DateTimeKind.Local).AddTicks(9610),
+                            CreatedAt = new DateTime(2021, 6, 21, 17, 14, 42, 331, DateTimeKind.Local).AddTicks(1741),
                             IsDeleted = false,
                             Name = "Hair Styling",
                             Name_Ar = "تسريحة شعر",
@@ -3301,7 +3303,7 @@ namespace AN.DAL.Migrations
                         new
                         {
                             Id = 58,
-                            CreatedAt = new DateTime(2021, 6, 15, 14, 58, 41, 222, DateTimeKind.Local).AddTicks(9612),
+                            CreatedAt = new DateTime(2021, 6, 21, 17, 14, 42, 331, DateTimeKind.Local).AddTicks(1743),
                             IsDeleted = false,
                             Name = "Hair root dye",
                             Name_Ar = "صبغ اطراف الشعر",
@@ -3312,7 +3314,7 @@ namespace AN.DAL.Migrations
                         new
                         {
                             Id = 59,
-                            CreatedAt = new DateTime(2021, 6, 15, 14, 58, 41, 222, DateTimeKind.Local).AddTicks(9613),
+                            CreatedAt = new DateTime(2021, 6, 21, 17, 14, 42, 331, DateTimeKind.Local).AddTicks(1744),
                             IsDeleted = false,
                             Name = "Cutting",
                             Name_Ar = "قص شعر",
@@ -3323,7 +3325,7 @@ namespace AN.DAL.Migrations
                         new
                         {
                             Id = 60,
-                            CreatedAt = new DateTime(2021, 6, 15, 14, 58, 41, 222, DateTimeKind.Local).AddTicks(9615),
+                            CreatedAt = new DateTime(2021, 6, 21, 17, 14, 42, 331, DateTimeKind.Local).AddTicks(1770),
                             IsDeleted = false,
                             Name = "Hairdrying",
                             Name_Ar = "سشوار",
@@ -3334,7 +3336,7 @@ namespace AN.DAL.Migrations
                         new
                         {
                             Id = 61,
-                            CreatedAt = new DateTime(2021, 6, 15, 14, 58, 41, 222, DateTimeKind.Local).AddTicks(9616),
+                            CreatedAt = new DateTime(2021, 6, 21, 17, 14, 42, 331, DateTimeKind.Local).AddTicks(1772),
                             IsDeleted = false,
                             Name = "Acrylic/Mohair",
                             Name_Ar = "موهير",
@@ -3345,7 +3347,7 @@ namespace AN.DAL.Migrations
                         new
                         {
                             Id = 62,
-                            CreatedAt = new DateTime(2021, 6, 15, 14, 58, 41, 222, DateTimeKind.Local).AddTicks(9618),
+                            CreatedAt = new DateTime(2021, 6, 21, 17, 14, 42, 331, DateTimeKind.Local).AddTicks(1774),
                             IsDeleted = false,
                             Name = "Ombre",
                             Name_Ar = "اونبرة",
@@ -3356,7 +3358,7 @@ namespace AN.DAL.Migrations
                         new
                         {
                             Id = 63,
-                            CreatedAt = new DateTime(2021, 6, 15, 14, 58, 41, 222, DateTimeKind.Local).AddTicks(9630),
+                            CreatedAt = new DateTime(2021, 6, 21, 17, 14, 42, 331, DateTimeKind.Local).AddTicks(1789),
                             IsDeleted = false,
                             Name = "Full body",
                             Name_Ar = "كامل الجسم",
@@ -3367,7 +3369,7 @@ namespace AN.DAL.Migrations
                         new
                         {
                             Id = 64,
-                            CreatedAt = new DateTime(2021, 6, 15, 14, 58, 41, 222, DateTimeKind.Local).AddTicks(9632),
+                            CreatedAt = new DateTime(2021, 6, 21, 17, 14, 42, 331, DateTimeKind.Local).AddTicks(1791),
                             IsDeleted = false,
                             Name = "Face",
                             Name_Ar = "الوجه",
@@ -3378,7 +3380,7 @@ namespace AN.DAL.Migrations
                         new
                         {
                             Id = 65,
-                            CreatedAt = new DateTime(2021, 6, 15, 14, 58, 41, 222, DateTimeKind.Local).AddTicks(9643),
+                            CreatedAt = new DateTime(2021, 6, 21, 17, 14, 42, 331, DateTimeKind.Local).AddTicks(1803),
                             IsDeleted = false,
                             Name = "Manicure",
                             Name_Ar = "منيكير",
@@ -3389,7 +3391,7 @@ namespace AN.DAL.Migrations
                         new
                         {
                             Id = 66,
-                            CreatedAt = new DateTime(2021, 6, 15, 14, 58, 41, 222, DateTimeKind.Local).AddTicks(9644),
+                            CreatedAt = new DateTime(2021, 6, 21, 17, 14, 42, 331, DateTimeKind.Local).AddTicks(1806),
                             IsDeleted = false,
                             Name = "Pedicure",
                             Name_Ar = "بديكير",
@@ -3400,7 +3402,7 @@ namespace AN.DAL.Migrations
                         new
                         {
                             Id = 67,
-                            CreatedAt = new DateTime(2021, 6, 15, 14, 58, 41, 222, DateTimeKind.Local).AddTicks(9646),
+                            CreatedAt = new DateTime(2021, 6, 21, 17, 14, 42, 331, DateTimeKind.Local).AddTicks(1808),
                             IsDeleted = false,
                             Name = "Gel",
                             Name_Ar = "جلّ الأظافر",
@@ -3411,7 +3413,7 @@ namespace AN.DAL.Migrations
                         new
                         {
                             Id = 68,
-                            CreatedAt = new DateTime(2021, 6, 15, 14, 58, 41, 222, DateTimeKind.Local).AddTicks(9647),
+                            CreatedAt = new DateTime(2021, 6, 21, 17, 14, 42, 331, DateTimeKind.Local).AddTicks(1811),
                             IsDeleted = false,
                             Name = "Acrylic",
                             Name_Ar = "آكريليك",
@@ -3422,7 +3424,7 @@ namespace AN.DAL.Migrations
                         new
                         {
                             Id = 69,
-                            CreatedAt = new DateTime(2021, 6, 15, 14, 58, 41, 222, DateTimeKind.Local).AddTicks(9659),
+                            CreatedAt = new DateTime(2021, 6, 21, 17, 14, 42, 331, DateTimeKind.Local).AddTicks(1823),
                             IsDeleted = false,
                             Name = "Visit",
                             Name_Ar = "زیارة العیادة",
@@ -3433,7 +3435,7 @@ namespace AN.DAL.Migrations
                         new
                         {
                             Id = 70,
-                            CreatedAt = new DateTime(2021, 6, 15, 14, 58, 41, 222, DateTimeKind.Local).AddTicks(9661),
+                            CreatedAt = new DateTime(2021, 6, 21, 17, 14, 42, 331, DateTimeKind.Local).AddTicks(1825),
                             IsDeleted = false,
                             Name = "Diet Clinic",
                             Name_Ar = "کلینیک نظام الغذائي",
@@ -3444,7 +3446,7 @@ namespace AN.DAL.Migrations
                         new
                         {
                             Id = 71,
-                            CreatedAt = new DateTime(2021, 6, 15, 14, 58, 41, 222, DateTimeKind.Local).AddTicks(9662),
+                            CreatedAt = new DateTime(2021, 6, 21, 17, 14, 42, 331, DateTimeKind.Local).AddTicks(1828),
                             IsDeleted = false,
                             Name = "Intermittent Fasting Diet",
                             Name_Ar = "نطام الغذائي صوم المتقطع",
@@ -3455,7 +3457,7 @@ namespace AN.DAL.Migrations
                         new
                         {
                             Id = 72,
-                            CreatedAt = new DateTime(2021, 6, 15, 14, 58, 41, 222, DateTimeKind.Local).AddTicks(9664),
+                            CreatedAt = new DateTime(2021, 6, 21, 17, 14, 42, 331, DateTimeKind.Local).AddTicks(1829),
                             IsDeleted = false,
                             Name = "No Deprivation Diet",
                             Name_Ar = "نطام الغذائي بدون حرمان",
@@ -3466,7 +3468,7 @@ namespace AN.DAL.Migrations
                         new
                         {
                             Id = 73,
-                            CreatedAt = new DateTime(2021, 6, 15, 14, 58, 41, 222, DateTimeKind.Local).AddTicks(9665),
+                            CreatedAt = new DateTime(2021, 6, 21, 17, 14, 42, 331, DateTimeKind.Local).AddTicks(1833),
                             IsDeleted = false,
                             Name = "Lifestyle Diets",
                             Name_Ar = "نطام الغذائي أنماط الحیاة",
@@ -3477,7 +3479,7 @@ namespace AN.DAL.Migrations
                         new
                         {
                             Id = 74,
-                            CreatedAt = new DateTime(2021, 6, 15, 14, 58, 41, 222, DateTimeKind.Local).AddTicks(9709),
+                            CreatedAt = new DateTime(2021, 6, 21, 17, 14, 42, 331, DateTimeKind.Local).AddTicks(1834),
                             IsDeleted = false,
                             Name = "Atkins Diet",
                             Name_Ar = "نطام الغذائي آتکینز",
@@ -3488,7 +3490,7 @@ namespace AN.DAL.Migrations
                         new
                         {
                             Id = 75,
-                            CreatedAt = new DateTime(2021, 6, 15, 14, 58, 41, 222, DateTimeKind.Local).AddTicks(9711),
+                            CreatedAt = new DateTime(2021, 6, 21, 17, 14, 42, 331, DateTimeKind.Local).AddTicks(1836),
                             IsDeleted = false,
                             Name = "Dukan Diet",
                             Name_Ar = "نطام الغذائي دوکان",
@@ -3499,7 +3501,7 @@ namespace AN.DAL.Migrations
                         new
                         {
                             Id = 76,
-                            CreatedAt = new DateTime(2021, 6, 15, 14, 58, 41, 222, DateTimeKind.Local).AddTicks(9713),
+                            CreatedAt = new DateTime(2021, 6, 21, 17, 14, 42, 331, DateTimeKind.Local).AddTicks(1838),
                             IsDeleted = false,
                             Name = "Keto Diet",
                             Name_Ar = "نطام الغذائي کیتو",
@@ -3510,7 +3512,7 @@ namespace AN.DAL.Migrations
                         new
                         {
                             Id = 77,
-                            CreatedAt = new DateTime(2021, 6, 15, 14, 58, 41, 222, DateTimeKind.Local).AddTicks(9714),
+                            CreatedAt = new DateTime(2021, 6, 21, 17, 14, 42, 331, DateTimeKind.Local).AddTicks(1840),
                             IsDeleted = false,
                             Name = "Ketogenic Diet Plan",
                             Name_Ar = "خطة نطام الغذائي کیتوجنیک",
@@ -3521,7 +3523,7 @@ namespace AN.DAL.Migrations
                         new
                         {
                             Id = 78,
-                            CreatedAt = new DateTime(2021, 6, 15, 14, 58, 41, 222, DateTimeKind.Local).AddTicks(9716),
+                            CreatedAt = new DateTime(2021, 6, 21, 17, 14, 42, 331, DateTimeKind.Local).AddTicks(1842),
                             IsDeleted = false,
                             Name = "Stevia",
                             Name_Ar = "ستیڤیا",
@@ -3532,7 +3534,7 @@ namespace AN.DAL.Migrations
                         new
                         {
                             Id = 79,
-                            CreatedAt = new DateTime(2021, 6, 15, 14, 58, 41, 222, DateTimeKind.Local).AddTicks(9717),
+                            CreatedAt = new DateTime(2021, 6, 21, 17, 14, 42, 331, DateTimeKind.Local).AddTicks(1843),
                             IsDeleted = false,
                             Name = "Healthy Lifestyle",
                             Name_Ar = "أنماط الحیاة صحي",
@@ -3543,7 +3545,7 @@ namespace AN.DAL.Migrations
                         new
                         {
                             Id = 80,
-                            CreatedAt = new DateTime(2021, 6, 15, 14, 58, 41, 222, DateTimeKind.Local).AddTicks(9719),
+                            CreatedAt = new DateTime(2021, 6, 21, 17, 14, 42, 331, DateTimeKind.Local).AddTicks(1845),
                             IsDeleted = false,
                             Name = "Nutrition Consultation",
                             Name_Ar = "مشاورة التغذیة",
@@ -3554,7 +3556,7 @@ namespace AN.DAL.Migrations
                         new
                         {
                             Id = 81,
-                            CreatedAt = new DateTime(2021, 6, 15, 14, 58, 41, 222, DateTimeKind.Local).AddTicks(9720),
+                            CreatedAt = new DateTime(2021, 6, 21, 17, 14, 42, 331, DateTimeKind.Local).AddTicks(1847),
                             IsDeleted = false,
                             Name = "Body Composition Analyzing",
                             Name_Ar = "تحلیل ترکیب الجسم",
@@ -3565,7 +3567,7 @@ namespace AN.DAL.Migrations
                         new
                         {
                             Id = 82,
-                            CreatedAt = new DateTime(2021, 6, 15, 14, 58, 41, 222, DateTimeKind.Local).AddTicks(9722),
+                            CreatedAt = new DateTime(2021, 6, 21, 17, 14, 42, 331, DateTimeKind.Local).AddTicks(1848),
                             IsDeleted = false,
                             Name = "Sugar free",
                             Name_Ar = "بدون سکر",
@@ -3576,7 +3578,7 @@ namespace AN.DAL.Migrations
                         new
                         {
                             Id = 83,
-                            CreatedAt = new DateTime(2021, 6, 15, 14, 58, 41, 222, DateTimeKind.Local).AddTicks(9724),
+                            CreatedAt = new DateTime(2021, 6, 21, 17, 14, 42, 331, DateTimeKind.Local).AddTicks(1850),
                             IsDeleted = false,
                             Name = "Lactose Free",
                             Name_Ar = "بدون لاکتوز",
@@ -3587,7 +3589,7 @@ namespace AN.DAL.Migrations
                         new
                         {
                             Id = 84,
-                            CreatedAt = new DateTime(2021, 6, 15, 14, 58, 41, 222, DateTimeKind.Local).AddTicks(9726),
+                            CreatedAt = new DateTime(2021, 6, 21, 17, 14, 42, 331, DateTimeKind.Local).AddTicks(1852),
                             IsDeleted = false,
                             Name = "Gluten Free",
                             Name_Ar = "بدون غلوتین",
@@ -3598,7 +3600,7 @@ namespace AN.DAL.Migrations
                         new
                         {
                             Id = 85,
-                            CreatedAt = new DateTime(2021, 6, 15, 14, 58, 41, 222, DateTimeKind.Local).AddTicks(9728),
+                            CreatedAt = new DateTime(2021, 6, 21, 17, 14, 42, 331, DateTimeKind.Local).AddTicks(1853),
                             IsDeleted = false,
                             Name = "Hemiplegia treatment",
                             Name_Ar = "علاج فالج",
@@ -3609,7 +3611,7 @@ namespace AN.DAL.Migrations
                         new
                         {
                             Id = 86,
-                            CreatedAt = new DateTime(2021, 6, 15, 14, 58, 41, 222, DateTimeKind.Local).AddTicks(9729),
+                            CreatedAt = new DateTime(2021, 6, 21, 17, 14, 42, 331, DateTimeKind.Local).AddTicks(1855),
                             IsDeleted = false,
                             Name = "Children's hemiplegia treatment",
                             Name_Ar = "علاج فالج الأطفال",
@@ -3620,7 +3622,7 @@ namespace AN.DAL.Migrations
                         new
                         {
                             Id = 87,
-                            CreatedAt = new DateTime(2021, 6, 15, 14, 58, 41, 222, DateTimeKind.Local).AddTicks(9731),
+                            CreatedAt = new DateTime(2021, 6, 21, 17, 14, 42, 331, DateTimeKind.Local).AddTicks(1856),
                             IsDeleted = false,
                             Name = "Spinal cord dislocation",
                             Name_Ar = "خلع النخاع",
@@ -3631,7 +3633,7 @@ namespace AN.DAL.Migrations
                         new
                         {
                             Id = 88,
-                            CreatedAt = new DateTime(2021, 6, 15, 14, 58, 41, 222, DateTimeKind.Local).AddTicks(9732),
+                            CreatedAt = new DateTime(2021, 6, 21, 17, 14, 42, 331, DateTimeKind.Local).AddTicks(1858),
                             IsDeleted = false,
                             Name = "Joint dislocation",
                             Name_Ar = "خلع المفاصل",
@@ -3642,7 +3644,7 @@ namespace AN.DAL.Migrations
                         new
                         {
                             Id = 89,
-                            CreatedAt = new DateTime(2021, 6, 15, 14, 58, 41, 222, DateTimeKind.Local).AddTicks(9734),
+                            CreatedAt = new DateTime(2021, 6, 21, 17, 14, 42, 331, DateTimeKind.Local).AddTicks(1859),
                             IsDeleted = false,
                             Name = "Physiotherapy",
                             Name_Ar = "العلاج الطبیعي",
@@ -3653,7 +3655,7 @@ namespace AN.DAL.Migrations
                         new
                         {
                             Id = 90,
-                            CreatedAt = new DateTime(2021, 6, 15, 14, 58, 41, 222, DateTimeKind.Local).AddTicks(9735),
+                            CreatedAt = new DateTime(2021, 6, 21, 17, 14, 42, 331, DateTimeKind.Local).AddTicks(1861),
                             IsDeleted = false,
                             Name = "Speaking problems",
                             Name_Ar = "مشاکل التکلم",
@@ -3664,7 +3666,7 @@ namespace AN.DAL.Migrations
                         new
                         {
                             Id = 91,
-                            CreatedAt = new DateTime(2021, 6, 15, 14, 58, 41, 222, DateTimeKind.Local).AddTicks(9752),
+                            CreatedAt = new DateTime(2021, 6, 21, 17, 14, 42, 331, DateTimeKind.Local).AddTicks(1917),
                             IsDeleted = false,
                             Name = "Specialist Consultation",
                             Name_Ar = "استشارة متخصصة",
@@ -3675,7 +3677,7 @@ namespace AN.DAL.Migrations
                         new
                         {
                             Id = 92,
-                            CreatedAt = new DateTime(2021, 6, 15, 14, 58, 41, 222, DateTimeKind.Local).AddTicks(9754),
+                            CreatedAt = new DateTime(2021, 6, 21, 17, 14, 42, 331, DateTimeKind.Local).AddTicks(1920),
                             IsDeleted = false,
                             Name = "24 hour Nurse Follow-Up +1 Bottle Oxigen + C-Pap",
                             Name_Ar = "متابعة ممرضة على مدار ٢٤ ساعة +١ زجاجة أكسجين + C-Pap",
@@ -3686,7 +3688,7 @@ namespace AN.DAL.Migrations
                         new
                         {
                             Id = 93,
-                            CreatedAt = new DateTime(2021, 6, 15, 14, 58, 41, 222, DateTimeKind.Local).AddTicks(9755),
+                            CreatedAt = new DateTime(2021, 6, 21, 17, 14, 42, 331, DateTimeKind.Local).AddTicks(1922),
                             IsDeleted = false,
                             Name = "24 hour Nurse Follow-Up +1 Bottle Oxigen",
                             Name_Ar = "متابعة ممرضة على مدار ٢٤ ساعة + ١ زجاجة أكسجين",
@@ -3697,7 +3699,7 @@ namespace AN.DAL.Migrations
                         new
                         {
                             Id = 94,
-                            CreatedAt = new DateTime(2021, 6, 15, 14, 58, 41, 222, DateTimeKind.Local).AddTicks(9757),
+                            CreatedAt = new DateTime(2021, 6, 21, 17, 14, 42, 331, DateTimeKind.Local).AddTicks(1923),
                             IsDeleted = false,
                             Name = "Medication",
                             Name_Ar = "إعطاء الدواء",
@@ -3708,7 +3710,7 @@ namespace AN.DAL.Migrations
                         new
                         {
                             Id = 95,
-                            CreatedAt = new DateTime(2021, 6, 15, 14, 58, 41, 222, DateTimeKind.Local).AddTicks(9758),
+                            CreatedAt = new DateTime(2021, 6, 21, 17, 14, 42, 331, DateTimeKind.Local).AddTicks(1925),
                             IsDeleted = false,
                             Name = "Bottle Oxygen- oxygen maker",
                             Name_Ar = "زجاجة الأكسجين- صانع الأكسجين",
@@ -3719,7 +3721,7 @@ namespace AN.DAL.Migrations
                         new
                         {
                             Id = 96,
-                            CreatedAt = new DateTime(2021, 6, 15, 14, 58, 41, 222, DateTimeKind.Local).AddTicks(9769),
+                            CreatedAt = new DateTime(2021, 6, 21, 17, 14, 42, 331, DateTimeKind.Local).AddTicks(1936),
                             IsDeleted = false,
                             Name = "Specialist Consultation",
                             Name_Ar = "استشارة متخصصة",
@@ -3730,7 +3732,7 @@ namespace AN.DAL.Migrations
                         new
                         {
                             Id = 97,
-                            CreatedAt = new DateTime(2021, 6, 15, 14, 58, 41, 222, DateTimeKind.Local).AddTicks(9771),
+                            CreatedAt = new DateTime(2021, 6, 21, 17, 14, 42, 331, DateTimeKind.Local).AddTicks(1938),
                             IsDeleted = false,
                             Name = "Nurse Follow-Up By Hour",
                             Name_Ar = "متابعة الممرضة حسب الساعة",
@@ -3741,7 +3743,7 @@ namespace AN.DAL.Migrations
                         new
                         {
                             Id = 98,
-                            CreatedAt = new DateTime(2021, 6, 15, 14, 58, 41, 222, DateTimeKind.Local).AddTicks(9772),
+                            CreatedAt = new DateTime(2021, 6, 21, 17, 14, 42, 331, DateTimeKind.Local).AddTicks(1940),
                             IsDeleted = false,
                             Name = "Nurse Follow-Up- 24 Hour",
                             Name_Ar = "متابعة الممرضة - ٢٤ ساعة",
@@ -3752,7 +3754,7 @@ namespace AN.DAL.Migrations
                         new
                         {
                             Id = 99,
-                            CreatedAt = new DateTime(2021, 6, 15, 14, 58, 41, 222, DateTimeKind.Local).AddTicks(9774),
+                            CreatedAt = new DateTime(2021, 6, 21, 17, 14, 42, 331, DateTimeKind.Local).AddTicks(1941),
                             IsDeleted = false,
                             Name = "ECG",
                             Name_Ar = "تخطيط القلب الكهربائي",
@@ -3763,7 +3765,7 @@ namespace AN.DAL.Migrations
                         new
                         {
                             Id = 100,
-                            CreatedAt = new DateTime(2021, 6, 15, 14, 58, 41, 222, DateTimeKind.Local).AddTicks(9776),
+                            CreatedAt = new DateTime(2021, 6, 21, 17, 14, 42, 331, DateTimeKind.Local).AddTicks(1943),
                             IsDeleted = false,
                             Name = "Insert Cannula",
                             Name_Ar = "إدراج كانولا",
@@ -3774,7 +3776,7 @@ namespace AN.DAL.Migrations
                         new
                         {
                             Id = 101,
-                            CreatedAt = new DateTime(2021, 6, 15, 14, 58, 41, 222, DateTimeKind.Local).AddTicks(9777),
+                            CreatedAt = new DateTime(2021, 6, 21, 17, 14, 42, 331, DateTimeKind.Local).AddTicks(1945),
                             IsDeleted = false,
                             Name = "Injection",
                             Name_Ar = "حقن  ",
@@ -3785,7 +3787,7 @@ namespace AN.DAL.Migrations
                         new
                         {
                             Id = 102,
-                            CreatedAt = new DateTime(2021, 6, 15, 14, 58, 41, 222, DateTimeKind.Local).AddTicks(9779),
+                            CreatedAt = new DateTime(2021, 6, 21, 17, 14, 42, 331, DateTimeKind.Local).AddTicks(1946),
                             IsDeleted = false,
                             Name = "Foley Catheter & Remove Catheter",
                             Name_Ar = "ادراج قثطار فولي",
@@ -3796,7 +3798,7 @@ namespace AN.DAL.Migrations
                         new
                         {
                             Id = 103,
-                            CreatedAt = new DateTime(2021, 6, 15, 14, 58, 41, 222, DateTimeKind.Local).AddTicks(9780),
+                            CreatedAt = new DateTime(2021, 6, 21, 17, 14, 42, 331, DateTimeKind.Local).AddTicks(1948),
                             IsDeleted = false,
                             Name = "NG Tube",
                             Name_Ar = "انبوب انفي معدي",
@@ -3807,7 +3809,7 @@ namespace AN.DAL.Migrations
                         new
                         {
                             Id = 104,
-                            CreatedAt = new DateTime(2021, 6, 15, 14, 58, 41, 222, DateTimeKind.Local).AddTicks(9782),
+                            CreatedAt = new DateTime(2021, 6, 21, 17, 14, 42, 331, DateTimeKind.Local).AddTicks(1950),
                             IsDeleted = false,
                             Name = "Dressing",
                             Name_Ar = "ضماد",
@@ -3818,7 +3820,7 @@ namespace AN.DAL.Migrations
                         new
                         {
                             Id = 105,
-                            CreatedAt = new DateTime(2021, 6, 15, 14, 58, 41, 222, DateTimeKind.Local).AddTicks(9784),
+                            CreatedAt = new DateTime(2021, 6, 21, 17, 14, 42, 331, DateTimeKind.Local).AddTicks(1951),
                             IsDeleted = false,
                             Name = "Fluid suction",
                             Name_Ar = "شفط السوائل",
@@ -3829,7 +3831,7 @@ namespace AN.DAL.Migrations
                         new
                         {
                             Id = 106,
-                            CreatedAt = new DateTime(2021, 6, 15, 14, 58, 41, 222, DateTimeKind.Local).AddTicks(9785),
+                            CreatedAt = new DateTime(2021, 6, 21, 17, 14, 42, 331, DateTimeKind.Local).AddTicks(1953),
                             IsDeleted = false,
                             Name = "Nebulizer",
                             Name_Ar = "بخار",
@@ -3840,7 +3842,7 @@ namespace AN.DAL.Migrations
                         new
                         {
                             Id = 107,
-                            CreatedAt = new DateTime(2021, 6, 15, 14, 58, 41, 222, DateTimeKind.Local).AddTicks(9787),
+                            CreatedAt = new DateTime(2021, 6, 21, 17, 14, 42, 331, DateTimeKind.Local).AddTicks(1955),
                             IsDeleted = false,
                             Name = "Monitoring",
                             Name_Ar = "جهاز المراقبة",
@@ -3851,7 +3853,7 @@ namespace AN.DAL.Migrations
                         new
                         {
                             Id = 108,
-                            CreatedAt = new DateTime(2021, 6, 15, 14, 58, 41, 222, DateTimeKind.Local).AddTicks(9789),
+                            CreatedAt = new DateTime(2021, 6, 21, 17, 14, 42, 331, DateTimeKind.Local).AddTicks(1956),
                             IsDeleted = false,
                             Name = "ECG Holter with Cardiologysts Report",
                             Name_Ar = "تخطيط القلب الكهربائي مع تقرير أطباء القلب",
@@ -3862,7 +3864,7 @@ namespace AN.DAL.Migrations
                         new
                         {
                             Id = 109,
-                            CreatedAt = new DateTime(2021, 6, 15, 14, 58, 41, 222, DateTimeKind.Local).AddTicks(9790),
+                            CreatedAt = new DateTime(2021, 6, 21, 17, 14, 42, 331, DateTimeKind.Local).AddTicks(1959),
                             IsDeleted = false,
                             Name = "Fluid Aspiration",
                             Name_Ar = "سحب الماء من الرئة",
@@ -3873,7 +3875,7 @@ namespace AN.DAL.Migrations
                         new
                         {
                             Id = 110,
-                            CreatedAt = new DateTime(2021, 6, 15, 14, 58, 41, 222, DateTimeKind.Local).AddTicks(9792),
+                            CreatedAt = new DateTime(2021, 6, 21, 17, 14, 42, 331, DateTimeKind.Local).AddTicks(1960),
                             IsDeleted = false,
                             Name = "Healthy Food Schedule",
                             Name_Ar = "جدول الغذاء الصحي",
@@ -3884,7 +3886,7 @@ namespace AN.DAL.Migrations
                         new
                         {
                             Id = 111,
-                            CreatedAt = new DateTime(2021, 6, 15, 14, 58, 41, 222, DateTimeKind.Local).AddTicks(9834),
+                            CreatedAt = new DateTime(2021, 6, 21, 17, 14, 42, 331, DateTimeKind.Local).AddTicks(1972),
                             IsDeleted = false,
                             Name = "Ambulance Covid With Staff+ C-Pap + Monitor",
                             Name_Ar = "سيارة إسعاف خاص بالمشخص بكوفيد ١٩ + موظفين + C-pap",
@@ -3895,7 +3897,7 @@ namespace AN.DAL.Migrations
                         new
                         {
                             Id = 112,
-                            CreatedAt = new DateTime(2021, 6, 15, 14, 58, 41, 222, DateTimeKind.Local).AddTicks(9836),
+                            CreatedAt = new DateTime(2021, 6, 21, 17, 14, 42, 331, DateTimeKind.Local).AddTicks(1974),
                             IsDeleted = false,
                             Name = "Ambulance Normal Case Non-Covid",
                             Name_Ar = "ئەمبوڵانس کۆڤید لەگەڵ ستاف + سی-پاپ + مۆنیتەر",
@@ -3906,7 +3908,7 @@ namespace AN.DAL.Migrations
                         new
                         {
                             Id = 113,
-                            CreatedAt = new DateTime(2021, 6, 15, 14, 58, 41, 222, DateTimeKind.Local).AddTicks(9838),
+                            CreatedAt = new DateTime(2021, 6, 21, 17, 14, 42, 331, DateTimeKind.Local).AddTicks(1976),
                             IsDeleted = false,
                             Name = "Nurse inside Ambulance-Extra",
                             Name_Ar = "ممرضة داخل الإسعاف اضافية",
@@ -3917,7 +3919,7 @@ namespace AN.DAL.Migrations
                         new
                         {
                             Id = 114,
-                            CreatedAt = new DateTime(2021, 6, 15, 14, 58, 41, 222, DateTimeKind.Local).AddTicks(9848),
+                            CreatedAt = new DateTime(2021, 6, 21, 17, 14, 42, 331, DateTimeKind.Local).AddTicks(1986),
                             IsDeleted = false,
                             Name = "Defficult Case",
                             Name_Ar = "حالة صعبة",
@@ -3928,7 +3930,7 @@ namespace AN.DAL.Migrations
                         new
                         {
                             Id = 115,
-                            CreatedAt = new DateTime(2021, 6, 15, 14, 58, 41, 222, DateTimeKind.Local).AddTicks(9850),
+                            CreatedAt = new DateTime(2021, 6, 21, 17, 14, 42, 331, DateTimeKind.Local).AddTicks(1987),
                             IsDeleted = false,
                             Name = "Chronic Case",
                             Name_Ar = "الحالة المزمنة",
@@ -3939,7 +3941,7 @@ namespace AN.DAL.Migrations
                         new
                         {
                             Id = 116,
-                            CreatedAt = new DateTime(2021, 6, 15, 14, 58, 41, 222, DateTimeKind.Local).AddTicks(9852),
+                            CreatedAt = new DateTime(2021, 6, 21, 17, 14, 42, 331, DateTimeKind.Local).AddTicks(1989),
                             IsDeleted = false,
                             Name = "Regular Case",
                             Name_Ar = "حالة عادية",
@@ -3950,7 +3952,7 @@ namespace AN.DAL.Migrations
                         new
                         {
                             Id = 117,
-                            CreatedAt = new DateTime(2021, 6, 15, 14, 58, 41, 222, DateTimeKind.Local).AddTicks(9862),
+                            CreatedAt = new DateTime(2021, 6, 21, 17, 14, 42, 331, DateTimeKind.Local).AddTicks(1999),
                             IsDeleted = false,
                             Name = "The blood will be taken in your home, and the  result will be received at home",
                             Name_Ar = "الدم سوف يؤخذ في منزلك، والنتيجة سوف تستلم في المنزل",
@@ -3961,7 +3963,7 @@ namespace AN.DAL.Migrations
                         new
                         {
                             Id = 118,
-                            CreatedAt = new DateTime(2021, 6, 15, 14, 58, 41, 222, DateTimeKind.Local).AddTicks(9872),
+                            CreatedAt = new DateTime(2021, 6, 21, 17, 14, 42, 331, DateTimeKind.Local).AddTicks(2008),
                             IsDeleted = false,
                             Name = "You will receive medicines recomanded by the specialists in your home",
                             Name_Ar = "سوف تتلقى الأدوية التي يوصي بها المتخصصون في منزلك",
@@ -3972,7 +3974,7 @@ namespace AN.DAL.Migrations
                         new
                         {
                             Id = 119,
-                            CreatedAt = new DateTime(2021, 6, 15, 14, 58, 41, 222, DateTimeKind.Local).AddTicks(9881),
+                            CreatedAt = new DateTime(2021, 6, 21, 17, 14, 42, 331, DateTimeKind.Local).AddTicks(2018),
                             IsDeleted = false,
                             Name = "Haircut",
                             Name_Ar = "قصة شعر",
@@ -3983,7 +3985,7 @@ namespace AN.DAL.Migrations
                         new
                         {
                             Id = 120,
-                            CreatedAt = new DateTime(2021, 6, 15, 14, 58, 41, 222, DateTimeKind.Local).AddTicks(9883),
+                            CreatedAt = new DateTime(2021, 6, 21, 17, 14, 42, 331, DateTimeKind.Local).AddTicks(2020),
                             IsDeleted = false,
                             Name = "Complete haircut",
                             Name_Ar = "قصة شعر کامل",
@@ -3994,7 +3996,7 @@ namespace AN.DAL.Migrations
                         new
                         {
                             Id = 121,
-                            CreatedAt = new DateTime(2021, 6, 15, 14, 58, 41, 222, DateTimeKind.Local).AddTicks(9885),
+                            CreatedAt = new DateTime(2021, 6, 21, 17, 14, 42, 331, DateTimeKind.Local).AddTicks(2021),
                             IsDeleted = false,
                             Name = "Groom services",
                             Name_Ar = "خدمات العریس",
@@ -4005,7 +4007,7 @@ namespace AN.DAL.Migrations
                         new
                         {
                             Id = 122,
-                            CreatedAt = new DateTime(2021, 6, 15, 14, 58, 41, 222, DateTimeKind.Local).AddTicks(9886),
+                            CreatedAt = new DateTime(2021, 6, 21, 17, 14, 42, 331, DateTimeKind.Local).AddTicks(2062),
                             IsDeleted = false,
                             Name = "Beard trimming",
                             Name_Ar = "تقليم اللحية",
@@ -4016,7 +4018,7 @@ namespace AN.DAL.Migrations
                         new
                         {
                             Id = 123,
-                            CreatedAt = new DateTime(2021, 6, 15, 14, 58, 41, 222, DateTimeKind.Local).AddTicks(9888),
+                            CreatedAt = new DateTime(2021, 6, 21, 17, 14, 42, 331, DateTimeKind.Local).AddTicks(2064),
                             IsDeleted = false,
                             Name = "Massage",
                             Name_Ar = "تدلیک",
@@ -4067,7 +4069,7 @@ namespace AN.DAL.Migrations
                         {
                             Id = 1,
                             CenterType = 0,
-                            CreatedAt = new DateTime(2021, 6, 15, 14, 58, 41, 222, DateTimeKind.Local).AddTicks(7160),
+                            CreatedAt = new DateTime(2021, 6, 21, 17, 14, 42, 330, DateTimeKind.Local).AddTicks(9200),
                             IsDeleted = false,
                             Name = "Health",
                             Name_Ar = "الصحة",
@@ -4077,7 +4079,7 @@ namespace AN.DAL.Migrations
                         {
                             Id = 2,
                             CenterType = 1,
-                            CreatedAt = new DateTime(2021, 6, 15, 14, 58, 41, 222, DateTimeKind.Local).AddTicks(7182),
+                            CreatedAt = new DateTime(2021, 6, 21, 17, 14, 42, 330, DateTimeKind.Local).AddTicks(9227),
                             IsDeleted = false,
                             Name = "Face",
                             Name_Ar = "الوجه",
@@ -4087,7 +4089,7 @@ namespace AN.DAL.Migrations
                         {
                             Id = 3,
                             CenterType = 1,
-                            CreatedAt = new DateTime(2021, 6, 15, 14, 58, 41, 222, DateTimeKind.Local).AddTicks(7184),
+                            CreatedAt = new DateTime(2021, 6, 21, 17, 14, 42, 330, DateTimeKind.Local).AddTicks(9228),
                             IsDeleted = false,
                             Name = "Makeup",
                             Name_Ar = "مكياج",
@@ -4097,7 +4099,7 @@ namespace AN.DAL.Migrations
                         {
                             Id = 4,
                             CenterType = 1,
-                            CreatedAt = new DateTime(2021, 6, 15, 14, 58, 41, 222, DateTimeKind.Local).AddTicks(7186),
+                            CreatedAt = new DateTime(2021, 6, 21, 17, 14, 42, 330, DateTimeKind.Local).AddTicks(9230),
                             IsDeleted = false,
                             Name = "Body",
                             Name_Ar = "الجسم",
@@ -4107,7 +4109,7 @@ namespace AN.DAL.Migrations
                         {
                             Id = 5,
                             CenterType = 1,
-                            CreatedAt = new DateTime(2021, 6, 15, 14, 58, 41, 222, DateTimeKind.Local).AddTicks(7225),
+                            CreatedAt = new DateTime(2021, 6, 21, 17, 14, 42, 330, DateTimeKind.Local).AddTicks(9232),
                             IsDeleted = false,
                             Name = "Hair",
                             Name_Ar = "الشعر",
@@ -4117,7 +4119,7 @@ namespace AN.DAL.Migrations
                         {
                             Id = 6,
                             CenterType = 1,
-                            CreatedAt = new DateTime(2021, 6, 15, 14, 58, 41, 222, DateTimeKind.Local).AddTicks(7228),
+                            CreatedAt = new DateTime(2021, 6, 21, 17, 14, 42, 330, DateTimeKind.Local).AddTicks(9233),
                             IsDeleted = false,
                             Name = "Laser",
                             Name_Ar = "ليزر",
@@ -4127,7 +4129,7 @@ namespace AN.DAL.Migrations
                         {
                             Id = 7,
                             CenterType = 1,
-                            CreatedAt = new DateTime(2021, 6, 15, 14, 58, 41, 222, DateTimeKind.Local).AddTicks(7229),
+                            CreatedAt = new DateTime(2021, 6, 21, 17, 14, 42, 330, DateTimeKind.Local).AddTicks(9236),
                             IsDeleted = false,
                             Name = "Nail",
                             Name_Ar = "الأضافر",
@@ -4137,7 +4139,7 @@ namespace AN.DAL.Migrations
                         {
                             Id = 8,
                             CenterType = 1,
-                            CreatedAt = new DateTime(2021, 6, 15, 14, 58, 41, 222, DateTimeKind.Local).AddTicks(7231),
+                            CreatedAt = new DateTime(2021, 6, 21, 17, 14, 42, 330, DateTimeKind.Local).AddTicks(9238),
                             IsDeleted = false,
                             Name = "Filler & Botox",
                             Name_Ar = "فلر و بوتوكس",
@@ -4147,7 +4149,7 @@ namespace AN.DAL.Migrations
                         {
                             Id = 9,
                             CenterType = 2,
-                            CreatedAt = new DateTime(2021, 6, 15, 14, 58, 41, 222, DateTimeKind.Local).AddTicks(7233),
+                            CreatedAt = new DateTime(2021, 6, 21, 17, 14, 42, 330, DateTimeKind.Local).AddTicks(9239),
                             IsDeleted = false,
                             Name = "Dentist",
                             Name_Ar = "Dentist",
@@ -4155,59 +4157,9 @@ namespace AN.DAL.Migrations
                         },
                         new
                         {
-                            Id = 10,
-                            CenterType = 11,
-                            CreatedAt = new DateTime(2021, 6, 15, 14, 58, 41, 222, DateTimeKind.Local).AddTicks(7234),
-                            IsDeleted = false,
-                            Name = "Face",
-                            Name_Ar = "الوجه",
-                            Name_Ku = "دەموچاو"
-                        },
-                        new
-                        {
-                            Id = 11,
-                            CenterType = 11,
-                            CreatedAt = new DateTime(2021, 6, 15, 14, 58, 41, 222, DateTimeKind.Local).AddTicks(7236),
-                            IsDeleted = false,
-                            Name = "Makeup",
-                            Name_Ar = "مكياج",
-                            Name_Ku = "مكياج"
-                        },
-                        new
-                        {
-                            Id = 12,
-                            CenterType = 11,
-                            CreatedAt = new DateTime(2021, 6, 15, 14, 58, 41, 222, DateTimeKind.Local).AddTicks(7237),
-                            IsDeleted = false,
-                            Name = "Hair",
-                            Name_Ar = "الشعر",
-                            Name_Ku = "پرچ"
-                        },
-                        new
-                        {
-                            Id = 13,
-                            CenterType = 11,
-                            CreatedAt = new DateTime(2021, 6, 15, 14, 58, 41, 222, DateTimeKind.Local).AddTicks(7239),
-                            IsDeleted = false,
-                            Name = "Laser",
-                            Name_Ar = "ليزر",
-                            Name_Ku = "لەیز‌ەر"
-                        },
-                        new
-                        {
-                            Id = 14,
-                            CenterType = 11,
-                            CreatedAt = new DateTime(2021, 6, 15, 14, 58, 41, 222, DateTimeKind.Local).AddTicks(7241),
-                            IsDeleted = false,
-                            Name = "Nail",
-                            Name_Ar = "الأضافر",
-                            Name_Ku = "نینۆک"
-                        },
-                        new
-                        {
                             Id = 15,
                             CenterType = 4,
-                            CreatedAt = new DateTime(2021, 6, 15, 14, 58, 41, 222, DateTimeKind.Local).AddTicks(7243),
+                            CreatedAt = new DateTime(2021, 6, 21, 17, 14, 42, 330, DateTimeKind.Local).AddTicks(9241),
                             IsDeleted = false,
                             Name = "Healthy Lifestyle",
                             Name_Ar = "أنماط الحیاة صحي",
@@ -4217,7 +4169,7 @@ namespace AN.DAL.Migrations
                         {
                             Id = 16,
                             CenterType = 14,
-                            CreatedAt = new DateTime(2021, 6, 15, 14, 58, 41, 222, DateTimeKind.Local).AddTicks(7245),
+                            CreatedAt = new DateTime(2021, 6, 21, 17, 14, 42, 330, DateTimeKind.Local).AddTicks(9243),
                             IsDeleted = false,
                             Name = "Covid-19 Services",
                             Name_Ar = "خدمات كوفيد-١٩",
@@ -4227,7 +4179,7 @@ namespace AN.DAL.Migrations
                         {
                             Id = 17,
                             CenterType = 14,
-                            CreatedAt = new DateTime(2021, 6, 15, 14, 58, 41, 222, DateTimeKind.Local).AddTicks(7247),
+                            CreatedAt = new DateTime(2021, 6, 21, 17, 14, 42, 330, DateTimeKind.Local).AddTicks(9246),
                             IsDeleted = false,
                             Name = "Normal Case Services Non-Covid Cases",
                             Name_Ar = "الحالات غير المقدمة لخدمات الحالات العادية",
@@ -4237,7 +4189,7 @@ namespace AN.DAL.Migrations
                         {
                             Id = 18,
                             CenterType = 14,
-                            CreatedAt = new DateTime(2021, 6, 15, 14, 58, 41, 222, DateTimeKind.Local).AddTicks(7249),
+                            CreatedAt = new DateTime(2021, 6, 21, 17, 14, 42, 330, DateTimeKind.Local).AddTicks(9248),
                             IsDeleted = false,
                             Name = "Ambulance",
                             Name_Ar = "ئەمبوڵانس",
@@ -4247,7 +4199,7 @@ namespace AN.DAL.Migrations
                         {
                             Id = 19,
                             CenterType = 14,
-                            CreatedAt = new DateTime(2021, 6, 15, 14, 58, 41, 222, DateTimeKind.Local).AddTicks(7251),
+                            CreatedAt = new DateTime(2021, 6, 21, 17, 14, 42, 330, DateTimeKind.Local).AddTicks(9249),
                             IsDeleted = false,
                             Name = "Physiotherapy",
                             Name_Ar = "العلاج الطبيعي",
@@ -4257,7 +4209,7 @@ namespace AN.DAL.Migrations
                         {
                             Id = 20,
                             CenterType = 14,
-                            CreatedAt = new DateTime(2021, 6, 15, 14, 58, 41, 222, DateTimeKind.Local).AddTicks(7252),
+                            CreatedAt = new DateTime(2021, 6, 21, 17, 14, 42, 330, DateTimeKind.Local).AddTicks(9251),
                             IsDeleted = false,
                             Name = "Laboratory",
                             Name_Ar = "المختبر",
@@ -4267,7 +4219,7 @@ namespace AN.DAL.Migrations
                         {
                             Id = 21,
                             CenterType = 14,
-                            CreatedAt = new DateTime(2021, 6, 15, 14, 58, 41, 222, DateTimeKind.Local).AddTicks(7254),
+                            CreatedAt = new DateTime(2021, 6, 21, 17, 14, 42, 330, DateTimeKind.Local).AddTicks(9252),
                             IsDeleted = false,
                             Name = "Medicines",
                             Name_Ar = "الادويه",
@@ -4458,6 +4410,10 @@ namespace AN.DAL.Migrations
                     b.Property<int>("PersonId");
 
                     b.Property<double>("Rating");
+
+                    b.Property<string>("Review")
+                        .HasMaxLength(1000)
+                        .IsUnicode(true);
 
                     b.Property<int>("ServiceSupplyId");
 

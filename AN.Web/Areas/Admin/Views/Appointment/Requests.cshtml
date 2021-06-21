@@ -85,6 +85,7 @@
                                     <th>@Html.DisplayNameFor(m => m.Mobile)</th>
                                     <th>@Html.DisplayNameFor(m => m.Gender)</th>                                                                                                  
                                     <th>@Html.DisplayNameFor(m => m.Service)</th>                                                                                                  
+                                    <th>Progress</th>
                                     <th></th>
                                 </tr>
                             </thead>
@@ -209,14 +210,22 @@
                             width: "10%",
                             searchable: false,
                             orderable: true
-                        },      
+                        },
                         {
                             data: "Service",
                             name: "co",
                             width: "10%",
                             searchable: false,
                             orderable: true
-                        },      
+                        },
+                        {
+                            data: null,
+                            orderable: false,
+                            searchable: false,
+                            render: function (data, type, row, meta) {
+                                return row.ProgressStatusHtml;
+                            }
+                        },
                         {
                             data: null,
                             orderable: false,
@@ -277,6 +286,40 @@
                     $.ajax({
                         type: 'Get',
                         url: "/Admin/Appointment/DeleteAppointmentRequest/" + id,
+                        success: function (response) {
+                            if (response.success) {
+                                reloadDataTable();
+                                Toast.fire({ type: 'success', title: '@AN.Core.Resources.Global.Global.Successful', text: response.message });
+                            } else {
+                                Toast.fire({ type: 'error', title: '@AN.Core.Resources.Global.Global.Error', text: response.message });
+                            }
+                    },
+                        error: function (jqXHR, ex) {
+                            handleAjaxError(jqXHR, ex);
+                        }
+                    }).always(function () {
+                        waitingDone('body');
+                    });
+                }
+            });
+        }
+
+        function changeAppointmentRequestProgressStatus(id, newStatus) {
+             Swal.fire({
+                title: "@AN.Core.Resources.Global.Global.Msg_AreYouSure",
+                text: "@Html.Raw(AN.Core.Resources.EntitiesResources.Messages.WontAbleRevertThis)",
+                type: 'warning',
+                showCancelButton: true,
+                confirmButtonColor: '#3085d6',
+                cancelButtonColor: '#d33',
+                confirmButtonText: '@AN.Core.Resources.Global.Global.Yes',
+                cancelButtonText: '@AN.Core.Resources.Global.Global.No',
+            }).then((result) => {
+                if (result.value) {
+                    waiting('body', '@AN.Core.Resources.Global.Global.PleaseWait');
+                    $.ajax({
+                        type: 'Get',
+                        url: "/Admin/Appointment/ChangeAppointmentRequestProgressStatus?id=" + id + "&status=" + newStatus,
                         success: function (response) {
                             if (response.success) {
                                 reloadDataTable();

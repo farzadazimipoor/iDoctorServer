@@ -613,6 +613,7 @@ namespace AN.BLL.Services.Doctors
                         PersonId = rating.UserId,
                         ServiceSupplyId = rating.ServiceSupplyId,
                         Rating = rating.AverageRating,
+                        Review = rating.Review,
                         CreatedAt = DateTime.Now
                     });
 

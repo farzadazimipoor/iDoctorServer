@@ -14,6 +14,8 @@ namespace AN.DAL.EntitiesConfigurations
 
             builder.Property(p => p.Rating).IsRequired();
 
+            builder.Property(p => p.Review).IsUnicode().HasMaxLength(1000).IsRequired(false);
+
             builder.Property(p => p.CreatedAt).IsRequired();
 
             builder.Property(p => p.UpdatedAt).IsRequired(false).HasColumnType("datetime2");

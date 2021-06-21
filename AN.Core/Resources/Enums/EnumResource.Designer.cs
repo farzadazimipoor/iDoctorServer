@@ -187,6 +187,24 @@ namespace AN.Core.Resources.Enums {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Completed.
+        /// </summary>
+        public static string completed {
+            get {
+                return ResourceManager.GetString("completed", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Created.
+        /// </summary>
+        public static string created {
+            get {
+                return ResourceManager.GetString("created", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to CT-Scan.
         /// </summary>
         public static string CTScan {
@@ -340,6 +358,15 @@ namespace AN.Core.Resources.Enums {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to On the way.
+        /// </summary>
+        public static string on_the_way {
+            get {
+                return ResourceManager.GetString("on_the_way", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Optometrist.
         /// </summary>
         public static string optometrist {
@@ -381,6 +408,15 @@ namespace AN.Core.Resources.Enums {
         public static string price {
             get {
                 return ResourceManager.GetString("price", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Processing.
+        /// </summary>
+        public static string processing {
+            get {
+                return ResourceManager.GetString("processing", resourceCulture);
             }
         }
         

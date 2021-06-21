@@ -1,0 +1,28 @@
+﻿@model (int Id, AN.Core.Enums.AppointmentStatus Status, bool IsHomeCare, AN.Core.Enums.AppointmentProgressStatus? ProgressStatus)
+
+@{
+    Layout = null;
+
+    var progressStatuses = AN.Web.App_Code.MyEnumExtensions.EnumToSelectList<AppointmentProgressStatus>().ToList();
+}
+
+@if (Model.IsHomeCare)
+{
+    <div>
+        <select id="ProgressStatus" class="form-control">
+            @foreach (var s in progressStatuses)
+            {
+                <option title="@s.Text" value="@s.Value" selected="@(s.Value == ((int)Model.ProgressStatus).ToString())">@s.Text</option>
+            }
+        </select>
+    </div>    
+}
+
+<script>
+    $("#ProgressStatus").on("change", function () {
+        var value = $(this).val();
+        changeAppointmentRequestProgressStatus('@Model.Id', value);
+    });
+</script>
+
+

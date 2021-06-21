@@ -14,6 +14,8 @@ namespace AN.Core.ViewModels
 
         public ReservationChannel ReservationChannel { get; set; }
 
+        public AppointmentProgressStatus? ProgressStatus { get; set; }
+
         [SearchableString]
         [Sortable(Default = false)]
         [Display(Name = "Center", ResourceType = typeof(Global))]
@@ -59,11 +61,15 @@ namespace AN.Core.ViewModels
         [Display(Name = "Service", ResourceType = typeof(Global))]
         public string Service { get; set; }
 
+        public bool IsHomeCare { get; set; }
+
         public string Avatar { get; set; }
 
         public string AvatarHtml { get; set; }
 
         public string StatusHtml { get; set; }
+
+        public string ProgressStatusHtml { get; set; }
 
         public string ChannelHtml { get; set; }
 

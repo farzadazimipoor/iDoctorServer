@@ -1,5 +1,4 @@
-﻿using AN.BLL.Extensions;
-using AN.Core.DTO;
+﻿using AN.Core.DTO;
 using AN.Core.DTO.Turn;
 using AN.Core.Enums;
 using Newtonsoft.Json;
@@ -18,8 +17,8 @@ namespace AN.BLL.Core.Services.Messaging.Notifications
         private readonly string _senderId;
         public NotificationService()
         {
-            _serverKey = "AAAAJ2eqm9k:APA91bFAdcUErzmZdGDmRCA1Mt84SBTmzSJdftLZlO5W7q0n-kxsSzYIkt4kXPvTqXwpDdJaJIwZWVh4qjhf6Zd7QAMFOo88rl2AM0jSuJW1jOUrC42pGjoavMpH7elym7Nff5o2_EUA";
-            _senderId = "169242958809";
+            _serverKey = "";
+            _senderId = "";
         } 
         #endregion
 

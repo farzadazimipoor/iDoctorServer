@@ -495,7 +495,9 @@ namespace AN.BLL.DataRepository.Appointments
                     Avatar = x.Person != null ? x.Person.RealAvatar : "",
                     ReservationChannel = x.ReservationChannel,
                     Status = x.Status,
-                    Service = x.ShiftCenterService != null ? $"{x.ShiftCenterService.Service.ServiceCategory.Name}/{x.ShiftCenterService.Service.Name}" : ""
+                    Service = x.ShiftCenterService != null ? $"{x.ShiftCenterService.Service.ServiceCategory.Name}/{x.ShiftCenterService.Service.Name}" : "",
+                    IsHomeCare = x.ServiceSupply.ShiftCenter.Type == ShiftCenterType.HomeCare,
+                    ProgressStatus = x.ProgressStatus
                 }).ToListAsync();
 
             return new DataTablesPagedResults<AppointmentRequestsListViewModel>
@@ -559,6 +561,43 @@ namespace AN.BLL.DataRepository.Appointments
             {
                 await _appointmentRepository.DeleteAsync(appointment);
             }
+        }
+
+        public async Task ChangeAppointmentRequestProgressStatusAsync(int id,  AppointmentProgressStatus status)
+        {
+            var appointment = await _appointmentRepository.Table.FirstOrDefaultAsync(x => x.Id == id);
+
+            if (appointment.ProgressStatus == status) throw new AwroNoreException("Status same");
+
+            var strategy = _dbContext.Database.CreateExecutionStrategy();
+
+            await strategy.ExecuteAsync(async () =>
+            {
+                using (var transaction = _dbContext.Database.BeginTransaction())
+                {
+                    appointment.ProgressStatus = status;                  
+
+                    _appointmentRepository.Update(appointment);
+
+                    //if (appointment.Person.FcmInstanceIds != null && appointment.Person.FcmInstanceIds.Any())
+                    //{
+                    //    var donePayload = new DoneAppointmentNotificationPayload
+                    //    {
+                    //        AppointmentId = appointment.Id,
+                    //        NotificationType = NotificationType.AppointmentAccepted
+                    //    };
+
+                    //    foreach (var item in appointment.Person.FcmInstanceIds)
+                    //    {
+                    //        var title = "Accept Appointment";
+                    //        var message = "Your appointment has been accepted";
+                    //        await _notificationService.SendFcmToSingleDeviceAsync(item.InstanceId, title, message);
+                    //    }
+                    //}
+
+                    transaction.Commit();
+                }
+            });
         }
     }
 }

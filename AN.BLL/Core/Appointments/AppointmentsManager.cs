@@ -548,6 +548,7 @@ namespace AN.BLL.Core.Appointments
                 CreatedAt = DateTime.Now,
                 OfferId = null,
                 RequestLang = requestLang,
+                ProgressStatus = AppointmentProgressStatus.CREATED,                
                 PersonLocation = new NetTopologySuite.Geometries.Point(model.Xlongitude, model.Ylatitude)
                 {
                     SRID = 4326 // Set the SRID (spatial reference system id) to 4326, which is the spatial reference system used by Google maps (WGS84)

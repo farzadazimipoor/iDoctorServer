@@ -443,56 +443,56 @@ namespace AN.DAL
                 },
 
                 // Salon
-                new ServiceCategory
-                {
-                    Id = salonFaceServicesCategoryId,
-                    Name = "Face",
-                    Name_Ku = "دەموچاو",
-                    Name_Ar = "الوجه",
-                    CenterType = Core.Enums.ShiftCenterType.Salon,
-                    CreatedAt = DateTime.Now,
-                    IsDeleted = false
-                },
-                 new ServiceCategory
-                 {
-                     Id = salonMakeupServicesCategoryId,
-                     Name = "Makeup",
-                     Name_Ku = "مكياج",
-                     Name_Ar = "مكياج",
-                     CenterType = Core.Enums.ShiftCenterType.Salon,
-                     CreatedAt = DateTime.Now,
-                     IsDeleted = false
-                 },
-                 new ServiceCategory
-                 {
-                     Id = salonHairServicesCategoryId,
-                     Name = "Hair",
-                     Name_Ku = "پرچ",
-                     Name_Ar = "الشعر",
-                     CenterType = Core.Enums.ShiftCenterType.Salon,
-                     CreatedAt = DateTime.Now,
-                     IsDeleted = false
-                 },
-                 new ServiceCategory
-                 {
-                     Id = salonLaserServicesCategoryId,
-                     Name = "Laser",
-                     Name_Ku = "لەیز‌ەر",
-                     Name_Ar = "ليزر",
-                     CenterType = Core.Enums.ShiftCenterType.Salon,
-                     CreatedAt = DateTime.Now,
-                     IsDeleted = false
-                 },
-                 new ServiceCategory
-                 {
-                     Id = salonNailServicesCategoryId,
-                     Name = "Nail",
-                     Name_Ku = "نینۆک",
-                     Name_Ar = "الأضافر",
-                     CenterType = Core.Enums.ShiftCenterType.Salon,
-                     CreatedAt = DateTime.Now,
-                     IsDeleted = false
-                 },
+                // new ServiceCategory
+                //{
+                //    Id = salonFaceServicesCategoryId,
+                //    Name = "Face",
+                //    Name_Ku = "دەموچاو",
+                //    Name_Ar = "الوجه",
+                //    CenterType = Core.Enums.ShiftCenterType.Salon,
+                //    CreatedAt = DateTime.Now,
+                //    IsDeleted = false
+                //},
+                // new ServiceCategory
+                // {
+                //     Id = salonMakeupServicesCategoryId,
+                //     Name = "Makeup",
+                //     Name_Ku = "مكياج",
+                //     Name_Ar = "مكياج",
+                //     CenterType = Core.Enums.ShiftCenterType.Salon,
+                //     CreatedAt = DateTime.Now,
+                //     IsDeleted = false
+                // },
+                // new ServiceCategory
+                // {
+                //     Id = salonHairServicesCategoryId,
+                //     Name = "Hair",
+                //     Name_Ku = "پرچ",
+                //     Name_Ar = "الشعر",
+                //     CenterType = Core.Enums.ShiftCenterType.Salon,
+                //     CreatedAt = DateTime.Now,
+                //     IsDeleted = false
+                // },
+                // new ServiceCategory
+                // {
+                //     Id = salonLaserServicesCategoryId,
+                //     Name = "Laser",
+                //     Name_Ku = "لەیز‌ەر",
+                //     Name_Ar = "ليزر",
+                //     CenterType = Core.Enums.ShiftCenterType.Salon,
+                //     CreatedAt = DateTime.Now,
+                //     IsDeleted = false
+                // },
+                // new ServiceCategory
+                // {
+                //     Id = salonNailServicesCategoryId,
+                //     Name = "Nail",
+                //     Name_Ku = "نینۆک",
+                //     Name_Ar = "الأضافر",
+                //     CenterType = Core.Enums.ShiftCenterType.Salon,
+                //     CreatedAt = DateTime.Now,
+                //     IsDeleted = false
+                // },
                  new ServiceCategory
                  {
                      Id = healthyLifeStyleServicesCategoryId,

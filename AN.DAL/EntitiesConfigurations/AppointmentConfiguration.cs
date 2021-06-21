@@ -24,6 +24,8 @@ namespace AN.DAL.EntitiesConfigurations
 
             builder.Property(p => p.ReservationChannel).IsRequired();
 
+            builder.Property(p => p.ProgressStatus).IsRequired(false);
+
             builder.Property(p => p.IsAnnounced).IsRequired();
 
             builder.Property(p => p.Description).IsUnicode().HasMaxLength(500).IsRequired(false);

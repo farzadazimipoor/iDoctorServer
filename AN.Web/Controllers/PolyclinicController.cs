@@ -1009,10 +1009,10 @@ namespace AN.Web.Controllers
                                     Description_Ar = "#Requested",
                                     Description_Ku = "#Requested",
                                     Picture = "",
-                                    IsDeleted = false,
+                                    IsDeleted = false,                                    
                                     WorkExperience = 0,
                                     CreatedAt = DateTime.Now,
-                                    Phone = model.Phone
+                                    Phone = model.Phone ?? ""
                                 });
 
                                 await _dbContext.SaveChangesAsync();
