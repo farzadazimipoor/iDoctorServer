@@ -79,6 +79,15 @@ namespace AN.Core.Resources.EntitiesResources.Role {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Call Center.
+        /// </summary>
+        public static string callcenter {
+            get {
+                return ResourceManager.GetString("callcenter", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Clinic manager.
         /// </summary>
         public static string clinicmanager {
@@ -97,6 +106,24 @@ namespace AN.Core.Resources.EntitiesResources.Role {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to EMS.
+        /// </summary>
+        public static string ems {
+            get {
+                return ResourceManager.GetString("ems", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Home Care.
+        /// </summary>
+        public static string homecare {
+            get {
+                return ResourceManager.GetString("homecare", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Hospital manager.
         /// </summary>
         public static string hospitalmanager {
@@ -111,6 +138,15 @@ namespace AN.Core.Resources.EntitiesResources.Role {
         public static string labmanager {
             get {
                 return ResourceManager.GetString("labmanager", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Medical Tourism.
+        /// </summary>
+        public static string medicaltourism {
+            get {
+                return ResourceManager.GetString("medicaltourism", resourceCulture);
             }
         }
         

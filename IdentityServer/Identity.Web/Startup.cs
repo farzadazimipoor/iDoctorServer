@@ -163,6 +163,8 @@ namespace Identity.Web
                 app.UseExceptionHandler("/Home/Error");
             }
 
+            app.UseCookiePolicy();
+
             app.UseSession();
 
             app.UseCors("CorsPolicy");

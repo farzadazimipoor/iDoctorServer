@@ -178,6 +178,15 @@ namespace AN.Core.Resources.Enums {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Call Center.
+        /// </summary>
+        public static string callcenter {
+            get {
+                return ResourceManager.GetString("callcenter", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Check-up.
         /// </summary>
         public static string checkup {
@@ -259,6 +268,15 @@ namespace AN.Core.Resources.Enums {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to EMS.
+        /// </summary>
+        public static string ems {
+            get {
+                return ResourceManager.GetString("ems", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Female.
         /// </summary>
         public static string female {
@@ -309,6 +327,15 @@ namespace AN.Core.Resources.Enums {
         public static string male {
             get {
                 return ResourceManager.GetString("male", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Medical Tourism.
+        /// </summary>
+        public static string medicaltourism {
+            get {
+                return ResourceManager.GetString("medicaltourism", resourceCulture);
             }
         }
         

@@ -123,17 +123,29 @@
   <data name="beautycentermanager" xml:space="preserve">
     <value>مدير مركز الجمال</value>
   </data>
+  <data name="callcenter" xml:space="preserve">
+    <value>Call Center</value>
+  </data>
   <data name="clinicmanager" xml:space="preserve">
     <value>مدير العيادة</value>
   </data>
   <data name="doctor" xml:space="preserve">
     <value>طبيب</value>
   </data>
+  <data name="ems" xml:space="preserve">
+    <value>EMS</value>
+  </data>
+  <data name="homecare" xml:space="preserve">
+    <value>Home Care</value>
+  </data>
   <data name="hospitalmanager" xml:space="preserve">
     <value>مدير المستشفى</value>
   </data>
   <data name="labmanager" xml:space="preserve">
     <value>مدیر مختبر</value>
+  </data>
+  <data name="medicaltourism" xml:space="preserve">
+    <value>Medical Tourism</value>
   </data>
   <data name="patient" xml:space="preserve">
     <value>المريض</value>

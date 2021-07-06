@@ -324,6 +324,11 @@ namespace AN.Web.Areas.Admin.Controllers
                 new SelectListItem { Value = SystemRoles.SONARMANAGER, Text = RolesResource.sonarmanager },
                 new SelectListItem { Value = SystemRoles.LABMANAGER, Text = RolesResource.labmanager },
                 new SelectListItem { Value = SystemRoles.BEAUTYCENTERMANAGER, Text = RolesResource.beautycentermanager },
+
+                new SelectListItem { Value = SystemRoles.CALLCENTER, Text = RolesResource.callcenter },
+                new SelectListItem { Value = SystemRoles.HOMECARE, Text = RolesResource.homecare },
+                new SelectListItem { Value = SystemRoles.EMS, Text = RolesResource.ems },
+                new SelectListItem { Value = SystemRoles.MEDICALTOURISM, Text = RolesResource.medicaltourism },
             };
 
             return rolesList;
