@@ -376,7 +376,7 @@ namespace AN.Core.Resources.UI.AdminPanel {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to AwroNore&apos;s manager.
+        ///   Looks up a localized string similar to iDoctor&apos;s manager.
         /// </summary>
         public static string AwroNoreManager {
             get {
