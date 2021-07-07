@@ -401,6 +401,101 @@ namespace Identity.Web
                 }
                 #endregion    
 
+                #region HomeCare Role
+                var homeCareRole = roleMgr.FindByNameAsync(SystemRoles.HOMECARE).Result;
+                if (homeCareRole == null)
+                {
+                    var result = roleMgr.CreateAsync(new ApplicationRole
+                    {
+                        Name = SystemRoles.HOMECARE,
+                        NormalizedName = SystemRoles.HOMECARE.ToUpper(),
+                        IsSystemRole = true
+                    }).Result;
+
+                    if (!result.Succeeded)
+                    {
+                        throw new Exception(result.Errors.First().Description);
+                    }
+
+                    Console.WriteLine("home care manager role created");
+                }
+                else
+                {
+                    Console.WriteLine("home care role already exists");
+                }
+                #endregion    
+
+                #region CALLCENTER Role
+                var callCenterRole = roleMgr.FindByNameAsync(SystemRoles.CALLCENTER).Result;
+                if (callCenterRole == null)
+                {
+                    var result = roleMgr.CreateAsync(new ApplicationRole
+                    {
+                        Name = SystemRoles.CALLCENTER,
+                        NormalizedName = SystemRoles.CALLCENTER.ToUpper(),
+                        IsSystemRole = true
+                    }).Result;
+
+                    if (!result.Succeeded)
+                    {
+                        throw new Exception(result.Errors.First().Description);
+                    }
+
+                    Console.WriteLine("call center manager role created");
+                }
+                else
+                {
+                    Console.WriteLine("call center role already exists");
+                }
+                #endregion   
+
+                #region EMS Role
+                var emsRole = roleMgr.FindByNameAsync(SystemRoles.EMS).Result;
+                if (emsRole == null)
+                {
+                    var result = roleMgr.CreateAsync(new ApplicationRole
+                    {
+                        Name = SystemRoles.EMS,
+                        NormalizedName = SystemRoles.EMS.ToUpper(),
+                        IsSystemRole = true
+                    }).Result;
+
+                    if (!result.Succeeded)
+                    {
+                        throw new Exception(result.Errors.First().Description);
+                    }
+
+                    Console.WriteLine("ems manager role created");
+                }
+                else
+                {
+                    Console.WriteLine("ems role already exists");
+                }
+                #endregion
+
+                #region MEDICALTOURISM Role
+                var medicalTourismRole = roleMgr.FindByNameAsync(SystemRoles.MEDICALTOURISM).Result;
+                if (medicalTourismRole == null)
+                {
+                    var result = roleMgr.CreateAsync(new ApplicationRole
+                    {
+                        Name = SystemRoles.MEDICALTOURISM,
+                        NormalizedName = SystemRoles.MEDICALTOURISM.ToUpper(),
+                        IsSystemRole = true
+                    }).Result;
+
+                    if (!result.Succeeded)
+                    {
+                        throw new Exception(result.Errors.First().Description);
+                    }
+
+                    Console.WriteLine("medicalTourism role created");
+                }
+                else
+                {
+                    Console.WriteLine("medicalTourism already exists");
+                }
+                #endregion   
             }
         }
     }

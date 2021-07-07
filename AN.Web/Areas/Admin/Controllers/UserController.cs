@@ -58,7 +58,7 @@ namespace AN.Web.Areas.Admin.Controllers
         }
 
         [HttpPost]
-        public async Task<IActionResult> LoadTable([FromBody]DataTablesParameters param)
+        public async Task<IActionResult> LoadTable([FromBody] DataTablesParameters param)
         {
             try
             {
@@ -176,7 +176,7 @@ namespace AN.Web.Areas.Admin.Controllers
 
                     if (loginAs == LoginAs.POLYCLINICMANAGER)
                     {
-                        if (shiftCenter.Type != ShiftCenterType.Polyclinic && shiftCenter.Type != ShiftCenterType.Dentist)
+                        if (shiftCenter.Type != ShiftCenterType.Polyclinic && shiftCenter.Type != ShiftCenterType.Dentist && shiftCenter.Type != ShiftCenterType.HomeCare)
                             throw new AwroNoreException("You must select a center to manage");
                     }
 
@@ -283,7 +283,11 @@ namespace AN.Web.Areas.Admin.Controllers
 
             if (loginAs == LoginAs.POLYCLINICMANAGER)
             {
-                return await _shiftCenterService.GetSelectListAsync(Lng, new List<ShiftCenterType> { ShiftCenterType.Polyclinic, ShiftCenterType.Dentist });
+                return await _shiftCenterService.GetSelectListAsync(Lng, new List<ShiftCenterType> {
+                    ShiftCenterType.Polyclinic,
+                    ShiftCenterType.Dentist,
+                    ShiftCenterType.HomeCare
+                });
             }
             else if (loginAs == LoginAs.PHARMACYMANAGER)
             {

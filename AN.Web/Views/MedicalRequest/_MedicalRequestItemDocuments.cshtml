@@ -1,0 +1,14 @@
+﻿@model AN.Core.ViewModels.MedicalRequestListViewModel
+
+@{
+    Layout = null;
+}
+
+@if (Model.AttachmentsCount > 0)
+{
+    <h6><i class="fa fa-paperclip text-success"></i><span class="badge badge-success badge-pill ml-2 mr-2">@Model.AttachmentsCount</span></h6>
+}
+else
+{
+    <h6><span class="badge badge-warning badge-pill">No Documents</span></h6>
+}
