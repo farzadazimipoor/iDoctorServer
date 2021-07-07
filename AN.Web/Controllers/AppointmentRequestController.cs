@@ -1,5 +1,6 @@
 ﻿using AN.BLL.DataRepository.Appointments;
 using AN.BLL.DataRepository.ServiceSupplies;
+using AN.Core;
 using AN.Core.Enums;
 using AN.Core.Exceptions;
 using AN.Core.Extensions;
@@ -13,15 +14,17 @@ using System.Threading.Tasks;
 
 namespace AN.Web.Controllers
 {
-    public class AppointmentRequestController : AwroNoreController
+    public class AppointmentRequestController : CpanelBaseController
     {
         private readonly IAppointmentService _appointmentService;
         private readonly IServiceSupplyService _serviceSupplyService;
+        private readonly IWorkContext _workContext;
         public AppointmentRequestController(IAppointmentService appointmentService,
-                                     IServiceSupplyService serviceSupplyService)
+                                            IServiceSupplyService serviceSupplyService, IWorkContext workContext) : base(workContext)
         {
             _appointmentService = appointmentService;
             _serviceSupplyService = serviceSupplyService;
+            _workContext = workContext;
         }
 
         public async Task<IActionResult> Requests()
@@ -39,6 +42,14 @@ namespace AN.Web.Controllers
             try
             {
                 var filtersModel = JsonConvert.DeserializeObject<AppointmentRequestsFilterViewModel>(param.FiltersObject);
+
+                if(_workContext.WorkingArea != null && _workContext.WorkingArea.LoginAs != Shared.Enums.LoginAs.ADMIN && _workContext.WorkingArea.Id > 0)
+                {
+                    if (!User.IsInRole(Shared.Constants.SystemRoles.CALLCENTER))
+                    {
+                        filtersModel.ShiftCenterId = _workContext.WorkingArea.Id;
+                    }                    
+                }                
 
                 var results = await _appointmentService.GetAppointmentRequestsDataTableAsync(param, filtersModel, Lng);
 

@@ -51,7 +51,7 @@ namespace AN.Web.Areas.PolyClinicManager.Controllers
         }
         #endregion
 
-        [Authorize(Roles = "polyclinicmanager,doctor,secretary")]
+        [Authorize(Roles = "polyclinicmanager,doctor,secretary,homecaremanager")]
         public async Task<IActionResult> Index(AppointmentStatus? currentStatus = null, string fromDate = "", string toDate = "")
         {
             ViewBag.Lang = Lng;
@@ -70,7 +70,7 @@ namespace AN.Web.Areas.PolyClinicManager.Controllers
         }
 
         [HttpPost]
-        [Authorize(Roles = "polyclinicmanager,doctor,secretary")]
+        [Authorize(Roles = "polyclinicmanager,doctor,secretary,homecaremanager")]
         public async Task<IActionResult> LoadTable([FromBody]DataTablesParameters param)
         {
             try

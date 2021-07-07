@@ -46,7 +46,7 @@ namespace AN.Web.Areas.PolyClinicManager.Controllers
             _iPAsManager = iPAsManager;
         }
 
-        [Authorize(Roles = "polyclinicmanager,doctor,secretary")]
+        [Authorize(Roles = "polyclinicmanager,doctor,secretary,homecaremanager")]
         public async Task<IActionResult> Index()
         {
             ViewBag.Lang = Lng;
@@ -62,7 +62,7 @@ namespace AN.Web.Areas.PolyClinicManager.Controllers
             return View(model);
         }
 
-        [Authorize(Roles = "polyclinicmanager,doctor,secretary")]
+        [Authorize(Roles = "polyclinicmanager,doctor,secretary,homecaremanager")]
         public async Task<IActionResult> BookingTiems(PolyclinicBookingViewModel bookingModel)
         {
             if (CurrentPolyclinic.ServiceSupplyIds.Any() && !CurrentPolyclinic.ServiceSupplyIds.Contains(bookingModel.ServiceSupplyId))

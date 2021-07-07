@@ -1305,4 +1305,7 @@
   <data name="CenterType" xml:space="preserve">
     <value>نوع المركز</value>
   </data>
+  <data name="CenterManager" xml:space="preserve">
+    <value>Center Manager</value>
+  </data>
 </root>

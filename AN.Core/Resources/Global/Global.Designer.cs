@@ -502,6 +502,15 @@ namespace AN.Core.Resources.Global {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Center Manager.
+        /// </summary>
+        public static string CenterManager {
+            get {
+                return ResourceManager.GetString("CenterManager", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Center Type.
         /// </summary>
         public static string CenterType {

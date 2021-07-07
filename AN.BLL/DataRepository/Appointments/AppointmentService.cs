@@ -405,6 +405,11 @@ namespace AN.BLL.DataRepository.Appointments
 
             query = query.Where(x => x.Status == AppointmentStatus.Unknown && x.Description.Contains("#Requested"));
 
+            if(filters.ShiftCenterId != null)
+            {
+                query = query.Where(x => x.ServiceSupply.ShiftCenterId == filters.ShiftCenterId);
+            }
+
             if (!string.IsNullOrEmpty(filters.FilterString))
             {
                 query = query.Where(x => x.Person.FullName.Contains(filters.FilterString) || x.ServiceSupply.Person.FullName.Contains(filters.FilterString) || x.ServiceSupply.ShiftCenter.Name.Contains(filters.FilterString));

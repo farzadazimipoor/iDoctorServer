@@ -205,7 +205,7 @@ namespace AN.Web.App_Code
                                             else if (MyHttpcontext.User.IsInRole(SystemRoles.SECRETARY))
                                                 systemTitle = RolesResource.secretary;
                                             else
-                                                systemTitle = RolesResource.polyclinicmanager;
+                                                systemTitle = AN.Core.Resources.Global.Global.CenterManager;
                                         }
                                         _cachedWorkingArea = new WorkingAreaModel
                                         {

@@ -24,7 +24,7 @@ using System.Threading.Tasks;
 
 namespace AN.Web.Areas.PolyClinicManager.Controllers
 {
-    [Authorize(Roles = "polyclinicmanager,secretary,doctor")]
+    [Authorize(Roles = "polyclinicmanager,secretary,doctor,homecaremanager")]
     public class PatientController : PolyclinicManagerController
     {
         private readonly IPersonService _personService;

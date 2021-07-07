@@ -131,7 +131,7 @@
         <aside class="main-sidebar sidebar-light-info elevation-1">
             <!-- Brand Logo -->
             <a href="/" class="brand-link">
-                <img src="~/images/logo.png" alt="AdminLTE Logo" class="brand-image img-circle elevation-3" style="opacity: .8">
+                <img src="~/images/logo.png?ver=2" alt="iDoctor Logo" class="brand-image img-circle elevation-3" style="opacity: .8">
                 <span class="brand-text font-weight-light">@_workContext.WorkingArea.UserTitle</span>
             </a>
             <!-- Sidebar -->
@@ -143,7 +143,7 @@
                             <img src="@_workContext.WorkingArea.CurrentUser.Avatar" class="img-circle elevation-2" alt="User Image">
                         </div>
                         <div class="info">
-                            <a href="#" class="d-block">@_workContext.WorkingArea.CurrentUser.FullName</a>
+                            <a href="#" class="d-block">@(!string.IsNullOrEmpty(_workContext.WorkingArea.CurrentUser.FullName) ? _workContext.WorkingArea.CurrentUser.FullName : Global.CenterManager)</a>
                         </div>
                     </div>
                     <!-- Sidebar Menu -->

@@ -11,7 +11,7 @@ using System.Linq;
 namespace AN.Web.Areas.PolyClinicManager.Controllers
 {
     [Area("polyclinicmanager")]
-    [CheckLoginAs(RequestedAreas = "polyclinicmanager")]    
+    [CheckLoginAs(RequestedAreas = "polyclinicmanager, homecaremanager")]    
     public class PolyclinicManagerController : AwroNoreController
     {       
         private readonly IWorkContext _workContext;

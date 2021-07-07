@@ -402,13 +402,13 @@ namespace Identity.Web
                 #endregion    
 
                 #region HomeCare Role
-                var homeCareRole = roleMgr.FindByNameAsync(SystemRoles.HOMECARE).Result;
+                var homeCareRole = roleMgr.FindByNameAsync(SystemRoles.HOMECAREMANAGER).Result;
                 if (homeCareRole == null)
                 {
                     var result = roleMgr.CreateAsync(new ApplicationRole
                     {
-                        Name = SystemRoles.HOMECARE,
-                        NormalizedName = SystemRoles.HOMECARE.ToUpper(),
+                        Name = SystemRoles.HOMECAREMANAGER,
+                        NormalizedName = SystemRoles.HOMECAREMANAGER.ToUpper(),
                         IsSystemRole = true
                     }).Result;
 
@@ -447,31 +447,7 @@ namespace Identity.Web
                 {
                     Console.WriteLine("call center role already exists");
                 }
-                #endregion   
-
-                #region EMS Role
-                var emsRole = roleMgr.FindByNameAsync(SystemRoles.EMS).Result;
-                if (emsRole == null)
-                {
-                    var result = roleMgr.CreateAsync(new ApplicationRole
-                    {
-                        Name = SystemRoles.EMS,
-                        NormalizedName = SystemRoles.EMS.ToUpper(),
-                        IsSystemRole = true
-                    }).Result;
-
-                    if (!result.Succeeded)
-                    {
-                        throw new Exception(result.Errors.First().Description);
-                    }
-
-                    Console.WriteLine("ems manager role created");
-                }
-                else
-                {
-                    Console.WriteLine("ems role already exists");
-                }
-                #endregion
+                #endregion                  
 
                 #region MEDICALTOURISM Role
                 var medicalTourismRole = roleMgr.FindByNameAsync(SystemRoles.MEDICALTOURISM).Result;

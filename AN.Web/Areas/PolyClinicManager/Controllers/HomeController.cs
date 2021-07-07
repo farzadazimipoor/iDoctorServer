@@ -20,9 +20,18 @@ namespace AN.Web.Areas.PolyClinicManager.Controllers
         #endregion
 
         [HttpGet]
-        [Authorize(Roles = "polyclinicmanager,doctor,secretary")]
+        [Authorize(Roles = "polyclinicmanager,doctor,secretary,homecaremanager,medicaltourism,callcenter")]
         public async Task<IActionResult> Index()
         {
+            if (User.IsInRole(Shared.Constants.SystemRoles.MEDICALTOURISM))
+            {
+                return RedirectToAction("Index", "MedicalRequest");
+            }
+            else if (User.IsInRole(Shared.Constants.SystemRoles.CALLCENTER))
+            {
+                return RedirectToAction("Index", "RegisterRequest");
+            }
+
             ViewBag.Lang = Lng;
 
             ViewBag.CenterId = CurrentPolyclinic.Id;

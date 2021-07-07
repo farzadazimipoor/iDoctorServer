@@ -37,8 +37,9 @@ namespace Shared.Constants
         public static string BEAUTYCENTERMANAGER => "beautycentermanager";
 
         public static string CALLCENTER => "callcenter";
-        public static string HOMECARE => "homecare";
-        public static string EMS => "ems";
+
+        public static string HOMECAREMANAGER => "homecaremanager";
+
         public static string MEDICALTOURISM => "medicaltourism";
 
         public static string[] GetAllSystemRoles
@@ -59,8 +60,7 @@ namespace Shared.Constants
                     LABMANAGER,
                     BEAUTYCENTERMANAGER,
                     CALLCENTER, 
-                    HOMECARE,
-                    EMS,
+                    HOMECAREMANAGER,                   
                     MEDICALTOURISM
                 };
             }
@@ -68,11 +68,11 @@ namespace Shared.Constants
 
         public static LoginAs GetLoginAs(string role)
         {
-            if (role == ROOTADMIN || role == ADMIN)
+            if (role == ROOTADMIN || role == ADMIN || role == CALLCENTER)
             {
                 return LoginAs.ADMIN;
             }
-            else if (role == POLYCLINICMANAGER || role == DOCTOR || role == SECRETARY || role == CALLCENTER || role == HOMECARE || role == EMS || role == MEDICALTOURISM)
+            else if (role == POLYCLINICMANAGER || role == DOCTOR || role == SECRETARY || role == HOMECAREMANAGER || role == MEDICALTOURISM)
             {
                 return LoginAs.POLYCLINICMANAGER;
             }

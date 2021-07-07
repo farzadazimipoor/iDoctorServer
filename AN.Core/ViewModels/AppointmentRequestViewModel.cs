@@ -78,6 +78,7 @@ namespace AN.Core.ViewModels
 
     public class AppointmentRequestsFilterViewModel
     {
+        public int? ShiftCenterId { get; set; }
         public string FilterString { get; set; }
         public int? ServiceSupplyId { get; set; }
         public DateTime? From { get; set; }

@@ -1305,4 +1305,7 @@
   <data name="CenterType" xml:space="preserve">
     <value>جۆری سەنتەر</value>
   </data>
+  <data name="CenterManager" xml:space="preserve">
+    <value>بەڕێوەبەری سەنتەر</value>
+  </data>
 </root>

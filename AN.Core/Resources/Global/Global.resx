@@ -1302,4 +1302,7 @@
   <data name="CenterType" xml:space="preserve">
     <value>Center Type</value>
   </data>
+  <data name="CenterManager" xml:space="preserve">
+    <value>Center Manager</value>
+  </data>
 </root>
