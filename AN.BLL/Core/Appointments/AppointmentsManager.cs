@@ -558,23 +558,30 @@ namespace AN.BLL.Core.Appointments
             _dbContext.Appointments.Add(appointment);
 
             // Send notification for agents here
-            var agents = _settings?.Value?.AwroNoreSettings?.RequestAppointmentAgents;
-            if (agents != null && agents.Any())
+            try
             {
-                foreach (var agent in agents)
+                var agents = _settings?.Value?.AwroNoreSettings?.RequestAppointmentAgents;
+                if (agents != null && agents.Any())
                 {
-                    var agentPerson = await _dbContext.Persons.FirstOrDefaultAsync(x => x.Mobile == agent);
-
-                    if (agentPerson != null)
+                    foreach (var agent in agents)
                     {
-                        var title = "Appointment Request";
-                        var message = "New Appointment Request Created";
-                        foreach (var item in agentPerson.FcmInstanceIds)
+                        var agentPerson = await _dbContext.Persons.FirstOrDefaultAsync(x => x.Mobile == agent);
+
+                        if (agentPerson != null)
                         {
-                            await _notificationService.SendFcmToSingleDeviceAsync(item.InstanceId, title, message);
+                            var title = "Appointment Request";
+                            var message = "New Appointment Request Created";
+                            foreach (var item in agentPerson.FcmInstanceIds)
+                            {
+                                await _notificationService.SendFcmToSingleDeviceAsync(item.InstanceId, title, message);
+                            }
                         }
                     }
                 }
+            }
+            catch
+            {
+                // Ignored
             }
 
             // Send SMS For Doctor
