@@ -17,8 +17,8 @@ namespace AN.BLL.Core.Services.Messaging.Notifications
         private readonly string _senderId;
         public NotificationService()
         {
-            _serverKey = "";
-            _senderId = "";
+            _serverKey = "AAAAPSB-6Ps:APA91bFJdRGz90_De2WaRLZKnQsRvtwWbdNO6PsTEN7yluOjp5aJqWhcRWlmV0CDF2Zh2kXOm59OCtmOdF_X_-n67CzacT520VLkHwfwr3tesG8ApO7B8jqSeNVNs_KvApW-jD9z2Ni6";
+            _senderId = "262538193147";
         } 
         #endregion
 
