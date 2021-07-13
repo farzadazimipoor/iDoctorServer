@@ -118,7 +118,7 @@ namespace AN.BLL.Services.Filters
                 Id = x.Id,
                 Name = lang == Lang.KU ? x.Service.Name_Ku : lang == Lang.AR ? x.Service.Name_Ar : x.Service.Name,
                 CategoryId = x.Service.ServiceCategoryId,
-                Price = x.Service.Price,
+                Price = x.Price ?? x.Service.Price,
                 CenterId = x.ShiftCenterId,
                 CenterServiceId = x.Id
             }).ToListAsync();

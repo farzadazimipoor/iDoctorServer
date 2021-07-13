@@ -12,6 +12,9 @@
             @Html.HiddenFor(m => m.Name)
         </td>
         <td>
+            @Html.TextBoxFor(m => m.Price, new { @class = "form-control" })
+        </td>
+        <td>
             <i class="fa fa-check fa-lg" aria-hidden="true"></i>
         </td>
         <td>
@@ -29,6 +32,9 @@ else
         <td>
             @Model.Name
             @Html.HiddenFor(m => m.Name)
+        </td>
+        <td>
+            @Html.TextBoxFor(m => m.Price, new { @class = "form-control" })
         </td>
         <td></td>
         <td>

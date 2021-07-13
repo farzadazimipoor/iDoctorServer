@@ -275,13 +275,13 @@ namespace AN.Web.Controllers
                     q => q.Address_Ar,
                     r => r.Address_Ku
                 },
-                OrderBy = x => Lng == Lang.KU ? x.Name_Ku : Lng == Lang.AR ? x.Name_Ar : x.Name ,
+                OrderBy = x => Lng == Lang.KU ? x.Name_Ku : Lng == Lang.AR ? x.Name_Ar : x.Name,
                 IsOrderByDesc = sortOrder == "name_desc" ? true : false
             };
 
             queryModel.Predicates.Add(x => x.IsApproved);
 
-            if(type != null)
+            if (type != null)
             {
                 queryModel.Predicates.Add(x => x.Type == type);
             }
@@ -743,22 +743,31 @@ namespace AN.Web.Controllers
                                    select new
                                    {
                                        h.Service.Id,
-                                       Name = Lng == Lang.KU ? h.Service.Name_Ku : Lng == Lang.AR ? h.Service.Name_Ar : h.Service.Name
+                                       Name = Lng == Lang.KU ? h.Service.Name_Ku : Lng == Lang.AR ? h.Service.Name_Ar : h.Service.Name,
+                                       Price = h.Price ?? h.Service.Price
                                    }).ToList();
 
-            var allServices = _healthServiceService.GetAll().Where(x => x.ServiceCategory.CenterType == polyclinic.Type).Select(x => new { x.Id, Name = Lng == Lang.KU ? x.Name_Ku : Lng == Lang.AR ? x.Name_Ar : x.Name }).ToList();
+            var allServices = _healthServiceService.GetAll().Where(x => x.ServiceCategory.CenterType == polyclinic.Type).Select(x => new
+            {
+                x.Id,
+                Name = Lng == Lang.KU ? x.Name_Ku : Lng == Lang.AR ? x.Name_Ar : x.Name,
+                Price = x.Price
+            }).ToList();
 
             var result = new List<SelectPolyclinicHealthServicesViewModel>();
 
             foreach (var item in allServices)
             {
-                if (currentServices.Contains(item))
+                var currentItem = currentServices.FirstOrDefault(x => x.Id == item.Id);
+
+                if (currentItem != null)
                 {
                     result.Add(new SelectPolyclinicHealthServicesViewModel
                     {
                         Selected = true,
                         Id = item.Id,
                         Name = item.Name,
+                        Price = currentItem.Price
                     });
                 }
                 else
@@ -771,8 +780,11 @@ namespace AN.Web.Controllers
                     });
                 }
             }
+
             ViewBag.Lang = Lng;
+
             TempData["area"] = LoginAs.ToString();
+
             return View(new SetPolyclinicHealthServicesViewModel
             {
                 PoliClinicId = polyclinic.Id,
@@ -794,33 +806,50 @@ namespace AN.Web.Controllers
                     var polyclinic = GetPolyclinic(model.PoliClinicId);
 
                     var strategy = _dbContext.Database.CreateExecutionStrategy();
+
                     await strategy.ExecuteAsync(async () =>
                     {
                         using (var transaction = _dbContext.Database.BeginTransaction())
                         {
                             var _policlinic = await _dbContext.ShiftCenters.FirstOrDefaultAsync(x => x.Id == polyclinic.Id);
 
-                            var currentServices = (from u in _policlinic.PolyclinicHealthServices select new { Id = u.HealthServiceId }).ToList();
+                            var currentServices = _policlinic.PolyclinicHealthServices.ToList();
 
-                            var selectedServices = (from m in model.Services where m.Selected == true select new { Id = m.Id }).ToList();
+                            var selectedServices = model.Services.Where(x => x.Selected == true).ToList();
 
-                            var nonSelectedServices = (from m in model.Services where m.Selected == false select new { Id = m.Id }).ToList();
+                            var nonSelectedServices = model.Services.Where(x => x.Selected != true).ToList();
 
                             foreach (var service in selectedServices)
                             {
-                                if (!currentServices.Contains(service))
+                                if (!currentServices.Any(s => s.HealthServiceId == service.Id))
                                 {
                                     var pcHealthService = new Core.Domain.ShiftCenterService
                                     {
                                         ShiftCenterId = _policlinic.Id,
-                                        HealthServiceId = service.Id
+                                        HealthServiceId = service.Id,
+                                        Price = service.Price
                                     };
+
                                     _dbContext.CenterServices.Add(pcHealthService);
                                 }
+                                else
+                                {
+                                    var currentService = await _dbContext.CenterServices.FirstOrDefaultAsync(x => x.ShiftCenterId == _policlinic.Id && x.HealthServiceId == service.Id);
+
+                                    if(currentService != null)
+                                    {
+                                        currentService.Price = service.Price;
+
+                                        _dbContext.CenterServices.Attach(currentService);
+
+                                        _dbContext.Entry(currentService).State = EntityState.Modified;
+                                    }
+                                }
                             }
+
                             foreach (var service in nonSelectedServices)
                             {
-                                if (currentServices.Contains(service))
+                                if (currentServices.Any(s => s.HealthServiceId == service.Id))
                                 {
                                     var pcHealthService = _policlinic.PolyclinicHealthServices.First(x => x.HealthServiceId == service.Id);
 
@@ -829,7 +858,6 @@ namespace AN.Web.Controllers
                                         _dbContext.UsualSchedulePlans.RemoveRange(pcHealthService.UsualSchedulePlans);
                                     }
 
-                                    //اینجا باید بررسی شود که اگر نوبتی برای خدمت مطب ثبت شده باشد باید آن خدمت ها دستی حذف شوند
                                     var query = _dbContext.Appointments.Where(x => x.ShiftCenterServiceId == pcHealthService.Id);
 
                                     var pendings = query.Where(x => x.Status == AppointmentStatus.Pending).ToList();
@@ -1009,7 +1037,7 @@ namespace AN.Web.Controllers
                                     Description_Ar = "#Requested",
                                     Description_Ku = "#Requested",
                                     Picture = "",
-                                    IsDeleted = false,                                    
+                                    IsDeleted = false,
                                     WorkExperience = 0,
                                     CreatedAt = DateTime.Now,
                                     Phone = model.Phone ?? ""

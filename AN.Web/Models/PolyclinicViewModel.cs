@@ -241,6 +241,8 @@ namespace AN.Web.Models
     {
         public bool Selected { get; set; }
 
+        public decimal? Price { get; set; }
+
         public int Id { get; set; }
 
         public string Name { get; set; }
