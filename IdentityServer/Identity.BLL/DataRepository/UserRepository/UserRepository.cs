@@ -1,5 +1,6 @@
 ﻿using Identity.BLL.Services.Kurtename;
 using Identity.BLL.Services.Plivo;
+using Identity.BLL.Services.RouteMobile;
 using Identity.Core.Domain;
 using Identity.Core.Exceptions;
 using Identity.Core.Models;
@@ -28,15 +29,24 @@ namespace Identity.BLL.DataRepository.UserRepository
         private readonly RoleManager<ApplicationRole> _roleManager;
         private readonly IPlivoSmsService _plivoSmsService;
         private readonly IKurtenameSmsService _kurtenameSmsService;
+        private readonly IRouteMobileService _routeMobileService;
         private readonly ILogger<UserRepository> _logger;
         private readonly IOptions<AppSettings> _settings;
-        public UserRepository(AppIdentityDbContext dbContext, UserManager<ApplicationUser> userManager, RoleManager<ApplicationRole> roleManager, IPlivoSmsService plivoSmsService, IKurtenameSmsService kurtenameSmsService, ILogger<UserRepository> logger, IOptions<AppSettings> settings) : base(dbContext)
+        public UserRepository(AppIdentityDbContext dbContext, 
+                              UserManager<ApplicationUser> userManager, 
+                              RoleManager<ApplicationRole> roleManager, 
+                              IPlivoSmsService plivoSmsService, 
+                              IKurtenameSmsService kurtenameSmsService,
+                              IRouteMobileService routeMobileService,
+                              ILogger<UserRepository> logger, 
+                              IOptions<AppSettings> settings) : base(dbContext)
         {
             _dbContext = dbContext;
             _userManager = userManager;
             _roleManager = roleManager;
             _plivoSmsService = plivoSmsService;
             _kurtenameSmsService = kurtenameSmsService;
+            _routeMobileService = routeMobileService;
             _logger = logger;
             _settings = settings;
         }
@@ -91,7 +101,9 @@ namespace Identity.BLL.DataRepository.UserRepository
 
                     // await _plivoSmsService.SendSmsAsync(receipinets, msg);
 
-                    await _kurtenameSmsService.SendSmsAsync(receipinet, msg);
+                    //await _kurtenameSmsService.SendSmsAsync(receipinet, msg);
+
+                    await _routeMobileService.SendSmsAsync(receipinet, msg);
 
                     transaction.Commit();                    
                 }

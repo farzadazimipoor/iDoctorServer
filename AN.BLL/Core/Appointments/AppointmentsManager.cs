@@ -1,8 +1,8 @@
 ﻿using AN.BLL.Core.Appointments.InProgress;
 using AN.BLL.Core.Services;
 using AN.BLL.Core.Services.Messaging.Notifications;
-using AN.BLL.Core.Services.Messaging.SMS.Kurtename;
 using AN.BLL.Core.Services.Messaging.SMS.Plivo;
+using AN.BLL.Core.Services.Messaging.SMS.RouteMobile;
 using AN.BLL.DataRepository.Appointments;
 using AN.BLL.Helpers;
 using AN.Core;
@@ -37,7 +37,7 @@ namespace AN.BLL.Core.Appointments
         private readonly INotificationService _notificationService;
         private readonly IOptions<AppSettings> _settings;
         private readonly IScheduleManager _scheduleManager;
-        private readonly IKurtenameSmsService _smsService;
+        private readonly IRouteMobileService _smsService;
         #endregion
 
         #region Ctor
@@ -50,7 +50,7 @@ namespace AN.BLL.Core.Appointments
                                    INotificationService notificationService,
                                    IOptions<AppSettings> settings,
                                    IScheduleManager scheduleManager,
-                                   IKurtenameSmsService smsService)
+                                   IRouteMobileService smsService)
         {
             _dbContext = dbContext;
             _plivoService = plivoService;

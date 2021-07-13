@@ -2,6 +2,7 @@
 using Identity.BLL.Services.Email;
 using Identity.BLL.Services.Kurtename;
 using Identity.BLL.Services.Plivo;
+using Identity.BLL.Services.RouteMobile;
 using Identity.Core.Domain;
 using Identity.Core.Models;
 using Identity.DAL;
@@ -141,6 +142,7 @@ namespace Identity.Web
             services.AddTransient<IPlivoSmsService, PlivoSmsService>();
             services.AddTransient<IEmailSenderService, EmailSenderService>();
             services.AddTransient<IKurtenameSmsService, KurtenameSmsService>();
+            services.AddTransient<IRouteMobileService, RouteMobileService>();
 
             // Add functionality to inject IOptions<T>
             services.AddOptions();

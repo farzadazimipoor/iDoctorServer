@@ -38,6 +38,7 @@ namespace Shared.Settings
         public ConsultantDefaultStatus ConsultantDefaultStatus { get; set; }
         public List<string> RequestAppointmentAgents { get; set; }
         public KurtenameSmsOptions KurtenameSmsOptions { get; set; }
+        public RouteMobileOptions RouteMobileOptions { get; set; }
         public string ApplicationName { get; set; }
         public string Version { get; set; }
     }
@@ -97,5 +98,13 @@ namespace Shared.Settings
         public string ApiKey { get; set; }
         public string SourceAddress { get; set; }
         public bool Unicode { get; set; }
+    }
+
+    public class RouteMobileOptions
+    {
+        public string BaseUrl { get; set; }
+        public string Username { get; set; }
+        public string Password { get; set; }
+        public string SourceAddress { get; set; }
     }
 }

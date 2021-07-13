@@ -4,6 +4,7 @@ using AN.BLL.Core.Services;
 using AN.BLL.Core.Services.Messaging.Notifications;
 using AN.BLL.Core.Services.Messaging.SMS.Kurtename;
 using AN.BLL.Core.Services.Messaging.SMS.Plivo;
+using AN.BLL.Core.Services.Messaging.SMS.RouteMobile;
 using AN.BLL.DataRepository;
 using AN.BLL.DataRepository.ActivityLog;
 using AN.BLL.DataRepository.Appointments;
@@ -167,6 +168,7 @@ namespace AN.Web
             services.AddTransient<IMedicalRequestService, MedicalRequestService>();
             services.AddTransient<IAppointmentReminderJob, AppointmentReminderJob>();
             services.AddTransient<ISearchService, SearchService>();
+            services.AddTransient<IRouteMobileService, RouteMobileService>();
             services.AddScoped<LogFilterAttribute>();
             return services;
         }
