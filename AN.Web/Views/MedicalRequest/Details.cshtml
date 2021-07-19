@@ -39,9 +39,14 @@
             <div class="col-md-2 p-0 m-2">
                 <div class="form-group p-0">
                     <div class="form-control bg-gray-light p-0" style="min-height: 120px;">
-                        <img src="/@a" height="100%" width="100%" />
+                        <a href="@(a.Item1)" target="_blank">
+                            <img src="/@a.Item2" height="100%" width="100%" />
+                        </a>
                     </div>
-                </div>                
+                    <div class="text-center mt-1">
+                        <a href="/MedicalRequest/DownloadAttachment?attachId=@(a.Item3)" target="_blank" class="btn btn-outline-primary rounded-circle"><i class="fa fa-download"></i></a>
+                    </div>
+                </div>
             </div>
         }
     }

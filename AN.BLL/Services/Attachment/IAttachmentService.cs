@@ -8,5 +8,7 @@ namespace AN.BLL.Services
     public interface IAttachmentService
     {
         Task<List<Attachment>> GetAttachmentsAsync(FileOwner owner, int ownerId);
+
+        Task<Attachment> GetByIdAsync(int id);
     }
 }

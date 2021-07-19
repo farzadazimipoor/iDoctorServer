@@ -176,5 +176,20 @@
                 waitingDone('body');
             });
         }
+
+        function downloadMedicalRequestFile(attachId) {
+            waiting('body', '@AN.Core.Resources.Global.Global.PleaseWait');
+            $.ajax({
+                type: 'Get',
+                url: "/MedicalRequest/DownloadAttachment?attachId=" + attachId,
+                success: function (response) {
+                             },
+                error: function (jqXHR, ex) {
+                    handleAjaxError(jqXHR, ex);
+                }
+            }).always(function () {
+                waitingDone('body');
+            });
+        }
     </script>
 }

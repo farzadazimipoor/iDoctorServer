@@ -22,5 +22,12 @@ namespace AN.BLL.Services
 
             return result;
         }
+
+        public async Task<Attachment> GetByIdAsync(int id)
+        {
+            var result = await _dbContext.Attachments.FindAsync(id);
+
+            return result;
+        }
     }
 }

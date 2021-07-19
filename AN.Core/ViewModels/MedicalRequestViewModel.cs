@@ -37,6 +37,6 @@ namespace AN.Core.ViewModels
 
         public string Note { get; set; }
 
-        public List<string> Attachments { get; set; }
+        public List<(string, string, int, string)> Attachments { get; set; }
     }
 }

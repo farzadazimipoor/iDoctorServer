@@ -9,6 +9,6 @@ namespace AN.BLL.Services.MedicalRequest
     {
         Task CreateNewMedicalRequestAsync(string currentUsername, MedicalRequestDTO model);
         Task<DataTablesPagedResults<MedicalRequestListViewModel>> GetPagingListDataAsync(DataTablesParameters table);
-        Task<MedicalRequestDetailsViewModel> GetMedicalRequestDetailsAsync(int id);
+        Task<MedicalRequestDetailsViewModel> GetMedicalRequestDetailsAsync(int id, string hostAddress);
     }
 }

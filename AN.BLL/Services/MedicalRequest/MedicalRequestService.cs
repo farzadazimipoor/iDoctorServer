@@ -9,6 +9,7 @@ using Microsoft.EntityFrameworkCore;
 using Shared.Models;
 using System;
 using System.Collections.Generic;
+using System.IO;
 using System.Linq;
 using System.Threading.Tasks;
 
@@ -138,13 +139,15 @@ namespace AN.BLL.Services.MedicalRequest
             };
         }
 
-        public async Task<MedicalRequestDetailsViewModel> GetMedicalRequestDetailsAsync(int id)
+        public async Task<MedicalRequestDetailsViewModel> GetMedicalRequestDetailsAsync(int id, string hostAddress)
         {
             var request = await _dbContext.MedicalRequests.FindAsync(id);
 
             if (request == null) throw new AwroNoreException("Request not found");
 
             var files = await _dbContext.Attachments.Where(x => x.Owner == AN.Core.Enums.FileOwner.MEDICAL_REQUEST && x.OwnerTableId == request.Id).ToListAsync();
+
+            var basePath = Path.Combine(Directory.GetCurrentDirectory(), "wwwroot");
 
             var result = new MedicalRequestDetailsViewModel
             {
@@ -154,7 +157,7 @@ namespace AN.BLL.Services.MedicalRequest
                 Note = request.Note,
                 PersonPhone = request.RequesterPerson.Mobile,
                 RequestDate = request.Date.ToString("yyyy-MM-dd HH:mm:ss"),
-                Attachments = files.Select(f => f.Url).ToList()
+                Attachments = files.Select(f => ($"{hostAddress}/{f.Url}", f.Url, f.Id, Path.Combine(basePath, f.Url.Replace('/', '\\')))).ToList()
             };
 
             return result;
