@@ -120,7 +120,8 @@ namespace AN.BLL.Services.Filters
                 CategoryId = x.Service.ServiceCategoryId,
                 Price = x.Price ?? x.Service.Price,
                 CenterId = x.ShiftCenterId,
-                CenterServiceId = x.Id
+                CenterServiceId = x.Id,
+                CurrencyType = x.CurrencyType.ToString()
             }).ToListAsync();
 
             return services;

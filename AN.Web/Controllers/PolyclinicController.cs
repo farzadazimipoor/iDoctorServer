@@ -744,14 +744,16 @@ namespace AN.Web.Controllers
                                    {
                                        h.Service.Id,
                                        Name = Lng == Lang.KU ? h.Service.Name_Ku : Lng == Lang.AR ? h.Service.Name_Ar : h.Service.Name,
-                                       Price = h.Price ?? h.Service.Price
+                                       Price = h.Price ?? h.Service.Price,
+                                       CurrencyType = h.CurrencyType
                                    }).ToList();
 
             var allServices = _healthServiceService.GetAll().Where(x => x.ServiceCategory.CenterType == polyclinic.Type).Select(x => new
             {
                 x.Id,
                 Name = Lng == Lang.KU ? x.Name_Ku : Lng == Lang.AR ? x.Name_Ar : x.Name,
-                Price = x.Price
+                Price = x.Price,
+                CurrencyType = CurrencyType.USD
             }).ToList();
 
             var result = new List<SelectPolyclinicHealthServicesViewModel>();
@@ -767,7 +769,8 @@ namespace AN.Web.Controllers
                         Selected = true,
                         Id = item.Id,
                         Name = item.Name,
-                        Price = currentItem.Price
+                        Price = currentItem.Price,
+                        CurrencyType = currentItem.CurrencyType
                     });
                 }
                 else
@@ -777,6 +780,7 @@ namespace AN.Web.Controllers
                         Selected = false,
                         Id = item.Id,
                         Name = item.Name,
+                        CurrencyType = CurrencyType.USD
                     });
                 }
             }
@@ -827,7 +831,8 @@ namespace AN.Web.Controllers
                                     {
                                         ShiftCenterId = _policlinic.Id,
                                         HealthServiceId = service.Id,
-                                        Price = service.Price
+                                        Price = service.Price,
+                                        CurrencyType = service.CurrencyType
                                     };
 
                                     _dbContext.CenterServices.Add(pcHealthService);
@@ -839,6 +844,8 @@ namespace AN.Web.Controllers
                                     if(currentService != null)
                                     {
                                         currentService.Price = service.Price;
+
+                                        currentService.CurrencyType = service.CurrencyType;
 
                                         _dbContext.CenterServices.Attach(currentService);
 

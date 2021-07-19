@@ -247,6 +247,8 @@ namespace AN.Web.Models
 
         public string Name { get; set; }
 
+        public CurrencyType CurrencyType { get; set; }
+
     }
 
     public class SettingDoctorViewModel

@@ -1,6 +1,21 @@
 ﻿
 @model AN.Web.Models.SelectPolyclinicHealthServicesViewModel
 
+@{
+    var currencyTypes = new List<SelectListItem> {
+    new SelectListItem
+    {
+        Text = "USD",
+        Value = ((int)AN.Core.Enums.CurrencyType.USD).ToString()
+    },
+    new SelectListItem
+    {
+        Text = "IQD",
+        Value = ((int)AN.Core.Enums.CurrencyType.IQD).ToString()
+    }
+    };
+}
+
 @if (Model.Selected == true)
 {
     <tr style="background:#ffd800;">
@@ -13,6 +28,9 @@
         </td>
         <td>
             @Html.TextBoxFor(m => m.Price, new { @class = "form-control" })
+        </td>
+        <td>
+            @Html.DropDownListFor(m => m.CurrencyType, currencyTypes, new { @class = "form-control" })
         </td>
         <td>
             <i class="fa fa-check fa-lg" aria-hidden="true"></i>
@@ -35,6 +53,9 @@ else
         </td>
         <td>
             @Html.TextBoxFor(m => m.Price, new { @class = "form-control" })
+        </td>
+        <td>
+            @Html.DropDownListFor(m => m.CurrencyType, currencyTypes, new { @class = "form-control" })
         </td>
         <td></td>
         <td>
