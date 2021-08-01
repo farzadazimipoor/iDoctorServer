@@ -1,4 +1,5 @@
 ﻿using AN.Core.Data;
+using AN.Core.Enums;
 using System.Collections.Generic;
 
 namespace AN.Core.Domain
@@ -28,7 +29,9 @@ namespace AN.Core.Domain
         public string HomeCareDescription_Ku { get; set; }
 
         public string HomeCareDescription_Ar { get; set; }
-       
+
+        public CountryType Type { get; set; }
+
         public virtual ICollection<Province> Provinces { get; set; }
 
         public virtual ICollection<MedicalRequest> MedicalRequests { get; set; }

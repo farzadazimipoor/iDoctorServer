@@ -205,6 +205,24 @@ namespace AN.Core.Resources.Enums {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Domestic.
+        /// </summary>
+        public static string country_domestic {
+            get {
+                return ResourceManager.GetString("country_domestic", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to International.
+        /// </summary>
+        public static string country_international {
+            get {
+                return ResourceManager.GetString("country_international", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Created.
         /// </summary>
         public static string created {

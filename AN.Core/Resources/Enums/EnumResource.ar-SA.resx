@@ -165,6 +165,12 @@
   <data name="completed" xml:space="preserve">
     <value>Completed</value>
   </data>
+  <data name="country_domestic" xml:space="preserve">
+    <value>محلي</value>
+  </data>
+  <data name="country_international" xml:space="preserve">
+    <value>دولي</value>
+  </data>
   <data name="created" xml:space="preserve">
     <value>Created</value>
   </data>

@@ -1,6 +1,7 @@
 ﻿using AN.Core.DTO;
 using AN.Core.DTO.Location;
 using AN.Core.Enums;
+using AN.Core.Extensions;
 using AN.DAL;
 using Microsoft.EntityFrameworkCore;
 using System.Collections.Generic;
@@ -24,6 +25,8 @@ namespace AN.BLL.Services.Filters
                 Id = x.Id,
                 Name = lng == Lang.KU ? x.Name_Ku : lng == Lang.AR ? x.Name_Ar : x.Name,
                 HomeCareDescription = lng == Lang.KU ? x.HomeCareDescription_Ku : lng == Lang.AR ? x.HomeCareDescription_Ar : x.HomeCareDescription,
+                Type = x.Type,
+                TypeTitle = x.Type.GetLocalizedDisplayName()
             }).ToListAsync();
 
             var cities = await _dbContext.Cities.Select(x => new CityDTO

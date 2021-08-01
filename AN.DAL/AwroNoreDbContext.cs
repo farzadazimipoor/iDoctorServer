@@ -215,6 +215,7 @@ namespace AN.DAL
                      Name_Ku = "ئاڵمانیا",
                      Name_Ar = "ألمانيا",
                      Code = "DE",
+                     Type = Core.Enums.CountryType.International,
                      CreatedAt = DateTime.Now,
                 },
                 new Country
@@ -224,6 +225,7 @@ namespace AN.DAL
                     Name_Ku = "هیند",
                     Name_Ar = "الهند",
                     Code = "IN",
+                    Type = Core.Enums.CountryType.International,
                     CreatedAt = DateTime.Now,
                 },
                 new Country
@@ -233,6 +235,7 @@ namespace AN.DAL
                     Name_Ku = "تورکیا",
                     Name_Ar = "تركيا",
                     Code = "TR",
+                    Type = Core.Enums.CountryType.International,
                     CreatedAt = DateTime.Now,
                 },
                 new Country
@@ -242,6 +245,34 @@ namespace AN.DAL
                     Name_Ku = "ئوردن",
                     Name_Ar = "اردن",
                     Code = "JO",
+                    Type = Core.Enums.CountryType.International,
+                    CreatedAt = DateTime.Now,
+                },
+                new Country
+                {
+                    Id = 5,
+                    Name = "Erbil",
+                    Name_Ku = "هەولێر",
+                    Name_Ar = "اربیل",
+                    Type = Core.Enums.CountryType.Domestic,
+                    CreatedAt = DateTime.Now,
+                },
+                new Country
+                {
+                    Id = 6,
+                    Name = "Sulaymaniyah",
+                    Name_Ku = "سلێمانی",
+                    Name_Ar = "السلیمانیه",
+                    Type = Core.Enums.CountryType.Domestic,
+                    CreatedAt = DateTime.Now,
+                },
+                new Country
+                {
+                    Id = 7,
+                    Name = "Dahuk",
+                    Name_Ku = "دهۆک",
+                    Name_Ar = "دهوك",
+                    Type = Core.Enums.CountryType.Domestic,
                     CreatedAt = DateTime.Now,
                 }
             );

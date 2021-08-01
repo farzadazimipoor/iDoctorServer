@@ -26,6 +26,8 @@ namespace AN.DAL.EntitiesConfigurations
 
             builder.Property(p => p.HomeCareDescription_Ar).IsUnicode().IsRequired(false);
 
+            builder.Property(p => p.Type).IsRequired();
+
             builder.Property(p => p.CreatedAt).IsRequired();
 
             builder.Property(p => p.UpdatedAt).IsRequired(false).HasColumnType("datetime2");

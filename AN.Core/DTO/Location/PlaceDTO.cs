@@ -1,4 +1,5 @@
-﻿using System.Collections.Generic;
+﻿using AN.Core.Enums;
+using System.Collections.Generic;
 
 namespace AN.Core.DTO.Location
 {
@@ -11,6 +12,8 @@ namespace AN.Core.DTO.Location
     {
         public List<ProvinceDTO> Provinces { get; set; }
         public string HomeCareDescription { get; set; }
+        public CountryType Type { get; set; }
+        public string TypeTitle { get; set; }
     }
 
     public class ProvinceDTO : PlaceDTO

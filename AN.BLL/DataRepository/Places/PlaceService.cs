@@ -2,6 +2,7 @@
 using AN.Core.Domain;
 using AN.Core.DTO.Location;
 using AN.Core.Enums;
+using AN.Core.Extensions;
 using AN.Core.Models;
 using Microsoft.EntityFrameworkCore;
 using System.Collections.Generic;
@@ -95,6 +96,8 @@ namespace AN.BLL.DataRepository.Places
                 Id = x.Id,
                 Name = lng == Lang.AR ? x.Name_Ar : lng == Lang.KU ? x.Name_Ku : x.Name,
                 HomeCareDescription = lng == Lang.AR ? x.HomeCareDescription_Ar : lng == Lang.KU ? x.HomeCareDescription_Ku : x.HomeCareDescription,
+                Type = x.Type,
+                TypeTitle = x.Type.GetLocalizedDisplayName()
             }).ToListAsync();
 
             return result;
