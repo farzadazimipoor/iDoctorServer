@@ -90,14 +90,24 @@ namespace AN.BLL.Services.Doctors
 
         public async Task<List<CenterTypeDTO>> GetSupportAppointmentsCenterTypesAsync(string baseUrl)
         {
-            var query = await _dbContext.ShiftCenters.Where(x => x.SupportAppointments && x.ServiceSupplies.Any()).GroupBy(x => x.Type).Select(x => new CenterTypeDTO
-            {
-                Title = x.Key.GetLocalizedDisplayName(),
-                IconPath = $"{baseUrl}/images/centers/{x.Key.GetCenterTypeIconsFolderName()}/{x.Key.GetCenterTypeIconsFolderName()}.png",
-                CenterType = x.Key
-            }).ToListAsync();
+            var result = new List<CenterTypeDTO>();
 
-            var result = query.OrderBy(x => x.CenterType.GetCenterTypeOrder()).ToList();
+            var query = _dbContext.ShiftCenters.Where(x => x.SupportAppointments && x.ServiceSupplies.Any());
+
+            foreach (ShiftCenterType p in Enum.GetValues(typeof(ShiftCenterType)))
+            {
+                if (await query.AnyAsync(q => q.Type.HasFlag(p)))
+                {
+                    result.Add(new CenterTypeDTO
+                    {
+                        Title = p.GetLocalizedDisplayName(),
+                        IconPath = $"{baseUrl}/images/centers/{p.GetCenterTypeIconsFolderName()}/{p.GetCenterTypeIconsFolderName()}.png",
+                        CenterType = p
+                    });
+                }
+            }
+
+            result = result.OrderBy(x => x.CenterType.GetCenterTypeOrder()).ToList();
 
             return result;
         }
@@ -125,7 +135,7 @@ namespace AN.BLL.Services.Doctors
             if (filterModel == null) return (0, 0, new List<DoctorListItemDTO>());
 
             var query = _serviceSupplyService.Table;
-            
+
             // Only centers that support appointments
             query = query.Where(x => x.ShiftCenter.SupportAppointments);
 
@@ -182,13 +192,13 @@ namespace AN.BLL.Services.Doctors
                 (Global.Doctor + " " + x.Person.FirstName_Ar + " " + x.Person.SecondName_Ar + " " + x.Person.ThirdName_Ar).Contains(filterModel.FilterString));
             }
 
-            if(filterModel.ConsultancyEnabled != null && filterModel.ConsultancyEnabled == true)
+            if (filterModel.ConsultancyEnabled != null && filterModel.ConsultancyEnabled == true)
             {
                 query = query.Where(x => x.ConsultancyEnabled);
             }
 
             // Filter by insurance
-            if(filterModel.InsuranceId != null)
+            if (filterModel.InsuranceId != null)
             {
                 query = query.Where(x => x.Insurances.Any(i => i.InsuranceId == filterModel.InsuranceId));
             }
@@ -393,11 +403,11 @@ namespace AN.BLL.Services.Doctors
             result.Grades = serviceSupply.ServiceSupplyInfo?.DoctorScientificCategories.Select(x => Lng == Lang.AR ? x.ScientificCategory.Name_Ar : Lng == Lang.KU ? x.ScientificCategory.Name_Ku : x.ScientificCategory.Name).ToList();
             result.Bio = Lng == Lang.EN ? serviceSupply.ServiceSupplyInfo?.Bio : Lng == Lang.AR ? serviceSupply.ServiceSupplyInfo?.Bio_Ar : serviceSupply.ServiceSupplyInfo?.Bio_Ku;
 
-            if(offerId != null)
+            if (offerId != null)
             {
                 var offer = await _dbContext.Offers.FindAsync(offerId);
 
-                if(offer != null)
+                if (offer != null)
                 {
                     offer.VisitsCount += 1;
 
@@ -642,9 +652,9 @@ namespace AN.BLL.Services.Doctors
         {
             var serviceSupplies = await _dbContext.ServiceSupplies.ToListAsync();
 
-            foreach(var item in serviceSupplies)
+            foreach (var item in serviceSupplies)
             {
-                if(item.ServiceSupplyInfo == null)
+                if (item.ServiceSupplyInfo == null)
                 {
                     item.ServiceSupplyInfo = new AN.Core.Domain.ServiceSupplyInfo
                     {
@@ -658,7 +668,7 @@ namespace AN.BLL.Services.Doctors
                     if (string.IsNullOrEmpty(item.ServiceSupplyInfo.Phone))
                     {
                         item.ServiceSupplyInfo.Phone = item.Person.Mobile;
-                    }                    
+                    }
                 }
 
                 _dbContext.ServiceSupplies.Update(item);
