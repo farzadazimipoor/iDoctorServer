@@ -43,8 +43,8 @@
             </div>
             <div class="col-md-3">
                 <div class="form-group">
-                    @Html.LabelFor(m => m.Type)
-                    @Html.DropDownListFor(m => m.Type, (ViewBag.ShiftCenterTypes as IEnumerable<SelectListItem>).ToList(), new { @tabindex = "5", @class = "form-control" })
+                    @Html.LabelFor(m => m.Types)
+                    @Html.DropDownListFor(m => m.Types, (ViewBag.ShiftCenterTypes as IEnumerable<SelectListItem>).ToList(), new { @tabindex = "5", @class = "form-control select2", multiple = true })
                 </div>
             </div>
             <div class="col-md-3">

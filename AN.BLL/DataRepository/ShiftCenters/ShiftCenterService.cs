@@ -40,7 +40,7 @@ namespace AN.BLL.DataRepository.Polyclinics
 
             if (types != null && types.Any())
             {
-                query = query.Where(x => types.Contains(x.Type));
+                query = query.Where(x => types.Any(t => x.Type.HasFlag(t)));
             }
 
             var result = await query.Select(x => new SelectListItem

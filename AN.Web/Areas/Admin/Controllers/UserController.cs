@@ -176,13 +176,13 @@ namespace AN.Web.Areas.Admin.Controllers
 
                     if (loginAs == LoginAs.POLYCLINICMANAGER)
                     {
-                        if (shiftCenter.Type != ShiftCenterType.Polyclinic && shiftCenter.Type != ShiftCenterType.Dentist && shiftCenter.Type != ShiftCenterType.HomeCare)
+                        if (!shiftCenter.Type.HasFlag(ShiftCenterType.Polyclinic) && !shiftCenter.Type.HasFlag(ShiftCenterType.Dentist) && !shiftCenter.Type.HasFlag(ShiftCenterType.HomeCare))
                             throw new AwroNoreException("You must select a center to manage");
                     }
 
-                    if (loginAs == LoginAs.SONARMANAGER && shiftCenter.Type != ShiftCenterType.Sonography) throw new AwroNoreException("You must select a center to manage");
+                    if (loginAs == LoginAs.SONARMANAGER && !shiftCenter.Type.HasFlag(ShiftCenterType.Sonography)) throw new AwroNoreException("You must select a center to manage");
 
-                    if (loginAs == LoginAs.LABMANAGER && shiftCenter.Type != ShiftCenterType.Laboratory) throw new AwroNoreException("You must select a center to manage");
+                    if (loginAs == LoginAs.LABMANAGER && !shiftCenter.Type.HasFlag(ShiftCenterType.Laboratory)) throw new AwroNoreException("You must select a center to manage");
 
                     if (model.ServiceSupplyIds.Any())
                     {
@@ -204,7 +204,7 @@ namespace AN.Web.Areas.Admin.Controllers
                 {
                     var beautyCenter = await _shiftCenterService.GetByIdAsync(model.CenterId.Value);
 
-                    if (beautyCenter == null || beautyCenter.Type != ShiftCenterType.BeautyCenter) throw new AwroNoreException("You must select a beauty center to manage");
+                    if (beautyCenter == null || !beautyCenter.Type.HasFlag(ShiftCenterType.BeautyCenter)) throw new AwroNoreException("You must select a beauty center to manage");
 
                     if (model.ServiceSupplyIds.Any())
                     {

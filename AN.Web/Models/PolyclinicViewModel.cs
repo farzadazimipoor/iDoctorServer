@@ -35,11 +35,11 @@ namespace AN.Web.Models
 
         [Display(Name = "City", ResourceType = typeof(Global))]
         [Required(ErrorMessageResourceType = typeof(Global), ErrorMessageResourceName = "Err_ThisFieldIsRequired")]
-        public int CityId { get; set; }
+        public int CityId { get; set; }        
 
         [Display(Name = "Type", ResourceType = typeof(Global))]
         [Required(ErrorMessageResourceType = typeof(Global), ErrorMessageResourceName = "Err_ThisFieldIsRequired")]
-        public ShiftCenterType Type { get; set; }
+        public List<string> Types { get; set; } = new List<string>();
 
         [Display(Name = "Clinic", ResourceType = typeof(Global))]
         public int? ClinicId { get; set; }

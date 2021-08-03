@@ -82,7 +82,7 @@ namespace AN.Web.API.Controllers
 
             var existPerson = await _dbContext.Persons.FirstOrDefaultAsync(x => x.Mobile == inputModel.Mobile);
 
-            var existCenter = await _dbContext.ShiftCenters.FirstOrDefaultAsync(x => x.Type == inputModel.CenterType && x.Name == inputModel.PoliClinicName && x.Name_Ku == inputModel.PoliClinicName && x.Name_Ar == inputModel.PoliClinicName && x.CityId == inputModel.CityId);
+            var existCenter = await _dbContext.ShiftCenters.FirstOrDefaultAsync(x => x.Type.HasFlag(inputModel.CenterType) && x.Name == inputModel.PoliClinicName && x.Name_Ku == inputModel.PoliClinicName && x.Name_Ar == inputModel.PoliClinicName && x.CityId == inputModel.CityId);
 
             var phones = new List<ShiftCenterPhoneModel>
                 {

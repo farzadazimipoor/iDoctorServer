@@ -188,7 +188,7 @@ namespace AN.Web.Areas.PolyClinicManager.Controllers
 
                 if (centerService == null) throw new AwroNoreException(NewResource.NotAnyServiceDefinedForThisCenter);
 
-                if (!serviceSupply.IsAvailable) throw new AwroNoreException(serviceSupply.ShiftCenter.Type == ShiftCenterType.BeautyCenter ? Global.BeautyCenterNotActive : Global.DoctorNotActive);
+                if (!serviceSupply.IsAvailable) throw new AwroNoreException(serviceSupply.ShiftCenter.Type.HasFlag(ShiftCenterType.BeautyCenter) ? Global.BeautyCenterNotActive : Global.DoctorNotActive);
 
                 var patient = await _patientService.GetByIdAsync(patientId);
 

@@ -7,8 +7,8 @@
     Lang lng = ViewBag.Lang;
     var dir = lng == Lang.EN ? LayoutDir.LTR : LayoutDir.RTL;
     var pharmacyRequests = Model.Where(x => !x.Prescriptions.Any()).ToList();
-    var sonarRequests = Model.Where(x => x.Prescriptions.Any(y => y.Center.Type == ShiftCenterType.Sonography)).ToList();
-    var labRequests = Model.Where(x => x.Prescriptions.Any(y => y.Center.Type == ShiftCenterType.Laboratory)).ToList();
+    var sonarRequests = Model.Where(x => x.Prescriptions.Any(y => y.Center.Type.HasFlag(ShiftCenterType.Sonography))).ToList();
+    var labRequests = Model.Where(x => x.Prescriptions.Any(y => y.Center.Type.HasFlag(ShiftCenterType.Laboratory))).ToList();
 }
 
 <section class="content">

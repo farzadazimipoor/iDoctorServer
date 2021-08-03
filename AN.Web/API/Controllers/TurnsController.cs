@@ -130,7 +130,7 @@ namespace AN.Web.API.Controllers
 
                 if (centerService == null) throw new AwroNoreException(NewResource.NotAnyServiceDefinedForThisCenter);
 
-                if (!serviceSupply.IsAvailable) throw new AwroNoreException(serviceSupply.ShiftCenter.Type == ShiftCenterType.BeautyCenter ? Global.BeautyCenterNotActive : Global.DoctorNotActive);
+                if (!serviceSupply.IsAvailable) throw new AwroNoreException(serviceSupply.ShiftCenter.Type.HasFlag(ShiftCenterType.BeautyCenter) ? Global.BeautyCenterNotActive : Global.DoctorNotActive);
 
                 if (_blockedMobileService.IsMobileBlocked(serviceSupply.ShiftCenterId, mobile))
                 {

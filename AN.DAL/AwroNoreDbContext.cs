@@ -9,6 +9,11 @@ namespace AN.DAL
 {
     public class BanobatDbContext : DbContext
     {
+        public BanobatDbContext()
+        {
+
+        }
+
         public BanobatDbContext(DbContextOptions<BanobatDbContext> options) : base(options)
         {
 

@@ -36,7 +36,7 @@ namespace AN.BLL.Services.Location
             query = query.Where(x => x.ShiftCenter.SupportAppointments);
 
             // Only one center type
-            query = query.Where(x => x.ShiftCenter.Type == filterModel.CenterType && /*x.IsAvailable*/ x.Id != 1 && x.Id != 65);
+            query = query.Where(x => x.ShiftCenter.Type.HasFlag(filterModel.CenterType) && x.Id != 1 && x.Id != 65);
 
             // Filter by service
             query = query.Where(x => x.ShiftCenter.PolyclinicHealthServices.Any(ss => ss.HealthServiceId == filterModel.ServiceId));

@@ -123,6 +123,9 @@
   <data name="ab_positive" xml:space="preserve">
     <value>AB+</value>
   </data>
+  <data name="ambulance" xml:space="preserve">
+    <value>Ambulance</value>
+  </data>
   <data name="appointment" xml:space="preserve">
     <value>Appointment</value>
   </data>
@@ -170,6 +173,9 @@
   </data>
   <data name="country_international" xml:space="preserve">
     <value>International</value>
+  </data>
+  <data name="covidcare" xml:space="preserve">
+    <value>Covid Care</value>
   </data>
   <data name="created" xml:space="preserve">
     <value>Created</value>

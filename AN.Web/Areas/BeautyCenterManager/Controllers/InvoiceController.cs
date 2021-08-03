@@ -116,7 +116,7 @@ namespace AN.Web.Areas.BeautyCenterManager.Controllers
 
             var beautycenter = await _shiftCenterService.GetByIdAsync(CurrentBeautyCenter.Id);
 
-            if (beautycenter == null || beautycenter.Type != ShiftCenterType.BeautyCenter) throw new AwroNoreException(Core.Resources.EntitiesResources.Messages.PolyclinicNotFound);
+            if (beautycenter == null || !beautycenter.Type.HasFlag(ShiftCenterType.BeautyCenter)) throw new AwroNoreException(Messages.PolyclinicNotFound);
 
             if (id != null)
             {

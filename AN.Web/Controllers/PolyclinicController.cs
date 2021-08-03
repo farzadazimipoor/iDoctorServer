@@ -283,7 +283,7 @@ namespace AN.Web.Controllers
 
             if (type != null)
             {
-                queryModel.Predicates.Add(x => x.Type == type);
+                queryModel.Predicates.Add(x => x.Type.HasFlag(type));
             }
 
             if (hospitalId != null)
@@ -326,7 +326,17 @@ namespace AN.Web.Controllers
 
             ViewBag.LoginAs = LoginAs.ToString();
 
-            ViewBag.ShiftCenterTypes = MyEnumExtensions.EnumToSelectList<ShiftCenterType>().ToList();
+            // Center Types
+            var centerTypesList = new List<SelectListItem>();
+            foreach (ShiftCenterType p in Enum.GetValues(typeof(ShiftCenterType)))
+            {
+                centerTypesList.Add(new SelectListItem
+                {
+                    Text = p.ToString(),
+                    Value = p.ToString()
+                });
+            }
+            ViewBag.ShiftCenterTypes = centerTypesList;
 
             if (LoginAs != Shared.Enums.LoginAs.CLINICMANAGER)
             {
@@ -378,6 +388,21 @@ namespace AN.Web.Controllers
                             IsForReserve = model.Phone3IsForReserve,
                         });
                     }
+
+                    ShiftCenterType? selectedTypes = null;
+                    foreach (var p in model.Types)
+                    {
+                        Enum.TryParse(p, out ShiftCenterType addedPermission);
+                        if (selectedTypes == null)
+                        {
+                            selectedTypes = addedPermission;
+                        }
+                        else
+                        {
+                            selectedTypes |= addedPermission;
+                        }
+                    }
+
                     if (model.Id.HasValue)
                     {
                         if (LoginAs == Shared.Enums.LoginAs.POLYCLINICMANAGER || LoginAs == Shared.Enums.LoginAs.BEAUTYCENTERMANAGER)
@@ -399,7 +424,7 @@ namespace AN.Web.Controllers
                             poliClinic.IsIndependent = model.ClinicId == null;
                         }
 
-                        poliClinic.Type = model.Type;
+                        poliClinic.Type = selectedTypes.Value;
                         poliClinic.Name = model.Name;
                         poliClinic.Name_Ku = model.Name_Ku;
                         poliClinic.Name_Ar = model.Name_Ar;
@@ -447,6 +472,7 @@ namespace AN.Web.Controllers
                         }
 
                         var strategy = _dbContext.Database.CreateExecutionStrategy();
+
                         await strategy.ExecuteAsync(async () =>
                         {
                             using (var transaction = _dbContext.Database.BeginTransaction())
@@ -458,7 +484,7 @@ namespace AN.Web.Controllers
 
                                     poliClinic = new ShiftCenter
                                     {
-                                        Type = model.Type,
+                                        Type = selectedTypes.Value,
                                         Name = model.Name,
                                         Name_Ku = model.Name_Ku,
                                         Name_Ar = model.Name_Ar,
@@ -501,7 +527,7 @@ namespace AN.Web.Controllers
 
                                     await _dbContext.SaveChangesAsync();
 
-                                    var firstHealthService = await _dbContext.Services.FirstOrDefaultAsync(x => x.ServiceCategory.CenterType == model.Type);
+                                    var firstHealthService = await _dbContext.Services.FirstOrDefaultAsync(x => poliClinic.Type.HasFlag(x.ServiceCategory.CenterType));
 
                                     if (firstHealthService != null)
                                     {
@@ -552,7 +578,17 @@ namespace AN.Web.Controllers
 
             ViewBag.LoginAs = LoginAs.ToString();
 
-            ViewBag.ShiftCenterTypes = MyEnumExtensions.EnumToSelectList<ShiftCenterType>().ToList();
+            // Center Types
+            var centerTypesList = new List<SelectListItem>();
+            foreach (ShiftCenterType p in Enum.GetValues(typeof(ShiftCenterType)))
+            {
+                centerTypesList.Add(new SelectListItem
+                {
+                    Text = p.ToString(),
+                    Value = p.ToString()
+                });
+            }
+            ViewBag.ShiftCenterTypes = centerTypesList;
 
             if (LoginAs == Shared.Enums.LoginAs.POLYCLINICMANAGER || LoginAs == Shared.Enums.LoginAs.BEAUTYCENTERMANAGER)
             {
@@ -581,10 +617,9 @@ namespace AN.Web.Controllers
                 PoliclinicId = poliClinic.Id
             }).ToListAsync();
 
-            var Model = new PoliClinicViewModel
+            var resultModel = new PoliClinicViewModel
             {
                 Id = poliClinic.Id,
-                Type = poliClinic.Type,
                 ClinicId = poliClinic.ClinicId,
                 Name = poliClinic.Name,
                 Name_Ku = poliClinic.Name_Ku,
@@ -622,6 +657,14 @@ namespace AN.Web.Controllers
                 Logo = poliClinic.Logo
             };
 
+            // Center Types
+            var currentTypes = new List<string>();
+            foreach (ShiftCenterType p in Enum.GetValues(typeof(ShiftCenterType)))
+            {
+                if ((poliClinic.Type & p) != 0) currentTypes.Add(p.ToString());
+            }
+            resultModel.Types = currentTypes;
+
             if (LoginAs == Shared.Enums.LoginAs.HOSPITALMANAGER || LoginAs == Shared.Enums.LoginAs.ADMIN)
             {
                 ViewBag.Clinics = await GetClinicssSelectListAsync(LoginAs == Shared.Enums.LoginAs.ADMIN);
@@ -632,12 +675,12 @@ namespace AN.Web.Controllers
                 TempData.Put("message", new MVCResultModel { status = MVCResultStatus.success, message = tempMessage });
             }
 
-            if (!string.IsNullOrEmpty(Model.Logo))
+            if (!string.IsNullOrEmpty(resultModel.Logo))
             {
-                ViewBag.LogoPreview = "<img src=" + Model.Logo + " alt=\"Logo\">";
+                ViewBag.LogoPreview = "<img src=" + resultModel.Logo + " alt=\"Logo\">";
             }
 
-            return View("AddPoliClinic", Model);
+            return View("AddPoliClinic", resultModel);
         }
 
         [HttpPost]
@@ -841,7 +884,7 @@ namespace AN.Web.Controllers
                                 {
                                     var currentService = await _dbContext.CenterServices.FirstOrDefaultAsync(x => x.ShiftCenterId == _policlinic.Id && x.HealthServiceId == service.Id);
 
-                                    if(currentService != null)
+                                    if (currentService != null)
                                     {
                                         currentService.Price = service.Price;
 

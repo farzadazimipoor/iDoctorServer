@@ -59,7 +59,7 @@ namespace AN.BLL.Services.Turns
 
             if(filterModel.CenterType != null)
             {
-                query = query.Where(x => x.ServiceSupply.ShiftCenter.Type == filterModel.CenterType);
+                query = query.Where(x => x.ServiceSupply.ShiftCenter.Type.HasFlag(filterModel.CenterType));
             }
 
             var totalCount = await query.LongCountAsync();

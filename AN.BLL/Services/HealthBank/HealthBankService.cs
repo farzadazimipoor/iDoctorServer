@@ -132,7 +132,7 @@ namespace AN.BLL.Services
             }
             else
             {
-                IQueryable<ShiftCenter> centersQuery = _dbContext.ShiftCenters.Where(x => x.IsApproved && x.IsIndependent && x.ShowInHealthBank && x.Type == centerType);
+                IQueryable<ShiftCenter> centersQuery = _dbContext.ShiftCenters.Where(x => x.IsApproved && x.IsIndependent && x.ShowInHealthBank && x.Type.HasFlag(centerType));
 
                 if (cityId != null) centersQuery = centersQuery.Where(x => x.CityId == cityId);
 

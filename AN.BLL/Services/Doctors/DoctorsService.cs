@@ -130,7 +130,7 @@ namespace AN.BLL.Services.Doctors
             query = query.Where(x => x.ShiftCenter.SupportAppointments);
 
             // Only one center type
-            query = query.Where(x => x.ShiftCenter.Type == filterModel.CenterType && /*x.IsAvailable*/ x.Id != 1 && x.Id != 65);
+            query = query.Where(x => x.ShiftCenter.Type.HasFlag(filterModel.CenterType) && x.Id != 1 && x.Id != 65);
 
             // Filter by service
             if (filterModel.ServiceId != null)
@@ -476,7 +476,7 @@ namespace AN.BLL.Services.Doctors
                     Id = serviceSupply.Id,
                     HasAvailableTurn = false,
                     Message = Global.NoAvailableTurnFound,
-                    Description = serviceSupply.ShiftCenter.Type == ShiftCenterType.BeautyCenter ? Global.BeautyCenterNotActive : Global.DoctorNotActive,
+                    Description = serviceSupply.ShiftCenter.Type.HasFlag(ShiftCenterType.BeautyCenter) ? Global.BeautyCenterNotActive : Global.DoctorNotActive,
                     CanRequestTurn = serviceSupply.ServiceSupplyInfo != null && serviceSupply.ServiceSupplyInfo.Description.Contains("#Requested")
                 };
             }
@@ -490,7 +490,7 @@ namespace AN.BLL.Services.Doctors
                     Id = serviceSupply.Id,
                     HasAvailableTurn = false,
                     Message = Global.NoAvailableTurnFound,
-                    Description = serviceSupply.ShiftCenter.Type == ShiftCenterType.BeautyCenter ? Global.BeautyCenterNotHaveAvailableTurn : Global.DoctorNotHaveAvailableTurn,
+                    Description = serviceSupply.ShiftCenter.Type.HasFlag(ShiftCenterType.BeautyCenter) ? Global.BeautyCenterNotHaveAvailableTurn : Global.DoctorNotHaveAvailableTurn,
                     CanRequestTurn = serviceSupply.ServiceSupplyInfo != null && serviceSupply.ServiceSupplyInfo.Description.Contains("#Requested")
                 };
             }

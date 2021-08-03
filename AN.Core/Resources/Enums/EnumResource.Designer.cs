@@ -97,6 +97,15 @@ namespace AN.Core.Resources.Enums {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Ambulance.
+        /// </summary>
+        public static string ambulance {
+            get {
+                return ResourceManager.GetString("ambulance", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Appointment.
         /// </summary>
         public static string appointment {
@@ -219,6 +228,15 @@ namespace AN.Core.Resources.Enums {
         public static string country_international {
             get {
                 return ResourceManager.GetString("country_international", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Covid Care.
+        /// </summary>
+        public static string covidcare {
+            get {
+                return ResourceManager.GetString("covidcare", resourceCulture);
             }
         }
         

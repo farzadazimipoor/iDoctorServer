@@ -16,6 +16,7 @@
 @section styles{
     <link rel="stylesheet" href="~/lib/bootstrap-fileinput/css/fileinput.min.css" />
     <link rel="stylesheet" href="~/lib/iCheck/skins/all.css" type="text/css" />
+    <link rel="stylesheet" href="~/lib/select2/css/select2.min.css" type="text/css" />
 }
 
 <div class="content-header">
@@ -109,8 +110,24 @@
     <script type="text/javascript" src="~/lib/bootstrap-fileinput/js/fileinput.min.js"></script>
     <script type="text/javascript" src="~/lib/bootstrap-fileinput/themes/fas/theme.min.js"></script>
     <script type="text/javascript" src="~/lib/iCheck/icheck.min.js"></script>
+    <script src="~/lib/select2/js/select2.min.js"></script>
     <script>
         (function () {
+            var _selectedTypes = [
+                @if (Model.Types.Count != 0)
+                {
+                    foreach (var p in Model.Types)
+                    {
+                        @:'@p',
+                    }
+                }
+            ];
+            $("[name='Types']").val(_selectedTypes).trigger('change');
+
+            $(".select2").select2({
+                width: '100%'               
+            });
+
             $('input[type="checkbox"].flat-red, input[type="radio"].flat-red').iCheck({
                 checkboxClass: 'icheckbox_flat-green',
                 radioClass: 'iradio_flat-green'
@@ -158,7 +175,7 @@
                     text: 'File upload error. please try again or select another photo'
                 });
             }).on('filebeforedelete', function () {
-                var aborted = !window.confirm('@AN.Core.Resources.Global.Global.Msg_AreYouSure');               
+                var aborted = !window.confirm('@AN.Core.Resources.Global.Global.Msg_AreYouSure');
                 return aborted;
             }).on('filedeleted', function () {
                  Toast.fire({

@@ -501,7 +501,7 @@ namespace AN.BLL.DataRepository.Appointments
                     ReservationChannel = x.ReservationChannel,
                     Status = x.Status,
                     Service = x.ShiftCenterService != null ? $"{x.ShiftCenterService.Service.ServiceCategory.Name}/{x.ShiftCenterService.Service.Name}" : "",
-                    IsHomeCare = x.ServiceSupply.ShiftCenter.Type == ShiftCenterType.HomeCare,
+                    IsHomeCare = x.ServiceSupply.ShiftCenter.Type.HasFlag(ShiftCenterType.HomeCare),
                     ProgressStatus = x.ProgressStatus
                 }).ToListAsync();
 
