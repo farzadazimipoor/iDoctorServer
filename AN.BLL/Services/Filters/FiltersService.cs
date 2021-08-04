@@ -100,7 +100,8 @@ namespace AN.BLL.Services.Filters
                 Id = x.Id,
                 Name = lang == Lang.KU ? x.Name_Ku : lang == Lang.AR ? x.Name_Ar : x.Name,
                 CategoryId = x.ServiceCategoryId,
-                Price = x.Price
+                Price = x.Price,
+                CategoryCenterType = x.ServiceCategory.CenterType,                
             }).ToListAsync();
 
             var result = new ServicesFilterDTO
@@ -124,7 +125,8 @@ namespace AN.BLL.Services.Filters
                 Price = x.Price ?? x.Service.Price,
                 CenterId = x.ShiftCenterId,
                 CenterServiceId = x.Id,
-                CurrencyType = x.CurrencyType.ToString()
+                CurrencyType = x.CurrencyType.ToString(),
+                CategoryCenterType = x.Service.ServiceCategory.CenterType
             }).ToListAsync();
 
             return services;

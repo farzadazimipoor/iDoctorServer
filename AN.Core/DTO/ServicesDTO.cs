@@ -14,6 +14,7 @@ namespace AN.Core.DTO
         public int CategoryId { get; set; }
         public decimal Price { get; set; }
         public string CurrencyType { get; set; }
+        public ShiftCenterType CategoryCenterType { get; set; }
     }
 
     public class CenterServiceDTO : ServiceDTO

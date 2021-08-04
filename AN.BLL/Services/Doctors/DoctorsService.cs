@@ -124,7 +124,8 @@ namespace AN.BLL.Services.Doctors
                 Name = lang == Lang.EN ? ps.Service.Name : lang == Lang.AR ? ps.Service.Name_Ar : ps.Service.Name_Ku,
                 Price = ps.Price ?? ps.Service.Price,
                 CategoryId = ps.Service.ServiceCategoryId,
-                CurrencyType = ps.CurrencyType.ToString()
+                CurrencyType = ps.CurrencyType.ToString(),
+                CategoryCenterType = ps.Service.ServiceCategory.CenterType
             }).ToList();
 
             return result;
