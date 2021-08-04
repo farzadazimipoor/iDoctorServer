@@ -791,7 +791,7 @@ namespace AN.Web.Controllers
                                        CurrencyType = h.CurrencyType
                                    }).ToList();
 
-            var allServices = _healthServiceService.GetAll().Where(x => x.ServiceCategory.CenterType == polyclinic.Type).Select(x => new
+            var allServices = _healthServiceService.GetAll().Where(x => polyclinic.Type.HasFlag(x.ServiceCategory.CenterType)).Select(x => new
             {
                 x.Id,
                 Name = Lng == Lang.KU ? x.Name_Ku : Lng == Lang.AR ? x.Name_Ar : x.Name,
