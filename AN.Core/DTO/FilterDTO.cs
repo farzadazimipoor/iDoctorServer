@@ -18,5 +18,6 @@ namespace AN.Core.DTO
         public List<ServiceCategoryDTO> ServiceCategories { get; set; }
         public List<ServiceDTO> Services { get; set; }
         public string ConsultancyDisclaimer { get; set; }
+        public bool EnableCovidServices { get; set; }
     }
 }

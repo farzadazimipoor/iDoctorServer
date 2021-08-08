@@ -41,6 +41,8 @@ namespace AN.Web.API.Controllers
 
             result.ConsultancyDisclaimer = RequestLang == Lang.KU ? disclamer.DisclamerKu : RequestLang == Lang.AR ? disclamer.DisclamerAr : disclamer.Disclamer;
 
+            result.EnableCovidServices = _options.Value.AwroNoreSettings.EnableCovidServices;
+
             return Ok(result);
         }
 

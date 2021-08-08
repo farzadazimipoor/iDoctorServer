@@ -1,7 +1,6 @@
 ﻿using AN.BLL.Services.Location;
 using AN.Core.DTO.Doctors;
 using Microsoft.AspNetCore.Mvc;
-using System.Threading.Tasks;
 
 namespace AN.Web.API.Controllers
 {
@@ -16,9 +15,9 @@ namespace AN.Web.API.Controllers
         }
 
         [HttpPost("nearby/{x_longitude:double}/{y_latitude:double}")]
-        public async Task<IActionResult> GetNearByShiftCenters(double x_longitude, double y_latitude, [FromBody]DoctorFilterDTO filterModel, [FromQuery]double radiusMeters = 1000) // x Meters Nearby Me
+        public IActionResult GetNearByShiftCenters(double x_longitude, double y_latitude, [FromBody]DoctorFilterDTO filterModel, [FromQuery]double radiusMeters = 1000) // x Meters Nearby Me
         {
-            var locations = await _locationService.GetNearbyShiftCentersAsync(x_longitude, y_latitude, filterModel, radiusMeters, RequestLang);
+            var locations = _locationService.GetNearbyShiftCenters(x_longitude, y_latitude, filterModel, radiusMeters, RequestLang);
 
             return Ok(locations);
         }

@@ -7,7 +7,6 @@ using AN.Core.Resources.Global;
 using NetTopologySuite.Geometries;
 using System.Collections.Generic;
 using System.Linq;
-using System.Threading.Tasks;
 
 namespace AN.BLL.Services.Location
 {
@@ -21,7 +20,7 @@ namespace AN.BLL.Services.Location
             _doctorServiceManager = doctorServiceManager;
         }
 
-        public async Task<List<NearByDoctorDTO>> GetNearbyShiftCentersAsync(double x_longitude, double y_latitude, DoctorFilterDTO filterModel, double radiusMeters, Lang lang)
+        public List<NearByDoctorDTO> GetNearbyShiftCenters(double x_longitude, double y_latitude, DoctorFilterDTO filterModel, double radiusMeters, Lang lang)
         {
             if (filterModel == null) return new List<NearByDoctorDTO>();
 
@@ -33,13 +32,19 @@ namespace AN.BLL.Services.Location
             var query = _serviceSupplyService.Table;
 
             // Only centers that support appointments
-            query = query.Where(x => x.ShiftCenter.SupportAppointments);
+            query = query.Where(x => x.ShiftCenter.SupportAppointments && x.Id != 1 && x.Id != 65);
 
-            // Only one center type
-            query = query.Where(x => x.ShiftCenter.Type.HasFlag(filterModel.CenterType) && x.Id != 1 && x.Id != 65);
-
-            // Filter by service
-            query = query.Where(x => x.ShiftCenter.PolyclinicHealthServices.Any(ss => ss.HealthServiceId == filterModel.ServiceId));
+            if(filterModel.CenterType != null)
+            {
+                // Only one center type
+                query = query.Where(x => x.ShiftCenter.Type.HasFlag(filterModel.CenterType.Value));
+            }
+            
+            if(filterModel.ServiceId != null)
+            {
+                // Filter by service
+                query = query.Where(x => x.ShiftCenter.PolyclinicHealthServices.Any(ss => ss.HealthServiceId == filterModel.ServiceId.Value));
+            }           
 
             //Filter by city
             if (filterModel.CityId != null)

@@ -32,6 +32,7 @@ namespace Shared.Settings
     {
         public ApplicationConfig App { get; set; }
         public ConsultancyDisclamer ConsultancyDisclamer { get; set; }
+        public bool EnableCovidServices { get; set; }
         public ChatScreenMention ChatScreenMention { get; set; }
         public ConsultantChatScreenMention ConsultantChatScreenMention { get; set; }
         public ContactDefaultStatus ContactDefaultStatus { get; set; }

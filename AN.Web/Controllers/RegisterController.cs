@@ -9,7 +9,6 @@ using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.Logging;
 using Microsoft.Extensions.Options;
-using Microsoft.Security.Application;
 using Shared.Settings;
 using System;
 using System.Collections.Generic;
@@ -58,21 +57,21 @@ namespace AN.Web.Controllers
                 }
 
                 // Prevent XSS Attacks
-                model.FirstName = Sanitizer.GetSafeHtmlFragment(model.FirstName);
+                //model.FirstName = Sanitizer.GetSafeHtmlFragment(model.FirstName);
 
-                model.SecondName = Sanitizer.GetSafeHtmlFragment(model.SecondName);
+                //model.SecondName = Sanitizer.GetSafeHtmlFragment(model.SecondName);
 
-                model.ThirdName = Sanitizer.GetSafeHtmlFragment(model.ThirdName);
+                //model.ThirdName = Sanitizer.GetSafeHtmlFragment(model.ThirdName);
 
-                model.Description = Sanitizer.GetSafeHtmlFragment(model.Description);
+                //model.Description = Sanitizer.GetSafeHtmlFragment(model.Description);
 
-                model.Email = Sanitizer.GetSafeHtmlFragment(model.Email);
+                //model.Email = Sanitizer.GetSafeHtmlFragment(model.Email);
 
-                model.PoliClinicAddress = Sanitizer.GetSafeHtmlFragment(model.PoliClinicAddress);
+                //model.PoliClinicAddress = Sanitizer.GetSafeHtmlFragment(model.PoliClinicAddress);
 
-                model.PoliClinicName = Sanitizer.GetSafeHtmlFragment(model.PoliClinicName);
+                //model.PoliClinicName = Sanitizer.GetSafeHtmlFragment(model.PoliClinicName);
 
-                model.Mobile = Sanitizer.GetSafeHtmlFragment(model.Mobile);
+                //model.Mobile = Sanitizer.GetSafeHtmlFragment(model.Mobile);
 
                 if (string.IsNullOrEmpty(model.FirstName) || string.IsNullOrEmpty(model.SecondName) || string.IsNullOrEmpty(model.ThirdName) || string.IsNullOrEmpty(model.Description) || string.IsNullOrEmpty(model.Email) || string.IsNullOrEmpty(model.PoliClinicAddress) || string.IsNullOrEmpty(model.PoliClinicName))
                 {

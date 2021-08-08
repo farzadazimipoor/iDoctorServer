@@ -138,10 +138,13 @@ namespace AN.BLL.Services.Doctors
             var query = _serviceSupplyService.Table;
 
             // Only centers that support appointments
-            query = query.Where(x => x.ShiftCenter.SupportAppointments);
+            query = query.Where(x => x.ShiftCenter.SupportAppointments && x.Id != 1 && x.Id != 65);
 
-            // Only one center type
-            query = query.Where(x => x.ShiftCenter.Type.HasFlag(filterModel.CenterType) && x.Id != 1 && x.Id != 65);
+            if(filterModel.CenterType != null)
+            {
+                // Only one center type
+                query = query.Where(x => x.ShiftCenter.Type.HasFlag(filterModel.CenterType));
+            }            
 
             // Filter by service
             if (filterModel.ServiceId != null)

@@ -35,7 +35,7 @@ namespace AN.Core.DTO.Doctors
 
     public class DoctorFilterDTO
     {
-        public ShiftCenterType CenterType { get; set; } = ShiftCenterType.Polyclinic;
+        public ShiftCenterType? CenterType { get; set; } = null;
         public int? CityId { get; set; }
         public int? HospitalId { get; set; }
         public int? ClinicId { get; set; }
