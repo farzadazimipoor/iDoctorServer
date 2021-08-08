@@ -99,7 +99,7 @@ namespace AN.BLL.Services.Location
             query = query.Where(x => x.ShiftCenter.Location.Distance(myLocation) <= radiusMeters);
 
             var doctorsWithinRadius = (from x in query.AsEnumerable()
-                                             let shiftCenterService = x.ShiftCenter.PolyclinicHealthServices.FirstOrDefault(ss => ss.HealthServiceId == filterModel.ServiceId)
+                                             let shiftCenterService = x.ShiftCenter.PolyclinicHealthServices.FirstOrDefault(ss => ss.HealthServiceId == (filterModel.ServiceId ?? 0))
                                              let firstExpertise = x.DoctorExpertises.FirstOrDefault()
                                              select new NearByDoctorDTO
                                              {
@@ -114,7 +114,7 @@ namespace AN.BLL.Services.Location
                                                  Avatar = x.Person.RealAvatar,
                                                  AverageRating = x.AverageRating ?? 5,
                                                  HasEmptyTurn = false,
-                                                 CenterServiceId = shiftCenterService.Id,
+                                                 CenterServiceId = shiftCenterService?.Id,
                                                  Service = shiftCenterService == null ? "" : lang == Lang.KU ? shiftCenterService.Service.Name_Ku : lang == Lang.AR ? shiftCenterService.Service.Name_Ar : shiftCenterService.Service.Name,
                                                  ReservationType = x.ReservationType,
                                                  ExpertiseCategory = firstExpertise != null ? lang == Lang.AR ? firstExpertise.Expertise.ExpertiseCategory.Name_Ar : lang == Lang.KU ? firstExpertise.Expertise.ExpertiseCategory.Name_Ku : firstExpertise.Expertise.ExpertiseCategory.Name : "",                                                 
