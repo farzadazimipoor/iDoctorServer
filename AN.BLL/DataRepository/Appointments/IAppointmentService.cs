@@ -65,6 +65,8 @@ namespace AN.BLL.DataRepository.Appointments
 
         Task<DataTablesPagedResults<AppointmentRequestsListViewModel>> GetAppointmentRequestsDataTableAsync(DataTablesParameters table, AppointmentRequestsFilterViewModel filters, Lang lng = Lang.KU);
 
+        Task<AppointmentRequestDetailsViewModel> GetAppointmentRequestDetailsAsync(int id, Lang lng = Lang.KU);
+
         Task ApproveAppointmentRequestAsync(ApproveAppointmentRequestModel model);
 
         Task DeleteAppointmentRequestAsync(int id);

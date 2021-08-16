@@ -512,6 +512,36 @@ namespace AN.BLL.DataRepository.Appointments
             };
         }
 
+        public async Task<AppointmentRequestDetailsViewModel> GetAppointmentRequestDetailsAsync(int id, Lang lng = Lang.KU)
+        {
+            var x = await _dbContext.Appointments.FindAsync(id);
+
+            if (x == null || string.IsNullOrEmpty(x.Description) || !x.Description.Contains("#Requested")) throw new AwroNoreException("Appointment request not found");
+
+            var result = new AppointmentRequestDetailsViewModel
+            {
+                Id = x.Id,
+                CreateDate = x.CreatedAt.ToString("yyyy-MM-dd HH:mm:ss"),
+                CenterName = lng == Lang.KU ? x.ServiceSupply.ShiftCenter.Name_Ku : lng == Lang.AR ? x.ServiceSupply.ShiftCenter.Name_Ar : x.ServiceSupply.ShiftCenter.Name,
+                CenterPhone = x.ServiceSupply.ShiftCenter.PhoneNumbers.FirstOrDefault() != null ? x.ServiceSupply.ShiftCenter.PhoneNumbers.FirstOrDefault().PhoneNumber : "",
+                CenterAddress = lng == Lang.KU ? x.ServiceSupply.ShiftCenter.Address_Ku : lng == Lang.AR ? x.ServiceSupply.ShiftCenter.Address_Ar : x.ServiceSupply.ShiftCenter.Address,
+                Patient = x.Person != null ? lng == Lang.KU ? x.Person.FullName_Ku : lng == Lang.AR ? x.Person.FullName_Ar : x.Person.FullName : "",
+                Doctor = x.ServiceSupply.Person != null ? lng == Lang.KU ? x.ServiceSupply.Person.FullName_Ku : lng == Lang.AR ? x.ServiceSupply.Person.FullName_Ar : x.ServiceSupply.Person.FullName : "",
+                Mobile = x.Person != null ? x.Person.Mobile : "",
+                Gender = x.Person != null ? x.Person.Gender == Gender.Male ? AN.Core.Resources.Global.Global.Male : AN.Core.Resources.Global.Global.FeMale : "",
+                Avatar = x.Person != null ? x.Person.RealAvatar : "",
+                ReservationChannel = x.ReservationChannel,
+                Status = x.Status,
+                Service = x.ShiftCenterService != null ? $"{x.ShiftCenterService.Service.ServiceCategory.Name}/{x.ShiftCenterService.Service.Name}" : "",
+                IsHomeCare = x.ServiceSupply.ShiftCenter.Type.HasFlag(ShiftCenterType.HomeCare),
+                ProgressStatus = x.ProgressStatus,
+                Xlongitude = x.PersonLocation?.X.ToString(),
+                Ylatitude = x.PersonLocation?.Y.ToString()
+            };
+
+            return result;
+        }
+
         public async Task ApproveAppointmentRequestAsync(ApproveAppointmentRequestModel model)
         {
             var appointment = await _dbContext.Appointments.FindAsync(model.Id);

@@ -91,6 +91,13 @@ namespace AN.Web.Controllers
             }
         }
 
+        public async Task<IActionResult> Details(int id)
+        {
+            var result = await _appointmentService.GetAppointmentRequestDetailsAsync(id, Lng);
+
+            return PartialView(result);
+        }
+
         public async Task<IActionResult> ApproveAppointmentRequest(int id)
         {
             var appointmentRequest = await _appointmentService.GetAppointmentByIdAsync(id);

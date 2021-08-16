@@ -76,6 +76,12 @@ namespace AN.Core.ViewModels
         public string ActionsHtml { get; set; }
     }
 
+    public class AppointmentRequestDetailsViewModel : AppointmentRequestsListViewModel
+    {
+        public string Xlongitude {get; set; }
+        public string Ylatitude { get; set; }
+    }
+
     public class AppointmentRequestsFilterViewModel
     {
         public int? ShiftCenterId { get; set; }

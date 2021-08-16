@@ -75,16 +75,12 @@
                                 <tr>
                                     <th></th>
                                     <th></th>
-                                    <th></th>
                                     <th>@Html.DisplayNameFor(m => m.CreateDate)</th>
                                     <th>@Html.DisplayNameFor(m => m.CenterName)</th>
-                                    <th>@Html.DisplayNameFor(m => m.CenterPhone)</th>
-                                    <th>@Html.DisplayNameFor(m => m.CenterAddress)</th>
                                     <th>@Html.DisplayNameFor(m => m.Doctor)</th>
                                     <th>@Html.DisplayNameFor(m => m.Patient)</th>
                                     <th>@Html.DisplayNameFor(m => m.Mobile)</th>
-                                    <th>@Html.DisplayNameFor(m => m.Gender)</th>                                                                                                  
-                                    <th>@Html.DisplayNameFor(m => m.Service)</th>                                                                                                  
+                                    <th>@Html.DisplayNameFor(m => m.Service)</th>
                                     <th>Progress</th>
                                     <th></th>
                                 </tr>
@@ -138,20 +134,13 @@
                     },
                     columns: [
                         {
-                            data: "Id",
-                            name: "eq",
-                            visible: false,
-                            searchable: false,
-                            orderable: false
-                        },
-                        {
                             data: null,
                             orderable: true,
                             searchable: false,
                             render: function (data, type, row, meta) {
                                 return row.StatusHtml;
                             },
-                            width: "5%"
+                            width: "3%"
                         },
                         {
                             data: null,
@@ -160,7 +149,7 @@
                             render: function (data, type, row, meta) {
                                 return row.ChannelHtml;
                             },
-                            width: "5%"
+                            width: "3%"
                         },
                         {
                             data: "CreateDate",
@@ -171,41 +160,25 @@
                             data: "CenterName",
                             name: "co",
                             searchable: false,
-                            orderable: true
-                        },
-                        {
-                            data: "CenterPhone",
-                            name: "co",
-                            searchable: false,
-                            orderable: false
-                        },
-                        {
-                            data: "CenterAddress",
-                            name: "co",
-                            searchable: false,
-                            orderable: true
+                            orderable: true,
+                            width: "14%"
                         },
                         {
                             data: "Doctor",
                             name: "co",
                             searchable: false,
-                            orderable: true
+                            orderable: true,
+                            width: "15%"
                         },
                         {
                             data: "Patient",
                             name: "co",
                             searchable: false,
-                            orderable: true
+                            orderable: true,
+                            width: "15%"
                         },
                         {
                             data: "Mobile",
-                            name: "co",
-                            width: "10%",
-                            searchable: false,
-                            orderable: true
-                        },
-                        {
-                            data: "Gender",
                             name: "co",
                             width: "10%",
                             searchable: false,
@@ -224,7 +197,8 @@
                             searchable: false,
                             render: function (data, type, row, meta) {
                                 return row.ProgressStatusHtml;
-                            }
+                            },
+                            width: "20%",
                         },
                         {
                             data: null,
@@ -262,6 +236,26 @@
                       $('.clockpicker').mask("99:99");
                       $('.clockpicker').clockpicker();
              },
+                 error: function (jqXHR, ex) {
+                     handleAjaxError(jqXHR, ex);
+                 }
+             }).always(function () {
+                 waitingDone('body');
+             });
+        }
+
+        function viewAppointmentRequest(id) {
+             waiting('body', '@AN.Core.Resources.Global.Global.PleaseWait');
+             $.ajax({
+                 type: 'Get',
+                 url: "/AppointmentRequest/Details/" + id,
+                 success: function (response) {
+                      var commonModal = $("#AwroNoreModal");
+                      commonModal.find('#AwroNoreModalDialog').addClass("modal-lg modal-xlg");
+                      commonModal.find('.modal-title').text('@Html.Raw(AN.Core.Resources.Global.Global.Details)');
+                      commonModal.find('#CommonModalContent').html(response);
+                      commonModal.modal({ backdrop: 'static', keyboard: false });
+                 },
                  error: function (jqXHR, ex) {
                      handleAjaxError(jqXHR, ex);
                  }
@@ -338,4 +332,5 @@
             });
         }
     </script>
+    <script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyC1aP6VfzPidl9XzIoXV9zPMANkk2MM1Xk&libraries=&v=weekly"></script>    
 }
