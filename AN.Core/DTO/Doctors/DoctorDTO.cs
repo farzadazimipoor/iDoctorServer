@@ -25,6 +25,7 @@ namespace AN.Core.DTO.Doctors
         public ShiftCenterType CenterType { get; set; }
         public bool ConsultancyEnabled { get; set; }
         public bool CanRequestTurn { get; set; }
+        public string Notification { get; set; }
     }
 
     public class DoctorsResultDTO

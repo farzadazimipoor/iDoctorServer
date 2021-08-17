@@ -122,7 +122,7 @@ namespace AN.BLL.Services.Doctors
             {
                 Id = ps.Id,
                 Name = lang == Lang.EN ? ps.Service.Name : lang == Lang.AR ? ps.Service.Name_Ar : ps.Service.Name_Ku,
-                Price = ps.Price ?? ps.Service.Price,
+                Price = ps.Price ?? ps.Service.Price.ToString(),
                 CategoryId = ps.Service.ServiceCategoryId,
                 CurrencyType = ps.CurrencyType.ToString(),
                 CategoryCenterType = ps.Service.ServiceCategory.CenterType
@@ -234,7 +234,8 @@ namespace AN.BLL.Services.Doctors
                                // TODO: Reminder => Find Offers Too in this method (FindFirstDateEmptyTimePeriodsFromNow)
                                TimePeriods = shiftCenterService == null ? new DoctorTimePeriods() : _doctorServiceManager.FindFirstDateEmptyTimePeriodsFromNow(x, shiftCenterService),
                                ConsultancyEnabled = x.ConsultancyEnabled,
-                               CanRequestTurn = x.ServiceSupplyInfo != null && x.ServiceSupplyInfo.Description.Contains("#Requested")
+                               CanRequestTurn = x.ServiceSupplyInfo != null && x.ServiceSupplyInfo.Description.Contains("#Requested"),
+                               Notification = lang == Lang.KU ? x.Notification_Ku : lang == Lang.AR ? x.Notification_Ar : x.Notification
                            }).ToList();
 
             if (filterModel.HaveTurns == true)

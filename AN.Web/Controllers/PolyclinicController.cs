@@ -787,7 +787,7 @@ namespace AN.Web.Controllers
                                    {
                                        h.Service.Id,
                                        Name = Lng == Lang.KU ? h.Service.Name_Ku : Lng == Lang.AR ? h.Service.Name_Ar : h.Service.Name,
-                                       Price = h.Price ?? h.Service.Price,
+                                       Price = h.Price ?? h.Service.Price.ToString(),
                                        CurrencyType = h.CurrencyType
                                    }).ToList();
 
@@ -874,7 +874,7 @@ namespace AN.Web.Controllers
                                     {
                                         ShiftCenterId = _policlinic.Id,
                                         HealthServiceId = service.Id,
-                                        Price = service.Price,
+                                        Price = service.Price?.ToString(),
                                         CurrencyType = service.CurrencyType
                                     };
 
@@ -886,7 +886,7 @@ namespace AN.Web.Controllers
 
                                     if (currentService != null)
                                     {
-                                        currentService.Price = service.Price;
+                                        currentService.Price = service.Price?.ToString();
 
                                         currentService.CurrencyType = service.CurrencyType;
 

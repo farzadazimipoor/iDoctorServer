@@ -15,7 +15,7 @@ namespace AN.DAL.EntitiesConfigurations
 
             builder.Property(p => p.CurrencyType).IsRequired().HasDefaultValue(CurrencyType.USD);
 
-            builder.Property(p => p.Price).IsRequired(false).HasColumnType("decimal(19,4)");
+            builder.Property(p => p.Price).IsRequired(false);
 
             builder.Property(p => p.PriceWithDiscount).IsRequired(false).HasColumnType("decimal(19,4)");
 

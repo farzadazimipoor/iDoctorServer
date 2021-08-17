@@ -100,7 +100,7 @@ namespace AN.BLL.Services.Filters
                 Id = x.Id,
                 Name = lang == Lang.KU ? x.Name_Ku : lang == Lang.AR ? x.Name_Ar : x.Name,
                 CategoryId = x.ServiceCategoryId,
-                Price = x.Price,
+                Price = x.Price.ToString(),
                 CategoryCenterType = x.ServiceCategory.CenterType,                
             }).ToListAsync();
 
@@ -122,7 +122,7 @@ namespace AN.BLL.Services.Filters
                 Id = x.Id,
                 Name = lang == Lang.KU ? x.Service.Name_Ku : lang == Lang.AR ? x.Service.Name_Ar : x.Service.Name,
                 CategoryId = x.Service.ServiceCategoryId,
-                Price = x.Price ?? x.Service.Price,
+                Price = x.Price ?? x.Service.Price.ToString(),
                 CenterId = x.ShiftCenterId,
                 CenterServiceId = x.Id,
                 CurrencyType = x.CurrencyType.ToString(),

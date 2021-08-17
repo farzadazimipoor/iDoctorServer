@@ -17,7 +17,7 @@ namespace AN.Core.Domain
 
         public CurrencyType CurrencyType { get; set; } = CurrencyType.USD;
 
-        public decimal? Price { get; set; }
+        public string Price { get; set; }
 
         public decimal? PriceWithDiscount { get; set; }
 

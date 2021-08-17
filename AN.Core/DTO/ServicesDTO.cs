@@ -12,7 +12,7 @@ namespace AN.Core.DTO
     {
         public string Name { get; set; }
         public int CategoryId { get; set; }
-        public decimal Price { get; set; }
+        public string Price { get; set; }
         public string CurrencyType { get; set; }
         public ShiftCenterType CategoryCenterType { get; set; }
     }
